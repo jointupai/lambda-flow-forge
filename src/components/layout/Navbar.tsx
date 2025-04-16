@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
   PieChart, 
   MessageSquare, 
-  DatabaseIcon, 
+  Database as DatabaseIcon, 
   RefreshCw,
   X,
   Menu,
@@ -56,12 +55,12 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white shadow-lg rounded-xl border border-gray-100 p-6 w-[900px]">
-                    <div className="grid grid-cols-4 gap-6">
+                  <NavigationMenuContent className="bg-white shadow-lg rounded-lg p-8 w-[920px]">
+                    <div className="grid grid-cols-4 gap-8">
                       {/* Column 1 - Pipeline Builder */}
-                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="space-y-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <div className="bg-blue-50 p-2.5 rounded-lg">
+                          <div className="bg-blue-50 p-3 rounded-full">
                             <PieChart className="h-5 w-5 text-blue-600" />
                           </div>
                           <h3 className="text-base font-medium text-gray-800">
@@ -71,11 +70,11 @@ export default function Navbar() {
                         <p className="text-sm text-gray-600 mt-2">
                           Find the right people and book quality meetings
                         </p>
-                        <Button variant="outline" size="sm" className="mt-3">
+                        <Button variant="outline" size="sm" className="mt-3 w-full">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
+                        <ul className="space-y-2.5 pt-3 mt-4 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/b2b-prospecting" 
@@ -112,9 +111,9 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 2 - Call Assistant */}
-                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="space-y-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <div className="bg-green-50 p-2.5 rounded-lg">
+                          <div className="bg-green-50 p-3 rounded-full">
                             <MessageSquare className="h-5 w-5 text-green-600" />
                           </div>
                           <h3 className="text-base font-medium text-gray-800">
@@ -124,11 +123,11 @@ export default function Navbar() {
                         <p className="text-sm text-gray-600 mt-2">
                           Turn conversations into deals with AI assistance
                         </p>
-                        <Button variant="outline" size="sm" className="mt-3">
+                        <Button variant="outline" size="sm" className="mt-3 w-full">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
+                        <ul className="space-y-2.5 pt-3 mt-4 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/meeting-scheduler" 
@@ -165,9 +164,9 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 3 - Data Enrichment */}
-                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="space-y-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <div className="bg-purple-50 p-2.5 rounded-lg">
+                          <div className="bg-purple-50 p-3 rounded-full">
                             <DatabaseIcon className="h-5 w-5 text-purple-600" />
                           </div>
                           <h3 className="text-base font-medium text-gray-800">
@@ -177,11 +176,11 @@ export default function Navbar() {
                         <p className="text-sm text-gray-600 mt-2">
                           Keep your data up-to-date, all the time
                         </p>
-                        <Button variant="outline" size="sm" className="mt-3">
+                        <Button variant="outline" size="sm" className="mt-3 w-full">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
+                        <ul className="space-y-2.5 pt-3 mt-4 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/crm-enrichment" 
@@ -218,9 +217,9 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 4 - Go-To-Market Platform */}
-                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                      <div className="space-y-4 p-4 rounded-lg hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3">
-                          <div className="bg-orange-50 p-2.5 rounded-lg">
+                          <div className="bg-orange-50 p-3 rounded-full">
                             <RefreshCw className="h-5 w-5 text-orange-600" />
                           </div>
                           <h3 className="text-base font-medium text-gray-800">
@@ -230,11 +229,11 @@ export default function Navbar() {
                         <p className="text-sm text-gray-600 mt-2">
                           Run your entire sales cycle on unified customer data
                         </p>
-                        <Button variant="outline" size="sm" className="mt-3">
+                        <Button variant="outline" size="sm" className="mt-3 w-full">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
+                        <ul className="space-y-2.5 pt-3 mt-4 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/deal-management" 
@@ -281,14 +280,6 @@ export default function Navbar() {
                               className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
                             >
                               Chrome Extension
-                            </Link>
-                          </li>
-                          <li>
-                            <Link 
-                              to="/solutions/workflow-automation" 
-                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                            >
-                              Workflow Automation
                             </Link>
                           </li>
                         </ul>
