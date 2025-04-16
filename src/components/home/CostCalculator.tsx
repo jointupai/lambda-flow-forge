@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Calculator, DollarSign, TrendingDown } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,13 +17,13 @@ interface CostData {
 }
 
 export default function CostCalculator() {
-  const [tasks, setTasks] = useState<number>(5000);
+  const [tasks, setTasks] = useState<number>(300000);
   const [apps, setApps] = useState<number>(5);
-  const [complexity, setComplexity] = useState<string>("simple");
-  const [pricingModel, setPricingModel] = useState<string>("flat");
-  const [zapierPlan, setZapierPlan] = useState<string>("team");
-  const [lambdaMemory, setLambdaMemory] = useState<number>(512);
-  const [executionTime, setExecutionTime] = useState<number>(300);
+  const [complexity, setComplexity] = useState<string>("complex");
+  const [pricingModel, setPricingModel] = useState<string>("usage");
+  const [zapierPlan, setZapierPlan] = useState<string>("business");
+  const [lambdaMemory, setLambdaMemory] = useState<number>(4096);
+  const [executionTime, setExecutionTime] = useState<number>(280);
   const [costs, setCosts] = useState<CostData>({ 
     zapier: 0, 
     lambda: 0, 
@@ -40,31 +39,8 @@ export default function CostCalculator() {
 
   const calculateCosts = () => {
     // Zapier pricing logic based on the provided data
-    let zapierCost = 0;
-    let tasksIncluded = 0;
-    
-    switch (zapierPlan) {
-      case "starter":
-        zapierCost = 19.99;
-        tasksIncluded = 750;
-        break;
-      case "professional":
-        zapierCost = 49;
-        tasksIncluded = 2000;
-        break;
-      case "team":
-        zapierCost = 99;
-        tasksIncluded = 2000;
-        break;
-      case "business":
-        zapierCost = 299;
-        tasksIncluded = 50000;
-        break;
-      case "company":
-        zapierCost = 599;
-        tasksIncluded = 100000;
-        break;
-    }
+    let zapierCost = 299; // Business plan base cost
+    let tasksIncluded = 50000;
     
     // Add costs for additional tasks beyond plan limits (1.25x cost)
     if (tasks > tasksIncluded) {
@@ -86,10 +62,7 @@ export default function CostCalculator() {
     // Lambda pricing logic
     let lambdaCost = 0;
     
-    if (pricingModel === "flat") {
-      // Flat rate pricing model (simplified for business use)
-      lambdaCost = tasks < 5000 ? 99 : (tasks < 20000 ? 199 : 299);
-    } else {
+    if (pricingModel === "usage") {
       // Usage-based AWS Lambda pricing calculation
       const gbSeconds = tasks * (executionTime / 1000) * (lambdaMemory / 1024);
       const requestsCost = Math.max(0, tasks - 1000000) * (0.20 / 1000000); // $0.20 per million requests after free tier
@@ -98,6 +71,9 @@ export default function CostCalculator() {
       // Base platform cost + actual AWS costs
       const baseCost = 49; // JointUp base platform cost
       lambdaCost = baseCost + requestsCost + computeCost;
+    } else {
+      // Flat rate pricing model (simplified for business use)
+      lambdaCost = tasks < 5000 ? 99 : (tasks < 20000 ? 199 : 299);
     }
     
     // Add complexity factor
