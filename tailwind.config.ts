@@ -23,6 +23,7 @@ export default {
     },
     extend: {
       colors: {
+        border: "#d9e2ec", // Adding explicit border color definition
         // Modern color palette with tech-focused hues
         'brand-primary': {
           50: '#e6f1ff',
@@ -48,6 +49,10 @@ export default {
           800: '#243b53',
           900: '#102a43',
         },
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: "hsl(var(--primary))",
+        secondary: "hsl(var(--secondary))",
       },
       borderRadius: {
         'lg': '0.75rem',
