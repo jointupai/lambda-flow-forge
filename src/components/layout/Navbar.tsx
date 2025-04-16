@@ -1,7 +1,29 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, Webhook, Phone, Mail, Database, Code } from "lucide-react";
+import { 
+  Menu, 
+  X, 
+  Webhook, 
+  Phone, 
+  Mail, 
+  Database, 
+  Code,
+  PieChart,
+  MessageSquare,
+  Database as DatabaseIcon,
+  RefreshCw,
+  LayoutGrid,
+  Users,
+  Bot,
+  CheckCircle,
+  Calendar,
+  FileSpreadsheet,
+  Cpu,
+  GitMerge,
+  Chrome,
+  Workflow
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -9,6 +31,7 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuLink
 } from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
@@ -36,89 +59,138 @@ export default function Navbar() {
               Home
             </Link>
             
-            {/* Solutions Dropdown */}
+            {/* Solutions Mega Dropdown */}
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">Solutions</NavigationMenuTrigger>
-                  <NavigationMenuContent className="py-4 bg-white shadow-lg rounded-lg border border-gray-100 w-[400px]">
-                    <ul className="grid gap-2 p-4">
-                      <li>
-                        <Link
-                          to="/solutions/stripe"
-                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <div className="bg-brand-primary-50 p-2 rounded-md">
-                            <Webhook className="h-5 w-5 text-brand-primary-600" />
+                  <NavigationMenuContent className="bg-white shadow-xl rounded-lg border border-gray-100 w-[900px] p-6">
+                    <div className="grid grid-cols-4 gap-6">
+                      {/* Column 1 - Pipeline Builder */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="bg-gray-100 p-2 rounded-md">
+                            <PieChart className="h-5 w-5 text-gray-800" />
                           </div>
-                          <div>
-                            <div className="font-medium">Stripe Integrations</div>
-                            <div className="text-xs text-muted-foreground">payments, webhooks, metadata</div>
+                          <h3 className="font-bold">Pipeline Builder</h3>
+                        </div>
+                        <p className="text-sm text-gray-600">Find the right people and book quality meetings</p>
+                        <Button variant="outline" size="sm" className="mt-2">
+                          Learn more
+                        </Button>
+
+                        <ul className="space-y-2 mt-6 border-t pt-4">
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/b2b-prospecting" className="block py-1">B2B Prospecting Data</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/multichannel-outreach" className="block py-1">Multichannel Outreach</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/ai-assistants" className="block py-1">AI Assistants</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/done-for-you" className="block py-1">Done-For-You Outbound</Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Column 2 - Call Assistant */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="bg-gray-100 p-2 rounded-md">
+                            <MessageSquare className="h-5 w-5 text-gray-800" />
                           </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/solutions/twilio"
-                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <div className="bg-brand-primary-50 p-2 rounded-md">
-                            <Phone className="h-5 w-5 text-brand-primary-600" />
+                          <h3 className="font-bold">Call Assistant</h3>
+                        </div>
+                        <p className="text-sm text-gray-600">Turn conversations into deals with AI assistance</p>
+                        <Button variant="outline" size="sm" className="mt-2">
+                          Learn more
+                        </Button>
+
+                        <ul className="space-y-2 mt-6 border-t pt-4">
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/meeting-scheduler" className="block py-1">Meeting Scheduler</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/pre-meeting-insights" className="block py-1">Pre-Meeting Insights</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/call-recorder" className="block py-1">Call Recorder & Insights</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/automated-follow-up" className="block py-1">Automated Meeting Follow-up</Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Column 3 - Data Enrichment */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="bg-gray-100 p-2 rounded-md">
+                            <DatabaseIcon className="h-5 w-5 text-gray-800" />
                           </div>
-                          <div>
-                            <div className="font-medium">Twilio Automations</div>
-                            <div className="text-xs text-muted-foreground">SMS/email after form fills, events</div>
+                          <h3 className="font-bold">Data Enrichment</h3>
+                        </div>
+                        <p className="text-sm text-gray-600">Keep your data up-to-date, all the time</p>
+                        <Button variant="outline" size="sm" className="mt-2">
+                          Learn more
+                        </Button>
+
+                        <ul className="space-y-2 mt-6 border-t pt-4">
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/crm-enrichment" className="block py-1">CRM Enrichment</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/waterfall-enrichment" className="block py-1">Waterfall Enrichment</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/csv-enrichment" className="block py-1">CSV Enrichment</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/enrichment-api" className="block py-1">Enrichment API</Link>
+                          </li>
+                        </ul>
+                      </div>
+
+                      {/* Column 4 - Go-To-Market Platform */}
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="bg-gray-100 p-2 rounded-md">
+                            <RefreshCw className="h-5 w-5 text-gray-800" />
                           </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/solutions/email"
-                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <div className="bg-brand-primary-50 p-2 rounded-md">
-                            <Mail className="h-5 w-5 text-brand-primary-600" />
-                          </div>
-                          <div>
-                            <div className="font-medium">Postmark & Email Flows</div>
-                            <div className="text-xs text-muted-foreground">transactional email with logic</div>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/solutions/database"
-                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <div className="bg-brand-primary-50 p-2 rounded-md">
-                            <Database className="h-5 w-5 text-brand-primary-600" />
-                          </div>
-                          <div>
-                            <div className="font-medium">Supabase & Firestore</div>
-                            <div className="text-xs text-muted-foreground">DB sync, insert/update triggers</div>
-                          </div>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/solutions/api"
-                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
-                          onClick={() => setIsMenuOpen(false)}
-                        >
-                          <div className="bg-brand-primary-50 p-2 rounded-md">
-                            <Code className="h-5 w-5 text-brand-primary-600" />
-                          </div>
-                          <div>
-                            <div className="font-medium">Custom API Pipelines</div>
-                            <div className="text-xs text-muted-foreground">Middleware flows, fetch-post-sync</div>
-                          </div>
-                        </Link>
-                      </li>
-                    </ul>
+                          <h3 className="font-bold">Go-To-Market Platform</h3>
+                        </div>
+                        <p className="text-sm text-gray-600">Run your entire sales cycle on unified customer data</p>
+                        <Button variant="outline" size="sm" className="mt-2">
+                          Learn more
+                        </Button>
+
+                        <ul className="space-y-2 mt-6 border-t pt-4">
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/deal-management" className="block py-1">Deal Management</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/apollo-platform" className="block py-1">Apollo Platform</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/living-data-network" className="block py-1">Living Data Network</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/apollo-ai" className="block py-1">Apollo AI</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/integrations" className="block py-1">Integrations</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/chrome-extension" className="block py-1">Chrome Extension</Link>
+                          </li>
+                          <li className="text-sm hover:text-brand-primary-600">
+                            <Link to="/solutions/workflow-automation" className="block py-1">Workflow Automation</Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
               </NavigationMenuList>
