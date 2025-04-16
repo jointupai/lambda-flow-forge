@@ -1,60 +1,60 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center px-4 sm:px-8">
+    <header className="sticky top-0 z-50 w-full bg-gray-100">
+      <div className="container flex h-16 md:h-20 items-center px-4 sm:px-8 mx-auto">
         <div className="flex w-full justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-brand-600">JointUp.ai</span>
+            <span className="text-xl font-bold text-gray-800">JointUp.ai</span>
           </Link>
 
           {/* Desktop navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link 
-              to="/" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-            >
-              Home
-            </Link>
+          <nav className="hidden md:flex items-center gap-8">
             <Link 
               to="/services" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Services
+              Platform
             </Link>
             <Link 
               to="/how-it-works" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              How It Works
+              Roles
             </Link>
             <Link 
               to="/about" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              About
+              Resources
             </Link>
             <Link 
-              to="/contact" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
+              to="/pricing" 
+              className="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
             >
-              Contact
+              Pricing
             </Link>
-            <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
-              Get a Free Audit
+            <Button size="sm" variant="outline" className="border-gray-300 text-gray-700">
+              Get a demo
+            </Button>
+            <Button size="sm" variant="outline" className="border-gray-300 text-gray-700">
+              Log in
+            </Button>
+            <Button size="sm" className="bg-yellow-400 hover:bg-yellow-500 text-black">
+              Sign up for free
             </Button>
           </nav>
 
           {/* Mobile menu button */}
           <button 
-            className="md:hidden rounded-md p-2 text-foreground"
+            className="md:hidden rounded-md p-2 text-gray-700"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -64,46 +64,45 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
-            <Link 
-              to="/" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
+        <div className="md:hidden bg-gray-100">
+          <div className="container px-4 sm:px-8 py-4 space-y-3">
             <Link 
               to="/services" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
+              className="block py-2 text-base text-gray-700 hover:text-gray-900"
               onClick={() => setIsMenuOpen(false)}
             >
-              Services
+              Platform
             </Link>
             <Link 
               to="/how-it-works" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
+              className="block py-2 text-base text-gray-700 hover:text-gray-900"
               onClick={() => setIsMenuOpen(false)}
             >
-              How It Works
+              Roles
             </Link>
             <Link 
               to="/about" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
+              className="block py-2 text-base text-gray-700 hover:text-gray-900"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Resources
             </Link>
             <Link 
-              to="/contact" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
+              to="/pricing" 
+              className="block py-2 text-base text-gray-700 hover:text-gray-900"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact
+              Pricing
             </Link>
-            <div className="pt-2">
-              <Button className="w-full bg-brand-600 hover:bg-brand-700">
-                Get a Free Audit
+            <div className="pt-2 space-y-3">
+              <Button variant="outline" className="w-full border-gray-300 text-gray-700">
+                Get a demo
+              </Button>
+              <Button variant="outline" className="w-full border-gray-300 text-gray-700">
+                Log in
+              </Button>
+              <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-black">
+                Sign up for free
               </Button>
             </div>
           </div>

@@ -37,6 +37,10 @@
   .modern-card {
     @apply bg-white rounded-xl shadow-modern hover:shadow-hover transition-all duration-300 ease-in-out;
   }
+  
+  .btn-yellow {
+    @apply bg-yellow-400 hover:bg-yellow-500 text-black font-medium;
+  }
 }
 
 @layer utilities {

@@ -53,6 +53,10 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: "hsl(var(--primary))",
         secondary: "hsl(var(--secondary))",
+        yellow: {
+          400: '#FFF000',  // Bright yellow color for buttons
+          500: '#F0E100',  // Slightly darker yellow for hover states
+        },
       },
       borderRadius: {
         'lg': '0.75rem',
