@@ -10,17 +10,18 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center px-4 sm:px-8">
-        <div className="flex w-full justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
+        <div className="flex w-full items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2 mr-auto">
             <img 
-              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).svg" 
+              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" 
               alt="JointUp.ai Logo" 
               className="h-8 w-auto"
             />
           </Link>
 
-          {/* Desktop navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Centered Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 absolute left-1/2 transform -translate-x-1/2">
             <Link 
               to="/" 
               className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
@@ -51,10 +52,14 @@ export default function Navbar() {
             >
               Contact
             </Link>
+          </nav>
+
+          {/* Get Free Audit Button */}
+          <div className="hidden md:block ml-auto">
             <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
               Get a Free Audit
             </Button>
-          </nav>
+          </div>
 
           {/* Mobile menu button */}
           <button 
