@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -41,7 +40,7 @@ export default function Navbar() {
           </Link>
 
           {/* Centered Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-center gap-6">
+          <div className="hidden md:flex items-center justify-center space-x-6">
             <Link 
               to="/" 
               className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
@@ -56,8 +55,8 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white shadow-lg rounded-lg overflow-hidden">
-                    <div className="grid grid-cols-4 gap-0 w-[920px] p-0">
+                  <NavigationMenuContent className="bg-white shadow-lg rounded-lg overflow-hidden w-[920px] left-1/2 transform -translate-x-1/2 absolute">
+                    <div className="grid grid-cols-4 gap-0 w-full p-0">
                       {/* Column 1 - Pipeline Builder */}
                       <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
                         <div className="flex items-center gap-3 mb-4">
