@@ -49,254 +49,256 @@ export default function Navbar() {
             </Link>
             
             {/* Solutions Mega Dropdown */}
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
-                    Solutions
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white shadow-lg rounded-lg overflow-hidden w-[920px] left-1/2 transform -translate-x-1/2 absolute">
-                    <div className="grid grid-cols-4 gap-0 w-full p-0">
-                      {/* Column 1 - Pipeline Builder */}
-                      <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="bg-blue-50 p-3 rounded-full">
-                            <PieChart className="h-5 w-5 text-blue-600" />
+            <div className="relative">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
+                      Solutions
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent className="shadow-lg rounded-lg overflow-hidden w-[920px]">
+                      <div className="grid grid-cols-4 gap-0 w-full p-0 bg-white">
+                        {/* Column 1 - Pipeline Builder */}
+                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-blue-50 p-3 rounded-full">
+                              <PieChart className="h-5 w-5 text-blue-600" />
+                            </div>
+                            <h3 className="text-base font-medium text-gray-800">
+                              Pipeline Builder
+                            </h3>
                           </div>
-                          <h3 className="text-base font-medium text-gray-800">
-                            Pipeline Builder
-                          </h3>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Find the right people and book quality meetings
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full mb-4">
-                          Learn more
-                        </Button>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Find the right people and book quality meetings
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full mb-4">
+                            Learn more
+                          </Button>
 
-                        <div className="border-t border-gray-100 pt-4">
-                          <ul className="space-y-2">
-                            <li>
-                              <Link 
-                                to="/solutions/b2b-prospecting" 
-                                className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                              >
-                                B2B Prospecting Data
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/multichannel-outreach" 
-                                className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                              >
-                                Multichannel Outreach
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/ai-assistants" 
-                                className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                              >
-                                AI Assistants
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/done-for-you" 
-                                className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                              >
-                                Done-For-You Outbound
-                              </Link>
-                            </li>
-                          </ul>
+                          <div className="border-t border-gray-100 pt-4">
+                            <ul className="space-y-2">
+                              <li>
+                                <Link 
+                                  to="/solutions/b2b-prospecting" 
+                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                                >
+                                  B2B Prospecting Data
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/multichannel-outreach" 
+                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                                >
+                                  Multichannel Outreach
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/ai-assistants" 
+                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                                >
+                                  AI Assistants
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/done-for-you" 
+                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                                >
+                                  Done-For-You Outbound
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Column 2 - Call Assistant */}
+                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-green-50 p-3 rounded-full">
+                              <MessageSquare className="h-5 w-5 text-green-600" />
+                            </div>
+                            <h3 className="text-base font-medium text-gray-800">
+                              Call Assistant
+                            </h3>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Turn conversations into deals with AI assistance
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full mb-4">
+                            Learn more
+                          </Button>
+
+                          <div className="border-t border-gray-100 pt-4">
+                            <ul className="space-y-2">
+                              <li>
+                                <Link 
+                                  to="/solutions/meeting-scheduler" 
+                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                                >
+                                  Meeting Scheduler
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/pre-meeting-insights" 
+                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                                >
+                                  Pre-Meeting Insights
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/call-recorder" 
+                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                                >
+                                  Call Recorder & Insights
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/automated-follow-up" 
+                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                                >
+                                  Automated Meeting Follow-up
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Column 3 - Data Enrichment */}
+                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-purple-50 p-3 rounded-full">
+                              <DatabaseIcon className="h-5 w-5 text-purple-600" />
+                            </div>
+                            <h3 className="text-base font-medium text-gray-800">
+                              Data Enrichment
+                            </h3>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Keep your data up-to-date, all the time
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full mb-4">
+                            Learn more
+                          </Button>
+
+                          <div className="border-t border-gray-100 pt-4">
+                            <ul className="space-y-2">
+                              <li>
+                                <Link 
+                                  to="/solutions/crm-enrichment" 
+                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                                >
+                                  CRM Enrichment
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/waterfall-enrichment" 
+                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                                >
+                                  Waterfall Enrichment
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/csv-enrichment" 
+                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                                >
+                                  CSV Enrichment
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/enrichment-api" 
+                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                                >
+                                  Enrichment API
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* Column 4 - Go-To-Market Platform */}
+                        <div className="p-6 hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-orange-50 p-3 rounded-full">
+                              <RefreshCw className="h-5 w-5 text-orange-600" />
+                            </div>
+                            <h3 className="text-base font-medium text-gray-800">
+                              Go-To-Market Platform
+                            </h3>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">
+                            Run your entire sales cycle on unified customer data
+                          </p>
+                          <Button variant="outline" size="sm" className="w-full mb-4">
+                            Learn more
+                          </Button>
+
+                          <div className="border-t border-gray-100 pt-4">
+                            <ul className="space-y-2">
+                              <li>
+                                <Link 
+                                  to="/solutions/deal-management" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Deal Management
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/apollo-platform" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Apollo Platform
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/living-data-network" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Living Data Network
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/apollo-ai" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Apollo AI
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/integrations" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Integrations
+                                </Link>
+                              </li>
+                              <li>
+                                <Link 
+                                  to="/solutions/chrome-extension" 
+                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                                >
+                                  Chrome Extension
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
-
-                      {/* Column 2 - Call Assistant */}
-                      <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="bg-green-50 p-3 rounded-full">
-                            <MessageSquare className="h-5 w-5 text-green-600" />
-                          </div>
-                          <h3 className="text-base font-medium text-gray-800">
-                            Call Assistant
-                          </h3>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Turn conversations into deals with AI assistance
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full mb-4">
-                          Learn more
-                        </Button>
-
-                        <div className="border-t border-gray-100 pt-4">
-                          <ul className="space-y-2">
-                            <li>
-                              <Link 
-                                to="/solutions/meeting-scheduler" 
-                                className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                              >
-                                Meeting Scheduler
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/pre-meeting-insights" 
-                                className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                              >
-                                Pre-Meeting Insights
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/call-recorder" 
-                                className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                              >
-                                Call Recorder & Insights
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/automated-follow-up" 
-                                className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                              >
-                                Automated Meeting Follow-up
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Column 3 - Data Enrichment */}
-                      <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="bg-purple-50 p-3 rounded-full">
-                            <DatabaseIcon className="h-5 w-5 text-purple-600" />
-                          </div>
-                          <h3 className="text-base font-medium text-gray-800">
-                            Data Enrichment
-                          </h3>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Keep your data up-to-date, all the time
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full mb-4">
-                          Learn more
-                        </Button>
-
-                        <div className="border-t border-gray-100 pt-4">
-                          <ul className="space-y-2">
-                            <li>
-                              <Link 
-                                to="/solutions/crm-enrichment" 
-                                className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                              >
-                                CRM Enrichment
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/waterfall-enrichment" 
-                                className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                              >
-                                Waterfall Enrichment
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/csv-enrichment" 
-                                className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                              >
-                                CSV Enrichment
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/enrichment-api" 
-                                className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                              >
-                                Enrichment API
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Column 4 - Go-To-Market Platform */}
-                      <div className="p-6 hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="bg-orange-50 p-3 rounded-full">
-                            <RefreshCw className="h-5 w-5 text-orange-600" />
-                          </div>
-                          <h3 className="text-base font-medium text-gray-800">
-                            Go-To-Market Platform
-                          </h3>
-                        </div>
-                        <p className="text-sm text-gray-600 mb-4">
-                          Run your entire sales cycle on unified customer data
-                        </p>
-                        <Button variant="outline" size="sm" className="w-full mb-4">
-                          Learn more
-                        </Button>
-
-                        <div className="border-t border-gray-100 pt-4">
-                          <ul className="space-y-2">
-                            <li>
-                              <Link 
-                                to="/solutions/deal-management" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Deal Management
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/apollo-platform" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Apollo Platform
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/living-data-network" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Living Data Network
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/apollo-ai" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Apollo AI
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/integrations" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Integrations
-                              </Link>
-                            </li>
-                            <li>
-                              <Link 
-                                to="/solutions/chrome-extension" 
-                                className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                              >
-                                Chrome Extension
-                              </Link>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
             
             <Link 
               to="/how-it-works" 
