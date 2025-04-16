@@ -41,15 +41,17 @@ export default function Navbar() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">Solutions</NavigationMenuTrigger>
-                  <NavigationMenuContent className="py-2 w-[280px] bg-popover">
-                    <ul className="grid gap-1 p-2">
+                  <NavigationMenuContent className="py-4 bg-white shadow-lg rounded-lg border border-gray-100 w-[400px]">
+                    <ul className="grid gap-2 p-4">
                       <li>
                         <Link
                           to="/solutions/stripe"
-                          className="flex items-center gap-3 p-2 text-sm rounded-md hover:bg-accent"
+                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <Webhook className="h-4 w-4" />
+                          <div className="bg-brand-primary-50 p-2 rounded-md">
+                            <Webhook className="h-5 w-5 text-brand-primary-600" />
+                          </div>
                           <div>
                             <div className="font-medium">Stripe Integrations</div>
                             <div className="text-xs text-muted-foreground">payments, webhooks, metadata</div>
@@ -59,10 +61,12 @@ export default function Navbar() {
                       <li>
                         <Link
                           to="/solutions/twilio"
-                          className="flex items-center gap-3 p-2 text-sm rounded-md hover:bg-accent"
+                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <Phone className="h-4 w-4" />
+                          <div className="bg-brand-primary-50 p-2 rounded-md">
+                            <Phone className="h-5 w-5 text-brand-primary-600" />
+                          </div>
                           <div>
                             <div className="font-medium">Twilio Automations</div>
                             <div className="text-xs text-muted-foreground">SMS/email after form fills, events</div>
@@ -72,10 +76,12 @@ export default function Navbar() {
                       <li>
                         <Link
                           to="/solutions/email"
-                          className="flex items-center gap-3 p-2 text-sm rounded-md hover:bg-accent"
+                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <Mail className="h-4 w-4" />
+                          <div className="bg-brand-primary-50 p-2 rounded-md">
+                            <Mail className="h-5 w-5 text-brand-primary-600" />
+                          </div>
                           <div>
                             <div className="font-medium">Postmark & Email Flows</div>
                             <div className="text-xs text-muted-foreground">transactional email with logic</div>
@@ -85,10 +91,12 @@ export default function Navbar() {
                       <li>
                         <Link
                           to="/solutions/database"
-                          className="flex items-center gap-3 p-2 text-sm rounded-md hover:bg-accent"
+                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <Database className="h-4 w-4" />
+                          <div className="bg-brand-primary-50 p-2 rounded-md">
+                            <Database className="h-5 w-5 text-brand-primary-600" />
+                          </div>
                           <div>
                             <div className="font-medium">Supabase & Firestore</div>
                             <div className="text-xs text-muted-foreground">DB sync, insert/update triggers</div>
@@ -98,10 +106,12 @@ export default function Navbar() {
                       <li>
                         <Link
                           to="/solutions/api"
-                          className="flex items-center gap-3 p-2 text-sm rounded-md hover:bg-accent"
+                          className="flex items-center gap-3 p-3 text-sm rounded-md hover:bg-accent transition-colors duration-200 transform hover:scale-[1.02]"
                           onClick={() => setIsMenuOpen(false)}
                         >
-                          <Code className="h-4 w-4" />
+                          <div className="bg-brand-primary-50 p-2 rounded-md">
+                            <Code className="h-5 w-5 text-brand-primary-600" />
+                          </div>
                           <div>
                             <div className="font-medium">Custom API Pipelines</div>
                             <div className="text-xs text-muted-foreground">Middleware flows, fetch-post-sync</div>
