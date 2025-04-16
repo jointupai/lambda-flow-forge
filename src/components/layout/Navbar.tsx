@@ -56,165 +56,240 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white shadow-2xl rounded-xl border border-gray-100 w-[1000px] p-8">
-                    <div className="grid grid-cols-4 gap-8">
+                  <NavigationMenuContent className="bg-white shadow-lg rounded-xl border border-gray-100 p-6 w-[900px]">
+                    <div className="grid grid-cols-4 gap-6">
                       {/* Column 1 - Pipeline Builder */}
-                      <div className="space-y-4 group">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-blue-50 transition-colors">
-                            <PieChart className="h-6 w-6 text-gray-700 group-hover:text-blue-600 transition-colors" />
+                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-blue-50 p-2.5 rounded-lg">
+                            <PieChart className="h-5 w-5 text-blue-600" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                          <h3 className="text-base font-medium text-gray-800">
                             Pipeline Builder
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">
+                        <p className="text-sm text-gray-600 mt-2">
                           Find the right people and book quality meetings
                         </p>
-                        <Button variant="outline" size="sm" className="mb-4">
+                        <Button variant="outline" size="sm" className="mt-3">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/b2b-prospecting" 
-                              className="text-sm text-gray-700 hover:text-blue-600 py-2 block transition-colors"
+                              className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
                             >
                               B2B Prospecting Data
                             </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/multichannel-outreach" className="block py-1">Multichannel Outreach</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/multichannel-outreach" 
+                              className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                            >
+                              Multichannel Outreach
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/ai-assistants" className="block py-1">AI Assistants</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/ai-assistants" 
+                              className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                            >
+                              AI Assistants
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/done-for-you" className="block py-1">Done-For-You Outbound</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/done-for-you" 
+                              className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                            >
+                              Done-For-You Outbound
+                            </Link>
                           </li>
                         </ul>
                       </div>
 
                       {/* Column 2 - Call Assistant */}
-                      <div className="space-y-4 group">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-green-50 transition-colors">
-                            <MessageSquare className="h-6 w-6 text-gray-700 group-hover:text-green-600 transition-colors" />
+                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-green-50 p-2.5 rounded-lg">
+                            <MessageSquare className="h-5 w-5 text-green-600" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-green-600 transition-colors">
+                          <h3 className="text-base font-medium text-gray-800">
                             Call Assistant
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">
+                        <p className="text-sm text-gray-600 mt-2">
                           Turn conversations into deals with AI assistance
                         </p>
-                        <Button variant="outline" size="sm" className="mb-4">
+                        <Button variant="outline" size="sm" className="mt-3">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/meeting-scheduler" 
-                              className="text-sm text-gray-700 hover:text-green-600 py-2 block transition-colors"
+                              className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
                             >
                               Meeting Scheduler
                             </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/pre-meeting-insights" className="block py-1">Pre-Meeting Insights</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/pre-meeting-insights" 
+                              className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                            >
+                              Pre-Meeting Insights
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/call-recorder" className="block py-1">Call Recorder & Insights</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/call-recorder" 
+                              className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                            >
+                              Call Recorder & Insights
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/automated-follow-up" className="block py-1">Automated Meeting Follow-up</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/automated-follow-up" 
+                              className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
+                            >
+                              Automated Meeting Follow-up
+                            </Link>
                           </li>
                         </ul>
                       </div>
 
                       {/* Column 3 - Data Enrichment */}
-                      <div className="space-y-4 group">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-purple-50 transition-colors">
-                            <DatabaseIcon className="h-6 w-6 text-gray-700 group-hover:text-purple-600 transition-colors" />
+                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-purple-50 p-2.5 rounded-lg">
+                            <DatabaseIcon className="h-5 w-5 text-purple-600" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">
+                          <h3 className="text-base font-medium text-gray-800">
                             Data Enrichment
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">
+                        <p className="text-sm text-gray-600 mt-2">
                           Keep your data up-to-date, all the time
                         </p>
-                        <Button variant="outline" size="sm" className="mb-4">
+                        <Button variant="outline" size="sm" className="mt-3">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/crm-enrichment" 
-                              className="text-sm text-gray-700 hover:text-purple-600 py-2 block transition-colors"
+                              className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
                             >
                               CRM Enrichment
                             </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/waterfall-enrichment" className="block py-1">Waterfall Enrichment</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/waterfall-enrichment" 
+                              className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                            >
+                              Waterfall Enrichment
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/csv-enrichment" className="block py-1">CSV Enrichment</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/csv-enrichment" 
+                              className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                            >
+                              CSV Enrichment
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/enrichment-api" className="block py-1">Enrichment API</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/enrichment-api" 
+                              className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
+                            >
+                              Enrichment API
+                            </Link>
                           </li>
                         </ul>
                       </div>
 
                       {/* Column 4 - Go-To-Market Platform */}
-                      <div className="space-y-4 group">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-orange-50 transition-colors">
-                            <RefreshCw className="h-6 w-6 text-gray-700 group-hover:text-orange-600 transition-colors" />
+                      <div className="space-y-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className="bg-orange-50 p-2.5 rounded-lg">
+                            <RefreshCw className="h-5 w-5 text-orange-600" />
                           </div>
-                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                          <h3 className="text-base font-medium text-gray-800">
                             Go-To-Market Platform
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600 mb-4">
+                        <p className="text-sm text-gray-600 mt-2">
                           Run your entire sales cycle on unified customer data
                         </p>
-                        <Button variant="outline" size="sm" className="mb-4">
+                        <Button variant="outline" size="sm" className="mt-3">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                        <ul className="space-y-2 pt-3 mt-3 border-t border-gray-100">
                           <li>
                             <Link 
                               to="/solutions/deal-management" 
-                              className="text-sm text-gray-700 hover:text-orange-600 py-2 block transition-colors"
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
                             >
                               Deal Management
                             </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/apollo-platform" className="block py-1">Apollo Platform</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/apollo-platform" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Apollo Platform
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/living-data-network" className="block py-1">Living Data Network</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/living-data-network" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Living Data Network
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/apollo-ai" className="block py-1">Apollo AI</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/apollo-ai" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Apollo AI
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/integrations" className="block py-1">Integrations</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/integrations" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Integrations
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/chrome-extension" className="block py-1">Chrome Extension</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/chrome-extension" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Chrome Extension
+                            </Link>
                           </li>
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/workflow-automation" className="block py-1">Workflow Automation</Link>
+                          <li>
+                            <Link 
+                              to="/solutions/workflow-automation" 
+                              className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
+                            >
+                              Workflow Automation
+                            </Link>
                           </li>
                         </ul>
                       </div>
