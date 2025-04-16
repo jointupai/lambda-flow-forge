@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -23,19 +22,18 @@ export default {
     },
     extend: {
       colors: {
-        border: "#d9e2ec", // Adding explicit border color definition
-        // Modern color palette with tech-focused hues
+        border: "#d9e2ec", 
         'brand-primary': {
-          50: '#e6f1ff',
-          100: '#b3d7ff',
-          200: '#80bdff',
-          300: '#4da3ff',
-          400: '#1a89ff',
-          500: '#0070f3',
-          600: '#005ac2',
-          700: '#004492',
-          800: '#002d61',
-          900: '#001631',
+          50: '#fcfcca',
+          100: '#f9f9a0',
+          200: '#f5f576',
+          300: '#f2f24c',
+          400: '#EBF212',
+          500: '#EBF212',
+          600: '#d6dd0f',
+          700: '#c2ca0c',
+          800: '#adb609',
+          900: '#99a306',
         },
         'brand-secondary': {
           50: '#f0f4f8',

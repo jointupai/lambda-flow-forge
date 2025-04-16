@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check, X, Zap, CreditCard, MessageSquare, Bell, Database } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -21,7 +20,7 @@ export default function Home() {
               </p>
               <Button 
                 size="lg" 
-                className="bg-[#F97316] hover:bg-[#EA580C] text-white text-lg px-8 py-6 h-auto"
+                className="bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-lg px-8 py-6 h-auto"
               >
                 <span>Get a Free Integration Audit</span>
                 <ArrowRight className="ml-2" />
@@ -250,7 +249,7 @@ export default function Home() {
       <TestimonialVideos />
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#F97316] text-white">
+      <section className="py-20 bg-brand-primary-400 text-black">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Replace Your Zapier Stack?</h2>
@@ -262,7 +261,7 @@ export default function Home() {
               <Button 
                 size="lg"
                 variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-[#F97316] font-medium"
+                className="border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
               >
                 Get Your Free Integration Audit
                 <ArrowRight className="ml-2" />
