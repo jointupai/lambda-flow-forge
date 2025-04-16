@@ -1,39 +1,68 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone, MessageSquare } from "lucide-react";
+import { ArrowRight, Mail, Phone, MessageSquare, User, Building, Globe, Wrench, FileText, AlertCircle, Check } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+// Form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  company: z.string().min(2, { message: "Company name is required" }),
+  website: z.string().url({ message: "Please enter a valid URL" }).or(z.string().length(0)),
+  tools: z.string().min(2, { message: "Please list at least one tool" }),
+  automation: z.string().min(10, { message: "Please provide more details about your automation needs" })
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export default function Contact() {
-  // Form state
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    website: "",
-    tools: "",
-    automation: ""
-  });
-
-  // Form handling
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log("Form submitted:", formData);
-    alert("Thanks for your submission! We'll be in touch soon.");
-    // Reset form
-    setFormData({
+  // Initialize form with react-hook-form and zod validation
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
       name: "",
       email: "",
       company: "",
       website: "",
       tools: "",
       automation: ""
-    });
+    },
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Form handling
+  const onSubmit = (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    // Simulate API call
+    setTimeout(() => {
+      console.log("Form submitted:", data);
+      
+      // Show success toast
+      toast.success("Form submitted successfully!", {
+        description: "We'll be in touch soon about your automation audit.",
+        icon: <Check className="h-4 w-4" />
+      });
+      
+      // Reset form
+      form.reset();
+      setIsSubmitting(false);
+    }, 1500);
   };
 
   return (
@@ -42,7 +71,7 @@ export default function Contact() {
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
               Let's Talk Automation
             </h1>
             <p className="text-xl text-gray-300">
@@ -62,29 +91,41 @@ export default function Contact() {
                 <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
                 
                 <div className="space-y-6">
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
                     <Mail className="text-brand-600 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="font-semibold">Email Us</h3>
-                      <p className="text-gray-600">hello@jointup.ai</p>
+                      <a href="mailto:hello@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">hello@jointup.ai</a>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
                     <Phone className="text-brand-600 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="font-semibold">Call Us</h3>
-                      <p className="text-gray-600">Schedule a call online</p>
+                      <a href="#" className="text-gray-600 hover:text-brand-600 transition-colors">Schedule a call online</a>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
                     <MessageSquare className="text-brand-600 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="font-semibold">Support</h3>
-                      <p className="text-gray-600">support@jointup.ai</p>
+                      <a href="mailto:support@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">support@jointup.ai</a>
                     </div>
                   </div>
+                </div>
+
+                <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                  <h3 className="font-semibold mb-2 flex items-center gap-2">
+                    <AlertCircle className="h-4 w-4 text-brand-600" /> 
+                    Why get an audit?
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    Our automation experts will analyze your current workflows, 
+                    identify opportunities for improvement, and provide a 
+                    customized plan to help you save time and money.
+                  </p>
                 </div>
               </div>
               
@@ -95,108 +136,130 @@ export default function Contact() {
                   We'll map out your current stack, identify time-wasting tasks, and give you a simple blueprint to automate it with AWS Lambda.
                 </p>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <User className="h-4 w-4" /> Name
+                            </FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your name" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
-                    
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
+                      
+                      <FormField
+                        control={form.control}
                         name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-                        Company Name
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <Mail className="h-4 w-4" /> Email
+                            </FormLabel>
+                            <FormControl>
+                              <Input placeholder="you@company.com" type="email" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
                     </div>
                     
-                    <div>
-                      <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-1">
-                        Website (optional)
-                      </label>
-                      <input
-                        type="url"
-                        id="website"
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="company"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <Building className="h-4 w-4" /> Company Name
+                            </FormLabel>
+                            <FormControl>
+                              <Input placeholder="Your company" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      
+                      <FormField
+                        control={form.control}
                         name="website"
-                        value={formData.website}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <Globe className="h-4 w-4" /> Website (optional)
+                            </FormLabel>
+                            <FormControl>
+                              <Input placeholder="https://yourcompany.com" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
                     </div>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="tools" className="block text-sm font-medium text-gray-700 mb-1">
-                      What tools are you currently using?
-                    </label>
-                    <input
-                      type="text"
-                      id="tools"
+                    
+                    <FormField
+                      control={form.control}
                       name="tools"
-                      value={formData.tools}
-                      onChange={handleChange}
-                      placeholder="Stripe, Zapier, Supabase, etc."
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2">
+                            <Wrench className="h-4 w-4" /> What tools are you currently using?
+                          </FormLabel>
+                          <FormControl>
+                            <Input placeholder="Stripe, Zapier, Supabase, etc." {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
                     />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="automation" className="block text-sm font-medium text-gray-700 mb-1">
-                      What do you want to automate?
-                    </label>
-                    <textarea
-                      id="automation"
+                    
+                    <FormField
+                      control={form.control}
                       name="automation"
-                      value={formData.automation}
-                      onChange={handleChange}
-                      rows={4}
-                      placeholder="Describe your current workflow and what you'd like to improve"
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-brand-500 focus:border-brand-500"
-                    ></textarea>
-                  </div>
-                  
-                  <div>
-                    <Button type="submit" size="lg" className="w-full bg-brand-600 hover:bg-brand-700">
-                      Request My Free Audit <ArrowRight className="ml-2" size={16} />
-                    </Button>
-                  </div>
-                </form>
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2">
+                            <FileText className="h-4 w-4" /> What do you want to automate?
+                          </FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Describe your current workflow and what you'd like to improve" 
+                              className="min-h-[120px]"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <div>
+                      <Button 
+                        type="submit" 
+                        size="lg" 
+                        className="w-full bg-brand-600 hover:bg-brand-700"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>Processing...</>
+                        ) : (
+                          <>
+                            Request My Free Audit <ArrowRight className="ml-2" size={16} />
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
               </div>
             </div>
           </div>
@@ -210,7 +273,7 @@ export default function Contact() {
             <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
             
             <div className="space-y-8">
-              <div>
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-semibold mb-3">How long does it take to build a custom automation?</h3>
                 <p className="text-gray-600">
                   It depends on the complexity, but most projects take 2-4 weeks from initial call to deployment. 
@@ -218,7 +281,7 @@ export default function Contact() {
                 </p>
               </div>
               
-              <div>
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-semibold mb-3">Do I need my own AWS account?</h3>
                 <p className="text-gray-600">
                   Yes, we deploy to your AWS account so you maintain full ownership of the code and infrastructure. 
@@ -226,7 +289,7 @@ export default function Contact() {
                 </p>
               </div>
               
-              <div>
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-semibold mb-3">What happens if something breaks?</h3>
                 <p className="text-gray-600">
                   We set up comprehensive monitoring and provide support to fix any issues that arise. 
@@ -234,7 +297,7 @@ export default function Contact() {
                 </p>
               </div>
               
-              <div>
+              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="text-xl font-semibold mb-3">How much does a typical project cost?</h3>
                 <p className="text-gray-600">
                   Pricing depends on the complexity and scope of the project. We provide fixed-price quotes 
