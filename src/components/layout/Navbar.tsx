@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -322,7 +323,10 @@ export default function Navbar() {
 
           {/* Get Free Audit Button */}
           <div className="hidden md:block">
-            <Button size="sm" className="bg-brand-600 hover:bg-brand-700">
+            <Button 
+              size="sm" 
+              className="bg-brand-primary-400 text-black hover:bg-brand-primary-500"
+            >
               Get a Free Audit
             </Button>
           </div>
