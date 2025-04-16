@@ -2,6 +2,7 @@
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import TestimonialVideos from "@/components/home/TestimonialVideos";
 
 export default function Home() {
   return (
@@ -61,6 +62,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonial Videos Section */}
+      <TestimonialVideos />
 
       {/* Why JointUp.ai Section */}
       <section className="py-20 bg-gray-50">
