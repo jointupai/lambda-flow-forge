@@ -1,10 +1,18 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
   PieChart, 
   MessageSquare, 
   DatabaseIcon, 
-  RefreshCw 
+  RefreshCw,
+  X,
+  Menu,
+  Webhook,
+  Phone,
+  Mail,
+  Database,
+  Code
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
