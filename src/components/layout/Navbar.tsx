@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -116,45 +117,46 @@ export default function Navbar() {
               Home
             </Link>
             
-            {/* Solutions Mega Dropdown */}
+            {/* Solutions Mega Dropdown - Apple Inspired */}
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[800px] p-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <NavigationMenuContent className="w-[800px] p-6">
+                    <div className="grid grid-cols-2 gap-6">
                       {solutionCategories.map((category) => (
-                        <div key={category.title} className="group rounded-md p-4 hover:bg-slate-50 transition-colors">
-                          <div className="flex items-center gap-3 mb-2">
-                            <div className={`p-2 rounded-full ${category.iconBg}`}>
+                        <div key={category.title} className="group rounded-xl p-4 hover:bg-gray-50/80 transition-all duration-300">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className={`p-2.5 rounded-full ${category.iconBg} backdrop-blur-sm`}>
                               {category.icon}
                             </div>
                             <h3 className="text-base font-medium text-gray-800">
                               {category.title}
                             </h3>
                           </div>
-                          <p className="text-sm text-gray-600 mb-3">
+                          <p className="text-sm text-gray-500 mb-4 font-light">
                             {category.description}
                           </p>
-                          <ul className="space-y-1.5">
+                          <ul className="space-y-2">
                             {category.links.map((link) => (
                               <li key={link.name}>
                                 <Link
                                   to={link.href}
-                                  className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-blue-600 py-1 group-hover:translate-x-1 transition-transform"
+                                  className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-blue-600 py-1 
+                                  group-hover:translate-x-0.5 transition-all duration-200 ease-in-out"
                                 >
                                   <span>{link.name}</span>
-                                  <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                  <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-all duration-200" />
                                 </Link>
                               </li>
                             ))}
                           </ul>
-                          <div className="mt-3 pt-2 border-t border-gray-100">
+                          <div className="mt-4 pt-3 border-t border-gray-100">
                             <Link
                               to={`/solutions/${category.title.toLowerCase().replace(/ /g, '-')}`}
-                              className="inline-flex items-center text-xs font-medium text-blue-600 hover:underline"
+                              className="inline-flex items-center text-xs font-medium text-blue-600 hover:text-blue-700 transition-colors"
                             >
                               Explore all {category.title}
                               <ChevronRight className="ml-1 h-3 w-3" />
@@ -164,16 +166,15 @@ export default function Navbar() {
                       ))}
                     </div>
                     
-                    <div className="mt-5 pt-4 border-t border-gray-100">
-                      <div className="flex items-center justify-between">
+                    <div className="mt-6 pt-5 border-t border-gray-100">
+                      <div className="flex items-center justify-between bg-gray-50/60 rounded-xl p-4">
                         <div>
                           <h4 className="text-sm font-medium text-gray-800">Need a custom solution?</h4>
                           <p className="text-xs text-gray-500 mt-0.5">Let's discuss how we can help your business.</p>
                         </div>
                         <Button
                           size="sm"
-                          variant="outline"
-                          className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                          className="text-black bg-brand-primary-400 hover:bg-brand-primary-500 rounded-full px-4 transition-all duration-300"
                           asChild
                         >
                           <Link to="/contact">Get in touch</Link>
@@ -209,7 +210,7 @@ export default function Navbar() {
           <div className="hidden md:block">
             <Button 
               size="sm" 
-              className="bg-brand-primary-400 text-black hover:bg-brand-primary-500"
+              className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-5 transition-all duration-300"
             >
               Get a Free Audit
             </Button>
