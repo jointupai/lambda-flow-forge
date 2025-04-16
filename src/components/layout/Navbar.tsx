@@ -21,7 +21,10 @@ import {
   Target,
   Infinity,
   Settings,
-  Zap
+  Zap,
+  MessageSquareText,
+  CreditCard,
+  Bell
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -43,56 +46,86 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Solution categories
+  // Solution categories - updated with the new solutions
   const solutionCategories = [
     {
-      title: "Data Platforms",
-      icon: <Database className="h-5 w-5 text-blue-600" />,
-      iconBg: "bg-blue-50",
-      description: "Store, sync and query your data",
-      links: [
-        { name: "Supabase Solutions", href: "/solutions/supabase" },
-        { name: "PostgreSQL Database", href: "/solutions/postgresql" },
-        { name: "Firebase Integration", href: "/solutions/firebase" },
-        { name: "Data Synchronization", href: "/solutions/data-sync" },
-      ]
-    },
-    {
-      title: "API Integration",
-      icon: <Webhook className="h-5 w-5 text-green-600" />,
+      title: "Stripe Automation",
+      icon: <Zap className="h-5 w-5 text-green-600" />,
       iconBg: "bg-green-50",
-      description: "Connect systems with advanced API workflows",
+      description: "Automate your entire payment pipeline.",
+      subDescription: "Trigger workflows off Stripe events like new payments, subscriptions, disputes, refunds, and more — all in real time.",
       links: [
-        { name: "REST API Development", href: "/solutions/rest-api" },
-        { name: "GraphQL Implementation", href: "/solutions/graphql" },
-        { name: "API Gateway Solutions", href: "/solutions/api-gateway" },
-        { name: "Webhook Automation", href: "/solutions/webhooks" },
+        { name: "Subscription Management", href: "/solutions/stripe-subscription" },
+        { name: "Payment Automations", href: "/solutions/stripe-payments" },
+        { name: "Fraud & Dispute Handling", href: "/solutions/stripe-fraud" },
+        { name: "Revenue Analytics", href: "/solutions/stripe-analytics" },
       ]
     },
     {
-      title: "AI & Automation",
-      icon: <Bot className="h-5 w-5 text-purple-600" />,
+      title: "Twilio & SMS Workflows",
+      icon: <MessageSquareText className="h-5 w-5 text-blue-600" />,
+      iconBg: "bg-blue-50",
+      description: "Powerful text automations that convert and inform.",
+      subDescription: "Auto-send order confirmations, status updates, failed payment reminders, and onboarding messages using Twilio, AWS SNS, or other APIs.",
+      links: [
+        { name: "SMS Marketing", href: "/solutions/sms-marketing" },
+        { name: "Notification Systems", href: "/solutions/sms-notifications" },
+        { name: "Two-Factor Auth", href: "/solutions/sms-auth" },
+        { name: "Campaign Analytics", href: "/solutions/sms-analytics" },
+      ]
+    },
+    {
+      title: "Supabase & Firestore Sync",
+      icon: <Database className="h-5 w-5 text-purple-600" />,
       iconBg: "bg-purple-50",
-      description: "Build intelligent systems with AI",
+      description: "Real-time database updates that drive your business.",
+      subDescription: "When a user pays, fills a form, or triggers an action — instantly sync that data to Supabase or Firestore.",
       links: [
-        { name: "AI-Powered Workflows", href: "/solutions/ai-workflows" },
-        { name: "ML Model Integration", href: "/solutions/ml-integration" },
-        { name: "Predictive Analytics", href: "/solutions/predictive-analytics" },
-        { name: "NLP Solutions", href: "/solutions/nlp" },
+        { name: "Real-time Data Sync", href: "/solutions/database-sync" },
+        { name: "Webhook Integrations", href: "/solutions/database-webhooks" },
+        { name: "Analytics Pipelines", href: "/solutions/database-analytics" },
+        { name: "Data Migration", href: "/solutions/database-migration" },
       ]
     },
     {
-      title: "Business Solutions",
-      icon: <Building className="h-5 w-5 text-orange-600" />,
+      title: "Postmark & Transactional Email",
+      icon: <Mail className="h-5 w-5 text-orange-600" />,
       iconBg: "bg-orange-50",
-      description: "End-to-end business process automation",
+      description: "Custom email logic built into your workflows.",
+      subDescription: "No more delayed or off-brand transactional emails. Trigger on-brand, logic-driven email flows with dynamic content.",
       links: [
-        { name: "CRM Integration", href: "/solutions/crm" },
-        { name: "Payment Processing", href: "/solutions/payments" },
-        { name: "Customer Journey Automation", href: "/solutions/customer-journey" },
-        { name: "Enterprise Workflows", href: "/solutions/enterprise" },
+        { name: "Email Templating", href: "/solutions/email-templates" },
+        { name: "Delivery Optimization", href: "/solutions/email-delivery" },
+        { name: "Engagement Tracking", href: "/solutions/email-tracking" },
+        { name: "Personalization", href: "/solutions/email-personalization" },
       ]
-    }
+    },
+    {
+      title: "Custom API Pipelines",
+      icon: <Code className="h-5 w-5 text-indigo-600" />,
+      iconBg: "bg-indigo-50",
+      description: "We connect any system with an API. Period.",
+      subDescription: "From CRMs to ERPs to custom tools — we build robust middleware with error handling, retry logic, and logging.",
+      links: [
+        { name: "API Integration", href: "/solutions/api-integration" },
+        { name: "Serverless Functions", href: "/solutions/serverless" },
+        { name: "Custom Middleware", href: "/solutions/middleware" },
+        { name: "Error Handling", href: "/solutions/api-error-handling" },
+      ]
+    },
+    {
+      title: "Slack, Discord & Alerts",
+      icon: <Bell className="h-5 w-5 text-pink-600" />,
+      iconBg: "bg-pink-50",
+      description: "Get the right messages to your team, instantly.",
+      subDescription: "Push notifications to your internal tools based on user behavior, webhook events, or form submissions.",
+      links: [
+        { name: "Team Notifications", href: "/solutions/team-notifications" },
+        { name: "Webhook Alerts", href: "/solutions/webhook-alerts" },
+        { name: "Custom Reporting", href: "/solutions/custom-reporting" },
+        { name: "Event Monitoring", href: "/solutions/event-monitoring" },
+      ]
+    },
   ];
 
   return (
@@ -124,7 +157,7 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[800px] p-6">
+                  <NavigationMenuContent className="w-[900px] p-6">
                     <div className="grid grid-cols-2 gap-6">
                       {solutionCategories.map((category) => (
                         <div key={category.title} className="group rounded-xl p-4 hover:bg-gray-50/80 transition-all duration-300">
@@ -136,8 +169,11 @@ export default function Navbar() {
                               {category.title}
                             </h3>
                           </div>
-                          <p className="text-sm text-gray-500 mb-4 font-light">
+                          <p className="text-sm text-gray-500 mb-2 font-light leading-relaxed">
                             {category.description}
+                          </p>
+                          <p className="text-xs text-gray-400 mb-4 font-light leading-relaxed">
+                            {category.subDescription}
                           </p>
                           <ul className="space-y-2">
                             {category.links.map((link) => (
