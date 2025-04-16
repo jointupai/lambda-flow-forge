@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
+import CostCalculator from "@/components/home/CostCalculator";
 
 export default function Home() {
   const lambdaCode = `def lambda_handler(event, context):
@@ -125,6 +126,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Cost Calculator Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-8">
+          <CostCalculator />
         </div>
       </section>
 
