@@ -12,7 +12,16 @@ import {
   Phone,
   Mail,
   Database,
-  Code
+  Code,
+  LayoutGrid,
+  LineChart,
+  Bot,
+  ChevronRight,
+  Building,
+  Target,
+  Infinity,
+  Settings,
+  Zap
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,9 +32,68 @@ import {
   NavigationMenuTrigger,
   NavigationMenuLink
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Solution categories
+  const solutionCategories = [
+    {
+      title: "Data Platforms",
+      icon: <Database className="h-5 w-5 text-blue-600" />,
+      iconBg: "bg-blue-50",
+      description: "Store, sync and query your data",
+      links: [
+        { name: "Supabase Solutions", href: "/solutions/supabase" },
+        { name: "PostgreSQL Database", href: "/solutions/postgresql" },
+        { name: "Firebase Integration", href: "/solutions/firebase" },
+        { name: "Data Synchronization", href: "/solutions/data-sync" },
+      ]
+    },
+    {
+      title: "API Integration",
+      icon: <Webhook className="h-5 w-5 text-green-600" />,
+      iconBg: "bg-green-50",
+      description: "Connect systems with advanced API workflows",
+      links: [
+        { name: "REST API Development", href: "/solutions/rest-api" },
+        { name: "GraphQL Implementation", href: "/solutions/graphql" },
+        { name: "API Gateway Solutions", href: "/solutions/api-gateway" },
+        { name: "Webhook Automation", href: "/solutions/webhooks" },
+      ]
+    },
+    {
+      title: "AI & Automation",
+      icon: <Bot className="h-5 w-5 text-purple-600" />,
+      iconBg: "bg-purple-50",
+      description: "Build intelligent systems with AI",
+      links: [
+        { name: "AI-Powered Workflows", href: "/solutions/ai-workflows" },
+        { name: "ML Model Integration", href: "/solutions/ml-integration" },
+        { name: "Predictive Analytics", href: "/solutions/predictive-analytics" },
+        { name: "NLP Solutions", href: "/solutions/nlp" },
+      ]
+    },
+    {
+      title: "Business Solutions",
+      icon: <Building className="h-5 w-5 text-orange-600" />,
+      iconBg: "bg-orange-50",
+      description: "End-to-end business process automation",
+      links: [
+        { name: "CRM Integration", href: "/solutions/crm" },
+        { name: "Payment Processing", href: "/solutions/payments" },
+        { name: "Customer Journey Automation", href: "/solutions/customer-journey" },
+        { name: "Enterprise Workflows", href: "/solutions/enterprise" },
+      ]
+    }
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -50,256 +118,73 @@ export default function Navbar() {
             </Link>
             
             {/* Solutions Mega Dropdown */}
-            <div className="relative">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  <NavigationMenuItem>
-                    <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
-                      Solutions
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="shadow-lg rounded-lg overflow-hidden w-[920px]">
-                      <div className="grid grid-cols-4 gap-0 w-full p-0 bg-white">
-                        {/* Column 1 - Pipeline Builder */}
-                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="bg-blue-50 p-3 rounded-full">
-                              <PieChart className="h-5 w-5 text-blue-600" />
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
+                    Solutions
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="w-[800px] p-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      {solutionCategories.map((category) => (
+                        <div key={category.title} className="group rounded-md p-4 hover:bg-slate-50 transition-colors">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className={`p-2 rounded-full ${category.iconBg}`}>
+                              {category.icon}
                             </div>
                             <h3 className="text-base font-medium text-gray-800">
-                              Pipeline Builder
+                              {category.title}
                             </h3>
                           </div>
-                          <p className="text-sm text-gray-600 mb-4">
-                            Find the right people and book quality meetings
+                          <p className="text-sm text-gray-600 mb-3">
+                            {category.description}
                           </p>
-                          <Button variant="outline" size="sm" className="w-full mb-4">
-                            Learn more
-                          </Button>
-
-                          <div className="border-t border-gray-100 pt-4">
-                            <ul className="space-y-2">
-                              <li>
-                                <Link 
-                                  to="/solutions/b2b-prospecting" 
-                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
+                          <ul className="space-y-1.5">
+                            {category.links.map((link) => (
+                              <li key={link.name}>
+                                <Link
+                                  to={link.href}
+                                  className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-blue-600 py-1 group-hover:translate-x-1 transition-transform"
                                 >
-                                  B2B Prospecting Data
+                                  <span>{link.name}</span>
+                                  <ChevronRight className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </Link>
                               </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/multichannel-outreach" 
-                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                                >
-                                  Multichannel Outreach
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/ai-assistants" 
-                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                                >
-                                  AI Assistants
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/done-for-you" 
-                                  className="text-sm text-gray-600 hover:text-blue-600 py-1.5 block transition-colors"
-                                >
-                                  Done-For-You Outbound
-                                </Link>
-                              </li>
-                            </ul>
+                            ))}
+                          </ul>
+                          <div className="mt-3 pt-2 border-t border-gray-100">
+                            <Link
+                              to={`/solutions/${category.title.toLowerCase().replace(/ /g, '-')}`}
+                              className="inline-flex items-center text-xs font-medium text-blue-600 hover:underline"
+                            >
+                              Explore all {category.title}
+                              <ChevronRight className="ml-1 h-3 w-3" />
+                            </Link>
                           </div>
                         </div>
-
-                        {/* Column 2 - Call Assistant */}
-                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="bg-green-50 p-3 rounded-full">
-                              <MessageSquare className="h-5 w-5 text-green-600" />
-                            </div>
-                            <h3 className="text-base font-medium text-gray-800">
-                              Call Assistant
-                            </h3>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-4">
-                            Turn conversations into deals with AI assistance
-                          </p>
-                          <Button variant="outline" size="sm" className="w-full mb-4">
-                            Learn more
-                          </Button>
-
-                          <div className="border-t border-gray-100 pt-4">
-                            <ul className="space-y-2">
-                              <li>
-                                <Link 
-                                  to="/solutions/meeting-scheduler" 
-                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                                >
-                                  Meeting Scheduler
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/pre-meeting-insights" 
-                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                                >
-                                  Pre-Meeting Insights
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/call-recorder" 
-                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                                >
-                                  Call Recorder & Insights
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/automated-follow-up" 
-                                  className="text-sm text-gray-600 hover:text-green-600 py-1.5 block transition-colors"
-                                >
-                                  Automated Meeting Follow-up
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-5 pt-4 border-t border-gray-100">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-800">Need a custom solution?</h4>
+                          <p className="text-xs text-gray-500 mt-0.5">Let's discuss how we can help your business.</p>
                         </div>
-
-                        {/* Column 3 - Data Enrichment */}
-                        <div className="p-6 border-r border-gray-100 hover:bg-gray-50 transition-colors">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="bg-purple-50 p-3 rounded-full">
-                              <DatabaseIcon className="h-5 w-5 text-purple-600" />
-                            </div>
-                            <h3 className="text-base font-medium text-gray-800">
-                              Data Enrichment
-                            </h3>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-4">
-                            Keep your data up-to-date, all the time
-                          </p>
-                          <Button variant="outline" size="sm" className="w-full mb-4">
-                            Learn more
-                          </Button>
-
-                          <div className="border-t border-gray-100 pt-4">
-                            <ul className="space-y-2">
-                              <li>
-                                <Link 
-                                  to="/solutions/crm-enrichment" 
-                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                                >
-                                  CRM Enrichment
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/waterfall-enrichment" 
-                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                                >
-                                  Waterfall Enrichment
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/csv-enrichment" 
-                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                                >
-                                  CSV Enrichment
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/enrichment-api" 
-                                  className="text-sm text-gray-600 hover:text-purple-600 py-1.5 block transition-colors"
-                                >
-                                  Enrichment API
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-
-                        {/* Column 4 - Go-To-Market Platform */}
-                        <div className="p-6 hover:bg-gray-50 transition-colors">
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="bg-orange-50 p-3 rounded-full">
-                              <RefreshCw className="h-5 w-5 text-orange-600" />
-                            </div>
-                            <h3 className="text-base font-medium text-gray-800">
-                              Go-To-Market Platform
-                            </h3>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-4">
-                            Run your entire sales cycle on unified customer data
-                          </p>
-                          <Button variant="outline" size="sm" className="w-full mb-4">
-                            Learn more
-                          </Button>
-
-                          <div className="border-t border-gray-100 pt-4">
-                            <ul className="space-y-2">
-                              <li>
-                                <Link 
-                                  to="/solutions/deal-management" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Deal Management
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/apollo-platform" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Apollo Platform
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/living-data-network" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Living Data Network
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/apollo-ai" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Apollo AI
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/integrations" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Integrations
-                                </Link>
-                              </li>
-                              <li>
-                                <Link 
-                                  to="/solutions/chrome-extension" 
-                                  className="text-sm text-gray-600 hover:text-orange-600 py-1.5 block transition-colors"
-                                >
-                                  Chrome Extension
-                                </Link>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                          asChild
+                        >
+                          <Link to="/contact">Get in touch</Link>
+                        </Button>
                       </div>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
+                    </div>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
             
             <Link 
               to="/how-it-works" 
@@ -359,46 +244,29 @@ export default function Navbar() {
                 Solutions
               </div>
               <div className="pl-4 space-y-2 mt-1">
-                <Link 
-                  to="/solutions/stripe" 
-                  className="flex items-center gap-2 py-1.5 text-sm text-foreground/70 hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Webhook className="h-4 w-4" />
-                  Stripe Integrations
-                </Link>
-                <Link 
-                  to="/solutions/twilio" 
-                  className="flex items-center gap-2 py-1.5 text-sm text-foreground/70 hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Phone className="h-4 w-4" />
-                  Twilio Automations
-                </Link>
-                <Link 
-                  to="/solutions/email" 
-                  className="flex items-center gap-2 py-1.5 text-sm text-foreground/70 hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Mail className="h-4 w-4" />
-                  Postmark & Email Flows
-                </Link>
-                <Link 
-                  to="/solutions/database" 
-                  className="flex items-center gap-2 py-1.5 text-sm text-foreground/70 hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Database className="h-4 w-4" />
-                  Supabase & Firestore
-                </Link>
-                <Link 
-                  to="/solutions/api" 
-                  className="flex items-center gap-2 py-1.5 text-sm text-foreground/70 hover:text-foreground"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Code className="h-4 w-4" />
-                  Custom API Pipelines
-                </Link>
+                {solutionCategories.map((category) => (
+                  <DropdownMenu key={category.title}>
+                    <DropdownMenuTrigger className="flex items-center gap-2 py-1.5 w-full text-left text-sm text-foreground/70 hover:text-foreground">
+                      <div className={`p-1 rounded-full ${category.iconBg}`}>
+                        {React.cloneElement(category.icon, { className: 'h-4 w-4' })}
+                      </div>
+                      <span>{category.title}</span>
+                      <ChevronRight className="h-4 w-4 ml-auto" />
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      {category.links.map((link) => (
+                        <DropdownMenuItem key={link.name} asChild>
+                          <Link 
+                            to={link.href}
+                            onClick={() => setIsMenuOpen(false)}
+                          >
+                            {link.name}
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ))}
               </div>
             </div>
             
