@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
@@ -12,7 +12,11 @@ export default function Navbar() {
       <div className="container flex h-16 items-center px-4 sm:px-8">
         <div className="flex w-full justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold text-brand-600">JointUp.ai</span>
+            <img 
+              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" 
+              alt="JointUp.ai Logo" 
+              className="h-8 w-auto"
+            />
           </Link>
 
           {/* Desktop navigation */}
