@@ -6,12 +6,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 
 interface CostData {
   zapier: number;
   lambda: number;
   savings: number;
   savingsPercentage: number;
+  breakEvenMonths: number;
 }
 
 export default function CostCalculator() {
@@ -19,55 +22,82 @@ export default function CostCalculator() {
   const [apps, setApps] = useState<number>(5);
   const [complexity, setComplexity] = useState<string>("simple");
   const [pricingModel, setPricingModel] = useState<string>("flat");
-  const [costs, setCosts] = useState<CostData>({ zapier: 0, lambda: 0, savings: 0, savingsPercentage: 0 });
+  const [zapierPlan, setZapierPlan] = useState<string>("team");
+  const [lambdaMemory, setLambdaMemory] = useState<number>(512);
+  const [executionTime, setExecutionTime] = useState<number>(300);
+  const [costs, setCosts] = useState<CostData>({ 
+    zapier: 0, 
+    lambda: 0, 
+    savings: 0, 
+    savingsPercentage: 0,
+    breakEvenMonths: 3 
+  });
 
   // Recalculate costs whenever inputs change
   useEffect(() => {
     calculateCosts();
-  }, [tasks, apps, complexity, pricingModel]);
+  }, [tasks, apps, complexity, pricingModel, zapierPlan, lambdaMemory, executionTime]);
 
   const calculateCosts = () => {
-    // Zapier pricing logic (simplified example)
+    // Zapier pricing logic based on the provided data
     let zapierCost = 0;
+    let tasksIncluded = 0;
     
-    if (tasks <= 750) {
-      zapierCost = 19.99; // Starter plan
-    } else if (tasks <= 2000) {
-      zapierCost = 49; // Professional plan
-    } else if (tasks <= 5000) {
-      zapierCost = 69; // Team plan
-    } else if (tasks <= 20000) {
-      zapierCost = 299; // Company plan
-    } else {
-      zapierCost = 599; // Enterprise plan
+    switch (zapierPlan) {
+      case "starter":
+        zapierCost = 19.99;
+        tasksIncluded = 750;
+        break;
+      case "professional":
+        zapierCost = 49;
+        tasksIncluded = 2000;
+        break;
+      case "team":
+        zapierCost = 99;
+        tasksIncluded = 2000;
+        break;
+      case "business":
+        zapierCost = 299;
+        tasksIncluded = 50000;
+        break;
+      case "company":
+        zapierCost = 599;
+        tasksIncluded = 100000;
+        break;
     }
     
-    // Add costs for additional tasks beyond plan limits
-    if (tasks > 20000) {
-      zapierCost += Math.ceil((tasks - 20000) / 5000) * 100;
+    // Add costs for additional tasks beyond plan limits (1.25x cost)
+    if (tasks > tasksIncluded) {
+      const overageTasks = tasks - tasksIncluded;
+      const taskCost = zapierCost / tasksIncluded; // Cost per task in the plan
+      zapierCost += overageTasks * taskCost * 1.25; // 1.25x standard cost for overage
     }
     
     // Add cost for complex logic if needed
     if (complexity === "complex") {
-      zapierCost *= 1.5;
+      zapierCost *= 1.4; // 40% increase for complex workflows
     }
     
     // Add costs for many connected apps
     if (apps > 10) {
-      zapierCost += (apps - 10) * 5;
+      zapierCost += (apps - 10) * 5; // $5 per additional app beyond 10
     }
 
     // Lambda pricing logic
     let lambdaCost = 0;
     
     if (pricingModel === "flat") {
-      // Flat rate pricing model
-      lambdaCost = tasks < 5000 ? 99 : (tasks < 15000 ? 199 : 299);
+      // Flat rate pricing model (simplified for business use)
+      lambdaCost = tasks < 5000 ? 99 : (tasks < 20000 ? 199 : 299);
     } else {
-      // Usage-based pricing model
-      const requestCost = tasks * 0.0005; // $0.0005 per request
-      const baseCost = 49; // Base platform cost
-      lambdaCost = baseCost + requestCost;
+      // Usage-based AWS Lambda pricing calculation
+      const gbSeconds = tasks * (executionTime / 1000) * (lambdaMemory / 1024);
+      const requestsCost = Math.max(0, tasks - 1000000) * (0.20 / 1000000); // $0.20 per million requests after free tier
+      const computeCost = Math.max(0, gbSeconds - 400000) * 0.0000166667; // Cost per GB-second after free tier
+      
+      // Base platform cost + actual AWS costs
+      const baseCost = 49; // JointUp base platform cost
+      lambdaCost = baseCost + requestsCost + computeCost;
     }
     
     // Add complexity factor
@@ -77,13 +107,18 @@ export default function CostCalculator() {
     
     // Calculate savings
     const savings = zapierCost - lambdaCost;
-    const savingsPercentage = Math.round((savings / zapierCost) * 100);
+    const savingsPercentage = zapierCost > 0 ? Math.round((savings / zapierCost) * 100) : 0;
+    
+    // Calculate break-even point (assumes $1500 initial setup cost with JointUp)
+    const setupCost = 1500;
+    const monthlyBreakEven = savings > 0 ? Math.ceil(setupCost / savings) : 0;
     
     setCosts({
       zapier: Math.round(zapierCost),
       lambda: Math.round(lambdaCost),
       savings: Math.round(savings),
-      savingsPercentage: savingsPercentage
+      savingsPercentage: savingsPercentage,
+      breakEvenMonths: monthlyBreakEven
     });
   };
 
@@ -94,6 +129,10 @@ export default function CostCalculator() {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Zapier Cost Calculator</h2>
           <p className="mt-4 text-lg text-gray-600">
             See how much you could save by switching from Zapier to custom AWS Lambda workflows
+          </p>
+          <p className="mt-2 text-md text-gray-500">
+            Want to know how much Zapier is really costing you? Our calculator shows exactly what you're 
+            spending on task-based automations — and your potential savings with AWS Lambda.
           </p>
         </div>
 
@@ -121,6 +160,23 @@ export default function CostCalculator() {
                   className="font-mono"
                 />
                 <p className="text-xs text-gray-500">How many automation tasks run each month?</p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="zapierPlan">Current Zapier Plan</Label>
+                <Select value={zapierPlan} onValueChange={setZapierPlan}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select plan" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="starter">Starter ($19.99/mo, 750 tasks)</SelectItem>
+                    <SelectItem value="professional">Professional ($49/mo, 2,000 tasks)</SelectItem>
+                    <SelectItem value="team">Team ($99/mo, 2,000 tasks)</SelectItem>
+                    <SelectItem value="business">Business ($299/mo, 50,000 tasks)</SelectItem>
+                    <SelectItem value="company">Company ($599/mo, 100,000 tasks)</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-gray-500">Your current Zapier subscription plan</p>
               </div>
               
               <div className="space-y-2">
@@ -172,6 +228,42 @@ export default function CostCalculator() {
                   </div>
                 </RadioGroup>
               </div>
+              
+              {pricingModel === "usage" && (
+                <>
+                  <div className="space-y-2">
+                    <Label>Lambda Memory Allocation (MB)</Label>
+                    <div className="flex items-center space-x-4">
+                      <span className="text-sm w-8">128</span>
+                      <Slider 
+                        value={[lambdaMemory]}
+                        onValueChange={(values) => setLambdaMemory(values[0])}
+                        min={128}
+                        max={3008}
+                        step={64}
+                        className="flex-1"
+                      />
+                      <span className="text-sm w-12 text-right">{lambdaMemory}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label>Average Execution Time (ms)</Label>
+                    <div className="flex items-center space-x-4">
+                      <span className="text-sm w-8">100</span>
+                      <Slider 
+                        value={[executionTime]}
+                        onValueChange={(values) => setExecutionTime(values[0])}
+                        min={100}
+                        max={1000}
+                        step={50}
+                        className="flex-1"
+                      />
+                      <span className="text-sm w-12 text-right">{executionTime}</span>
+                    </div>
+                  </div>
+                </>
+              )}
             </CardContent>
           </Card>
 
@@ -209,6 +301,15 @@ export default function CostCalculator() {
                     {costs.savingsPercentage}%
                   </div>
                 </div>
+                
+                {costs.breakEvenMonths > 0 && costs.breakEvenMonths < 24 && (
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <div className="text-sm font-medium text-gray-700">Break-Even Point</div>
+                    <div className="mt-1 text-blue-700">
+                      <span className="font-bold">{costs.breakEvenMonths} months</span> to recoup implementation costs
+                    </div>
+                  </div>
+                )}
                 
                 <div className="pt-4">
                   <p className="text-sm text-gray-600 mb-4">
