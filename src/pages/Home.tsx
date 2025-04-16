@@ -2,8 +2,27 @@ import { ArrowRight, Check, X, Zap, CreditCard, MessageSquare, Bell, Database } 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
+import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 
 export default function Home() {
+  const lambdaCode = `def lambda_handler(event, context):
+    # Parse Stripe webhook
+    stripe_event = json.loads(event['body'])
+    
+    # Extract customer data
+    customer = stripe_event['data']['object']
+    
+    # Update database record
+    update_supabase_record(customer)
+    
+    # Send confirmation via Twilio
+    send_sms_notification(customer['phone'])
+    
+    # Post to Slack channel
+    post_to_slack(customer)
+    
+    return {"statusCode": 200}`;
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -27,38 +46,7 @@ export default function Home() {
               </Button>
             </div>
             <div className="relative">
-              <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-lg">
-                <div className="flex items-center mb-4 text-sm text-gray-600">
-                  <div className="flex space-x-2 mr-auto">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  </div>
-                  <div className="font-mono">lambda_function.py</div>
-                </div>
-                <pre className="font-mono text-sm text-gray-800 overflow-x-auto">
-<code>{`def lambda_handler(event, context):
-    # Parse Stripe webhook
-    stripe_event = json.loads(event['body'])
-    
-    # Extract customer data
-    customer = stripe_event['data']['object']
-    
-    # Update database record
-    update_supabase_record(customer)
-    
-    # Send confirmation via Twilio
-    send_sms_notification(customer['phone'])
-    
-    # Post to Slack channel
-    post_to_slack(customer)
-    
-    return {"statusCode": 200}`}</code>
-                </pre>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-[#F97316] text-white p-3 rounded-lg shadow-lg">
-                <Zap size={24} />
-              </div>
+              <AnimatedCodeBlock code={lambdaCode} speed={30} />
             </div>
           </div>
         </div>
