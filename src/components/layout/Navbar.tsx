@@ -13,7 +13,7 @@ export default function Navbar() {
         <div className="flex w-full justify-between items-center">
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" 
+              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).svg" 
               alt="JointUp.ai Logo" 
               className="h-8 w-auto"
             />
