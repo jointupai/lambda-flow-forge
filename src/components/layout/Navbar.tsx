@@ -157,7 +157,7 @@ export default function Navbar() {
                   <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
                     Solutions
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-[900px] p-6">
+                  <NavigationMenuContent className="w-[900px] p-6 bg-white/95 backdrop-blur-xl rounded-xl shadow-lg border border-gray-100">
                     <div className="grid grid-cols-2 gap-6">
                       {solutionCategories.map((category) => (
                         <div key={category.title} className="group rounded-xl p-4 hover:bg-gray-50/80 transition-all duration-300">
