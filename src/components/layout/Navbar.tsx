@@ -1,28 +1,10 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
-  Menu, 
-  X, 
-  Webhook, 
-  Phone, 
-  Mail, 
-  Database, 
-  Code,
-  PieChart,
-  MessageSquare,
-  Database as DatabaseIcon,
-  RefreshCw,
-  LayoutGrid,
-  Users,
-  Bot,
-  CheckCircle,
-  Calendar,
-  FileSpreadsheet,
-  Cpu,
-  GitMerge,
-  Chrome,
-  Workflow
+  PieChart, 
+  MessageSquare, 
+  DatabaseIcon, 
+  RefreshCw 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -63,25 +45,36 @@ export default function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">Solutions</NavigationMenuTrigger>
-                  <NavigationMenuContent className="bg-white shadow-xl rounded-lg border border-gray-100 w-[900px] p-6">
-                    <div className="grid grid-cols-4 gap-6">
+                  <NavigationMenuTrigger className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors bg-transparent">
+                    Solutions
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-white shadow-2xl rounded-xl border border-gray-100 w-[1000px] p-8">
+                    <div className="grid grid-cols-4 gap-8">
                       {/* Column 1 - Pipeline Builder */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gray-100 p-2 rounded-md">
-                            <PieChart className="h-5 w-5 text-gray-800" />
+                      <div className="space-y-4 group">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-blue-50 transition-colors">
+                            <PieChart className="h-6 w-6 text-gray-700 group-hover:text-blue-600 transition-colors" />
                           </div>
-                          <h3 className="font-bold">Pipeline Builder</h3>
+                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                            Pipeline Builder
+                          </h3>
                         </div>
-                        <p className="text-sm text-gray-600">Find the right people and book quality meetings</p>
-                        <Button variant="outline" size="sm" className="mt-2">
+                        <p className="text-sm text-gray-600 mb-4">
+                          Find the right people and book quality meetings
+                        </p>
+                        <Button variant="outline" size="sm" className="mb-4">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 mt-6 border-t pt-4">
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/b2b-prospecting" className="block py-1">B2B Prospecting Data</Link>
+                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                          <li>
+                            <Link 
+                              to="/solutions/b2b-prospecting" 
+                              className="text-sm text-gray-700 hover:text-blue-600 py-2 block transition-colors"
+                            >
+                              B2B Prospecting Data
+                            </Link>
                           </li>
                           <li className="text-sm hover:text-brand-primary-600">
                             <Link to="/solutions/multichannel-outreach" className="block py-1">Multichannel Outreach</Link>
@@ -96,21 +89,30 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 2 - Call Assistant */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gray-100 p-2 rounded-md">
-                            <MessageSquare className="h-5 w-5 text-gray-800" />
+                      <div className="space-y-4 group">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-green-50 transition-colors">
+                            <MessageSquare className="h-6 w-6 text-gray-700 group-hover:text-green-600 transition-colors" />
                           </div>
-                          <h3 className="font-bold">Call Assistant</h3>
+                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-green-600 transition-colors">
+                            Call Assistant
+                          </h3>
                         </div>
-                        <p className="text-sm text-gray-600">Turn conversations into deals with AI assistance</p>
-                        <Button variant="outline" size="sm" className="mt-2">
+                        <p className="text-sm text-gray-600 mb-4">
+                          Turn conversations into deals with AI assistance
+                        </p>
+                        <Button variant="outline" size="sm" className="mb-4">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 mt-6 border-t pt-4">
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/meeting-scheduler" className="block py-1">Meeting Scheduler</Link>
+                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                          <li>
+                            <Link 
+                              to="/solutions/meeting-scheduler" 
+                              className="text-sm text-gray-700 hover:text-green-600 py-2 block transition-colors"
+                            >
+                              Meeting Scheduler
+                            </Link>
                           </li>
                           <li className="text-sm hover:text-brand-primary-600">
                             <Link to="/solutions/pre-meeting-insights" className="block py-1">Pre-Meeting Insights</Link>
@@ -125,21 +127,30 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 3 - Data Enrichment */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gray-100 p-2 rounded-md">
-                            <DatabaseIcon className="h-5 w-5 text-gray-800" />
+                      <div className="space-y-4 group">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-purple-50 transition-colors">
+                            <DatabaseIcon className="h-6 w-6 text-gray-700 group-hover:text-purple-600 transition-colors" />
                           </div>
-                          <h3 className="font-bold">Data Enrichment</h3>
+                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-purple-600 transition-colors">
+                            Data Enrichment
+                          </h3>
                         </div>
-                        <p className="text-sm text-gray-600">Keep your data up-to-date, all the time</p>
-                        <Button variant="outline" size="sm" className="mt-2">
+                        <p className="text-sm text-gray-600 mb-4">
+                          Keep your data up-to-date, all the time
+                        </p>
+                        <Button variant="outline" size="sm" className="mb-4">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 mt-6 border-t pt-4">
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/crm-enrichment" className="block py-1">CRM Enrichment</Link>
+                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                          <li>
+                            <Link 
+                              to="/solutions/crm-enrichment" 
+                              className="text-sm text-gray-700 hover:text-purple-600 py-2 block transition-colors"
+                            >
+                              CRM Enrichment
+                            </Link>
                           </li>
                           <li className="text-sm hover:text-brand-primary-600">
                             <Link to="/solutions/waterfall-enrichment" className="block py-1">Waterfall Enrichment</Link>
@@ -154,21 +165,30 @@ export default function Navbar() {
                       </div>
 
                       {/* Column 4 - Go-To-Market Platform */}
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="bg-gray-100 p-2 rounded-md">
-                            <RefreshCw className="h-5 w-5 text-gray-800" />
+                      <div className="space-y-4 group">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="bg-gray-100 p-3 rounded-lg group-hover:bg-orange-50 transition-colors">
+                            <RefreshCw className="h-6 w-6 text-gray-700 group-hover:text-orange-600 transition-colors" />
                           </div>
-                          <h3 className="font-bold">Go-To-Market Platform</h3>
+                          <h3 className="text-lg font-semibold text-gray-800 group-hover:text-orange-600 transition-colors">
+                            Go-To-Market Platform
+                          </h3>
                         </div>
-                        <p className="text-sm text-gray-600">Run your entire sales cycle on unified customer data</p>
-                        <Button variant="outline" size="sm" className="mt-2">
+                        <p className="text-sm text-gray-600 mb-4">
+                          Run your entire sales cycle on unified customer data
+                        </p>
+                        <Button variant="outline" size="sm" className="mb-4">
                           Learn more
                         </Button>
 
-                        <ul className="space-y-2 mt-6 border-t pt-4">
-                          <li className="text-sm hover:text-brand-primary-600">
-                            <Link to="/solutions/deal-management" className="block py-1">Deal Management</Link>
+                        <ul className="space-y-2 pt-4 border-t border-gray-200">
+                          <li>
+                            <Link 
+                              to="/solutions/deal-management" 
+                              className="text-sm text-gray-700 hover:text-orange-600 py-2 block transition-colors"
+                            >
+                              Deal Management
+                            </Link>
                           </li>
                           <li className="text-sm hover:text-brand-primary-600">
                             <Link to="/solutions/apollo-platform" className="block py-1">Apollo Platform</Link>
