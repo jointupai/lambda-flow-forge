@@ -58,7 +58,11 @@ export default function Navbar() {
                 </button>
               </DropdownMenuTrigger>
               
-              <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2">
+              <DropdownMenuContent 
+                className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2" 
+                align="start"
+                sideOffset={8}
+              >
                 <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
                   <CreditCard className="h-4 w-4 text-green-600" />
                   <span>Stripe Payment Automations</span>
@@ -105,7 +109,11 @@ export default function Navbar() {
                 </button>
               </DropdownMenuTrigger>
               
-              <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2">
+              <DropdownMenuContent 
+                className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2" 
+                align="start"
+                sideOffset={8}
+              >
                 <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
                   <Package className="h-4 w-4 text-blue-600" />
                   <span>Stripe + Webflow Lambda Kit</span>
