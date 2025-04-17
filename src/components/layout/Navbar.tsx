@@ -59,43 +59,57 @@ export default function Navbar() {
               </DropdownMenuTrigger>
               
               <DropdownMenuContent 
-                className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2" 
+                className="w-64 bg-white/95 backdrop-blur-xl rounded-xl p-3 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 shadow-lg border border-gray-100/40" 
                 align="start"
                 sideOffset={8}
               >
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <CreditCard className="h-4 w-4 text-green-600" />
-                  <span>Stripe Payment Automations</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-green-50">
+                    <CreditCard className="h-4 w-4 text-green-600" />
+                  </div>
+                  <span className="font-medium">Stripe Payment Automations</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <MessageSquareText className="h-4 w-4 text-blue-600" />
-                  <span>Twilio + SMS Messaging</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-blue-50">
+                    <MessageSquareText className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <span className="font-medium">Twilio + SMS Messaging</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Database className="h-4 w-4 text-purple-600" />
-                  <span>Supabase / Firestore Sync</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-purple-50">
+                    <Database className="h-4 w-4 text-purple-600" />
+                  </div>
+                  <span className="font-medium">Supabase / Firestore Sync</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Mail className="h-4 w-4 text-orange-600" />
-                  <span>Postmark Email Logic</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-orange-50">
+                    <Mail className="h-4 w-4 text-orange-600" />
+                  </div>
+                  <span className="font-medium">Postmark Email Logic</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Code className="h-4 w-4 text-indigo-600" />
-                  <span>Custom API Integrations</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-indigo-50">
+                    <Code className="h-4 w-4 text-indigo-600" />
+                  </div>
+                  <span className="font-medium">Custom API Integrations</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Bell className="h-4 w-4 text-pink-600" />
-                  <span>Internal Alerts & Notifications</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-pink-50">
+                    <Bell className="h-4 w-4 text-pink-600" />
+                  </div>
+                  <span className="font-medium">Internal Alerts & Notifications</span>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Zap className="h-4 w-4 text-amber-600" />
-                  <span>Zapier Workflow Replacement</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-amber-50">
+                    <Zap className="h-4 w-4 text-amber-600" />
+                  </div>
+                  <span className="font-medium">Zapier Workflow Replacement</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -110,13 +124,15 @@ export default function Navbar() {
               </DropdownMenuTrigger>
               
               <DropdownMenuContent 
-                className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2" 
+                className="w-64 bg-white/95 backdrop-blur-xl rounded-xl p-3 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 shadow-lg border border-gray-100/40" 
                 align="start"
                 sideOffset={8}
               >
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Package className="h-4 w-4 text-blue-600" />
-                  <span>Stripe + Webflow Lambda Kit</span>
+                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <div className="p-2 rounded-lg bg-blue-50">
+                    <Package className="h-4 w-4 text-blue-600" />
+                  </div>
+                  <span className="font-medium">Stripe + Webflow Lambda Kit</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
