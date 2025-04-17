@@ -3,14 +3,14 @@ import React from 'react';
 
 const LogoScroller = () => {
   const logos = [
+    'https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//Google_Cloud-Logo-9.svg',
+    'https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//amazon-web-services.svg',
     '/logos/stripe.svg',
     '/logos/twilio.svg',
     '/logos/supabase.svg',
     '/logos/postmark.svg',
     '/logos/zapier.svg',
-    '/logos/slack.svg',
-    '/logos/aws.svg',
-    '/logos/gcp.svg',
+    '/logos/slack.svg'
   ];
 
   return (
