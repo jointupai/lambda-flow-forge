@@ -5,7 +5,7 @@ const LogoScroller = () => {
   const logos = [
     'https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//google-cloud-3.svg',
     'https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//amazon-web-services.svg',
-    '/logos/stripe.svg',
+    'https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-svgrepo-com%20(1).svg',
     '/logos/twilio.svg',
     '/logos/supabase.svg',
     '/logos/postmark.svg',
