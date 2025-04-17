@@ -14,9 +14,6 @@ import {
   Bell,
   Zap,
   Package,
-  Webhook,
-  Bot,
-  Grid,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,6 +41,7 @@ export default function Navbar() {
 
           {/* Centered Desktop Navigation */}
           <div className="hidden md:flex items-center justify-center space-x-6">
+            {/* Home link */}
             <Link 
               to="/" 
               className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
@@ -110,17 +108,7 @@ export default function Navbar() {
               <DropdownMenuContent className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-2">
                 <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
                   <Package className="h-4 w-4 text-blue-600" />
-                  <span>Stripe Kit</span>
-                </DropdownMenuItem>
-                
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Grid className="h-4 w-4 text-teal-600" />
-                  <span>Webflow Kit</span>
-                </DropdownMenuItem>
-                
-                <DropdownMenuItem className="flex items-center gap-2 py-2 cursor-pointer">
-                  <Bot className="h-4 w-4 text-purple-600" />
-                  <span>Lambda Kit</span>
+                  <span>Stripe + Webflow Lambda Kit</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -218,15 +206,7 @@ export default function Navbar() {
               <div className="pl-4 space-y-2 mt-2">
                 <div className="flex items-center gap-2 py-1 text-sm">
                   <Package className="h-4 w-4 text-blue-600" />
-                  <span>Stripe Kit</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Grid className="h-4 w-4 text-teal-600" />
-                  <span>Webflow Kit</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Bot className="h-4 w-4 text-purple-600" />
-                  <span>Lambda Kit</span>
+                  <span>Stripe + Webflow Lambda Kit</span>
                 </div>
               </div>
             </div>
