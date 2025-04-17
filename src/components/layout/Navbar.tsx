@@ -129,10 +129,12 @@ export default function Navbar() {
                 sideOffset={8}
               >
                 <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <Package className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <span className="font-medium">Stripe + Webflow Lambda Kit</span>
+                  <Link to="/stripe-webflow-kit" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-blue-50">
+                      <Package className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium">Stripe + Webflow Lambda Kit</span>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -228,10 +230,14 @@ export default function Navbar() {
             <div className="block py-2 text-base font-medium text-foreground/80">
               Micro Products
               <div className="pl-4 space-y-2 mt-2">
-                <div className="flex items-center gap-2 py-1 text-sm">
+                <Link
+                  to="/stripe-webflow-kit"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
                   <Package className="h-4 w-4 text-blue-600" />
                   <span>Stripe + Webflow Lambda Kit</span>
-                </div>
+                </Link>
               </div>
             </div>
             
