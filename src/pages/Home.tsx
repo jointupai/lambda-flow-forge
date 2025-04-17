@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
+import LogoScroller from "@/components/home/LogoScroller";
+
 export default function Home() {
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
@@ -22,6 +24,7 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
+
   return <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="bg-white py-24 md:py-32">
@@ -41,6 +44,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Logo Scroller */}
+      <LogoScroller />
 
       {/* Problem → Solution Section */}
       <section className="py-20 bg-gray-50">

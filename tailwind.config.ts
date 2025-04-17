@@ -70,10 +70,15 @@ export default {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.02)' },
         },
+        'scroll': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(calc(-50%))' }
+        }
       },
       animation: {
         'fade-in': 'fade-in 0.6s ease-out',
         'subtle-pulse': 'subtle-pulse 2s ease-in-out infinite',
+        'scroll': 'scroll 20s linear infinite'
       },
     },
   },
