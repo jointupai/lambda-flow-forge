@@ -33,9 +33,31 @@ const StripeWebflowKit = () => {
             subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
             $500/month SaaS tools.
           </p>
-          <Button size="lg" className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-8">
+          <Button size="lg" className="bg-black text-white hover:bg-gray-800 rounded-full px-8">
             Download Now ($97) <ArrowRight className="ml-2" />
           </Button>
+        </div>
+      </section>
+
+      {/* New Stripe Elements Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Embed Stripe Elements Anywhere on Your Webflow Site
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our kit lets you place Stripe's secure payment forms on any page. Perfect for 
+              checkouts, subscription signups, or donation forms.
+            </p>
+          </div>
+          <div className="rounded-xl overflow-hidden shadow-lg max-w-4xl mx-auto">
+            <img
+              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//pe_layout_example.525f78bcb99b95e49be92e5dd34df439.png"
+              alt="Stripe Elements Layout Example"
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </section>
 
@@ -279,7 +301,7 @@ const StripeWebflowKit = () => {
             Join 1,200+ developers who upgraded from Zapier
           </h2>
           <p className="text-xl text-gray-600 mb-8">Instant access after purchase!</p>
-          <Button size="lg" className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-8">
+          <Button size="lg" className="bg-black text-white hover:bg-gray-800 rounded-full px-8">
             Get the Kit ($97) <ArrowRight className="ml-2" />
           </Button>
         </div>
