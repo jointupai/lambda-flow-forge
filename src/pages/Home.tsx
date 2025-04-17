@@ -1,10 +1,11 @@
-import { ArrowRight, Check, X, Zap, CreditCard, MessageSquare, Bell, Database } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
 import LogoScroller from "@/components/home/LogoScroller";
+import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 
 export default function Home() {
   const lambdaCode = `def lambda_handler(event, context):
@@ -25,20 +26,28 @@ export default function Home() {
     
     return {"statusCode": 200}`;
 
-  return <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-white py-24 md:py-32">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">Scale Smarter with Cloud-Native Automation (AWS or Google Cloud -Your Choice)</h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-600">We replace expensive ops teams and clunky SaaS tools with scalable, serverless backends—so you save 40-70% on operational costs.</p>
-              <Button size="lg" className="bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-lg px-8 py-6 h-auto rounded-full">
-                <span className="text-lg font-bold">Get a Free Integration Audit</span>
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Hero Section - Mobile Optimized */}
+      <section className="bg-white py-12 md:py-24 lg:py-32">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="text-center lg:text-left">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight text-gray-900">
+                Scale Smarter with Cloud-Native Automation
+                <span className="block text-2xl md:text-3xl lg:text-4xl mt-2 text-gray-600">
+                  (AWS or Google Cloud -Your Choice)
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
+                We replace expensive ops teams and clunky SaaS tools with scalable, serverless backends—so you save 40-70% on operational costs.
+              </p>
+              <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full">
+                <span className="font-bold">Get a Free Integration Audit</span>
                 <ArrowRight className="ml-2" />
               </Button>
             </div>
-            <div className="relative">
+            <div className="relative mt-8 lg:mt-0">
               <AnimatedCodeBlock code={lambdaCode} speed={30} />
             </div>
           </div>
@@ -49,100 +58,27 @@ export default function Home() {
       <LogoScroller />
 
       {/* Problem → Solution Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Why AWS Lambda Instead of Zapier?</h2>
-          <div className="grid md:grid-cols-2 gap-16">
-            {/* Problem column */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">The Problem</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-100 p-2 rounded-full">
-                    <X className="text-red-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">Zapier breaks under pressure</h4>
-                    <p className="text-gray-700">Task limits, timeout issues, and unexpected failures as you scale.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-100 p-2 rounded-full">
-                    <X className="text-red-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">It's not built for developers</h4>
-                    <p className="text-gray-700">No version control, limited logic capabilities, and closed ecosystem.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-red-100 p-2 rounded-full">
-                    <X className="text-red-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">You're stitching tools together</h4>
-                    <p className="text-gray-700">Fragile connections between critical services with no error handling.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Solution column */}
-            <div>
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">The Solution</h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-2 rounded-full">
-                    <Check className="text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">Infinitely scalable</h4>
-                    <p className="text-gray-700">No task limits or timeouts. Handles millions of operations with ease.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-2 rounded-full">
-                    <Check className="text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">Custom code that's yours</h4>
-                    <p className="text-gray-700">Full control over your automations with real error handling.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-2 rounded-full">
-                    <Check className="text-green-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-lg mb-1">Direct integrations</h4>
-                    <p className="text-gray-700">Connect your tools with clean, reliable pipelines that you own forever.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ProblemSolutionSection />
 
       {/* Cost Calculator Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-8">
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <CostCalculator />
         </div>
       </section>
 
-      {/* What We Build Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Build</h2>
-            <p className="text-lg text-gray-600">
+      {/* What We Build Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">What We Build</h2>
+            <p className="text-base md:text-lg text-gray-600">
               Custom backend logic that connects your essential tools into a seamless, 
               reliable automation pipeline.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-5xl mx-auto">
             {[{
             icon: <CreditCard className="text-[#F97316]" size={32} />,
             title: "Stripe",
@@ -176,11 +112,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mini Use Case Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-8">
+      {/* Mini Use Case Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12 text-center">
               How It Works: A Real Example
             </h2>
             
@@ -215,8 +151,8 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="text-center mt-12">
-              <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-lg font-medium">
+            <div className="text-center mt-8 md:mt-12">
+              <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-lg font-medium text-sm md:text-base">
                 ✅ No Zapier. Just clean code and real-time results.
               </div>
             </div>
@@ -224,20 +160,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonial Videos Section */}
+      {/* Testimonial Videos */}
       <TestimonialVideos />
 
-      {/* CTA Section */}
-      <section className="py-20 bg-brand-primary-400 text-black">
-        <div className="container mx-auto px-4 sm:px-8">
+      {/* CTA Section - Mobile Optimized */}
+      <section className="py-12 md:py-20 bg-brand-primary-400 text-black">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Replace Your Zapier Stack?</h2>
-            <p className="text-xl mb-8">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Replace Your Zapier Stack?</h2>
+            <p className="text-base md:text-xl mb-6 md:mb-8">
               Book a free audit of your current automation setup and we'll show you how 
               AWS Lambda can make everything faster, more reliable, and infinitely scalable.
             </p>
             <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
+              >
                 Get Your Free Integration Audit
                 <ArrowRight className="ml-2" />
               </Button>
@@ -245,5 +185,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 }
