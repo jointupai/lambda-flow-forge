@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -16,6 +15,7 @@ import {
   MessageSquare,
   FileCode,
   Building,
+  FileCode2 as Code,
 } from "lucide-react";
 
 const StripeWebflowKit = () => {
