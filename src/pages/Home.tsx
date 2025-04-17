@@ -1,4 +1,4 @@
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, Zap, CreditCard, MessageSquare, Database, Bell, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
@@ -96,7 +96,7 @@ export default function Home() {
             title: "Supabase",
             description: "Insert/update database records"
           }, {
-            icon: <Zap className="text-[#F97316]" size={32} />,
+            icon: <Code className="text-[#F97316]" size={32} />,
             title: "API Middleware",
             description: "Multi-service logic flows"
           }, {
