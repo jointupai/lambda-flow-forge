@@ -23,7 +23,7 @@ const LogoScroller = () => {
               <img
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                className="max-h-8 w-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="max-h-8 max-w-[120px] w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = 'https://via.placeholder.com/120x40?text=Logo';
@@ -39,7 +39,7 @@ const LogoScroller = () => {
               <img
                 src={logo}
                 alt={`Partner logo ${index + 1}`}
-                className="max-h-8 w-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="max-h-8 max-w-[120px] w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = 'https://via.placeholder.com/120x40?text=Logo';
