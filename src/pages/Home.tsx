@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
-
 export default function Home() {
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
@@ -23,26 +22,16 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="bg-white py-24 md:py-32">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">
-                We Build AWS Lambda Integrations That Automate Your Business
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-600">
-                Scalable backend logic that replaces Zapier and powers real-time workflows 
-                for Stripe, Twilio, Postmark, Supabase & more.
-              </p>
-              <Button 
-                size="lg" 
-                className="bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-lg px-8 py-6 h-auto"
-              >
-                <span>Get a Free Integration Audit</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900">Scale Smarter with Cloud-Native Automation (AWS or Google Cloud -Your Choice)</h1>
+              <p className="text-xl md:text-2xl mb-8 text-gray-600">We replace expensive ops teams and clunky SaaS tools with scalable, serverless backends—so you save 40-70% on operational costs.</p>
+              <Button size="lg" className="bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-lg px-8 py-6 h-auto rounded-full">
+                <span className="text-lg font-bold">Get a Free Integration Audit</span>
                 <ArrowRight className="ml-2" />
               </Button>
             </div>
@@ -148,47 +137,35 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[
-              { 
-                icon: <CreditCard className="text-[#F97316]" size={32} />,
-                title: "Stripe",
-                description: "Payment → webhook → metadata update"
-              },
-              { 
-                icon: <MessageSquare className="text-[#F97316]" size={32} />,
-                title: "Twilio",
-                description: "Form → SMS/email triggers"
-              },
-              { 
-                icon: <MessageSquare className="text-[#F97316]" size={32} />,
-                title: "Postmark",
-                description: "Automated receipts and status emails"
-              },
-              { 
-                icon: <Database className="text-[#F97316]" size={32} />,
-                title: "Supabase",
-                description: "Insert/update database records"
-              },
-              { 
-                icon: <Zap className="text-[#F97316]" size={32} />,
-                title: "API Middleware",
-                description: "Multi-service logic flows"
-              },
-              { 
-                icon: <Bell className="text-[#F97316]" size={32} />,
-                title: "Slack + Discord",
-                description: "Live event notifications"
-              }
-            ].map((integration, index) => (
-              <div 
-                key={index} 
-                className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
-              >
+            {[{
+            icon: <CreditCard className="text-[#F97316]" size={32} />,
+            title: "Stripe",
+            description: "Payment → webhook → metadata update"
+          }, {
+            icon: <MessageSquare className="text-[#F97316]" size={32} />,
+            title: "Twilio",
+            description: "Form → SMS/email triggers"
+          }, {
+            icon: <MessageSquare className="text-[#F97316]" size={32} />,
+            title: "Postmark",
+            description: "Automated receipts and status emails"
+          }, {
+            icon: <Database className="text-[#F97316]" size={32} />,
+            title: "Supabase",
+            description: "Insert/update database records"
+          }, {
+            icon: <Zap className="text-[#F97316]" size={32} />,
+            title: "API Middleware",
+            description: "Multi-service logic flows"
+          }, {
+            icon: <Bell className="text-[#F97316]" size={32} />,
+            title: "Slack + Discord",
+            description: "Live event notifications"
+          }].map((integration, index) => <div key={index} className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="mb-4">{integration.icon}</div>
                 <h3 className="font-bold text-lg mb-2">{integration.title}</h3>
                 <p className="text-gray-700">{integration.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -254,11 +231,7 @@ export default function Home() {
               AWS Lambda can make everything faster, more reliable, and infinitely scalable.
             </p>
             <Link to="/contact">
-              <Button 
-                size="lg"
-                variant="outline" 
-                className="border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
-              >
+              <Button size="lg" variant="outline" className="border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium">
                 Get Your Free Integration Audit
                 <ArrowRight className="ml-2" />
               </Button>
@@ -266,6 +239,5 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
