@@ -39,15 +39,28 @@ const StripeWebflowKit = () => {
       {/* Live Demo Section */}
       <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Try It Yourself
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-              Experience the exact payment flow your customers will have with our Stripe integration.
-              This is a test demo — no real charges will be made.
-            </p>
-            <StripePaymentForm />
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="text-left">
+              <div className="inline-block px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-6">
+                Live Demo
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Try It Yourself
+              </h2>
+              <p className="text-xl text-gray-600 mb-6">
+                Experience the exact payment flow your customers will have with our Stripe integration.
+              </p>
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="text-sm text-blue-600">
+                  🔒 This is a test demo — no real charges will be made. Feel free to try it with test card:
+                  <br />
+                  4242 4242 4242 4242 | Any future date | Any CVC
+                </p>
+              </div>
+            </div>
+            <div>
+              <StripePaymentForm />
+            </div>
           </div>
         </div>
       </section>
