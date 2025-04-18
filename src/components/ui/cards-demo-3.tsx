@@ -1,3 +1,4 @@
+
 "use client";
 import { animate, motion } from "framer-motion";
 import React, { useEffect } from "react";
@@ -21,6 +22,8 @@ export default function CardDemo() {
 const Skeleton = () => {
   const scale = [1, 1.1, 1];
   const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
+  
+  // Modified to avoid using repeat property directly in the sequence
   const sequence = [
     [".circle-1", { scale, transform }, { duration: 0.8 }],
     [".circle-2", { scale, transform }, { duration: 0.8 }],
@@ -31,12 +34,21 @@ const Skeleton = () => {
   ];
 
   useEffect(() => {
+    // Create animation with separate repeat option
     const animation = animate(sequence, {
-      repeat: -1,
       delay: 1,
     });
     
-    return () => animation.stop();
+    // Manually restart animation to create infinite loop
+    const intervalId = setInterval(() => {
+      animation.stop();
+      animation.play();
+    }, 4800); // 6 animations * 0.8s duration
+    
+    return () => {
+      animation.stop();
+      clearInterval(intervalId);
+    };
   }, []);
 
   return (
