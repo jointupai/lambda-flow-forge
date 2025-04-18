@@ -1,10 +1,9 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
-import StripePaymentElement from "@/components/stripe/StripePaymentElement";
+import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 
 const StripeWebflowKit = () => {
   return (
@@ -38,7 +37,7 @@ const StripeWebflowKit = () => {
               Experience the exact payment flow your customers will have with our Stripe integration.
               This is a test demo — no real charges will be made.
             </p>
-            <StripePaymentElement />
+            <StripePaymentForm />
           </div>
         </div>
       </section>
