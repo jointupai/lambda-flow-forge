@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, Zap, CreditCard, MessageSquare, Database, Bell, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -34,7 +33,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
-      {/* Hero Section - Mobile Optimized */}
+      {/* Hero Section */}
       <section className="bg-white py-12 md:py-24 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -51,14 +50,14 @@ export default function Home() {
               <Button 
                 size="lg" 
                 className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" 
-                onClick={() => setShowCalendly(true)}
+                onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
               >
                 <span className="font-bold">Get a Free Integration Audit</span>
                 <ArrowRight className="ml-2" />
               </Button>
             </div>
             <div className="relative mt-8 lg:mt-0">
-              <AnimatedCodeBlock code={lambdaCode} speed={30} />
+              <AnimatedCodeBlock code={lambdaCode} />
             </div>
           </div>
         </div>
@@ -173,7 +172,7 @@ export default function Home() {
       {/* Testimonial Videos */}
       <TestimonialVideos />
 
-      {/* CTA Section - Mobile Optimized */}
+      {/* CTA Section */}
       <section className="py-12 md:py-20 bg-brand-primary-400 text-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -186,7 +185,7 @@ export default function Home() {
               size="lg" 
               variant="outline" 
               className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
-              onClick={() => setShowCalendly(true)}
+              onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
             >
               Get Your Free Integration Audit
               <ArrowRight className="ml-2" />

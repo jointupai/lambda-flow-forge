@@ -1,30 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Zap } from 'lucide-react';
 
 interface AnimatedCodeBlockProps {
   code: string;
-  speed?: number;
 }
 
-const AnimatedCodeBlock: React.FC<AnimatedCodeBlockProps> = ({ code, speed = 30 }) => {
-  const [displayedCode, setDisplayedCode] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isComplete, setIsComplete] = useState(false);
-
-  useEffect(() => {
-    if (currentIndex < code.length) {
-      const timer = setTimeout(() => {
-        setDisplayedCode(prev => prev + code[currentIndex]);
-        setCurrentIndex(currentIndex + 1);
-      }, speed);
-      
-      return () => clearTimeout(timer);
-    } else {
-      setIsComplete(true);
-    }
-  }, [currentIndex, code, speed]);
-
+const AnimatedCodeBlock: React.FC<AnimatedCodeBlockProps> = ({ code }) => {
   return (
     <div className="relative">
       <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 shadow-lg">
@@ -37,8 +19,7 @@ const AnimatedCodeBlock: React.FC<AnimatedCodeBlockProps> = ({ code, speed = 30 
           <div className="font-mono">lambda_function.py</div>
         </div>
         <pre className="font-mono text-sm text-gray-800 overflow-x-auto">
-          <code>{displayedCode}</code>
-          {!isComplete && <span className="animate-pulse">|</span>}
+          <code>{code}<span className="animate-pulse">|</span></code>
         </pre>
       </div>
       <div className="absolute -bottom-6 -right-6 bg-[#F97316] text-white p-3 rounded-lg shadow-lg">

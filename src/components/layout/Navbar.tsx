@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -27,7 +26,6 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showCalendly, setShowCalendly] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -169,7 +167,7 @@ export default function Navbar() {
             <Button 
               size="sm" 
               className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-5 transition-all duration-300"
-              onClick={() => setShowCalendly(true)}
+              onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
             >
               Get a Free Audit
             </Button>
@@ -273,7 +271,7 @@ export default function Navbar() {
                 className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500"
                 onClick={() => {
                   setIsMenuOpen(false);
-                  setShowCalendly(true);
+                  window.open('https://calendly.com/jointup/intro', '_blank');
                 }}
               >
                 Get a Free Audit
