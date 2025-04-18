@@ -1,35 +1,17 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import {
-  ArrowRight,
-  FileCode,
-  Code,
-  Clock,
-  MessageSquare,
-  Shield,
-  Check,
-  X,
-  Download,
-  Upload,
-  Zap,
-  Github,
-  Users,
-  Building
-} from "lucide-react";
-
+import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
 const StripeWebflowKit = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 bg-black text-white">
+      <section className="pt-20 pb-16 px-4 text-white bg-slate-100">
         <div className="container max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-zinc-950 lg:text-6xl">
             Add Stripe to Webflow in 15 Minutes—
-            <span className="text-white/80 ml-2">Without Code or Costly Plugins</span>
+            <span className="ml-2 text-zinc-950">Without Code or Costly Plugins</span>
           </h1>
-          <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-950">
             Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
             subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
             $500/month SaaS tools.
@@ -53,11 +35,7 @@ const StripeWebflowKit = () => {
             </p>
           </div>
           <div className="rounded-xl overflow-hidden shadow-lg max-w-4xl mx-auto">
-            <img
-              src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//pe_layout_example.525f78bcb99b95e49be92e5dd34df439.png"
-              alt="Stripe Elements Layout Example"
-              className="w-full h-auto"
-            />
+            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//pe_layout_example.525f78bcb99b95e49be92e5dd34df439.png" alt="Stripe Elements Layout Example" className="w-full h-auto" />
           </div>
         </div>
       </section>
@@ -182,18 +160,12 @@ const StripeWebflowKit = () => {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold mb-4">Perfect For:</h3>
               <div className="space-y-4">
-                {[
-                  "Webflow freelancers tired of hacking together Zapier solutions",
-                  "SaaS founders who need subscriptions but don't want to rebuild in React",
-                  "Agencies looking for a white-label payment solution for clients"
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                {["Webflow freelancers tired of hacking together Zapier solutions", "SaaS founders who need subscriptions but don't want to rebuild in React", "Agencies looking for a white-label payment solution for clients"].map((item, index) => <div key={index} className="flex items-start gap-3">
                     <div className="mt-1">
                       <Check className="h-5 w-5 text-green-500" />
                     </div>
                     <p className="text-gray-700">{item}</p>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
 
@@ -220,31 +192,25 @@ const StripeWebflowKit = () => {
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">How It Works</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Download className="h-8 w-8" />,
-                title: "Download",
-                description: "Get the Lambda + Webflow files"
-              },
-              {
-                icon: <Upload className="h-8 w-8" />,
-                title: "Deploy",
-                description: "Follow the video (uses AWS Free Tier)"
-              },
-              {
-                icon: <Zap className="h-8 w-8" />,
-                title: "Go Live",
-                description: "Start processing payments in Webflow today"
-              }
-            ].map((step, index) => (
-              <div key={index} className="text-center">
+            {[{
+            icon: <Download className="h-8 w-8" />,
+            title: "Download",
+            description: "Get the Lambda + Webflow files"
+          }, {
+            icon: <Upload className="h-8 w-8" />,
+            title: "Deploy",
+            description: "Follow the video (uses AWS Free Tier)"
+          }, {
+            icon: <Zap className="h-8 w-8" />,
+            title: "Go Live",
+            description: "Start processing payments in Webflow today"
+          }].map((step, index) => <div key={index} className="text-center">
                 <div className="bg-brand-primary-50 rounded-full p-4 inline-block mb-4">
                   {step.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
                 <p className="text-gray-600">{step.description}</p>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -272,25 +238,19 @@ const StripeWebflowKit = () => {
         <div className="container max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                q: "I'm not technical. Can I use this?",
-                a: "Yes! The video guide shows every click. Or book our team to install it for you ($300)."
-              },
-              {
-                q: "Why not just use Stripe Payments + Webflow?",
-                a: "Native Stripe in Webflow lacks subscriptions, retries, and compliance tools. Our Lambda adds all that."
-              },
-              {
-                q: "What if I need custom features?",
-                a: "This kit covers 90% of use cases. Need more? We build custom solutions."
-              }
-            ].map((faq, index) => (
-              <Card key={index} className="p-6">
+            {[{
+            q: "I'm not technical. Can I use this?",
+            a: "Yes! The video guide shows every click. Or book our team to install it for you ($300)."
+          }, {
+            q: "Why not just use Stripe Payments + Webflow?",
+            a: "Native Stripe in Webflow lacks subscriptions, retries, and compliance tools. Our Lambda adds all that."
+          }, {
+            q: "What if I need custom features?",
+            a: "This kit covers 90% of use cases. Need more? We build custom solutions."
+          }].map((faq, index) => <Card key={index} className="p-6">
                 <h3 className="text-xl font-semibold mb-3">{faq.q}</h3>
                 <p className="text-gray-600">{faq.a}</p>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -307,8 +267,6 @@ const StripeWebflowKit = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default StripeWebflowKit;
