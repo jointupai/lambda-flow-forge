@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -54,6 +53,40 @@ export default function Navbar() {
               Home
             </Link>
             
+            {/* Company Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-sm font-medium text-foreground/80 hover:text-foreground transition-colors" asChild>
+                <button className="flex items-center outline-none">
+                  Company
+                  <ChevronRight className="ml-1.5 h-3.5 w-3.5 opacity-70 transition-transform duration-200 group-data-[state=open]:rotate-90" />
+                </button>
+              </DropdownMenuTrigger>
+              
+              <DropdownMenuContent 
+                className="w-48 bg-white/95 backdrop-blur-xl rounded-xl p-3 mt-2 animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 shadow-lg border border-gray-100/40" 
+                align="start"
+                sideOffset={8}
+              >
+                <DropdownMenuItem asChild>
+                  <Link to="/how-it-works" className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                    How it Works
+                  </Link>
+                </DropdownMenuItem>
+                
+                <DropdownMenuItem asChild>
+                  <Link to="/about" className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                    About
+                  </Link>
+                </DropdownMenuItem>
+
+                <DropdownMenuItem asChild>
+                  <Link to="/portfolio" className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                    Portfolio
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* Solutions Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center text-sm font-medium text-foreground/80 hover:text-foreground transition-colors" asChild>
@@ -145,18 +178,6 @@ export default function Navbar() {
             </DropdownMenu>
             
             <Link 
-              to="/how-it-works" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-            >
-              How It Works
-            </Link>
-            <Link 
-              to="/about" 
-              className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-            >
-              About
-            </Link>
-            <Link 
               to="/contact" 
               className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
             >
@@ -196,6 +217,34 @@ export default function Navbar() {
             >
               Home
             </Link>
+            
+            {/* Mobile Company Menu */}
+            <div className="block py-2 text-base font-medium text-foreground/80">
+              Company
+              <div className="pl-4 space-y-2 mt-2">
+                <Link
+                  to="/how-it-works"
+                  className="block py-1 text-sm text-foreground/80 hover:text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  How it Works
+                </Link>
+                <Link
+                  to="/about"
+                  className="block py-1 text-sm text-foreground/80 hover:text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  to="/portfolio"
+                  className="block py-1 text-sm text-foreground/80 hover:text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Portfolio
+                </Link>
+              </div>
+            </div>
             
             {/* Mobile Solutions Menu */}
             <div className="block py-2 text-base font-medium text-foreground/80">
@@ -247,20 +296,6 @@ export default function Navbar() {
               </div>
             </div>
             
-            <Link 
-              to="/how-it-works" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              How It Works
-            </Link>
-            <Link 
-              to="/about" 
-              className="block py-2 text-base text-foreground/80 hover:text-foreground"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </Link>
             <Link 
               to="/contact" 
               className="block py-2 text-base text-foreground/80 hover:text-foreground"
