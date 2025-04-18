@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -70,9 +71,11 @@ const CheckoutForm = () => {
             type: 'tabs',
             defaultCollapsed: false,
           },
-          theme: 'flat',
-          variables: {
-            colorBackground: '#fff0',
+          appearance: {
+            theme: 'flat',
+            variables: {
+              colorBackground: '#fff0',
+            }
           }
         }}
       />
