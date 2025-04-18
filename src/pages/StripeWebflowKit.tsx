@@ -1,20 +1,22 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
+import StripePaymentElement from "@/components/stripe/StripePaymentElement";
 
 const StripeWebflowKit = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 text-white bg-slate-100">
+      <section className="pt-20 pb-16 px-4 text-white bg-black">
         <div className="container max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-zinc-950 lg:text-6xl">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white lg:text-6xl">
             Add Stripe to Webflow in 15 Minutes—
-            <span className="ml-2 text-zinc-950">Without Code or Costly Plugins</span>
+            <span className="ml-2 text-white">Without Code or Costly Plugins</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-950">
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200">
             Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
             subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
             $500/month SaaS tools.
@@ -22,6 +24,22 @@ const StripeWebflowKit = () => {
           <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8">
             Download Now ($97) <ArrowRight className="ml-2 text-black" />
           </Button>
+        </div>
+      </section>
+
+      {/* Live Demo Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Try It Yourself
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Experience the exact payment flow your customers will have with our Stripe integration.
+              This is a test demo — no real charges will be made.
+            </p>
+            <StripePaymentElement />
+          </div>
         </div>
       </section>
 
