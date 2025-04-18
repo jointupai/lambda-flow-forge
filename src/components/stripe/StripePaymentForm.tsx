@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -9,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
-// Initialize Stripe
+// Initialize Stripe with publishable key
 const stripePromise = loadStripe('pk_test_51RExra4PegiUJKIXRv34bRl9ozED3bLPiVT0fYgRf3L3MXId5n3wkdYCWYQeD0wGEoUJRrZIdpmEvxneTPDoNarE00yni6u9O6');
 
 const CheckoutForm = () => {
@@ -99,7 +100,6 @@ const StripePaymentForm = () => {
   const [clientSecret, setClientSecret] = useState<string>("");
 
   useEffect(() => {
-    // Fetch client secret from the new endpoint
     const fetchClientSecret = async () => {
       try {
         const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent');
