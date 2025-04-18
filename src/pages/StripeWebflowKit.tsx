@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
+import { Cover } from "@/components/ui/cover";
 
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
@@ -18,7 +19,10 @@ const StripeWebflowKit = () => {
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
-            Add Stripe to Webflow in 15 Minutes—
+            Add Stripe to Webflow in{" "}
+            <Cover className="text-black">
+              15 Minutes
+            </Cover>—
             <span className="ml-2 text-black">Without Code or Costly Plugins</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
