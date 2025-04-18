@@ -18,11 +18,13 @@ const StripeWebflowKit = () => {
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
-            No Zapier. No Custom Code. No Headaches.
+            Add Stripe to Webflow in 15 Minutes—
+            <span className="ml-2 text-black">Without Code or Costly Plugins</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
-            Setting up Stripe with Webflow is a pain. Zapier gets expensive. Webhooks are confusing. AWS Lambda sounds scary.
-            You just want to get paid fast — with Apple Pay, Google Pay, Affirm, while boosting conversion rates.
+            Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
+            subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
+            $500/month SaaS tools.
           </p>
           <Button 
             size="lg" 
