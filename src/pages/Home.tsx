@@ -1,5 +1,6 @@
+
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, CreditCard, MessageSquare, Database, Code, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
