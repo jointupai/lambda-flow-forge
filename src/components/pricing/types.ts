@@ -1,4 +1,3 @@
-
 import { ReactNode } from 'react';
 
 export interface PricingCardProps {
@@ -12,6 +11,7 @@ export interface PricingCardProps {
   active?: boolean;
   quote?: string;
   icon?: ReactNode;
+  href: string;
 }
 
 export interface ListProps {

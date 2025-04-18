@@ -14,6 +14,7 @@ const PricingCard = ({
   active,
   quote,
   icon,
+  href,
 }: PricingCardProps) => {
   return (
     <div className="w-full px-4 md:w-1/2 lg:w-1/3">
@@ -61,7 +62,9 @@ const PricingCard = ({
 
         {/* CTA Button */}
         <a
-          href="/#"
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`block w-full rounded-md border p-3 text-center text-base font-medium transition
             ${active 
               ? "border-white bg-white text-black hover:bg-gray-100" 

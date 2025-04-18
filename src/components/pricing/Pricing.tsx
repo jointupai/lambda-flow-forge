@@ -1,4 +1,3 @@
-
 import React from "react";
 import PricingCard from "./PricingCard";
 import List from "./List";
@@ -30,6 +29,7 @@ const Pricing = () => {
             description="Perfect for devs or no-coders who want to integrate Stripe into Webflow without Zapier."
             buttonText="Get Started"
             quote="I want to plug it in and figure it out myself."
+            href="https://buy.stripe.com/8wMcON1Gm5jL1CE7st"
           >
             <List variant="check">AWS Lambda code (prebuilt)</List>
             <List variant="check">Stripe Elements with Apple Pay, Google Pay, Affirm</List>
@@ -50,6 +50,7 @@ const Pricing = () => {
             active
             quote="I don't want to mess with AWS — can you just do it for me?"
             icon={<Rocket className="w-6 h-6" />}
+            href="https://buy.stripe.com/3cs7ut70GaE5gxy6oo"
           >
             <List variant="check">Everything in Starter</List>
             <List variant="check">We install and deploy it on your AWS</List>
@@ -68,6 +69,7 @@ const Pricing = () => {
             buttonText="Contact Us"
             quote="Need a custom solution that scales with your business?"
             icon={<Brain className="w-6 h-6" />}
+            href="#"
           >
             <List variant="check">Includes Starter + Pro</List>
             <List variant="check">Full CRM integration (ActiveCampaign, HubSpot, etc.)</List>
