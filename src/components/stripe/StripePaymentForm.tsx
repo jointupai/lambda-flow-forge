@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -9,6 +8,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 // Initialize Stripe with publishable key
 const stripePromise = loadStripe('pk_test_51RExra4PegiUJKIXRv34bRl9ozED3bLPiVT0fYgRf3L3MXId5n3wkdYCWYQeD0wGEoUJRrZIdpmEvxneTPDoNarE00yni6u9O6');
@@ -65,14 +65,23 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <PaymentElement 
-        options={{
-          layout: {
-            type: 'tabs',
-            defaultCollapsed: false,
-          }
-        }}
-      />
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="payment">
+          <AccordionTrigger className="text-lg font-medium">
+            Payment Details
+          </AccordionTrigger>
+          <AccordionContent>
+            <PaymentElement 
+              options={{
+                layout: {
+                  type: 'tabs',
+                  defaultCollapsed: false,
+                }
+              }}
+            />
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       
       {errorMessage && (
         <div className="bg-red-50 text-red-700 p-3 rounded-md text-sm">
