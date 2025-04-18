@@ -1,7 +1,6 @@
-
 "use client";
 import { animate, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { GoCopilot } from "react-icons/go";
 
@@ -11,9 +10,9 @@ export default function CardDemo() {
       <CardSkeletonContainer>
         <Skeleton />
       </CardSkeletonContainer>
-      <CardTitle>Connect Your Tools With Smart Automation</CardTitle>
+      <CardTitle>Cloud Infrastructure Automation</CardTitle>
       <CardDescription>
-        We help businesses automate their workflows with serverless infrastructure and cloud-native tools.
+        Seamlessly connect and automate your cloud services across AWS, Azure, and Google Cloud.
       </CardDescription>
     </Card>
   );
@@ -23,46 +22,11 @@ const Skeleton = () => {
   const scale = [1, 1.1, 1];
   const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
   const sequence = [
-    [
-      ".circle-1",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-2",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-3",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-4",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
-    [
-      ".circle-5",
-      {
-        scale,
-        transform,
-      },
-      { duration: 0.8 },
-    ],
+    [".circle-1", { scale, transform }, { duration: 0.8 }],
+    [".circle-2", { scale, transform }, { duration: 0.8 }],
+    [".circle-3", { scale, transform }, { duration: 0.8 }],
+    [".circle-4", { scale, transform }, { duration: 0.8 }],
+    [".circle-5", { scale, transform }, { duration: 0.8 }],
   ];
 
   useEffect(() => {
@@ -72,23 +36,36 @@ const Skeleton = () => {
       repeatDelay: 1,
     });
   }, []);
+
   return (
     <div className="p-8 overflow-hidden h-full relative flex items-center justify-center">
       <div className="flex flex-row shrink-0 justify-center items-center gap-2">
         <Container className="h-8 w-8 circle-1">
-          <ClaudeLogo className="h-4 w-4 " />
+          <img 
+            src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//brand-aws-svgrepo-com.svg" 
+            alt="AWS Logo" 
+            className="h-4 w-4"
+          />
         </Container>
         <Container className="h-12 w-12 circle-2">
-          <GoCopilot className="h-6 w-6 dark:text-white" />
+          <img 
+            src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//azure-v2-svgrepo-com.svg" 
+            alt="Azure Logo" 
+            className="h-6 w-6"
+          />
         </Container>
         <Container className="circle-3">
-          <OpenAILogo className="h-8 w-8 dark:text-white" />
+          <img 
+            src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//google-cloud-svgrepo-com.svg" 
+            alt="Google Cloud Logo" 
+            className="h-8 w-8"
+          />
         </Container>
         <Container className="h-12 w-12 circle-4">
-          <MetaIconOutline className="h-6 w-6 " />
+          <MetaIconOutline className="h-6 w-6" />
         </Container>
         <Container className="h-8 w-8 circle-5">
-          <GeminiLogo className="h-4 w-4 " />
+          <GeminiLogo className="h-4 w-4" />
         </Container>
       </div>
 
@@ -100,6 +77,7 @@ const Skeleton = () => {
     </div>
   );
 };
+
 const Sparkles = () => {
   const randomMove = () => Math.random() * 2 - 1;
   const randomOpacity = () => Math.random();
@@ -344,7 +322,7 @@ export const MetaIconOutline = ({ className }: { className?: string }) => {
       </defs>
       <path
         fill="#0081fb"
-        d="M31.06,126c0,11,2.41,19.41,5.56,24.51A19,19,0,0,0,53.19,160c8.1,0,15.51-2,29.79-21.76,11.44-15.83,24.92-38,34-52l15.36-23.6c10.67-16.39,23-34.61,37.18-47C181.07,5.6,193.54,0,206.09,0c21.07,0,41.14,12.21,56.5,35.11,16.81,25.08,25,56.67,25,89.27,0,19.38-3.82,33.62-10.32,44.87C271,180.13,258.72,191,238.13,191V160c17.63,0,22-16.2,22-34.74,0-26.42-6.16-55.74-19.73-76.69-9.63-14.86-22.11-23.94-35.84-23.94-14.85,0-26.8,11.2-40.23,31.17-7.14,10.61-14.47,23.54-22.7,38.13l-9.06,16c-18.2,32.27-22.81,39.62-31.91,51.75C84.74,183,71.12,191,53.19,191c-21.27,0-34.72-9.21-43-23.09C3.34,156.6,0,141.76,0,124.85Z"
+        d="M31.06,126c0,11,2.41,19.41,5.56,24.51A19,19,0,0,0,53.19,160c8.1,0,15.51-2,29.79-21.76,11.44-15.83,24.92-38,34-52l15.36-23.6c10.67-16.39,23-34.61,37.18-47C181.07,5.6,193.54,0,206.09,0c21.07,0,41.14,12.21,56.5,35.11,16.81,25.08,25,56.67,25,89.27,0,19.38-3.82,33.62-10.32,44.87C271,180.13,258.72,191,238.13,191V160c17.63,0,22-16.2,22-34.74,0-26.42-6.16-55.74-19.73-76.69-9.63-14.86-22.11-23.94-35.84-23.94-14.85,0-26.8,11.2-40.23,31.17-7.14,10.61-14.47,23.54-22.7,38.13l-9.06,16c-18.2,32.27-22.81,39.62-31.91,51.75C84.74,183,71.12,191,53.19,191c-21.27,0-34.72-9.21-43-23.09C3.34,156.6,0,141.76,0,124.85,0,94.1,8.44,62.05,24.49,37.3,38.73,15.35,59.28,0,82.85,0Z"
       />
       <path
         fill="url(#linear-gradient)"
