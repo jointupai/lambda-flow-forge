@@ -65,36 +65,6 @@ const StripeWebflowKit = () => {
         </div>
       </section>
 
-      {/* New Stripe Elements Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Embed Stripe Elements Anywhere on Your Webflow Site
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our kit lets you place Stripe's secure payment forms on any page. Perfect for 
-              checkouts, subscription signups, or donation forms.
-            </p>
-          </div>
-          <div className="rounded-xl overflow-hidden shadow-lg max-w-4xl mx-auto">
-            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//pe_layout_example.525f78bcb99b95e49be92e5dd34df439.png" alt="Stripe Elements Layout Example" className="w-full h-auto" />
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <div ref={pricingRef}>
-        <Pricing />
-      </div>
-
-      {/* Comparison Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto">
-          
-        </div>
-      </section>
-
       {/* What's Included Section */}
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
@@ -165,6 +135,18 @@ const StripeWebflowKit = () => {
               </Card>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <div ref={pricingRef}>
+        <Pricing />
+      </div>
+
+      {/* Comparison Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="container max-w-6xl mx-auto">
+          
         </div>
       </section>
 
