@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -102,72 +101,83 @@ const StripeWebflowKit = () => {
       {/* What's Included Section */}
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">What's Included</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-brand-primary-50">
-                    <FileCode className="h-6 w-6 text-brand-primary-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Pre-Built Lambda Function</h3>
-                    <p className="text-gray-600">One-click deploy with AWS SAM/Terraform template included. 
-                    Handles Stripe webhooks, payment failures, and subscription updates.</p>
-                  </div>
-                </div>
-              </Card>
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 bg-black text-white rounded-full text-sm font-medium mb-6">
+              Everything You Need
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">What's Included</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Get everything you need to start processing payments in Webflow today.
+              Zero coding knowledge required.
+            </p>
+          </div>
 
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <Code className="h-6 w-6 text-blue-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">Webflow Embed Code</h3>
-                    <p className="text-gray-600">Copy-paste snippet for checkout pages. Works with any Webflow site.</p>
-                  </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2">
+              <div className="flex flex-col gap-4">
+                <div className="p-3 rounded-xl bg-brand-primary-50 w-fit">
+                  <FileCode className="h-8 w-8 text-brand-primary-500" />
                 </div>
-              </Card>
-            </div>
+                <h3 className="text-2xl font-bold">Pre-Built Lambda</h3>
+                <ul className="space-y-3">
+                  {[
+                    "One-click AWS deployment",
+                    "Handles all Stripe webhooks",
+                    "Subscription management",
+                    "Payment failure recovery"
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
 
-            <div className="space-y-6">
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-purple-50">
-                    <Clock className="h-6 w-6 text-purple-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">30-Minute Setup Video</h3>
-                    <p className="text-gray-600">Complete walkthrough for non-technical users.</p>
-                  </div>
+            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2 border-brand-primary-400">
+              <div className="flex flex-col gap-4">
+                <div className="p-3 rounded-xl bg-blue-50 w-fit">
+                  <Code className="h-8 w-8 text-blue-500" />
                 </div>
-              </Card>
+                <h3 className="text-2xl font-bold">Webflow Integration</h3>
+                <ul className="space-y-3">
+                  {[
+                    "Copy-paste embed code",
+                    "Works with any template",
+                    "Custom styling options",
+                    "Mobile responsive"
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
 
-              <Card className="p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-pink-50">
-                    <MessageSquare className="h-6 w-6 text-pink-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">30 Days of Support</h3>
-                    <p className="text-gray-600">Access to private Discord for troubleshooting.</p>
-                  </div>
+            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2">
+              <div className="flex flex-col gap-4">
+                <div className="p-3 rounded-xl bg-purple-50 w-fit">
+                  <MessageSquare className="h-8 w-8 text-purple-500" />
                 </div>
-              </Card>
-
-              <Card className="p-6 hover:shadow-lg transition-shadow border-brand-primary-200">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-green-50">
-                    <Shield className="h-6 w-6 text-green-500" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">BONUS: GDPR-Compliant Checkout Guide</h3>
-                    <p className="text-gray-600">Sell to EU clients worry-free.</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
+                <h3 className="text-2xl font-bold">Support & Extras</h3>
+                <ul className="space-y-3">
+                  {[
+                    "30-minute setup video",
+                    "Private Discord access",
+                    "Email support (24h)",
+                    "GDPR compliance guide"
+                  ].map((feature, index) => (
+                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
