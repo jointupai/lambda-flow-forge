@@ -27,11 +27,11 @@ const Skeleton = () => {
     [".circle-3", { scale, transform }, { duration: 0.8 }],
     [".circle-4", { scale, transform }, { duration: 0.8 }],
     [".circle-5", { scale, transform }, { duration: 0.8 }],
+    [".circle-6", { scale, transform }, { duration: 0.8 }],
   ];
 
   useEffect(() => {
     animate(sequence, {
-      // @ts-ignore
       repeat: Infinity,
       repeatDelay: 1,
     });
@@ -62,10 +62,18 @@ const Skeleton = () => {
           />
         </Container>
         <Container className="h-12 w-12 circle-4">
-          <MetaIconOutline className="h-6 w-6" />
+          <img 
+            src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//aws-lambda-svgrepo-com.svg" 
+            alt="AWS Lambda Logo" 
+            className="h-6 w-6"
+          />
         </Container>
         <Container className="h-8 w-8 circle-5">
-          <GeminiLogo className="h-4 w-4" />
+          <img 
+            src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//google-cloud-functions-svgrepo-com.svg" 
+            alt="Google Cloud Functions Logo" 
+            className="h-4 w-4"
+          />
         </Container>
       </div>
 
