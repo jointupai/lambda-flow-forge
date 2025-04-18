@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, CreditCard, MessageSquare, Database, Code, Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -60,20 +59,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why We Exist Section */}
+      {/* Why We Exist Section with Card */}
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-              You've Outgrown Zapier. You're Scaling. You Need Infrastructure.
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-              Startups, SaaS, and service businesses hit a wall when it comes to backend workflows. 
-              Zapier breaks. CRMs get messy. Devs are overloaded.
-              <span className="block mt-4">
-                We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
-              </span>
-            </p>
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+                You've Outgrown Zapier. You're Scaling. You Need Infrastructure.
+              </h2>
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                Startups, SaaS, and service businesses hit a wall when it comes to backend workflows. 
+                Zapier breaks. CRMs get messy. Devs are overloaded.
+                <span className="block mt-4">
+                  We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
+                </span>
+              </p>
+            </div>
+            <div>
+              <CardDemo />
+            </div>
           </div>
         </div>
       </section>

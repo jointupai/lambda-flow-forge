@@ -32,7 +32,7 @@ const Skeleton = () => {
 
   useEffect(() => {
     animate(sequence, {
-      repeat: Infinity,
+      repeat: -1,
       repeatDelay: 1,
     });
   }, []);
