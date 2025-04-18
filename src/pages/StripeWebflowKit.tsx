@@ -1,40 +1,24 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import {
-  ArrowRight,
-  Check,
-  X,
-  Download,
-  Upload,
-  Zap,
-  Github,
-  Users,
-  Shield,
-  Clock,
-  MessageSquare,
-  FileCode,
-  Building,
-  FileCode2 as Code,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const StripeWebflowKit = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4">
+      <section className="pt-20 pb-16 px-4 bg-black text-white">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Add Stripe to Webflow in 15 Minutes—
-            <span className="text-brand-primary-400">Without Code or Costly Plugins</span>
+            <span className="text-white/80 ml-2">Without Code or Costly Plugins</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-4xl mx-auto">
             Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
             subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
             $500/month SaaS tools.
           </p>
-          <Button size="lg" className="bg-black text-white hover:bg-gray-800 rounded-full px-8">
-            Download Now ($97) <ArrowRight className="ml-2" />
+          <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8">
+            Download Now ($97) <ArrowRight className="ml-2 text-black" />
           </Button>
         </div>
       </section>
