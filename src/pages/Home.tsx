@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ArrowRight, Zap, CreditCard, MessageSquare, Database, Bell, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -47,7 +48,11 @@ export default function Home() {
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
                 We replace expensive ops teams and clunky SaaS tools with scalable, serverless backends—so you save 40-70% on operational costs.
               </p>
-              <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => setShowCalendly(true)}>
+              <Button 
+                size="lg" 
+                className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" 
+                onClick={() => setShowCalendly(true)}
+              >
                 <span className="font-bold">Get a Free Integration Audit</span>
                 <ArrowRight className="ml-2" />
               </Button>
@@ -177,17 +182,15 @@ export default function Home() {
               Book a free audit of your current automation setup and we'll show you how 
               AWS Lambda can make everything faster, more reliable, and infinitely scalable.
             </p>
-            <Link to="/contact">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
-                onClick={() => setShowCalendly(true)}
-              >
-                Get Your Free Integration Audit
-                <ArrowRight className="ml-2" />
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
+              onClick={() => setShowCalendly(true)}
+            >
+              Get Your Free Integration Audit
+              <ArrowRight className="ml-2" />
+            </Button>
           </div>
         </div>
       </section>

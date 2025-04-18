@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -22,12 +23,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
+      
       <div className="container flex h-16 items-center px-4 sm:px-8">
         <div className="flex w-full items-center justify-between">
           {/* Logo */}
@@ -164,6 +169,7 @@ export default function Navbar() {
             <Button 
               size="sm" 
               className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-5 transition-all duration-300"
+              onClick={() => setShowCalendly(true)}
             >
               Get a Free Audit
             </Button>
@@ -263,7 +269,13 @@ export default function Navbar() {
               Contact
             </Link>
             <div className="pt-2">
-              <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500">
+              <Button 
+                className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setShowCalendly(true);
+                }}
+              >
                 Get a Free Audit
               </Button>
             </div>
