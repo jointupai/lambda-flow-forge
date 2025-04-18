@@ -1,14 +1,12 @@
-
 import { useState } from "react";
-import { ArrowRight, Zap, CreditCard, MessageSquare, Database, Bell, Code } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
-import LogoScroller from "@/components/home/LogoScroller";
 import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
+import CardDemo from "@/components/ui/cards-demo-3";
 
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
@@ -79,10 +77,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logo Scroller */}
-      <LogoScroller />
+      {/* Animated Card Section - Replacing Logo Scroller */}
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <CardDemo />
+        </div>
+      </section>
 
-      {/* Problem → Solution Section */}
+      {/* Problem Solution Section */}
       <ProblemSolutionSection />
 
       {/* Cost Calculator Section */}
