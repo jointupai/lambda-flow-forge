@@ -43,39 +43,7 @@ const StripeWebflowKit = () => {
       {/* Comparison Section */}
       <section className="py-16 bg-gray-50">
         <div className="container max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 px-4">
-            {/* Before */}
-            <Card className="p-6 border-red-200 bg-white/50 backdrop-blur">
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">Before</h3>
-                <p className="text-lg mb-4 text-gray-600">Webflow + Zapier + Stripe</p>
-                <div className="space-y-4 mb-6">
-                  <div className="h-40 bg-red-50 rounded-lg flex items-center justify-center">
-                    {/* Complex flowchart illustration would go here */}
-                    <div className="text-red-500">Messy Flowchart</div>
-                  </div>
-                </div>
-                <p className="text-xl font-semibold text-red-500">$1,200/year</p>
-                <p className="text-gray-500">Breaks under load</p>
-              </div>
-            </Card>
-
-            {/* After */}
-            <Card className="p-6 border-green-200 bg-white/50 backdrop-blur">
-              <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-4 text-gray-900">After</h3>
-                <p className="text-lg mb-4 text-gray-600">Webflow + Your Lambda</p>
-                <div className="space-y-4 mb-6">
-                  <div className="h-40 bg-green-50 rounded-lg flex items-center justify-center">
-                    {/* Simple arrow illustration would go here */}
-                    <div className="text-green-500">Clean Arrow</div>
-                  </div>
-                </div>
-                <p className="text-xl font-semibold text-green-500">$0/month</p>
-                <p className="text-gray-500">Scales infinitely</p>
-              </div>
-            </Card>
-          </div>
+          
         </div>
       </section>
 
