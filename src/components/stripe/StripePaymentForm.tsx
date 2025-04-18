@@ -70,12 +70,6 @@ const CheckoutForm = () => {
           layout: {
             type: 'tabs',
             defaultCollapsed: false,
-          },
-          appearance: {
-            theme: 'flat',
-            variables: {
-              colorBackground: '#fff0',
-            }
           }
         }}
       />
@@ -103,7 +97,7 @@ const StripePaymentForm = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent', {
+        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.on.aws/default/createpaymentintent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -132,7 +126,15 @@ const StripePaymentForm = () => {
   return (
     <div>
       {clientSecret ? (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
+        <Elements stripe={stripePromise} options={{ 
+          clientSecret,
+          appearance: {
+            theme: 'flat',
+            variables: {
+              colorBackground: '#fff0',
+            }
+          }
+        }}>
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Try Our Payment Flow</CardTitle>
