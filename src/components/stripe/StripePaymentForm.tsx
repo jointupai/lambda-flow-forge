@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -125,9 +126,18 @@ const StripePaymentForm = () => {
   return (
     <div>
       {clientSecret ? (
-        <Elements stripe={stripePromise} options={{ 
-          clientSecret 
-        }}>
+        <Elements 
+          stripe={stripePromise} 
+          options={{ 
+            clientSecret,
+            appearance: {
+              theme: 'stripe',
+              variables: {
+                colorBackground: '#ffffff'
+              }
+            }
+          }}
+        >
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Try Our Payment Flow</CardTitle>
