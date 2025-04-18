@@ -28,7 +28,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden">
+    <div className="md:hidden fixed inset-0 top-16 z-50 bg-white overflow-y-auto">
       <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
         <Link
           to="/"
