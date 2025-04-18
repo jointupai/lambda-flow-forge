@@ -1,21 +1,13 @@
-
 import { Link } from "react-router-dom";
 import { Mail, Phone, Globe } from "lucide-react";
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-gray-950 text-gray-200">
+  return <footer className="bg-gray-950 text-gray-200">
       <div className="container mx-auto px-4 sm:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block mb-4">
-              <img 
-                src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" 
-                alt="JointUp.ai Logo" 
-                className="h-12 w-auto mb-4"
-              />
+              <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp.ai Logo" className="h-8 w-auto mb-1" />
             </Link>
             <p className="text-gray-400 mb-4 max-w-md">
               We build lightweight, powerful AWS Lambda functions that connect your tools and automate your workflows — forever.
@@ -86,7 +78,5 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
-
