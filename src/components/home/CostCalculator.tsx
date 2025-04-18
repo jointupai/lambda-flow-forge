@@ -7,7 +7,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
-
 interface CostData {
   zapier: number;
   lambda: number;
@@ -15,7 +14,6 @@ interface CostData {
   savingsPercentage: number;
   breakEvenMonths: number;
 }
-
 export default function CostCalculator() {
   const [tasks, setTasks] = useState<number>(300000);
   const [apps, setApps] = useState<number>(5);
@@ -24,36 +22,35 @@ export default function CostCalculator() {
   const [zapierPlan, setZapierPlan] = useState<string>("business");
   const [lambdaMemory, setLambdaMemory] = useState<number>(4096);
   const [executionTime, setExecutionTime] = useState<number>(280);
-  const [costs, setCosts] = useState<CostData>({ 
-    zapier: 0, 
-    lambda: 0, 
-    savings: 0, 
+  const [costs, setCosts] = useState<CostData>({
+    zapier: 0,
+    lambda: 0,
+    savings: 0,
     savingsPercentage: 0,
-    breakEvenMonths: 3 
+    breakEvenMonths: 3
   });
 
   // Recalculate costs whenever inputs change
   useEffect(() => {
     calculateCosts();
   }, [tasks, apps, complexity, pricingModel, zapierPlan, lambdaMemory, executionTime]);
-
   const calculateCosts = () => {
     // Zapier pricing logic based on the provided data
     let zapierCost = 299; // Business plan base cost
     let tasksIncluded = 50000;
-    
+
     // Add costs for additional tasks beyond plan limits (1.25x cost)
     if (tasks > tasksIncluded) {
       const overageTasks = tasks - tasksIncluded;
       const taskCost = zapierCost / tasksIncluded; // Cost per task in the plan
       zapierCost += overageTasks * taskCost * 1.25; // 1.25x standard cost for overage
     }
-    
+
     // Add cost for complex logic if needed
     if (complexity === "complex") {
       zapierCost *= 1.4; // 40% increase for complex workflows
     }
-    
+
     // Add costs for many connected apps
     if (apps > 10) {
       zapierCost += (apps - 10) * 5; // $5 per additional app beyond 10
@@ -61,34 +58,32 @@ export default function CostCalculator() {
 
     // Lambda pricing logic
     let lambdaCost = 0;
-    
     if (pricingModel === "usage") {
       // Usage-based AWS Lambda pricing calculation
       const gbSeconds = tasks * (executionTime / 1000) * (lambdaMemory / 1024);
       const requestsCost = Math.max(0, tasks - 1000000) * (0.20 / 1000000); // $0.20 per million requests after free tier
       const computeCost = Math.max(0, gbSeconds - 400000) * 0.0000166667; // Cost per GB-second after free tier
-      
+
       // Base platform cost + actual AWS costs
       const baseCost = 49; // JointUp base platform cost
       lambdaCost = baseCost + requestsCost + computeCost;
     } else {
       // Flat rate pricing model (simplified for business use)
-      lambdaCost = tasks < 5000 ? 99 : (tasks < 20000 ? 199 : 299);
+      lambdaCost = tasks < 5000 ? 99 : tasks < 20000 ? 199 : 299;
     }
-    
+
     // Add complexity factor
     if (complexity === "complex") {
       lambdaCost *= 1.2; // 20% increase for complex workflows
     }
-    
+
     // Calculate savings
     const savings = zapierCost - lambdaCost;
-    const savingsPercentage = zapierCost > 0 ? Math.round((savings / zapierCost) * 100) : 0;
-    
+    const savingsPercentage = zapierCost > 0 ? Math.round(savings / zapierCost * 100) : 0;
+
     // Calculate break-even point (assumes $1500 initial setup cost with JointUp)
     const setupCost = 1500;
     const monthlyBreakEven = savings > 0 ? Math.ceil(setupCost / savings) : 0;
-    
     setCosts({
       zapier: Math.round(zapierCost),
       lambda: Math.round(lambdaCost),
@@ -97,9 +92,7 @@ export default function CostCalculator() {
       breakEvenMonths: monthlyBreakEven
     });
   };
-
-  return (
-    <div className="bg-gray-50 py-16 md:py-20 px-4 sm:px-6 lg:px-8 rounded-lg">
+  return <div className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 rounded-lg bg-white">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Zapier Cost Calculator</h2>
@@ -127,14 +120,7 @@ export default function CostCalculator() {
             <CardContent className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="tasks">Monthly Tasks</Label>
-                <Input
-                  id="tasks"
-                  type="number"
-                  min={100}
-                  value={tasks}
-                  onChange={(e) => setTasks(Number(e.target.value))}
-                  className="font-mono"
-                />
+                <Input id="tasks" type="number" min={100} value={tasks} onChange={e => setTasks(Number(e.target.value))} className="font-mono" />
                 <p className="text-xs text-gray-500">How many automation tasks run each month?</p>
               </div>
               
@@ -157,25 +143,13 @@ export default function CostCalculator() {
               
               <div className="space-y-2">
                 <Label htmlFor="apps">Connected Apps</Label>
-                <Input
-                  id="apps"
-                  type="number"
-                  min={1}
-                  max={50}
-                  value={apps}
-                  onChange={(e) => setApps(Number(e.target.value))}
-                  className="font-mono"
-                />
+                <Input id="apps" type="number" min={1} max={50} value={apps} onChange={e => setApps(Number(e.target.value))} className="font-mono" />
                 <p className="text-xs text-gray-500">How many different apps are you connecting?</p>
               </div>
               
               <div className="space-y-3">
                 <Label>Workflow Complexity</Label>
-                <RadioGroup 
-                  value={complexity} 
-                  onValueChange={setComplexity}
-                  className="flex flex-col space-y-2"
-                >
+                <RadioGroup value={complexity} onValueChange={setComplexity} className="flex flex-col space-y-2">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="simple" id="simple" />
                     <Label htmlFor="simple" className="cursor-pointer">Simple (basic triggers and actions)</Label>
@@ -189,11 +163,7 @@ export default function CostCalculator() {
               
               <div className="space-y-3">
                 <Label>Lambda Pricing Model</Label>
-                <RadioGroup 
-                  value={pricingModel} 
-                  onValueChange={setPricingModel}
-                  className="flex flex-col space-y-2"
-                >
+                <RadioGroup value={pricingModel} onValueChange={setPricingModel} className="flex flex-col space-y-2">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="flat" id="flat" />
                     <Label htmlFor="flat" className="cursor-pointer">Flat Monthly Rate</Label>
@@ -205,20 +175,12 @@ export default function CostCalculator() {
                 </RadioGroup>
               </div>
               
-              {pricingModel === "usage" && (
-                <>
+              {pricingModel === "usage" && <>
                   <div className="space-y-2">
                     <Label>Lambda Memory Allocation (MB)</Label>
                     <div className="flex items-center space-x-4">
                       <span className="text-sm w-8">128</span>
-                      <Slider 
-                        value={[lambdaMemory]}
-                        onValueChange={(values) => setLambdaMemory(values[0])}
-                        min={128}
-                        max={3008}
-                        step={64}
-                        className="flex-1"
-                      />
+                      <Slider value={[lambdaMemory]} onValueChange={values => setLambdaMemory(values[0])} min={128} max={3008} step={64} className="flex-1" />
                       <span className="text-sm w-12 text-right">{lambdaMemory}</span>
                     </div>
                   </div>
@@ -227,19 +189,11 @@ export default function CostCalculator() {
                     <Label>Average Execution Time (ms)</Label>
                     <div className="flex items-center space-x-4">
                       <span className="text-sm w-8">100</span>
-                      <Slider 
-                        value={[executionTime]}
-                        onValueChange={(values) => setExecutionTime(values[0])}
-                        min={100}
-                        max={1000}
-                        step={50}
-                        className="flex-1"
-                      />
+                      <Slider value={[executionTime]} onValueChange={values => setExecutionTime(values[0])} min={100} max={1000} step={50} className="flex-1" />
                       <span className="text-sm w-12 text-right">{executionTime}</span>
                     </div>
                   </div>
-                </>
-              )}
+                </>}
             </CardContent>
           </Card>
 
@@ -278,14 +232,12 @@ export default function CostCalculator() {
                   </div>
                 </div>
                 
-                {costs.breakEvenMonths > 0 && costs.breakEvenMonths < 24 && (
-                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                {costs.breakEvenMonths > 0 && costs.breakEvenMonths < 24 && <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
                     <div className="text-sm font-medium text-gray-700">Break-Even Point</div>
                     <div className="mt-1 text-blue-700">
                       <span className="font-bold">{costs.breakEvenMonths} months</span> to recoup implementation costs
                     </div>
-                  </div>
-                )}
+                  </div>}
                 
                 <div className="pt-4">
                   <p className="text-sm text-gray-600 mb-4">
@@ -307,6 +259,5 @@ export default function CostCalculator() {
           </p>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }

@@ -7,7 +7,6 @@ import CostCalculator from "@/components/home/CostCalculator";
 import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const lambdaCode = `def lambda_handler(event, context):
@@ -27,9 +26,7 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       {/* Hero Section */}
@@ -43,11 +40,7 @@ export default function Home() {
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
                 We replace bloated tools and manual ops with cloud-native infrastructure — using AWS Lambda and Google Cloud Functions — so your business runs on autopilot.
               </p>
-              <Button 
-                size="lg" 
-                className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" 
-                onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
-              >
+              <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
                 <span className="font-bold">🟡 Schedule a Strategy Call</span>
                 <ArrowRight className="ml-2" />
               </Button>
@@ -83,11 +76,7 @@ export default function Home() {
       </section>
 
       {/* Animated Card Section - Replacing Logo Scroller */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <CardDemo />
-        </div>
-      </section>
+      
 
       {/* Problem Solution Section */}
       <ProblemSolutionSection />
@@ -204,18 +193,12 @@ export default function Home() {
               Book a free audit of your current automation setup and we'll show you how 
               AWS Lambda can make everything faster, more reliable, and infinitely scalable.
             </p>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium"
-              onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
-            >
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
               Get Your Free Integration Audit
               <ArrowRight className="ml-2" />
             </Button>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
