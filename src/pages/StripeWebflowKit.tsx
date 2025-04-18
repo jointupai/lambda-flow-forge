@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -37,29 +38,62 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* Live Demo Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
         <div className="container max-w-6xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-left">
-              <div className="inline-block px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-6">
-                Live Demo
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-block px-4 py-2 bg-black text-white rounded-full text-sm font-medium mb-6">
+              Live Demo
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Try It Yourself
+            </h2>
+            <p className="text-xl text-gray-600">
+              Experience the exact payment flow your customers will have with our Stripe integration.
+              No plugins, no hassle.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold mb-4">How It Works</h3>
+                <ul className="space-y-4">
+                  {[
+                    "Enter test card: 4242 4242 4242 4242",
+                    "Any future expiry date & CVC",
+                    "See the seamless checkout experience",
+                    "No real charges will be made"
+                  ].map((step, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-sm">
+                        {index + 1}
+                      </div>
+                      <span className="text-gray-700">{step}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Try It Yourself
-              </h2>
-              <p className="text-xl text-gray-600 mb-6">
-                Experience the exact payment flow your customers will have with our Stripe integration.
-              </p>
-              <div className="p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-600">
-                  🔒 This is a test demo — no real charges will be made. Feel free to try it with test card:
-                  <br />
-                  4242 4242 4242 4242 | Any future date | Any CVC
-                </p>
+
+              <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-blue-100">
+                    <Shield className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold mb-2 text-blue-900">Test Mode Active</h4>
+                    <p className="text-blue-700 text-sm">
+                      This is a test demo — no real charges will be processed. Feel free to try it out!
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div>
-              <StripePaymentForm />
+
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-transparent -m-4 rounded-3xl transform rotate-2"></div>
+              <div className="relative">
+                <StripePaymentForm />
+              </div>
             </div>
           </div>
         </div>
