@@ -31,10 +31,12 @@ const Skeleton = () => {
   ];
 
   useEffect(() => {
-    animate(sequence, {
-      repeatType: "loop",
-      repeatDelay: 1,
+    const animation = animate(sequence, {
+      repeat: Infinity,
+      delay: 1,
     });
+    
+    return () => animation.stop();
   }, []);
 
   return (
@@ -261,6 +263,7 @@ export const OpenAILogo = ({ className }: { className?: string }) => {
     </svg>
   );
 };
+
 export const GeminiLogo = ({ className }: { className?: string }) => {
   return (
     <svg
