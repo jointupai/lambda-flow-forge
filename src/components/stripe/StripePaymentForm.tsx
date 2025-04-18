@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -70,6 +69,10 @@ const CheckoutForm = () => {
           layout: {
             type: 'tabs',
             defaultCollapsed: false,
+          },
+          theme: 'flat',
+          variables: {
+            colorBackground: '#fff0',
           }
         }}
       />
@@ -79,11 +82,6 @@ const CheckoutForm = () => {
           {errorMessage}
         </div>
       )}
-      
-      <div className="text-xs text-gray-500 mb-4">
-        <p>💡 This is a test mode demo. No real charges will be made.</p>
-        <p>Try using test card: 4242 4242 4242 4242 | Any future date | Any CVC</p>
-      </div>
       
       <Button 
         type="submit" 
