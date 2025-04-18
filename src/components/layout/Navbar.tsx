@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -14,6 +15,11 @@ import {
   Bell,
   Zap,
   Package,
+  Cloud,
+  Webhook,
+  BarChart,
+  Bot,
+  Replace,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -67,53 +73,58 @@ export default function Navbar() {
                 align="start"
                 sideOffset={8}
               >
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-green-50">
-                    <CreditCard className="h-4 w-4 text-green-600" />
-                  </div>
-                  <span className="font-medium">Stripe Payment Automations</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/automation-infrastructure" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-green-50">
+                      <Cloud className="h-4 w-4 text-green-600" />
+                    </div>
+                    <span className="font-medium">Automation Infrastructure</span>
+                  </Link>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-blue-50">
-                    <MessageSquareText className="h-4 w-4 text-blue-600" />
-                  </div>
-                  <span className="font-medium">Twilio + SMS Messaging</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/zapier-replacement" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-blue-50">
+                      <Replace className="h-4 w-4 text-blue-600" />
+                    </div>
+                    <span className="font-medium">Zapier Replacement Systems</span>
+                  </Link>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-purple-50">
-                    <Database className="h-4 w-4 text-purple-600" />
-                  </div>
-                  <span className="font-medium">Supabase / Firestore Sync</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/stripe-payment-workflows" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-purple-50">
+                      <CreditCard className="h-4 w-4 text-purple-600" />
+                    </div>
+                    <span className="font-medium">Stripe Payment Workflows</span>
+                  </Link>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-orange-50">
-                    <Mail className="h-4 w-4 text-orange-600" />
-                  </div>
-                  <span className="font-medium">Postmark Email Logic</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/crm-lead-flow" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-orange-50">
+                      <BarChart className="h-4 w-4 text-orange-600" />
+                    </div>
+                    <span className="font-medium">CRM & Lead Flow Automation</span>
+                  </Link>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-indigo-50">
-                    <Code className="h-4 w-4 text-indigo-600" />
-                  </div>
-                  <span className="font-medium">Custom API Integrations</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/webhook-orchestration" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-indigo-50">
+                      <Webhook className="h-4 w-4 text-indigo-600" />
+                    </div>
+                    <span className="font-medium">Webhook & API Orchestration</span>
+                  </Link>
                 </DropdownMenuItem>
                 
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-pink-50">
-                    <Bell className="h-4 w-4 text-pink-600" />
-                  </div>
-                  <span className="font-medium">Internal Alerts & Notifications</span>
-                </DropdownMenuItem>
-                
-                <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
-                  <div className="p-2 rounded-lg bg-amber-50">
-                    <Zap className="h-4 w-4 text-amber-600" />
-                  </div>
-                  <span className="font-medium">Zapier Workflow Replacement</span>
+                <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
+                  <Link to="/solutions/custom-cloud-solutions" className="flex items-center gap-3 w-full">
+                    <div className="p-2 rounded-lg bg-pink-50">
+                      <Bot className="h-4 w-4 text-pink-600" />
+                    </div>
+                    <span className="font-medium">Custom Cloud Solutions</span>
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -218,6 +229,76 @@ export default function Navbar() {
               Home
             </Link>
             
+            {/* Mobile Solutions Menu */}
+            <div className="block py-2 text-base font-medium text-foreground/80">
+              Solutions
+              <div className="pl-4 space-y-2 mt-2">
+                <Link
+                  to="/solutions/automation-infrastructure"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Cloud className="h-4 w-4 text-green-600" />
+                  <span>Automation Infrastructure</span>
+                </Link>
+                <Link
+                  to="/solutions/zapier-replacement"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Replace className="h-4 w-4 text-blue-600" />
+                  <span>Zapier Replacement Systems</span>
+                </Link>
+                <Link
+                  to="/solutions/stripe-payment-workflows"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <CreditCard className="h-4 w-4 text-purple-600" />
+                  <span>Stripe Payment Workflows</span>
+                </Link>
+                <Link
+                  to="/solutions/crm-lead-flow"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <BarChart className="h-4 w-4 text-orange-600" />
+                  <span>CRM & Lead Flow Automation</span>
+                </Link>
+                <Link
+                  to="/solutions/webhook-orchestration"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Webhook className="h-4 w-4 text-indigo-600" />
+                  <span>Webhook & API Orchestration</span>
+                </Link>
+                <Link
+                  to="/solutions/custom-cloud-solutions"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Bot className="h-4 w-4 text-pink-600" />
+                  <span>Custom Cloud Solutions</span>
+                </Link>
+              </div>
+            </div>
+            
+            {/* Mobile Micro Products Menu */}
+            <div className="block py-2 text-base font-medium text-foreground/80">
+              Micro Products
+              <div className="pl-4 space-y-2 mt-2">
+                <Link
+                  to="/stripe-webflow-kit"
+                  className="flex items-center gap-2 py-1 text-sm"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Package className="h-4 w-4 text-blue-600" />
+                  <span>Stripe + Webflow Lambda Kit</span>
+                </Link>
+              </div>
+            </div>
+            
             {/* Mobile Company Menu */}
             <div className="block py-2 text-base font-medium text-foreground/80">
               Company
@@ -242,56 +323,6 @@ export default function Navbar() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Portfolio
-                </Link>
-              </div>
-            </div>
-            
-            {/* Mobile Solutions Menu */}
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Solutions
-              <div className="pl-4 space-y-2 mt-2">
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <CreditCard className="h-4 w-4 text-green-600" />
-                  <span>Stripe Payment Automations</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <MessageSquareText className="h-4 w-4 text-blue-600" />
-                  <span>Twilio + SMS Messaging</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Database className="h-4 w-4 text-purple-600" />
-                  <span>Supabase / Firestore Sync</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Mail className="h-4 w-4 text-orange-600" />
-                  <span>Postmark Email Logic</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Code className="h-4 w-4 text-indigo-600" />
-                  <span>Custom API Integrations</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Bell className="h-4 w-4 text-pink-600" />
-                  <span>Internal Alerts & Notifications</span>
-                </div>
-                <div className="flex items-center gap-2 py-1 text-sm">
-                  <Zap className="h-4 w-4 text-amber-600" />
-                  <span>Zapier Workflow Replacement</span>
-                </div>
-              </div>
-            </div>
-            
-            {/* Mobile Micro Products Menu */}
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Micro Products
-              <div className="pl-4 space-y-2 mt-2">
-                <Link
-                  to="/stripe-webflow-kit"
-                  className="flex items-center gap-2 py-1 text-sm"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Package className="h-4 w-4 text-blue-600" />
-                  <span>Stripe + Webflow Lambda Kit</span>
                 </Link>
               </div>
             </div>
