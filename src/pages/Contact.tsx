@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone, MessageSquare, User, Building, Globe, Wrench, FileText, AlertCircle, Check } from "lucide-react";
@@ -16,8 +15,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
-// Form validation schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -30,7 +29,6 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function Contact() {
-  // Initialize form with react-hook-form and zod validation
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,30 +42,28 @@ export default function Contact() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showCalendly, setShowCalendly] = useState(false);
 
-  // Form handling
   const onSubmit = (data: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate API call
     setTimeout(() => {
       console.log("Form submitted:", data);
       
-      // Show success toast
       toast.success("Form submitted successfully!", {
         description: "We'll be in touch soon about your automation audit.",
         icon: <Check className="h-4 w-4" />
       });
       
-      // Reset form
       form.reset();
       setIsSubmitting(false);
+      setShowCalendly(true);
     }, 1500);
   };
 
   return (
     <div className="min-h-screen">
-      {/* Hero */}
+      <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -81,12 +77,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Form */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-12">
-              {/* Contact Info */}
               <div className="md:col-span-1">
                 <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
                 
@@ -129,7 +123,6 @@ export default function Contact() {
                 </div>
               </div>
               
-              {/* Form */}
               <div className="md:col-span-2">
                 <h2 className="text-2xl font-bold mb-6">Book a Free Automation Audit</h2>
                 <p className="text-gray-600 mb-8">
@@ -266,7 +259,6 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-3xl mx-auto">
