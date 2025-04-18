@@ -70,7 +70,7 @@ const NavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "absolute left-0 top-full w-full bg-white data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:left-1/2 md:-translate-x-1/2 z-50",
+      "absolute left-0 top-full w-full md:w-auto data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:left-1/2 md:-translate-x-1/2 z-50",
       className
     )}
     {...props}
@@ -80,83 +80,6 @@ NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
 const NavigationMenuLink = NavigationMenuPrimitive.Link
 
-// New components for mega menu
-const MegaMenuContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    columns?: number;
-    footerContent?: React.ReactNode;
-  }
->(({ className, columns = 2, footerContent, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "w-[95vw] max-w-screen-xl rounded-xl border bg-white shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 p-6",
-      className
-    )}
-    {...props}
-  >
-    <div className={cn(`grid gap-6`, columns === 1 ? 'grid-cols-1' : columns === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-' + columns)}>
-      {children}
-    </div>
-    {footerContent && (
-      <div className="mt-6 pt-6 border-t">
-        {footerContent}
-      </div>
-    )}
-  </div>
-))
-MegaMenuContent.displayName = "MegaMenuContent"
-
-const MegaMenuSection = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & {
-    title?: string;
-    icon?: React.ReactNode;
-  }
->(({ className, title, icon, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("space-y-3", className)}
-    {...props}
-  >
-    {(title || icon) && (
-      <div className="flex items-center gap-2 text-sm font-medium text-foreground/90">
-        {icon && <div className="flex-shrink-0">{icon}</div>}
-        {title && <h3 className="font-semibold">{title}</h3>}
-      </div>
-    )}
-    <div className="space-y-3">
-      {children}
-    </div>
-  </div>
-))
-MegaMenuSection.displayName = "MegaMenuSection"
-
-const MegaMenuItem = React.forwardRef<
-  HTMLAnchorElement,
-  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-    icon?: React.ReactNode;
-    description?: string;
-  }
->(({ className, icon, children, description, ...props }, ref) => (
-  <a
-    ref={ref}
-    className={cn(
-      "flex cursor-pointer items-start gap-3 rounded-lg p-3 text-sm transition-colors hover:bg-gray-50/80 focus:outline-none focus:bg-gray-50/80",
-      className
-    )}
-    {...props}
-  >
-    {icon && <div className="flex-shrink-0">{icon}</div>}
-    <div>
-      <div className="font-medium">{children}</div>
-      {description && <p className="line-clamp-2 text-sm text-muted-foreground">{description}</p>}
-    </div>
-  </a>
-))
-MegaMenuItem.displayName = "MegaMenuItem"
-
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
@@ -164,7 +87,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn("absolute left-0 top-full flex justify-center")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border bg-white text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border bg-white/95 backdrop-blur-xl text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
         className
       )}
       ref={ref}
@@ -203,7 +126,4 @@ export {
   NavigationMenuLink,
   NavigationMenuIndicator,
   NavigationMenuViewport,
-  MegaMenuContent,
-  MegaMenuSection,
-  MegaMenuItem,
 }
