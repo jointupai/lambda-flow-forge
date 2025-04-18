@@ -1,3 +1,4 @@
+
 "use client";
 import { animate, motion } from "framer-motion";
 import React, { useEffect } from "react";
@@ -22,28 +23,37 @@ const Skeleton = () => {
   const scale = [1, 1.1, 1];
   const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
   
-  const sequence = [
-    [".circle-1", { scale, transform }, { duration: 0.8 }],
-    [".circle-2", { scale, transform }, { duration: 0.8 }],
-    [".circle-3", { scale, transform }, { duration: 0.8 }],
-    [".circle-4", { scale, transform }, { duration: 0.8 }],
-    [".circle-5", { scale, transform }, { duration: 0.8 }],
-    [".circle-6", { scale, transform }, { duration: 0.8 }],
-  ];
-
   useEffect(() => {
-    const animation = animate(
-      sequence.map(item => ({
-        targets: item[0],
-        ...item[1],
-        duration: item[2]?.duration || 0.8
-      })),
-      {
-        iterations: Infinity,
-      }
-    );
+    // Animation sequence with type-safe configuration
+    const animateCircle = (selector: string) => {
+      return animate(
+        selector,
+        { 
+          scale, 
+          transform 
+        },
+        { 
+          duration: 0.8,
+          repeat: Infinity,
+          repeatDelay: 4
+        }
+      );
+    };
     
-    return () => animation.stop();
+    // Create individual animations for each circle
+    const animations = [
+      animateCircle(".circle-1"),
+      animateCircle(".circle-2"),
+      animateCircle(".circle-3"),
+      animateCircle(".circle-4"),
+      animateCircle(".circle-5"),
+      animateCircle(".circle-6"),
+    ];
+    
+    // Cleanup function to stop all animations
+    return () => {
+      animations.forEach(anim => anim && anim.stop());
+    };
   }, []);
 
   return (
