@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -100,10 +99,10 @@ const StripePaymentForm = () => {
   const [clientSecret, setClientSecret] = useState<string>("");
 
   useEffect(() => {
-    // Fetch client secret from your endpoint
+    // Fetch client secret from the new endpoint
     const fetchClientSecret = async () => {
       try {
-        const response = await fetch('https://ihohzzo3t6fqk3h4ka3kw5l6ci0mzntd.lambda-url.us-east-2.on.aws/');
+        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent');
         const data = await response.json();
         
         if (data.clientSecret) {
