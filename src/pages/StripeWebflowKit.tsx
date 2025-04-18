@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
@@ -6,22 +6,32 @@ import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 
 const StripeWebflowKit = () => {
+  const pricingRef = useRef<HTMLDivElement>(null);
+
+  const scrollToPricing = () => {
+    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 text-white bg-black">
+      <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white lg:text-6xl">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
             Add Stripe to Webflow in 15 Minutes—
-            <span className="ml-2 text-white">Without Code or Costly Plugins</span>
+            <span className="ml-2 text-black">Without Code or Costly Plugins</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-200">
+          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
             Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
             subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
             $500/month SaaS tools.
           </p>
-          <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8">
-            Download Now ($97) <ArrowRight className="ml-2 text-black" />
+          <Button 
+            size="lg" 
+            onClick={scrollToPricing}
+            className="bg-black text-white hover:bg-gray-800 rounded-full px-8"
+          >
+            Download Now ($97) <ArrowRight className="ml-2 text-white" />
           </Button>
         </div>
       </section>
@@ -61,7 +71,9 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* Pricing Section */}
-      <Pricing />
+      <div ref={pricingRef}>
+        <Pricing />
+      </div>
 
       {/* Comparison Section */}
       <section className="py-16 bg-gray-50">
