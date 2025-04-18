@@ -1,7 +1,7 @@
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import TimelineDemo from "@/components/home/TimelineDemo";
 
 export default function HowItWorks() {
   const steps = [
@@ -56,47 +56,8 @@ export default function HowItWorks() {
         </div>
       </section>
 
-      {/* Process Steps */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-16">
-              {steps.map((step, index) => (
-                <div key={index} className="flex flex-col md:flex-row gap-8">
-                  {/* Step Number */}
-                  <div className="md:w-1/4">
-                    <div className="bg-brand-50 text-brand-700 text-5xl font-bold w-20 h-20 rounded-full flex items-center justify-center">
-                      {step.number}
-                    </div>
-                  </div>
-                  
-                  {/* Step Content */}
-                  <div className="md:w-3/4">
-                    <h3 className="text-2xl font-bold mb-2">{step.title}</h3>
-                    <p className="text-xl text-gray-600 mb-6">{step.description}</p>
-                    
-                    <div className="bg-gray-50 border border-gray-100 rounded-lg p-6">
-                      <h4 className="font-semibold mb-4">What happens in this step:</h4>
-                      <ul className="space-y-3">
-                        {step.details.map((detail, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <div className="bg-brand-100 text-brand-700 rounded-full p-1 mt-1">
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            </div>
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Timeline Section */}
+      <TimelineDemo />
 
       {/* After Launch */}
       <section className="py-16 bg-gray-50">
