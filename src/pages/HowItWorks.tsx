@@ -2,46 +2,24 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import TimelineDemo from "@/components/home/TimelineDemo";
-
 export default function HowItWorks() {
-  const steps = [
-    {
-      number: "01",
-      title: "Discovery Call",
-      description: "We map your current stack + bottlenecks",
-      details: [
-        "Review your existing automation setup",
-        "Identify manual processes that could be automated",
-        "Document integration points between systems",
-        "Understand your business goals and pain points"
-      ]
-    },
-    {
-      number: "02",
-      title: "Automation Blueprint",
-      description: "You get a clear plan (and a fixed quote)",
-      details: [
-        "Custom architecture diagram of your solution",
-        "Detailed scope document with all features",
-        "Timeline for development and deployment",
-        "Fixed price quote with no surprise costs"
-      ]
-    },
-    {
-      number: "03",
-      title: "Deployment",
-      description: "We build, test, and go live — fast",
-      details: [
-        "Development of custom Lambda functions",
-        "Integration with your existing systems",
-        "Comprehensive testing to ensure reliability",
-        "Deployment to your AWS environment with monitoring"
-      ]
-    }
-  ];
-
-  return (
-    <div className="min-h-screen">
+  const steps = [{
+    number: "01",
+    title: "Discovery Call",
+    description: "We map your current stack + bottlenecks",
+    details: ["Review your existing automation setup", "Identify manual processes that could be automated", "Document integration points between systems", "Understand your business goals and pain points"]
+  }, {
+    number: "02",
+    title: "Automation Blueprint",
+    description: "You get a clear plan (and a fixed quote)",
+    details: ["Custom architecture diagram of your solution", "Detailed scope document with all features", "Timeline for development and deployment", "Fixed price quote with no surprise costs"]
+  }, {
+    number: "03",
+    title: "Deployment",
+    description: "We build, test, and go live — fast",
+    details: ["Development of custom Lambda functions", "Integration with your existing systems", "Comprehensive testing to ensure reliability", "Deployment to your AWS environment with monitoring"]
+  }];
+  return <div className="min-h-screen">
       {/* Hero */}
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
         <div className="container mx-auto px-4 sm:px-8">
@@ -97,21 +75,6 @@ export default function HowItWorks() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-600 text-white">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
-            <p className="text-xl mb-8">
-              Book a free discovery call to see how we can automate your workflows with AWS Lambda.
-            </p>
-            <Link to="/contact">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-brand-700 hover:border-transparent">
-                Book a Free Discovery Call <ArrowRight className="ml-2" size={16} />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+      
+    </div>;
 }
