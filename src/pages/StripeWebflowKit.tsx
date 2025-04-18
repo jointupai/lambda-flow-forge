@@ -2,8 +2,11 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
+import Pricing from "@/components/pricing/Pricing";
+
 const StripeWebflowKit = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-white bg-slate-100">
         <div className="container max-w-6xl mx-auto text-center">
@@ -39,6 +42,9 @@ const StripeWebflowKit = () => {
           </div>
         </div>
       </section>
+
+      {/* Pricing Section */}
+      <Pricing />
 
       {/* Comparison Section */}
       <section className="py-16 bg-gray-50">
@@ -235,6 +241,8 @@ const StripeWebflowKit = () => {
           </Button>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 };
+
 export default StripeWebflowKit;
