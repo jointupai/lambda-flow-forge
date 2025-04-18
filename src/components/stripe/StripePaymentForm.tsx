@@ -80,6 +80,11 @@ const CheckoutForm = () => {
         </div>
       )}
       
+      <div className="text-xs text-gray-500 mb-4">
+        <p>💡 This is a test mode demo. No real charges will be made.</p>
+        <p>Try using test card: 4242 4242 4242 4242 | Any future date | Any CVC</p>
+      </div>
+      
       <Button 
         type="submit" 
         disabled={!stripe || loading} 
@@ -97,7 +102,7 @@ const StripePaymentForm = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.on.aws/default/createpaymentintent', {
+        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -126,18 +131,7 @@ const StripePaymentForm = () => {
   return (
     <div>
       {clientSecret ? (
-        <Elements 
-          stripe={stripePromise} 
-          options={{ 
-            clientSecret,
-            appearance: {
-              theme: 'stripe',
-              variables: {
-                colorBackground: '#ffffff'
-              }
-            }
-          }}
-        >
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Try Our Payment Flow</CardTitle>
