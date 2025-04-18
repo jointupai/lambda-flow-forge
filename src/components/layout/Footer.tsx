@@ -11,7 +11,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <Link to="/" className="inline-block mb-4">
-              <span className="text-2xl font-bold text-brand-400">JointUp.ai</span>
+              <img 
+                src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" 
+                alt="JointUp.ai Logo" 
+                className="h-12 w-auto mb-4"
+              />
             </Link>
             <p className="text-gray-400 mb-4 max-w-md">
               We build lightweight, powerful AWS Lambda functions that connect your tools and automate your workflows — forever.
@@ -85,3 +89,4 @@ export default function Footer() {
     </footer>
   );
 }
+
