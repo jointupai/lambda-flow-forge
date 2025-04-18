@@ -102,7 +102,17 @@ const StripePaymentForm = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
-        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent');
+        const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            amount: 9700, // $97.00 in cents, matching the displayed amount
+            currency: 'usd'
+          })
+        });
+        
         const data = await response.json();
         
         if (data.clientSecret) {
