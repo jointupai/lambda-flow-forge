@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { StickyScroll } from "./sticky-scroll-reveal";
@@ -9,12 +8,20 @@ const content = [
     description:
       "Revolutionized the vehicle registration process with an automated cloud solution that handles over 10,000 transactions monthly. Integrated AWS Lambda for scalable processing and Stripe for secure payments.",
     content: (
-      <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-        <img
-          src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public/usacartags-website.webp"
-          alt="USA Car Tags"
-          className="h-full w-full object-cover rounded-md"
-        />
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="w-full bg-white border border-[#e2e8f0] rounded-xl overflow-hidden shadow-[0px_0px_1px_rgba(45,55,72,0.05),0px_4px_8px_rgba(45,55,72,0.1)]">
+          <script src="https://js.howdygo.com/v1.2.1/index.js"></script>
+          <div className="relative w-full h-0" style={{ paddingBottom: "calc(56.5277141548328% + 40px)" }}>
+            <iframe
+              src="https://app.howdygo.com/embed/d687ca5a-a1e4-41e0-87c9-54d858400bca"
+              frameBorder="0"
+              scrolling="no"
+              allowFullScreen
+              allow="clipboard-write"
+              className="absolute top-0 left-0 w-full h-full"
+            />
+          </div>
+        </div>
       </div>
     ),
   },
