@@ -1,4 +1,3 @@
-
 "use client";
 import React from "react";
 import { WobbleCard } from "@/components/ui/wobble-card";
@@ -7,7 +6,7 @@ export default function WobbleCardDemo() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 max-w-7xl mx-auto w-full">
       <WobbleCard
-        containerClassName="col-span-1 lg:col-span-2 h-full bg-brand-primary-400 min-h-[500px] lg:min-h-[300px]"
+        containerClassName="col-span-1 lg:col-span-2 h-full bg-brand-primary-400 min-h-[500px] lg:min-h-[300px] relative"
         className=""
       >
         <div className="max-w-xs">
@@ -18,6 +17,11 @@ export default function WobbleCardDemo() {
             Build scalable, serverless automation that powers your growth with AWS Lambda and Google Cloud Functions.
           </p>
         </div>
+        <img 
+          src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//brand-aws-svgrepo-com%20(1).svg" 
+          alt="AWS Logo" 
+          className="absolute bottom-4 right-4 w-12 h-12 opacity-70"
+        />
       </WobbleCard>
       <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-brand-primary-400">
         <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-black">
