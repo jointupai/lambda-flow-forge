@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,7 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
-import USACarTagsCaseStudy from "./pages/case-studies/USACarTagsCaseStudy";
+import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
 
 // Solution pages
 import AutomationInfrastructure from "./pages/solutions/AutomationInfrastructure";
