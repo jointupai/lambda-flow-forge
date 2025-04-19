@@ -68,7 +68,7 @@ export default function Home() {
               </p>
               <Button 
                 asChild 
-                className="w-full mt-6 bg-[#212A2F] text-white py-3 px-6 rounded font-semibold hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                className="px-6 py-4 bg-[#212A2F] text-white rounded-[222rem] text-[.9rem] font-normal hover:bg-[#2d393f]/90 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center"
               >
                 <Link to="/case-studies/usacartags">
                   View Interactive Demo <ArrowRight className="ml-2" size={16} />
