@@ -1,8 +1,7 @@
-
+import StickyScrollRevealDemo from "@/components/ui/sticky-scroll-reveal-demo";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import StickyScrollRevealDemo from "@/components/ui/sticky-scroll-reveal-demo";
 
 export default function Portfolio() {
   return (
@@ -21,11 +20,9 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Sticky Scroll Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-8">
-          <StickyScrollRevealDemo />
-        </div>
+      {/* Full Page Sticky Scroll Section */}
+      <section className="h-screen">
+        <StickyScrollRevealDemo />
       </section>
 
       {/* CTA Section */}
