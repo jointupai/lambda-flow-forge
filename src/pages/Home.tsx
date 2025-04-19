@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { ArrowRight, CreditCard, MessageSquare, Database, Code, Bell } from "lucide-react";
+import React, { useState } from 'react';
+import { ArrowRight, CreditCard, MessageSquare, Database, Code, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
@@ -65,6 +66,14 @@ export default function Home() {
                   We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
                 </span>
               </p>
+              <Button 
+                asChild 
+                className="mt-6 bg-black text-white hover:bg-gray-900"
+              >
+                <Link to="/case-studies/usacartags">
+                  View USACarTags Case Study <ArrowRight className="ml-2" size={16} />
+                </Link>
+              </Button>
             </div>
             <div>
               <CardDemo />
