@@ -25,7 +25,7 @@ export default function WobbleCardDemo() {
         />
       </WobbleCard>
       <WobbleCard containerClassName="col-span-1 min-h-[300px] bg-brand-primary-400">
-        <h2 className="max-w-80 text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-black">
+        <h2 className="max-w-80 text-left text-balance text-base md:text-2xl lg:text-3xl font-semibold tracking-[-0.015em] text-black">
           No Code Required
         </h2>
         <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-800">
