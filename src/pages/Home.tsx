@@ -8,6 +8,8 @@ import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
+import WobbleCardDemo from "@/components/ui/wobble-card-demo";
+
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const lambdaCode = `def lambda_handler(event, context):
@@ -27,6 +29,7 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
+
   return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
@@ -54,7 +57,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">You’ve Scaled. Your Automation Stack Hasn’t.</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">You've Scaled. Your Automation Stack Hasn't.</h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 Startups, SaaS, and service businesses hit a wall when it comes to backend workflows. 
                 Zapier breaks. CRMs get messy. Devs are overloaded.
@@ -68,6 +71,11 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Wobble Card Demo Section */}
+      <section className="py-16 md:py-24">
+        <WobbleCardDemo />
       </section>
 
       {/* Features Section */}
