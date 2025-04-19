@@ -34,12 +34,9 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight text-gray-900">
-                Modern Backend Automation. Built for Scale.
-              </h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight text-gray-900">Build Scalable Backend Automation That Powers Your Growth</h1>
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
-                We replace bloated tools and manual ops with cloud-native infrastructure — using AWS Lambda and Google Cloud Functions — so your business runs on autopilot.
-              </p>
+We design and deploy cloud-native infrastructure using AWS and Google Cloud — replacing brittle workflows and patchwork integrations with production-grade automation.</p>
               <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
                 <span className="font-bold">🟡 Schedule a Strategy Call</span>
                 <ArrowRight className="ml-2" />
@@ -57,9 +54,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-                You've Outgrown Zapier. You're Scaling. You Need Infrastructure.
-              </h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">You’ve Scaled. Your Automation Stack Hasn’t.</h2>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
                 Startups, SaaS, and service businesses hit a wall when it comes to backend workflows. 
                 Zapier breaks. CRMs get messy. Devs are overloaded.
