@@ -44,15 +44,7 @@ export default function WobbleCardDemo() {
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-800">
             By switching to AWS Lambda or Google Cloud Functions, our clients routinely cut automation costs by 85% or more. These cloud services charge pennies per million operations, and scale automatically with usage.
           </p>
-          <Button 
-            asChild 
-            variant="default" 
-            className="mt-6 bg-black text-white hover:bg-gray-900"
-          >
-            <Link to="/case-studies/usacartags">
-              See how we did it
-            </Link>
-          </Button>
+        
         </div>
       </WobbleCard>
     </div>
