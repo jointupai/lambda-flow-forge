@@ -8,7 +8,6 @@ import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const lambdaCode = `def lambda_handler(event, context):
@@ -28,7 +27,6 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
   return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
@@ -41,7 +39,7 @@ export default function Home() {
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
 We design and deploy cloud-native infrastructure using AWS and Google Cloud — replacing brittle workflows and patchwork integrations with production-grade automation.</p>
               <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
-                <span className="font-bold">🟡 Schedule a Strategy Call</span>
+                <span className="font-bold text-base">Schedule a Strategy Call</span>
                 <ArrowRight className="ml-2" />
               </Button>
             </div>
@@ -82,20 +80,27 @@ We design and deploy cloud-native infrastructure using AWS and Google Cloud — 
           <div className="max-w-3xl mx-auto">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">What We Build</h2>
             <div className="space-y-4">
-              {[
-                { title: "✅ Automation Infrastructure", desc: "Scalable logic flows, serverless orchestration, zero maintenance" },
-                { title: "🔁 Stripe + CRM Workflows", desc: "Checkout + metadata sync + real-time notifications" },
-                { title: "🔗 API Orchestration", desc: "Webhooks, Slack, Supabase, Postmark, Twilio — all talking to each other" },
-                { title: "📊 Internal Ops Automation", desc: "Invoicing, lead routing, fulfillment, tagging" },
-                { title: "🧱 Event-Driven Architecture", desc: "Workflows that run based on real-time triggers, not polling" }
-              ].map((item, index) => (
-                <div key={index} className="flex gap-4 p-4 bg-white rounded-lg shadow-sm">
+              {[{
+              title: "✅ Automation Infrastructure",
+              desc: "Scalable logic flows, serverless orchestration, zero maintenance"
+            }, {
+              title: "🔁 Stripe + CRM Workflows",
+              desc: "Checkout + metadata sync + real-time notifications"
+            }, {
+              title: "🔗 API Orchestration",
+              desc: "Webhooks, Slack, Supabase, Postmark, Twilio — all talking to each other"
+            }, {
+              title: "📊 Internal Ops Automation",
+              desc: "Invoicing, lead routing, fulfillment, tagging"
+            }, {
+              title: "🧱 Event-Driven Architecture",
+              desc: "Workflows that run based on real-time triggers, not polling"
+            }].map((item, index) => <div key={index} className="flex gap-4 p-4 bg-white rounded-lg shadow-sm">
                   <div>
                     <h3 className="font-semibold text-lg">{item.title}</h3>
                     <p className="text-gray-600">{item.desc}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
