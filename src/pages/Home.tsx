@@ -10,7 +10,6 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
 import WobbleCardDemo from "@/components/ui/wobble-card-demo";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const lambdaCode = `def lambda_handler(event, context):
@@ -30,7 +29,6 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
   return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
@@ -66,11 +64,8 @@ export default function Home() {
                   We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
                 </span>
               </p>
-              <Button 
-                asChild 
-                className="mt-6 bg-black text-white hover:bg-gray-900"
-              >
-                <Link to="/case-studies/usacartags">
+              <Button asChild className="mt-6 bg-black text-white hover:bg-gray-900">
+                <Link to="/case-studies/usacartags" className="rounded-[100px] px-[26px] py-[26px]">
                   View USACarTags Case Study <ArrowRight className="ml-2" size={16} />
                 </Link>
               </Button>
