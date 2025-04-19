@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +13,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
+import USACarTagsCaseStudy from "./pages/case-studies/USACarTagsCaseStudy";
 
 // Solution pages
 import AutomationInfrastructure from "./pages/solutions/AutomationInfrastructure";
@@ -52,6 +52,7 @@ const App = () => (
               <Route path="/solutions/webhook-orchestration" element={<WebhookOrchestration />} />
               <Route path="/solutions/custom-cloud-solutions" element={<CustomCloudSolutions />} />
               
+              <Route path="/case-studies/usacartags" element={<USACarTagsCaseStudy />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { WobbleCard } from "@/components/ui/wobble-card";
+import { Link } from "react-router-dom";
 
 export default function WobbleCardDemo() {
   return (
@@ -34,11 +35,18 @@ export default function WobbleCardDemo() {
       <WobbleCard containerClassName="col-span-1 lg:col-span-3 bg-brand-primary-400 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px]">
         <div className="max-w-sm">
           <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-black">
-            Ready to replace your Zapier stack with real infrastructure?
+            Case Study: USACarTags
           </h2>
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-800">
-            Schedule a free workflow audit and see how we can help you scale your operations with confidence.
+            We built a fully custom backend with Stripe checkout → Twilio SMS → Postmark email → live order dashboard. 
+            It runs 100% autonomously and scaled to thousands of orders without breaking.
           </p>
+          <Link 
+            to="/case-studies/usacartags"
+            className="inline-block mt-6 text-black font-medium hover:underline"
+          >
+            🟢 See how we did it
+          </Link>
         </div>
       </WobbleCard>
     </div>
