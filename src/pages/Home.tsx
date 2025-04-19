@@ -36,8 +36,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight text-gray-900 xl:text-5xl">Build Scalable Backend Automation That Powers Your Growth</h1>
-              <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">
-We design and deploy cloud-native infrastructure using AWS and Google Cloud — replacing brittle workflows and patchwork integrations with production-grade automation.</p>
+              <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">We build backend automation infrastructure using AWS and Google Cloud — eliminating fragile workflows and scaling your operations with speed, visibility, and confidence.</p>
               <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
                 <span className="font-bold text-base">Schedule a Strategy Call</span>
                 <ArrowRight className="ml-2" />
