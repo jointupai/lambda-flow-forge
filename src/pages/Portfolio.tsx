@@ -2,26 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import StickyScrollRevealDemo from "@/components/ui/sticky-scroll-reveal-demo";
 
 export default function Portfolio() {
-  const projects = [
-    {
-      title: "E-commerce Integration",
-      description: "Custom Stripe payment flow with automated fulfillment",
-      tech: ["AWS Lambda", "Stripe API", "Webhook Integration"]
-    },
-    {
-      title: "CRM Automation",
-      description: "Automated customer data sync between platforms",
-      tech: ["Supabase", "AWS Lambda", "API Integration"]
-    },
-    {
-      title: "Notification System",
-      description: "Real-time notification system for order updates",
-      tech: ["Twilio", "AWS Lambda", "Event-driven Architecture"]
-    }
-  ];
-
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -38,30 +21,10 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Portfolio Grid */}
+      {/* Sticky Scroll Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div 
-                key={index} 
-                className="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-                <p className="text-gray-600 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className="bg-gray-100 text-gray-800 text-sm px-3 py-1 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+          <StickyScrollRevealDemo />
         </div>
       </section>
 
