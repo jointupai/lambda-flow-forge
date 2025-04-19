@@ -1,6 +1,5 @@
-
 "use client";
-import { animate, motion } from "framer-motion";
+import { animate, motion, useAnimate } from "framer-motion";
 import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { GoCopilot } from "react-icons/go";
@@ -20,74 +19,70 @@ export default function CardDemo() {
 }
 
 const Skeleton = () => {
+  const [circle1Ref, animateCircle1] = useAnimate();
+  const [circle2Ref, animateCircle2] = useAnimate();
+  const [circle3Ref, animateCircle3] = useAnimate();
+  const [circle4Ref, animateCircle4] = useAnimate();
+  const [circle5Ref, animateCircle5] = useAnimate();
+  
   const scale = [1, 1.1, 1];
   const transform = ["translateY(0px)", "translateY(-4px)", "translateY(0px)"];
   
   useEffect(() => {
-    // Animation sequence with type-safe configuration
-    const animateCircle = (selector: string) => {
-      return animate(
-        selector,
-        { 
-          scale, 
-          transform 
-        },
-        { 
-          duration: 0.8,
-          repeat: Infinity,
-          repeatDelay: 4
-        }
-      );
+    // Animation configuration with type-safe structure
+    const animationConfig = { 
+      scale, 
+      transform 
     };
     
-    // Create individual animations for each circle
-    const animations = [
-      animateCircle(".circle-1"),
-      animateCircle(".circle-2"),
-      animateCircle(".circle-3"),
-      animateCircle(".circle-4"),
-      animateCircle(".circle-5"),
-      animateCircle(".circle-6"),
-    ];
-    
-    // Cleanup function to stop all animations
-    return () => {
-      animations.forEach(anim => anim && anim.stop());
+    const animationOptions = { 
+      duration: 0.8, 
+      repeat: Infinity, 
+      repeatDelay: 4 
     };
+    
+    // Animate each circle with its own ref
+    animateCircle1("div", animationConfig, animationOptions);
+    animateCircle2("div", animationConfig, animationOptions);
+    animateCircle3("div", animationConfig, animationOptions);
+    animateCircle4("div", animationConfig, animationOptions);
+    animateCircle5("div", animationConfig, animationOptions);
+    
+    // No cleanup needed as useAnimate handles it
   }, []);
 
   return (
     <div className="p-8 overflow-hidden h-full relative flex items-center justify-center">
       <div className="flex flex-row shrink-0 justify-center items-center gap-2">
-        <Container className="h-8 w-8 circle-1">
+        <Container ref={circle1Ref} className="h-8 w-8">
           <img 
             src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//brand-aws-svgrepo-com.svg" 
             alt="AWS Logo" 
             className="h-4 w-4"
           />
         </Container>
-        <Container className="h-12 w-12 circle-2">
+        <Container ref={circle2Ref} className="h-12 w-12">
           <img 
             src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//azure-v2-svgrepo-com.svg" 
             alt="Azure Logo" 
             className="h-6 w-6"
           />
         </Container>
-        <Container className="circle-3">
+        <Container ref={circle3Ref}>
           <img 
             src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//google-cloud-svgrepo-com.svg" 
             alt="Google Cloud Logo" 
             className="h-8 w-8"
           />
         </Container>
-        <Container className="h-12 w-12 circle-4">
+        <Container ref={circle4Ref} className="h-12 w-12">
           <img 
             src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//aws-lambda-svgrepo-com.svg" 
             alt="AWS Lambda Logo" 
             className="h-6 w-6"
           />
         </Container>
-        <Container className="h-8 w-8 circle-5">
+        <Container ref={circle5Ref} className="h-8 w-8">
           <img 
             src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//google-cloud-functions-svgrepo-com.svg" 
             alt="Google Cloud Functions Logo" 
@@ -221,15 +216,13 @@ export const CardSkeletonContainer = ({
   );
 };
 
-const Container = ({
-  className,
-  children,
-}: {
-  className?: string;
-  children: React.ReactNode;
-}) => {
+const Container = React.forwardRef<
+  HTMLDivElement, 
+  { className?: string; children: React.ReactNode }
+>(({ className, children }, ref) => {
   return (
     <div
+      ref={ref}
       className={cn(
         `h-16 w-16 rounded-full flex items-center justify-center bg-[rgba(248,248,248,0.01)]
     shadow-[0px_0px_8px_0px_rgba(248,248,248,0.25)_inset,0px_32px_24px_-16px_rgba(0,0,0,0.40)]
@@ -240,7 +233,9 @@ const Container = ({
       {children}
     </div>
   );
-};
+});
+
+Container.displayName = "Container";
 
 export const ClaudeLogo = ({ className }: { className?: string }) => {
   return (
