@@ -66,7 +66,7 @@ export default function Home() {
               </p>
               <Button asChild className="mt-6 bg-black text-white hover:bg-gray-900">
                 <Link to="/case-studies/usacartags" className="rounded-[100px] px-[26px] py-[26px]">
-                  View USACarTags Case Study <ArrowRight className="ml-2" size={16} />
+                  USACARTAGS INTERACTIVE DEMO <ArrowRight className="ml-2" size={16} />
                 </Link>
               </Button>
             </div>
