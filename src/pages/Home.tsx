@@ -71,7 +71,7 @@ export default function Home() {
                 className="mt-6 bg-black text-white hover:bg-gray-900"
               >
                 <Link to="/case-studies/usacartags">
-                  View USACarTags Case Study <ArrowRight className="ml-2" size={16} />
+                  View Interactive Demo <ArrowRight className="ml-2" size={16} />
                 </Link>
               </Button>
             </div>
