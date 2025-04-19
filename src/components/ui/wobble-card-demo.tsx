@@ -1,3 +1,4 @@
+
 import React from "react";
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { Link } from "react-router-dom";
@@ -48,7 +49,7 @@ export default function WobbleCardDemo() {
             className="mt-6 bg-black text-white hover:bg-gray-900"
           >
             <Link to="/case-studies/usacartags">
-              🟢 See how we did it
+              See how we did it
             </Link>
           </Button>
         </div>
