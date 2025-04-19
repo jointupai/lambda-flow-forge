@@ -39,11 +39,10 @@ export default function WobbleCardDemo() {
       >
         <div className="max-w-sm">
           <h2 className="max-w-sm md:max-w-lg text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-black">
-            Case Study: USACarTags
+            Cloud-native infrastructure saves money. A lot of it.
           </h2>
           <p className="mt-4 max-w-[26rem] text-left text-base/6 text-neutral-800">
-            We built a fully custom backend with Stripe checkout → Twilio SMS → Postmark email → live order dashboard. 
-            It runs 100% autonomously and scaled to thousands of orders without breaking.
+            By switching to AWS Lambda or Google Cloud Functions, our clients routinely cut automation costs by 85% or more. These cloud services charge pennies per million operations, and scale automatically with usage.
           </p>
           <Button 
             asChild 
