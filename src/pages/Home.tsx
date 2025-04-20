@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ArrowRight, CreditCard, MessageSquare, Database, Code, Bell } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -65,15 +64,11 @@ export default function Home() {
                   We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
                 </span>
               </p>
-              <Link to="/case-studies/usacartags" className="inline-block mt-6">
-                <button
-                  className="px-6 py-2 bg-black text-white rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 flex items-center gap-2"
-                  style={{ boxShadow: '0 4px 12px rgba(0,0,0,0.09)' }}
-                >
-                  USACARTAGS Demo
-                  <ArrowRight className="ml-2" size={16} />
-                </button>
-              </Link>
+              <Button asChild className="mt-6 bg-black text-white hover:bg-gray-900">
+                <Link to="/case-studies/usacartags" className="rounded-[100px] px-[26px] py-[26px]">
+                  USACARTAGS Demo <ArrowRight className="ml-2" size={16} />
+                </Link>
+              </Button>
             </div>
             <div>
               <CardDemo />
