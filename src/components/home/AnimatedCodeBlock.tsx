@@ -20,7 +20,7 @@ const AnimatedCodeBlock: React.FC<AnimatedCodeBlockProps> = ({
           <code>{code}<span className="animate-pulse">|</span></code>
         </pre>
       </div>
-      <div className="absolute -bottom-6 -right-6 bg-[#EBF214] text-white p-3 rounded-lg shadow-lg bg-[brand-secondary-700]">
+      <div className="absolute -bottom-6 -right-6 bg-[#EBF214] text-black p-3 rounded-lg shadow-lg bg-[brand-secondary-700]">
         <Zap size={24} />
       </div>
     </div>;
