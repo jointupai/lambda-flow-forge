@@ -86,36 +86,7 @@ export default function Home() {
       <FeaturesSectionDemo />
 
       {/* What We Build Section */}
-      <section className="py-12 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-center">What We Build</h2>
-            <div className="space-y-4">
-              {[{
-              title: "✅ Automation Infrastructure",
-              desc: "Scalable logic flows, serverless orchestration, zero maintenance"
-            }, {
-              title: "🔁 Stripe + CRM Workflows",
-              desc: "Checkout + metadata sync + real-time notifications"
-            }, {
-              title: "🔗 API Orchestration",
-              desc: "Webhooks, Slack, Supabase, Postmark, Twilio — all talking to each other"
-            }, {
-              title: "📊 Internal Ops Automation",
-              desc: "Invoicing, lead routing, fulfillment, tagging"
-            }, {
-              title: "🧱 Event-Driven Architecture",
-              desc: "Workflows that run based on real-time triggers, not polling"
-            }].map((item, index) => <div key={index} className="flex gap-4 p-4 bg-white rounded-lg shadow-sm">
-                  <div>
-                    <h3 className="font-semibold text-lg">{item.title}</h3>
-                    <p className="text-gray-600">{item.desc}</p>
-                  </div>
-                </div>)}
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Problem Solution Section */}
       <ProblemSolutionSection />
@@ -179,20 +150,6 @@ export default function Home() {
       <TestimonialVideos />
 
       {/* CTA Section */}
-      <section className="py-12 md:py-20 bg-brand-primary-400 text-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">Ready to Replace Your Zapier Stack?</h2>
-            <p className="text-base md:text-xl mb-6 md:mb-8">
-              Book a free audit of your current automation setup and we'll show you how 
-              AWS Lambda can make everything faster, more reliable, and infinitely scalable.
-            </p>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto border-black text-black hover:bg-black hover:text-brand-primary-400 font-medium" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
-              Get Your Free Integration Audit
-              <ArrowRight className="ml-2" />
-            </Button>
-          </div>
-        </div>
-      </section>
+      
     </div>;
 }
