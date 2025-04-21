@@ -16,7 +16,7 @@ const StripeWebflowKit = () => {
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             {/* Left Column */}
             <div className="text-center md:text-left">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-5xl">Add Stripe to Any Website in 15 Minutes No Code, No Plugins</h1>
