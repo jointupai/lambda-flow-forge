@@ -5,34 +5,26 @@ import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, 
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { Cover } from "@/components/ui/cover";
-
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
-
   const scrollToPricing = () => {
-    pricingRef.current?.scrollIntoView({ behavior: 'smooth' });
+    pricingRef.current?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Left Column */}
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
-                Add Stripe to Any Website in 15 Minutes — No Code, No Plugins
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto md:mx-0 text-gray-800">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-5xl">Add Stripe to Any Website in 15 Minutes No Code, No Plugins</h1>
+              <p className="text-xl mb-8 max-w-4xl mx-auto md:mx-0 text-gray-800 md:text-xl">
                 Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.<br />
                 No Zapier. No bloated SaaS tools. Just fast, secure Stripe integration that works anywhere.
               </p>
-              <Button 
-                size="lg" 
-                onClick={scrollToPricing}
-                className="bg-black text-white hover:bg-gray-800 rounded-full px-8"
-              >
+              <Button size="lg" onClick={scrollToPricing} className="bg-black text-white hover:bg-gray-800 rounded-full px-8">
                 Download Now ($97) <ArrowRight className="ml-2 text-white" />
               </Button>
             </div>
@@ -66,17 +58,10 @@ const StripeWebflowKit = () => {
                 </div>
                 <h3 className="text-2xl font-bold">Pre-Built Lambda</h3>
                 <ul className="space-y-3">
-                  {[
-                    "One-click AWS deployment",
-                    "Handles all Stripe webhooks",
-                    "Subscription management",
-                    "Payment failure recovery"
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                  {["One-click AWS deployment", "Handles all Stripe webhooks", "Subscription management", "Payment failure recovery"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
                       <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span>{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </Card>
@@ -88,17 +73,10 @@ const StripeWebflowKit = () => {
                 </div>
                 <h3 className="text-2xl font-bold">Webflow Integration</h3>
                 <ul className="space-y-3">
-                  {[
-                    "Copy-paste embed code",
-                    "Works with any template",
-                    "Custom styling options",
-                    "Mobile responsive"
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                  {["Copy-paste embed code", "Works with any template", "Custom styling options", "Mobile responsive"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
                       <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span>{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </Card>
@@ -110,17 +88,10 @@ const StripeWebflowKit = () => {
                 </div>
                 <h3 className="text-2xl font-bold">Support & Extras</h3>
                 <ul className="space-y-3">
-                  {[
-                    "30-minute setup video",
-                    "Private Discord access",
-                    "Email support (24h)",
-                    "GDPR compliance guide"
-                  ].map((feature, index) => (
-                    <li key={index} className="flex items-center gap-2 text-gray-600">
+                  {["30-minute setup video", "Private Discord access", "Email support (24h)", "GDPR compliance guide"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
                       <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
                       <span>{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
               </div>
             </Card>
@@ -255,8 +226,6 @@ const StripeWebflowKit = () => {
           </Button>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 };
-
 export default StripeWebflowKit;
