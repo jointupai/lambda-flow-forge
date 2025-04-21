@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Play, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+
 interface Testimonial {
   id: string;
   company: string;
@@ -11,6 +13,7 @@ interface Testimonial {
   position: string;
   videoId?: string;
 }
+
 const testimonials: Testimonial[] = [{
   id: "1",
   company: "Customer 1",
@@ -36,19 +39,23 @@ const testimonials: Testimonial[] = [{
   author: "Roxane Cosnard des Closets",
   position: "Senior Manager of Finance"
 }];
+
 const VideoCard: React.FC<{
   testimonial: Testimonial;
 }> = ({
   testimonial
 }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
+
   const handlePlayVideo = () => {
     setIsPlaying(true);
   };
+
   const handleCloseVideo = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(false);
   };
+
   return <div className="flex flex-col h-full">
       <div className="relative w-full aspect-video rounded-lg overflow-hidden cursor-pointer mb-6" onClick={handlePlayVideo}>
         {!isPlaying ? <>
@@ -85,7 +92,26 @@ const VideoCard: React.FC<{
       </div>
     </div>;
 };
+
 const TestimonialVideos: React.FC = () => {
-  return;
+  return (
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="max-w-4xl mx-auto mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">See What Our Clients Say</h2>
+          <p className="text-lg text-gray-600">Real companies, real results with our backend automation solutions</p>
+        </div>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial) => (
+            <div key={testimonial.id} className="bg-white rounded-xl p-6 shadow-md border border-gray-100">
+              <VideoCard testimonial={testimonial} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
+
 export default TestimonialVideos;
