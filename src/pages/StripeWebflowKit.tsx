@@ -1,8 +1,7 @@
-
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, FileCode, Code, Clock, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
+import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { Cover } from "@/components/ui/cover";
@@ -18,84 +17,28 @@ const StripeWebflowKit = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-black bg-white">
-        <div className="container max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
-            Add Stripe to Any Website in{" "}
-            <Cover className="text-black">
-              15 Minutes
-            </Cover>—
-            <span className="ml-2 text-black">No Code, No Plugins</span>
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
-            Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.
-          </p>
-          <Button 
-            size="lg" 
-            onClick={scrollToPricing}
-            className="bg-black text-white hover:bg-gray-800 rounded-full px-8"
-          >
-            Download Now ($97) <ArrowRight className="ml-2 text-white" />
-          </Button>
-        </div>
-      </section>
-
-      {/* Live Demo Section */}
-      <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-block px-4 py-2 bg-black text-white rounded-full text-sm font-medium mb-6">
-              Live Demo
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Try It Yourself
-            </h2>
-            <p className="text-xl text-gray-600">
-              Experience the exact payment flow your customers will have with our Stripe integration.
-              No plugins, no hassle.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-8 rounded-2xl">
-                <h3 className="text-2xl font-bold mb-4">How It Works</h3>
-                <ul className="space-y-4">
-                  {[
-                    "Enter test card: 4242 4242 4242 4242",
-                    "Any future expiry date & CVC",
-                    "See the seamless checkout experience",
-                    "No real charges will be made"
-                  ].map((step, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-sm">
-                        {index + 1}
-                      </div>
-                      <span className="text-gray-700">{step}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 rounded-lg bg-blue-100">
-                    <Shield className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold mb-2 text-blue-900">Test Mode Active</h4>
-                    <p className="text-blue-700 text-sm">
-                      This is a test demo — no real charges will be processed. Feel free to try it out!
-                    </p>
-                  </div>
-                </div>
-              </div>
+        <div className="container max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Left Column */}
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
+                Add Stripe to Any Website in 15 Minutes — No Code, No Plugins
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto md:mx-0 text-gray-800">
+                Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.<br />
+                No Zapier. No bloated SaaS tools. Just fast, secure Stripe integration that works anywhere.
+              </p>
+              <Button 
+                size="lg" 
+                onClick={scrollToPricing}
+                className="bg-black text-white hover:bg-gray-800 rounded-full px-8"
+              >
+                Download Now ($97) <ArrowRight className="ml-2 text-white" />
+              </Button>
             </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-transparent -m-4 rounded-3xl transform rotate-2"></div>
-              <div className="relative">
-                <StripePaymentForm />
-              </div>
+            {/* Right Column: Stripe payment form */}
+            <div className="w-full flex justify-center">
+              <StripePaymentForm />
             </div>
           </div>
         </div>
@@ -317,4 +260,3 @@ const StripeWebflowKit = () => {
 };
 
 export default StripeWebflowKit;
-
