@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -19,16 +20,15 @@ const StripeWebflowKit = () => {
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-6xl">
-            Add Stripe to Webflow in{" "}
+            Add Stripe to Any Website in{" "}
             <Cover className="text-black">
               15 Minutes
             </Cover>—
-            <span className="ml-2 text-black">Without Code or Costly Plugins</span>
+            <span className="ml-2 text-black">No Code, No Plugins</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
-            Get our pre-built AWS Lambda function + step-by-step guide to process payments, 
-            subscriptions, and refunds directly in Webflow. No more Zapier workarounds or 
-            $500/month SaaS tools.
+            Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.<br />
+            No Zapier. No bloated SaaS tools. Just fast, secure Stripe integration that works anywhere
           </p>
           <Button 
             size="lg" 
@@ -318,3 +318,4 @@ const StripeWebflowKit = () => {
 };
 
 export default StripeWebflowKit;
+
