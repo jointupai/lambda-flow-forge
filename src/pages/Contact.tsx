@@ -44,21 +44,41 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
-    setTimeout(() => {
-      console.log("Form submitted:", data);
-      
-      toast.success("Form submitted successfully!", {
-        description: "We'll be in touch soon about your automation audit.",
-        icon: <Check className="h-4 w-4" />
+
+    const payload = {
+      name: data.name,
+      email: data.email,
+      companyName: data.company,
+      website: data.website,
+      tools: data.tools,
+      automationGoal: data.automation,
+    };
+
+    try {
+      const response = await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
       });
-      
-      form.reset();
-      setIsSubmitting(false);
-      setShowCalendly(true);
-    }, 1500);
+
+      if (response.ok) {
+        toast.success("Form submitted successfully!", {
+          description: "We'll be in touch soon about your automation audit.",
+          icon: <Check className="h-4 w-4" />
+        });
+        form.reset();
+        setShowCalendly(true);
+      } else {
+        toast.error("There was an issue submitting your form. Please try again.");
+      }
+    } catch (error) {
+      toast.error("There was an issue submitting your form. Please try again.");
+    }
+    setIsSubmitting(false);
   };
 
   return (
