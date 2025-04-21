@@ -47,7 +47,8 @@ export default function Navbar() {
                 
                 <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
                   <Link to="/solutions/zapier-replacement" className="flex items-center gap-3 w-full">
-                    <Replace className="h-4 w-4 text-blue-600" />
+                    <div className="p-2 rounded-lg bg-blue-50">
+                      <Replace className="h-4 w-4 text-blue-600" />
                     </div>
                     <span className="font-medium">Zapier Replacement Systems</span>
                   </Link>
@@ -231,9 +232,9 @@ export default function Navbar() {
             </Link>
             <div className="pt-2">
               <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
-            setIsMenuOpen(false);
-            window.open('https://calendly.com/jointup/intro', '_blank');
-          }}>
+                setIsMenuOpen(false);
+                window.open('https://calendly.com/jointup/intro', '_blank');
+              }}>
                 Get a Free Audit
               </Button>
             </div>
