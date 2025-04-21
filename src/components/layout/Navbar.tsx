@@ -1,9 +1,11 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PieChart, MessageSquare, Menu, X, ChevronRight, CreditCard, MessageSquareText, Database, Mail, Code, Bell, Zap, Package, Cloud, Webhook, BarChart, Bot, Replace } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
@@ -45,8 +47,7 @@ export default function Navbar() {
                 
                 <DropdownMenuItem asChild className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
                   <Link to="/solutions/zapier-replacement" className="flex items-center gap-3 w-full">
-                    <div className="p-2 rounded-lg bg-blue-50">
-                      <Replace className="h-4 w-4 text-blue-600" />
+                    <Replace className="h-4 w-4 text-blue-600" />
                     </div>
                     <span className="font-medium">Zapier Replacement Systems</span>
                   </Link>
@@ -103,7 +104,7 @@ export default function Navbar() {
                 <DropdownMenuItem className="flex items-center gap-3 py-2.5 px-3 cursor-pointer rounded-lg hover:bg-gray-50/80 transition-colors">
                   <Link to="/stripe-webflow-kit" className="flex items-center gap-3 w-full">
                     <div className="p-2 rounded-lg bg-blue-50">
-                      <Package className="h-4 w-4 text-blue-600" />
+                      <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-v2-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
                     </div>
                     <span className="font-medium">Stripe Embed Kit</span>
                   </Link>
@@ -203,7 +204,7 @@ export default function Navbar() {
               Micro Products
               <div className="pl-4 space-y-2 mt-2">
                 <Link to="/stripe-webflow-kit" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Package className="h-4 w-4 text-blue-600" />
+                  <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-v2-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
                   <span>Stripe + Webflow Lambda Kit</span>
                 </Link>
               </div>
