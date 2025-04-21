@@ -27,8 +27,7 @@ const StripeWebflowKit = () => {
             <span className="ml-2 text-black">No Code, No Plugins</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-4xl mx-auto text-gray-800">
-            Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.<br />
-            No Zapier. No bloated SaaS tools. Just fast, secure Stripe integration that works anywhere
+            Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.
           </p>
           <Button 
             size="lg" 
