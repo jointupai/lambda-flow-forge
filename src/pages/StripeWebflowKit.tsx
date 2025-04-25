@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -27,11 +28,13 @@ const StripeWebflowKit = () => {
             <div className="text-center md:text-left">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-5xl">
                 Add Stripe to{" "}
-                <FlipWords 
-                  words={platforms} 
-                  className="text-blue-600 font-bold"
-                  duration={2000}
-                />{" "}
+                <span className="inline-flex items-center">
+                  <FlipWords 
+                    words={platforms} 
+                    className="text-blue-600 font-bold"
+                    duration={2000}
+                  />
+                </span>{" "}
                 in 15 Minutes No Code, No Plugins
               </h1>
               <p className="text-xl mb-8 max-w-4xl mx-auto md:mx-0 text-gray-800 md:text-xl">

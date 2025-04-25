@@ -31,7 +31,7 @@ export const FlipWords = ({
   }, [isAnimating, duration, startAnimation]);
 
   return (
-    <span className="relative inline-block" style={{ minWidth: "120px", display: "inline-flex" }}>
+    <span className="relative inline-block" style={{ minWidth: "120px", display: "inline-flex", justifyContent: "center" }}>
       <AnimatePresence mode="wait" onExitComplete={() => setIsAnimating(false)}>
         <motion.span
           key={currentWord}
@@ -43,7 +43,7 @@ export const FlipWords = ({
             ease: "easeInOut",
           }}
           className={cn(
-            "absolute top-0 left-0",
+            "absolute top-0 left-0 w-full text-center",
             className
           )}
         >
