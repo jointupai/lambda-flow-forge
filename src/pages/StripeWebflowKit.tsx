@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building, ShoppingCart, Clipboard, CreditCard } from "lucide-react";
+import { ArrowRight, FileCode, Code, MessageSquare } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
-import { Cover } from "@/components/ui/cover";
-import { StripeFeatureCard } from "@/components/ui/stripe-feature-card";
+import { FlipWords } from "@/components/ui/flip-words";
+
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
   const scrollToPricing = () => {
@@ -13,6 +13,9 @@ const StripeWebflowKit = () => {
       behavior: 'smooth'
     });
   };
+
+  const platforms = ["List", "Wordpress", "Wix", "Webflow", "Hostinger", "Squarespace"];
+
   return <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-black bg-white">
@@ -20,7 +23,15 @@ const StripeWebflowKit = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
             {/* Left Column */}
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-5xl">Add Stripe to Any Website in 15 Minutes No Code, No Plugins</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-black lg:text-5xl">
+                Add Stripe to{" "}
+                <FlipWords 
+                  words={platforms} 
+                  className="text-blue-600 font-bold"
+                  duration={2000}
+                />{" "}
+                in 15 Minutes No Code, No Plugins
+              </h1>
               <p className="text-xl mb-8 max-w-4xl mx-auto md:mx-0 text-gray-800 md:text-xl">
                 Drop in our prebuilt AWS Lambda function + plug-and-play frontend to start accepting payments, subscriptions, and refunds on Webflow, WordPress, Wix, Squarespace, Framer, and more.<br />
                 No Zapier. No bloated SaaS tools. Just fast, secure Stripe integration that works anywhere.
@@ -38,7 +49,6 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* How It Works (Mini Section) */}
-      
 
       {/* What's Included Section */}
       <section className="py-16 bg-transparent">
@@ -110,7 +120,6 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* Social Proof */}
-      
 
       {/* FAQ Section */}
       <section className="py-16">
@@ -138,4 +147,5 @@ const StripeWebflowKit = () => {
       
     </div>;
 };
+
 export default StripeWebflowKit;
