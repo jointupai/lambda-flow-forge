@@ -66,12 +66,12 @@ const StripeWebflowKit = () => {
               </div>
             </Card>
 
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2 border-brand-primary-400">
+            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 ">
               <div className="flex flex-col gap-4">
                 <div className="p-3 rounded-xl bg-blue-50 w-fit">
                   <Code className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-2xl font-bold">Webflow Integration</h3>
+                <h3 className="text-2xl font-bold">Website Integration</h3>
                 <ul className="space-y-3">
                   {["Copy-paste embed code", "Works with any template", "Custom styling options", "Mobile responsive"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
                       <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
@@ -105,46 +105,10 @@ const StripeWebflowKit = () => {
       </div>
 
       {/* Comparison Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto">
-          
-        </div>
-      </section>
+      
 
       {/* Who It's For Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Who This Is For</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold mb-4">Perfect For:</h3>
-              <div className="space-y-4">
-                {["Webflow freelancers tired of hacking together Zapier solutions", "SaaS founders who need subscriptions but don't want to rebuild in React", "Agencies looking for a white-label payment solution for clients"].map((item, index) => <div key={index} className="flex items-start gap-3">
-                    <div className="mt-1">
-                      <Check className="h-5 w-5 text-green-500" />
-                    </div>
-                    <p className="text-gray-700">{item}</p>
-                  </div>)}
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold mb-4">Not For:</h3>
-              <div className="flex items-start gap-3">
-                <div className="mt-1">
-                  <X className="h-5 w-5 text-red-500" />
-                </div>
-                <p className="text-gray-700">
-                  Enterprise teams needing SOC 2 compliance
-                  <a href="/enterprise" className="text-brand-primary-500 ml-2 hover:underline">
-                    Check our enterprise solutions →
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* How It Works Section */}
       <section className="py-16">
