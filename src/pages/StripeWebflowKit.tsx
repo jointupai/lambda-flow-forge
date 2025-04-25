@@ -1,10 +1,12 @@
+
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, FileCode, Code, MessageSquare } from "lucide-react";
+import { ArrowRight, FileCode, Code, MessageSquare, Download, Clipboard, CreditCard } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { FlipWords } from "@/components/ui/flip-words";
+import { StripeFeatureCard } from "@/components/ui/stripe-feature-card";
 
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
