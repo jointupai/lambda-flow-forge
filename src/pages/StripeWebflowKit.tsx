@@ -5,7 +5,6 @@ import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, 
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { Cover } from "@/components/ui/cover";
-
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
   const scrollToPricing = () => {
@@ -158,37 +157,31 @@ const StripeWebflowKit = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Download className="h-12 w-12 text-green-500" />,
-                number: "1",
-                title: "Buy & Download",
-                description: "Get the complete Stripe integration kit with AWS Lambda and frontend code"
-              },
-              {
-                icon: <Clipboard className="h-12 w-12 text-blue-500" />,
-                number: "2",
-                title: "Copy-Paste Frontend Code",
-                description: "Easily embed the pre-built Stripe payment components into your website"
-              },
-              {
-                icon: <CreditCard className="h-12 w-12 text-purple-500" />,
-                number: "3",
-                title: "Start Accepting Payments",
-                description: "Begin processing payments immediately with our pre-configured setup"
-              }
-            ].map((step, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300">
+            {[{
+            icon: <Download className="h-12 w-12 text-green-500" />,
+            number: "1",
+            title: "Buy & Download",
+            description: "Get the complete Stripe integration kit with AWS Lambda and frontend code"
+          }, {
+            icon: <Clipboard className="h-12 w-12 text-blue-500" />,
+            number: "2",
+            title: "Copy-Paste Frontend Code",
+            description: "Easily embed the pre-built Stripe payment components into your website"
+          }, {
+            icon: <CreditCard className="h-12 w-12 text-purple-500" />,
+            number: "3",
+            title: "Start Accepting Payments",
+            description: "Begin processing payments immediately with our pre-configured setup"
+          }].map((step, index) => <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300">
                 <div className="flex flex-col items-center">
                   <div className="mb-4 rounded-full bg-gray-100 p-4">
                     {step.icon}
                   </div>
-                  <div className="text-4xl font-bold text-gray-300 mb-4">0{step.number}</div>
+                  <div className="text-4xl font-bold text-black-300 mb-4">0{step.number}</div>
                   <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
                 </div>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -247,5 +240,4 @@ const StripeWebflowKit = () => {
       </section>
     </div>;
 };
-
 export default StripeWebflowKit;
