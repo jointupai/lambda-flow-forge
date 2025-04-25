@@ -147,7 +147,7 @@ export default function Navbar() {
 
           {/* Get Free Audit Button */}
           <div className="hidden md:block">
-            <Button size="sm" className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-5 transition-all duration-300" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
+            <Button size="sm" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')} className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-6 transition-all duration-300 py-[23px]">
               Get a Free Audit
             </Button>
           </div>
