@@ -1,3 +1,4 @@
+
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -5,6 +6,8 @@ import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, 
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { Cover } from "@/components/ui/cover";
+import { StripeFeatureCard } from "@/components/ui/stripe-feature-card";
+
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
   const scrollToPricing = () => {
@@ -37,64 +40,52 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* What's Included Section */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-900">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 bg-black text-white rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium mb-6">
               Everything You Need
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">What's Included</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">What's Included</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               Get everything you need to start processing payments in Webflow today.
               Zero coding knowledge required.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2">
-              <div className="flex flex-col gap-4">
-                <div className="p-3 rounded-xl bg-brand-primary-50 w-fit">
-                  <FileCode className="h-8 w-8 text-brand-primary-500" />
-                </div>
-                <h3 className="text-2xl font-bold">Pre-Built Lambda</h3>
-                <ul className="space-y-3">
-                  {["One-click AWS deployment", "Handles all Stripe webhooks", "Subscription management", "Payment failure recovery"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>)}
-                </ul>
-              </div>
-            </Card>
+            <StripeFeatureCard
+              title="Pre-Built Lambda"
+              icon={<FileCode className="h-8 w-8 text-blue-500" />}
+              features={[
+                "One-click AWS deployment", 
+                "Handles all Stripe webhooks", 
+                "Subscription management", 
+                "Payment failure recovery"
+              ]}
+            />
 
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 ">
-              <div className="flex flex-col gap-4">
-                <div className="p-3 rounded-xl bg-blue-50 w-fit">
-                  <Code className="h-8 w-8 text-blue-500" />
-                </div>
-                <h3 className="text-2xl font-bold">Website Integration</h3>
-                <ul className="space-y-3">
-                  {["Copy-paste embed code", "Works with any template", "Custom styling options", "Mobile responsive"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>)}
-                </ul>
-              </div>
-            </Card>
+            <StripeFeatureCard
+              title="Website Integration"
+              icon={<Code className="h-8 w-8 text-purple-500" />}
+              features={[
+                "Copy-paste embed code", 
+                "Works with any template", 
+                "Custom styling options", 
+                "Mobile responsive"
+              ]}
+            />
 
-            <Card className="p-8 hover:shadow-xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50 border-2">
-              <div className="flex flex-col gap-4">
-                <div className="p-3 rounded-xl bg-purple-50 w-fit">
-                  <MessageSquare className="h-8 w-8 text-purple-500" />
-                </div>
-                <h3 className="text-2xl font-bold">Support & Extras</h3>
-                <ul className="space-y-3">
-                  {["30-minute setup video", "Private Discord access", "Email support (24h)", "GDPR compliance guide"].map((feature, index) => <li key={index} className="flex items-center gap-2 text-gray-600">
-                      <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                      <span>{feature}</span>
-                    </li>)}
-                </ul>
-              </div>
-            </Card>
+            <StripeFeatureCard
+              title="Support & Extras"
+              icon={<MessageSquare className="h-8 w-8 text-green-500" />}
+              features={[
+                "30-minute setup video", 
+                "Private Discord access", 
+                "Email support (24h)", 
+                "GDPR compliance guide"
+              ]}
+            />
           </div>
         </div>
       </section>
