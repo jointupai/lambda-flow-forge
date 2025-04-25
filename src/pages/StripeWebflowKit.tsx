@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building } from "lucide-react";
+import { ArrowRight, FileCode, Code, MessageSquare, Shield, Check, X, Download, Upload, Zap, Github, Users, Building, ShoppingCart, Clipboard, CreditCard } from "lucide-react";
 import Pricing from "@/components/pricing/Pricing";
 import StripePaymentForm from "@/components/stripe/StripePaymentForm";
 import { Cover } from "@/components/ui/cover";
+
 const StripeWebflowKit = () => {
   const pricingRef = useRef<HTMLDivElement>(null);
   const scrollToPricing = () => {
@@ -149,27 +150,45 @@ const StripeWebflowKit = () => {
       {/* How It Works Section */}
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">How It Works</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">How It Works</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Three simple steps to add Stripe payments to any website
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-3 gap-8">
-            {[{
-            icon: <Download className="h-8 w-8" />,
-            title: "Download",
-            description: "Get the Lambda + Webflow files"
-          }, {
-            icon: <Upload className="h-8 w-8" />,
-            title: "Deploy",
-            description: "Follow the video (uses AWS Free Tier)"
-          }, {
-            icon: <Zap className="h-8 w-8" />,
-            title: "Go Live",
-            description: "Start processing payments in Webflow today"
-          }].map((step, index) => <div key={index} className="text-center">
-                <div className="bg-brand-primary-50 rounded-full p-4 inline-block mb-4">
-                  {step.icon}
+            {[
+              {
+                icon: <Download className="h-12 w-12 text-green-500" />,
+                number: "1",
+                title: "Buy & Download",
+                description: "Get the complete Stripe integration kit with AWS Lambda and frontend code"
+              },
+              {
+                icon: <Clipboard className="h-12 w-12 text-blue-500" />,
+                number: "2",
+                title: "Copy-Paste Frontend Code",
+                description: "Easily embed the pre-built Stripe payment components into your website"
+              },
+              {
+                icon: <CreditCard className="h-12 w-12 text-purple-500" />,
+                number: "3",
+                title: "Start Accepting Payments",
+                description: "Begin processing payments immediately with our pre-configured setup"
+              }
+            ].map((step, index) => (
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300">
+                <div className="flex flex-col items-center">
+                  <div className="mb-4 rounded-full bg-gray-100 p-4">
+                    {step.icon}
+                  </div>
+                  <div className="text-4xl font-bold text-gray-300 mb-4">0{step.number}</div>
+                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-gray-600">{step.description}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
-              </div>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -228,4 +247,5 @@ const StripeWebflowKit = () => {
       </section>
     </div>;
 };
+
 export default StripeWebflowKit;
