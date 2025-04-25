@@ -110,22 +110,7 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* Social Proof */}
-      <section className="py-16 bg-gray-50">
-        <div className="container max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <blockquote className="text-2xl font-medium italic text-gray-900 mb-8">
-              "Saved me 10 hours/month vs. Zapier. Worth every penny!"
-            </blockquote>
-            <p className="text-gray-600">– John Smith, TechCorp</p>
-          </div>
-          <div className="flex justify-center items-center gap-12 opacity-50">
-            <Github className="h-8 w-8" />
-            <Users className="h-8 w-8" />
-            <Building className="h-8 w-8" />
-          </div>
-          <p className="text-center text-sm text-gray-500 mt-4">Used by 500+ developers</p>
-        </div>
-      </section>
+      
 
       {/* FAQ Section */}
       <section className="py-16">
@@ -150,17 +135,7 @@ const StripeWebflowKit = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 bg-brand-primary-50">
-        <div className="container max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join 1,200+ developers who upgraded from Zapier
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">Instant access after purchase!</p>
-          <Button size="lg" className="bg-black text-white hover:bg-gray-800 rounded-full px-8">
-            Get the Kit ($97) <ArrowRight className="ml-2" />
-          </Button>
-        </div>
-      </section>
+      
     </div>;
 };
 export default StripeWebflowKit;
