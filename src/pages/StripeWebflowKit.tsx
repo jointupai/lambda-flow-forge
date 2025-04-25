@@ -1,4 +1,3 @@
-
 import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -18,7 +17,8 @@ const StripeWebflowKit = () => {
 
   const platforms = ["List", "Wordpress", "Wix", "Webflow", "Hostinger", "Squarespace"];
 
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       {/* Hero Section */}
       <section className="pt-20 pb-16 px-4 text-black bg-white">
         <div className="container max-w-6xl mx-auto">
@@ -147,7 +147,8 @@ const StripeWebflowKit = () => {
 
       {/* Final CTA */}
       
-    </div>;
+    </div>
+  );
 };
 
 export default StripeWebflowKit;

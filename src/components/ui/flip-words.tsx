@@ -1,12 +1,12 @@
 
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
   words,
-  duration = 3000,
+  duration = 2000,
   className,
 }: {
   words: string[];
@@ -23,48 +23,33 @@ export const FlipWords = ({
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
+    if (!isAnimating) {
       setTimeout(() => {
         startAnimation();
       }, duration);
+    }
   }, [isAnimating, duration, startAnimation]);
 
   return (
-    <AnimatePresence
-      onExitComplete={() => {
-        setIsAnimating(false);
-      }}
-    >
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 10,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 10,
-        }}
-        exit={{
-          opacity: 0,
-          y: -40,
-          x: 40,
-          filter: "blur(8px)",
-          scale: 2,
-          position: "absolute",
-        }}
-        className={cn(
-          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
-          className
-        )}
-        key={currentWord}
-      >
-        {currentWord}
-      </motion.div>
-    </AnimatePresence>
+    <span className="relative inline-block" style={{ minWidth: "120px", display: "inline-flex" }}>
+      <AnimatePresence mode="wait" onExitComplete={() => setIsAnimating(false)}>
+        <motion.span
+          key={currentWord}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{
+            duration: 0.35,
+            ease: "easeInOut",
+          }}
+          className={cn(
+            "absolute top-0 left-0",
+            className
+          )}
+        >
+          {currentWord}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 };
