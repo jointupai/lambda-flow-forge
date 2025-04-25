@@ -2,8 +2,7 @@
 "use client";
 
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
-import React, { MouseEvent as ReactMouseEvent, useState } from "react";
-import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
+import React, { MouseEvent as ReactMouseEvent } from "react";
 import { cn } from "@/lib/utils";
 
 export const CardSpotlight = ({
@@ -19,6 +18,7 @@ export const CardSpotlight = ({
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  
   function handleMouseMove({
     currentTarget,
     clientX,
@@ -30,9 +30,6 @@ export const CardSpotlight = ({
     mouseY.set(clientY - top);
   }
 
-  const [isHovering, setIsHovering] = useState(false);
-  const handleMouseEnter = () => setIsHovering(true);
-  const handleMouseLeave = () => setIsHovering(false);
   return (
     <div
       className={cn(
@@ -40,8 +37,6 @@ export const CardSpotlight = ({
         className
       )}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       {...props}
     >
       <motion.div
@@ -56,19 +51,14 @@ export const CardSpotlight = ({
             )
           `,
         }}
-      >
-        {isHovering && (
-          <CanvasRevealEffect
-            animationSpeed={5}
-            containerClassName="bg-transparent absolute inset-0 pointer-events-none"
-            colors={[
-              [59, 130, 246],
-              [139, 92, 246],
-            ]}
-            dotSize={3}
-          />
-        )}
-      </motion.div>
+      />
+      
+      {/* Simple animated background */}
+      <div className="absolute inset-0 overflow-hidden opacity-10 pointer-events-none">
+        <div className="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-blue-500 blur-2xl animate-pulse"></div>
+        <div className="absolute -left-16 -top-16 w-64 h-64 rounded-full bg-purple-500 blur-2xl animate-pulse" style={{animationDelay: "1s"}}></div>
+      </div>
+      
       {children}
     </div>
   );

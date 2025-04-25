@@ -39,6 +39,38 @@ const StripeWebflowKit = () => {
         </div>
       </section>
 
+      {/* How It Works (Mini Section) */}
+      <section className="py-12 bg-gray-100">
+        <div className="container max-w-6xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold">How It Works</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+                <Download className="h-6 w-6 text-green-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">🟢 1. Buy & Download</h3>
+              <p className="text-gray-600">Get instant access to the complete Stripe kit</p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+                <Clipboard className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">🛠️ 2. Copy-Paste Frontend Code</h3>
+              <p className="text-gray-600">Embed ready-to-use components on your site</p>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+                <CreditCard className="h-6 w-6 text-purple-600" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">🚀 3. Start Accepting Payments</h3>
+              <p className="text-gray-600">Begin processing transactions immediately</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What's Included Section */}
       <section className="py-16 bg-gray-900">
         <div className="container max-w-6xl mx-auto px-4">
@@ -94,14 +126,8 @@ const StripeWebflowKit = () => {
       <div ref={pricingRef}>
         <Pricing />
       </div>
-
-      {/* Comparison Section */}
       
-
-      {/* Who It's For Section */}
-      
-
-      {/* How It Works Section */}
+      {/* How It Works (Full Section) */}
       <section className="py-16">
         <div className="container max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
