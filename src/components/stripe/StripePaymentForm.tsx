@@ -16,7 +16,9 @@ const stripePromise = loadStripe('pk_test_51RExra4PegiUJKIXRv34bRl9ozED3bLPiVT0f
 const appearance = {
   theme: 'flat' as const,
   variables: {
-    colorPrimaryText: '#262626'
+    colorPrimary: '#212121',
+    colorText: '#363743',
+    fontFamily: 'Inter, system-ui, sans-serif',
   }
 };
 
@@ -70,7 +72,7 @@ const CheckoutForm = () => {
         <p className="mb-4 text-gray-700">Your test payment was processed successfully.</p>
         <button 
           onClick={() => window.location.reload()}
-          className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200"
+          className="px-6 py-3 text-base font-medium text-white bg-[#212121] rounded-lg hover:bg-gray-800 transition-colors"
         >
           Try Another Payment
         </button>
@@ -98,9 +100,9 @@ const CheckoutForm = () => {
       <button 
         type="submit" 
         disabled={!stripe || loading}
-        className="w-full bg-[#5674B6] text-white font-normal border-none rounded-lg py-3.5 px-0 text-base cursor-pointer hover:bg-[#4A65A3] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="w-full bg-[#212121] text-white font-normal border-none rounded-lg py-5 px-0 text-[17px] font-['Inter'] cursor-pointer hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors mt-5"
       >
-        {loading ? 'Processing...' : 'Confirm Payment'}
+        {loading ? 'Processing...' : 'Pay Now'}
       </button>
     </form>
   );
@@ -118,7 +120,7 @@ const StripePaymentForm = () => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            amount: 9700, // $97.00 in cents
+            amount: 5000, // $50.00 in cents
             currency: 'usd'
           })
         });
@@ -169,3 +171,4 @@ const StripePaymentForm = () => {
 };
 
 export default StripePaymentForm;
+
