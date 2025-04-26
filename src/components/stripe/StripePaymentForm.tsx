@@ -7,11 +7,27 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 
 // Initialize Stripe with publishable key
 const stripePromise = loadStripe('pk_test_51RExra4PegiUJKIXRv34bRl9ozED3bLPiVT0fYgRf3L3MXId5n3wkdYCWYQeD0wGEoUJRrZIdpmEvxneTPDoNarE00yni6u9O6');
+
+// Define appearance and element options
+const appearance = {
+  theme: 'flat' as const,
+  variables: {
+    colorPrimaryText: '#262626'
+  }
+};
+
+const elementOptions = {
+  layout: {
+    type: 'accordion' as const,
+    defaultCollapsed: false,
+    radios: true,
+    spacedAccordionItems: false
+  }
+};
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -52,13 +68,12 @@ const CheckoutForm = () => {
       <div className="text-center py-8">
         <h3 className="text-xl font-semibold mb-4 text-green-600">Payment Successful!</h3>
         <p className="mb-4 text-gray-700">Your test payment was processed successfully.</p>
-        <Button 
+        <button 
           onClick={() => window.location.reload()}
-          variant="outline"
-          className="mt-2"
+          className="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200"
         >
           Try Another Payment
-        </Button>
+        </button>
       </div>
     );
   }
@@ -66,12 +81,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <PaymentElement 
-        options={{
-          layout: {
-            type: 'tabs',
-            defaultCollapsed: false,
-          }
-        }}
+        options={elementOptions}
       />
       
       {errorMessage && (
@@ -85,13 +95,13 @@ const CheckoutForm = () => {
         <p>Try using test card: 4242 4242 4242 4242 | Any future date | Any CVC</p>
       </div>
       
-      <Button 
+      <button 
         type="submit" 
-        disabled={!stripe || loading} 
-        className="w-full"
+        disabled={!stripe || loading}
+        className="w-full bg-[#5674B6] text-white font-normal border-none rounded-lg py-3.5 px-0 text-base cursor-pointer hover:bg-[#4A65A3] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
       >
-        {loading ? 'Processing...' : 'Pay $97'}
-      </Button>
+        {loading ? 'Processing...' : 'Confirm Payment'}
+      </button>
     </form>
   );
 };
@@ -108,7 +118,7 @@ const StripePaymentForm = () => {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            amount: 9700, // $97.00 in cents, matching the displayed amount
+            amount: 9700, // $97.00 in cents
             currency: 'usd'
           })
         });
@@ -131,7 +141,7 @@ const StripePaymentForm = () => {
   return (
     <div>
       {clientSecret ? (
-        <Elements stripe={stripePromise} options={{ clientSecret }}>
+        <Elements stripe={stripePromise} options={{ clientSecret, appearance }}>
           <Card className="max-w-md mx-auto">
             <CardHeader>
               <CardTitle>Try Our Payment Flow</CardTitle>
