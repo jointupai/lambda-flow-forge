@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Check } from "lucide-react";
+
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters"
@@ -40,10 +41,13 @@ const formSchema = z.object({
   }),
   message: z.string().optional()
 });
+
 type FormValues = z.infer<typeof formSchema>;
+
 interface ContactDrawerProps {
   children?: React.ReactNode;
 }
+
 const getServiceDescription = (service: string): string => {
   const serviceMap: Record<string, string> = {
     'automation': 'Automation Infrastructure',
@@ -55,12 +59,14 @@ const getServiceDescription = (service: string): string => {
   };
   return `They are interested in ${serviceMap[service]}`;
 };
+
 export default function ContactDrawer({
   children
 }: ContactDrawerProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [open, setOpen] = useState(false);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -76,6 +82,7 @@ export default function ContactDrawer({
       message: ""
     }
   });
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     console.log("Submitting form data:", data);
@@ -109,18 +116,38 @@ export default function ContactDrawer({
     }
     setIsSubmitting(false);
   };
+
   const handleClose = () => {
     setOpen(false);
     setTimeout(() => {
       setIsSuccess(false);
     }, 300);
   };
-  return <Sheet open={open} onOpenChange={setOpen}>
+
+  return (
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild data-drawer-trigger>
         {children || <Button className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">Let's Partner Up</Button>}
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-xl overflow-y-auto">
-        {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+      <SheetContent 
+        className="w-full sm:max-w-xl overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-3xl"
+        style={{
+          animation: 'float 6s ease-in-out infinite',
+        }}
+      >
+        <style>{`
+          @keyframes float {
+            0%, 100% {
+              transform: translateY(0px) translateX(-50%);
+            }
+            50% {
+              transform: translateY(-10px) translateX(-50%);
+            }
+          }
+        `}</style>
+        
+        {isSuccess ? (
+          <div className="h-full flex flex-col items-center justify-center text-center space-y-4 animate-in slide-in-from-bottom duration-500">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
               <Check className="w-8 h-8 text-green-600" />
             </div>
@@ -131,10 +158,11 @@ export default function ContactDrawer({
             <Button onClick={handleClose} className="mt-6">
               Close
             </Button>
-          </div> : <>
+          </div>
+        ) : (
+          <>
             <SheetHeader>
-              <SheetTitle className="font-medium py- my- tracking-tighter text-3xl">Get In Touch
-          </SheetTitle>
+              <SheetTitle className="font-medium py-2 my-2 tracking-tighter text-3xl">Get In Touch</SheetTitle>
             </SheetHeader>
             <div className="mt-6">
               <Form {...form}>
@@ -293,7 +321,9 @@ export default function ContactDrawer({
                 </form>
               </Form>
             </div>
-          </>}
+          </>
+        )}
       </SheetContent>
-    </Sheet>;
+    </Sheet>
+  );
 }
