@@ -33,11 +33,11 @@ export default function Home() {
     
     return {"statusCode": 200}`;
 
-  return <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       {/* Hero Section */}
-      <section className="bg-white py-8 md:py-16 lg:py-24">
+      <section className="bg-white py-8 md:py-16 lg:py-24 w-full">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
             <div className="text-center lg:text-left space-y-4 md:space-y-6">
@@ -73,11 +73,11 @@ export default function Home() {
       </section>
 
       {/* Why We Exist Section with Card */}
-      <section className="bg-gray-50 py-12 md:py-16 lg:py-24">
+      <section className="bg-gray-50 py-12 md:py-16 lg:py-24 w-full">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
             <div className="space-y-4 md:space-y-6">
-              <h2 className="text-2xl md:text-4xl font-bold text-gray-900">You've Scaled. Your Automation Stack Hasn't.</h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">You've Scaled. Your Automation Stack Hasn't.</h2>
               <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                 Startups, SaaS, and service businesses hit a wall when it comes to backend workflows. 
                 Zapier breaks. CRMs get messy. Devs are overloaded.

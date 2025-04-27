@@ -6,15 +6,17 @@ import { GoCopilot } from "react-icons/go";
 
 export default function CardDemo() {
   return (
-    <Card>
-      <CardSkeletonContainer>
-        <Skeleton />
-      </CardSkeletonContainer>
-      <CardTitle>Cloud Infrastructure Automation</CardTitle>
-      <CardDescription>
-        Seamlessly connect and automate your cloud services across AWS, Azure, and Google Cloud.
-      </CardDescription>
-    </Card>
+    <div className="w-full max-w-full overflow-hidden px-4 sm:px-0">
+      <Card>
+        <CardSkeletonContainer>
+          <Skeleton />
+        </CardSkeletonContainer>
+        <CardTitle>Cloud Infrastructure Automation</CardTitle>
+        <CardDescription>
+          Seamlessly connect and automate your cloud services across AWS, Azure, and Google Cloud.
+        </CardDescription>
+      </Card>
+    </div>
   );
 }
 

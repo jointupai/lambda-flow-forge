@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Zap } from 'lucide-react';
 
@@ -10,7 +9,7 @@ const AnimatedCodeBlock: React.FC<AnimatedCodeBlockProps> = ({
   code
 }) => {
   return (
-    <div className="relative w-full max-w-full">
+    <div className="relative w-full max-w-full overflow-hidden">
       <div className="bg-gray-50 p-4 md:p-6 rounded-xl border border-gray-200 shadow-lg overflow-hidden">
         <div className="flex items-center mb-4 text-sm text-gray-600">
           <div className="flex space-x-2 mr-auto">
