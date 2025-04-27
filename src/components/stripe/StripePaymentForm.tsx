@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -113,6 +114,7 @@ const StripePaymentForm = () => {
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
+        console.log("Fetching client secret...");
         const response = await fetch('https://1rds4nj2d2.execute-api.us-east-2.amazonaws.com/default/createpaymentintent', {
           method: 'POST',
           headers: {
@@ -125,9 +127,11 @@ const StripePaymentForm = () => {
         });
         
         const data = await response.json();
+        console.log("Client secret API response received:", data);
         
         if (data.clientSecret) {
           setClientSecret(data.clientSecret);
+          console.log("Client secret set successfully");
         } else {
           console.error('No client secret returned from the server');
         }

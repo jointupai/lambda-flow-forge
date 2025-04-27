@@ -26,22 +26,18 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src")
     },
-    dedupe: ['three', 'react', 'react-dom', '@react-three/fiber', '@react-three/drei']
+    dedupe: ['react', 'react-dom']
   },
   build: {
     commonjsOptions: {
-      include: [/node_modules/]
+      include: [/node_modules/],
+      transformMixedEsModules: true
     },
     sourcemap: false
   },
   optimizeDeps: {
-    include: [
-      'three', 
-      '@react-three/fiber', 
-      '@react-three/drei'
-    ],
+    include: ['@stripe/react-stripe-js', '@stripe/stripe-js'],
     esbuildOptions: {
-      // Node.js global to browser globalThis
       define: {
         global: 'globalThis'
       }
