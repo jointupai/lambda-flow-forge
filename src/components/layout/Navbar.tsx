@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ export default function Navbar() {
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       <div className="container mx-auto px-4">
-        <MegaMenu>
+        <MegaMenu className="py-4">
           <NavbarBrand href="/">
             <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" alt="JointUp.ai Logo" className="h-8 w-auto" />
           </NavbarBrand>
