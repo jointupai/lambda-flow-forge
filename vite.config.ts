@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+    dedupe: ['three', 'react', 'react-dom']
   },
   // Add historyApiFallback for SPA routing
   build: {
@@ -34,6 +35,14 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: undefined
       }
-    }
+    },
+    commonjsOptions: {
+      include: [/node_modules/]
+    },
+    sourcemap: false
+  },
+  optimizeDeps: {
+    include: ['three'],
+    force: true
   }
 }));
