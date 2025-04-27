@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -50,9 +51,9 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button 
-                  size="lg" 
+                  size="default"  // Changed from 'lg' to match header button
                   variant="outline"
-                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
+                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-10 rounded-full"  // Adjusted height to h-10 to match header
                   onClick={() => {
                     const drawerButton = document.querySelector('[data-drawer-trigger]');
                     if (drawerButton) {
