@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from 'lucide-react';
 import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
@@ -66,9 +66,9 @@ export default function Home() {
                   We step in and build the invisible systems that power growth — using battle-tested, serverless architecture.
                 </span>
               </p>
-              <Button asChild className="mt-6 bg-white text-black hover:bg-gray-100 border border-black rounded-full">
+              <Button asChild className="mt-6 bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
                 <Link to="/case-studies/usacartags" className="flex items-center cursor-pointer gap-1 px-4 py-6 text-black hover:text-gray-800 transition-all duration-300">
-                  USACARTAGS Demo <ArrowRight className="ml-2" size={16} />
+                  Interactive Demo
                 </Link>
               </Button>
             </div>
