@@ -1,18 +1,18 @@
 "use client";
 import { motion, useAnimate } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { GoCopilot } from "react-icons/go";
 
 export default function CardDemo() {
   return (
     <div className="w-full max-w-full overflow-hidden px-4 sm:px-0">
-      <Card>
-        <CardSkeletonContainer>
+      <Card className="max-w-[90vw] sm:max-w-sm mx-auto">
+        <CardSkeletonContainer className="h-[12rem] sm:h-[15rem] md:h-[20rem]">
           <Skeleton />
         </CardSkeletonContainer>
-        <CardTitle>Cloud Infrastructure Automation</CardTitle>
-        <CardDescription>
+        <CardTitle className="text-lg sm:text-xl">Cloud Infrastructure Automation</CardTitle>
+        <CardDescription className="text-sm">
           Seamlessly connect and automate your cloud services across AWS, Azure, and Google Cloud.
         </CardDescription>
       </Card>
@@ -39,14 +39,12 @@ const Skeleton = () => {
         repeatDelay: 4 
       };
       
-      // Get all circle containers within the scope
       const circles = scope.current.querySelectorAll('.circle-container');
       
-      // Create staggered animations for each circle
       circles.forEach((circle, index) => {
         animate(circle, animationConfig, {
           ...animationOptions,
-          delay: index * 0.15 // Stagger the animations
+          delay: index * 0.15
         });
       });
     }
@@ -147,7 +145,7 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "max-w-sm w-full mx-auto p-8 rounded-xl border border-[rgba(255,255,255,0.10)] dark:bg-[rgba(40,40,40,0.70)] bg-gray-100 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group",
+        "w-full mx-auto p-4 sm:p-8 rounded-xl border border-[rgba(255,255,255,0.10)] dark:bg-[rgba(40,40,40,0.70)] bg-gray-100 shadow-[2px_4px_16px_0px_rgba(248,248,248,0.06)_inset] group",
         className
       )}
     >
@@ -206,7 +204,7 @@ export const CardSkeletonContainer = ({
   return (
     <div
       className={cn(
-        "h-[15rem] md:h-[20rem] rounded-xl z-40",
+        "h-[12rem] sm:h-[15rem] md:h-[20rem] rounded-xl z-40",
         className,
         showGradient &&
           "bg-neutral-300 dark:bg-[rgba(40,40,40,0.70)] [mask-image:radial-gradient(50%_50%_at_50%_50%,white_0%,transparent_100%)]"
