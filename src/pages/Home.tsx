@@ -10,6 +10,7 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
 import WobbleCardDemo from "@/components/ui/wobble-card-demo";
+import ContactDrawer from "@/components/shared/ContactDrawer";
 
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
@@ -41,10 +42,17 @@ export default function Home() {
             <div className="text-center lg:text-left">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight text-gray-900 xl:text-5xl">Build Scalable Backend Automation That Powers Your Growth</h1>
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.</p>
-              <Button size="lg" className="w-full sm:w-auto bg-brand-primary-400 hover:bg-brand-primary-500 text-black text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}>
-                <span className="font-bold text-base">Schedule a Strategy Call</span>
-                <ArrowRight className="ml-2" />
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <ContactDrawer />
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
+                  onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
+                >
+                  Get a Free Audit
+                  <ArrowRight className="ml-2" />
+                </Button>
+              </div>
             </div>
             <div className="relative mt-8 lg:mt-0">
               <AnimatedCodeBlock code={lambdaCode} />

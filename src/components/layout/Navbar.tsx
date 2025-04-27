@@ -134,8 +134,7 @@ export default function Navbar() {
             </DropdownMenu>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <ContactDrawer />
+          <div className="hidden md:flex items-center">
             <Button 
               asChild 
               className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full"
