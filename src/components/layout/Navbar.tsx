@@ -1,6 +1,7 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook } from "lucide-react";
+import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
