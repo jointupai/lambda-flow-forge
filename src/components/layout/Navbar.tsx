@@ -4,29 +4,27 @@ import { PieChart, MessageSquare, Menu, X, ChevronRight, CreditCard, MessageSqua
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
+import ContactDrawer from "@/components/shared/ContactDrawer";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [showCalendly, setShowCalendly] = React.useState(false);
-  return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      
+  
+  return (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
 
       <div className="container flex h-16 items-center px-4 sm:px-8">
         <div className="flex w-full items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" alt="JointUp.ai Logo" className="h-8 w-auto" />
           </Link>
 
-          {/* Centered Desktop Navigation */}
           <div className="hidden md:flex items-center justify-center space-x-6">
-            {/* Home link */}
             <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Home
             </Link>
 
-            {/* Solutions Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center text-sm font-medium text-foreground/80 hover:text-foreground transition-colors" asChild>
                 <button className="flex items-center outline-none">
@@ -92,7 +90,6 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Micro Products Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center text-sm font-medium text-foreground/80 hover:text-foreground transition-colors" asChild>
                 <button className="flex items-center outline-none">
@@ -111,7 +108,6 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            {/* Company Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center text-sm font-medium text-foreground/80 hover:text-foreground transition-colors" asChild>
                 <button className="flex items-center outline-none">
@@ -141,12 +137,11 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
             
-            <Link to="/contact" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Contact
-            </Link>
+            <div className="hidden md:block">
+              <ContactDrawer />
+            </div>
           </div>
 
-          {/* Get Free Audit Button */}
           <div className="hidden md:block">
             <Button 
               asChild 
@@ -162,21 +157,19 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile menu button */}
           <button className="md:hidden rounded-md p-2 text-foreground" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isMenuOpen && <div className="md:hidden">
+      {isMenuOpen && (
+        <div className="md:hidden">
           <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
             <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
               Home
             </Link>
             
-            {/* Mobile Solutions Menu */}
             <div className="block py-2 text-base font-medium text-foreground/80">
               Solutions
               <div className="pl-4 space-y-2 mt-2">
@@ -207,7 +200,6 @@ export default function Navbar() {
               </div>
             </div>
             
-            {/* Mobile Micro Products Menu */}
             <div className="block py-2 text-base font-medium text-foreground/80">
               Micro Products
               <div className="pl-4 space-y-2 mt-2">
@@ -218,7 +210,6 @@ export default function Navbar() {
               </div>
             </div>
             
-            {/* Mobile Company Menu */}
             <div className="block py-2 text-base font-medium text-foreground/80">
               Company
               <div className="pl-4 space-y-2 mt-2">
@@ -234,18 +225,21 @@ export default function Navbar() {
               </div>
             </div>
             
-            <Link to="/contact" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-              Contact
-            </Link>
+            <div className="block py-2">
+              <ContactDrawer />
+            </div>
+
             <div className="pt-2">
               <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
-            setIsMenuOpen(false);
-            window.open('https://calendly.com/jointup/intro', '_blank');
-          }}>
+                setIsMenuOpen(false);
+                window.open('https://calendly.com/jointup/intro', '_blank');
+              }}>
                 Get a Free Audit
               </Button>
             </div>
           </div>
-        </div>}
-    </header>;
+        </div>
+      )}
+    </header>
+  );
 }
