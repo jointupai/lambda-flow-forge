@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Check, X } from "lucide-react";
+
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters"
@@ -40,10 +41,15 @@ const formSchema = z.object({
   }),
   message: z.string().optional()
 });
+
 type FormValues = z.infer<typeof formSchema>;
+
 interface ContactDrawerProps {
   children?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
+
 const getServiceDescription = (service: string): string => {
   const serviceMap: Record<string, string> = {
     'automation': 'Automation Infrastructure',
@@ -55,12 +61,19 @@ const getServiceDescription = (service: string): string => {
   };
   return `They are interested in ${serviceMap[service]}`;
 };
+
 export default function ContactDrawer({
-  children
+  children,
+  open: externalOpen,
+  onOpenChange: externalOnOpenChange
 }: ContactDrawerProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  
+  const open = externalOpen !== undefined ? externalOpen : internalOpen;
+  const onOpenChange = externalOnOpenChange || setInternalOpen;
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -76,6 +89,7 @@ export default function ContactDrawer({
       message: ""
     }
   });
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     console.log("Submitting form data:", data);
@@ -109,13 +123,15 @@ export default function ContactDrawer({
     }
     setIsSubmitting(false);
   };
+
   const handleClose = () => {
     setOpen(false);
     setTimeout(() => {
       setIsSuccess(false);
     }, 300);
   };
-  return <Sheet open={open} onOpenChange={setOpen}>
+
+  return <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetTrigger asChild data-drawer-trigger>
         {children}
       </SheetTrigger>

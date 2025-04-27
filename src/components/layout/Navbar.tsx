@@ -11,6 +11,7 @@ export default function Navbar() {
   const [showProducts, setShowProducts] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
+  const [openContactDrawer, setOpenContactDrawer] = useState(false);
 
   return <>
     {(showSolutions || showProducts || showCompany) && <div className="fixed inset-0 bg-black/20 z-40" onClick={() => {
@@ -233,8 +234,11 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-4">
-              <Button asChild className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
-                <ContactDrawer>Let's Partner Up</ContactDrawer>
+              <Button 
+                onClick={() => setOpenContactDrawer(true)} 
+                className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full"
+              >
+                Let's Partner Up
               </Button>
             </div>
             
@@ -321,5 +325,7 @@ export default function Navbar() {
           </div>
         </div>}
     </header>
+    
+    <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
   </>;
 }

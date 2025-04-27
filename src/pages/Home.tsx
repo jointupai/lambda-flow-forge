@@ -35,6 +35,7 @@ export default function Home() {
 
   return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
+      <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
       {/* Hero Section */}
       <section className="bg-white py-8 md:py-16 lg:py-24 w-full">
@@ -51,12 +52,7 @@ export default function Home() {
                 <Button 
                   size="default"
                   variant="outline"
-                  onClick={() => {
-                    const drawerButton = document.querySelector('[data-drawer-trigger]');
-                    if (drawerButton) {
-                      (drawerButton as HTMLElement).click();
-                    }
-                  }} 
+                  onClick={() => setOpenContactDrawer(true)} 
                   className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-14 rounded-full"
                 >
                   Let's Partner Up
@@ -126,8 +122,5 @@ export default function Home() {
       <section className="px-4 md:px-6 lg:px-8">
         <TestimonialVideos />
       </section>
-      
-      {/* ContactDrawer with trigger attribute for programmatic opening */}
-      <ContactDrawer />
     </div>;
 }
