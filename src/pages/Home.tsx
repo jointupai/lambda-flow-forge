@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,8 @@ import ContactDrawer from "@/components/shared/ContactDrawer";
 
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
+  const [openContactDrawer, setOpenContactDrawer] = useState(false);
+  
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
     stripe_event = json.loads(event['body'])
@@ -50,9 +53,15 @@ export default function Home() {
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-black text-white hover:bg-gray-800 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
-                  asChild
+                  onClick={() => {
+                    // Open ContactDrawer when button is clicked
+                    const drawerButton = document.querySelector('[data-drawer-trigger]');
+                    if (drawerButton) {
+                      (drawerButton as HTMLElement).click();
+                    }
+                  }}
                 >
-                  <ContactDrawer>Let's Partner Up</ContactDrawer>
+                  Let's Partner Up
                 </Button>
               </div>
             </div>
@@ -78,7 +87,7 @@ export default function Home() {
               </p>
               <Button asChild className="mt-6 bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
                 <Link to="/case-studies/usacartags" className="flex items-center cursor-pointer gap-1 px-4 py-6 text-black hover:text-gray-800 transition-all duration-300">
-                  Interactive Demo
+                  View Case Studies
                 </Link>
               </Button>
             </div>
@@ -109,5 +118,8 @@ export default function Home() {
 
       {/* Testimonial Videos */}
       <TestimonialVideos />
+      
+      {/* ContactDrawer with trigger attribute for programmatic opening */}
+      <ContactDrawer />
     </div>;
 }

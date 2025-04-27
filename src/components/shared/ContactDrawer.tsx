@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
@@ -26,7 +27,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-export default function ContactDrawer() {
+interface ContactDrawerProps {
+  children?: React.ReactNode;
+}
+
+export default function ContactDrawer({ children }: ContactDrawerProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [open, setOpen] = useState(false);
@@ -74,6 +79,9 @@ export default function ContactDrawer() {
     <>
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger asChild data-drawer-trigger>
+          {children || <Button className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">Let's Partner Up</Button>}
+        </SheetTrigger>
         <SheetContent className="w-full sm:max-w-xl overflow-y-auto">
           <SheetHeader>
             <SheetTitle className="text-2xl font-bold">Let's Partner Up</SheetTitle>
