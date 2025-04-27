@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    // Configure server for client-side routing
     strictPort: true,
     middlewareMode: false
   },
@@ -27,9 +26,8 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ['three', 'react', 'react-dom', '@react-three/fiber', '@react-three/drei']
+    dedupe: ['three', 'react', 'react-dom', '@react-three/fiber', '@react-three/drei', '@stripe/stripe-js', '@stripe/react-stripe-js']
   },
-  // Add historyApiFallback for SPA routing
   build: {
     rollupOptions: {
       output: {
@@ -43,7 +41,13 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false
   },
   optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei', '@stripe/stripe-js', '@stripe/react-stripe-js'],
+    include: [
+      'three', 
+      '@react-three/fiber', 
+      '@react-three/drei', 
+      '@stripe/stripe-js', 
+      '@stripe/react-stripe-js'
+    ],
     force: true,
     esbuildOptions: {
       // Node.js global to browser globalThis
