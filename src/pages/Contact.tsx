@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail, Phone, MessageSquare, User, Building, Globe, Wrench, FileText, AlertCircle, Check } from "lucide-react";
@@ -8,27 +7,29 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
-
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
-  email: z.string().email({ message: "Please enter a valid email address" }),
-  company: z.string().min(2, { message: "Company name is required" }),
-  website: z.string().url({ message: "Please enter a valid URL" }).or(z.string().length(0)),
-  tools: z.string().min(2, { message: "Please list at least one tool" }),
-  automation: z.string().min(10, { message: "Please provide more details about your automation needs" })
+  name: z.string().min(2, {
+    message: "Name must be at least 2 characters"
+  }),
+  email: z.string().email({
+    message: "Please enter a valid email address"
+  }),
+  company: z.string().min(2, {
+    message: "Company name is required"
+  }),
+  website: z.string().url({
+    message: "Please enter a valid URL"
+  }).or(z.string().length(0)),
+  tools: z.string().min(2, {
+    message: "Please list at least one tool"
+  }),
+  automation: z.string().min(10, {
+    message: "Please provide more details about your automation needs"
+  })
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 export default function Contact() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -39,24 +40,20 @@ export default function Contact() {
       website: "",
       tools: "",
       automation: ""
-    },
+    }
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
-
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-
     const payload = {
       name: data.name,
       email: data.email,
       companyName: data.company,
       website: data.website,
       tools: data.tools,
-      automationGoal: data.automation,
+      automationGoal: data.automation
     };
-
     try {
       const response = await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
         method: "POST",
@@ -81,9 +78,7 @@ export default function Contact() {
     }
     setIsSubmitting(false);
   };
-
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
@@ -161,143 +156,85 @@ export default function Contact() {
                   <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="name"
-                          render={({ field }) => (
-                            <FormItem>
+                        <FormField control={form.control} name="name" render={({
+                        field
+                      }) => <FormItem>
                               <FormLabel className="flex items-center gap-2 text-gray-700">
                                 <User className="h-4 w-4" /> Name
                               </FormLabel>
                               <FormControl>
-                                <Input 
-                                  placeholder="Your name" 
-                                  className="border-gray-200 focus:border-brand-600 transition-colors"
-                                  {...field} 
-                                />
+                                <Input placeholder="Your name" className="border-gray-200 focus:border-brand-600 transition-colors" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            </FormItem>} />
                         
-                        <FormField
-                          control={form.control}
-                          name="email"
-                          render={({ field }) => (
-                            <FormItem>
+                        <FormField control={form.control} name="email" render={({
+                        field
+                      }) => <FormItem>
                               <FormLabel className="flex items-center gap-2 text-gray-700">
                                 <Mail className="h-4 w-4" /> Email
                               </FormLabel>
                               <FormControl>
-                                <Input 
-                                  placeholder="you@company.com" 
-                                  type="email"
-                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
-                                  {...field} 
-                                />
+                                <Input placeholder="you@company.com" type="email" className="border-gray-200 focus:border-brand-600 transition-colors" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            </FormItem>} />
                       </div>
                       
                       <div className="grid md:grid-cols-2 gap-6">
-                        <FormField
-                          control={form.control}
-                          name="company"
-                          render={({ field }) => (
-                            <FormItem>
+                        <FormField control={form.control} name="company" render={({
+                        field
+                      }) => <FormItem>
                               <FormLabel className="flex items-center gap-2 text-gray-700">
                                 <Building className="h-4 w-4" /> Company Name
                               </FormLabel>
                               <FormControl>
-                                <Input 
-                                  placeholder="Your company"
-                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
-                                  {...field} 
-                                />
+                                <Input placeholder="Your company" className="border-gray-200 focus:border-brand-600 transition-colors" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            </FormItem>} />
                         
-                        <FormField
-                          control={form.control}
-                          name="website"
-                          render={({ field }) => (
-                            <FormItem>
+                        <FormField control={form.control} name="website" render={({
+                        field
+                      }) => <FormItem>
                               <FormLabel className="flex items-center gap-2 text-gray-700">
                                 <Globe className="h-4 w-4" /> Website (optional)
                               </FormLabel>
                               <FormControl>
-                                <Input 
-                                  placeholder="https://yourcompany.com"
-                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
-                                  {...field} 
-                                />
+                                <Input placeholder="https://yourcompany.com" className="border-gray-200 focus:border-brand-600 transition-colors" {...field} />
                               </FormControl>
                               <FormMessage />
-                            </FormItem>
-                          )}
-                        />
+                            </FormItem>} />
                       </div>
                       
-                      <FormField
-                        control={form.control}
-                        name="tools"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="tools" render={({
+                      field
+                    }) => <FormItem>
                             <FormLabel className="flex items-center gap-2 text-gray-700">
                               <Wrench className="h-4 w-4" /> What tools are you currently using?
                             </FormLabel>
                             <FormControl>
-                              <Input 
-                                placeholder="Stripe, Zapier, Supabase, etc."
-                                className="border-gray-200 focus:border-brand-600 transition-colors" 
-                                {...field} 
-                              />
+                              <Input placeholder="Stripe, Zapier, Supabase, etc." className="border-gray-200 focus:border-brand-600 transition-colors" {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <FormField
-                        control={form.control}
-                        name="automation"
-                        render={({ field }) => (
-                          <FormItem>
+                      <FormField control={form.control} name="automation" render={({
+                      field
+                    }) => <FormItem>
                             <FormLabel className="flex items-center gap-2 text-gray-700">
                               <FileText className="h-4 w-4" /> What do you want to automate?
                             </FormLabel>
                             <FormControl>
-                              <Textarea 
-                                placeholder="Describe your current workflow and what you'd like to improve" 
-                                className="min-h-[120px] border-gray-200 focus:border-brand-600 transition-colors resize-none"
-                                {...field}
-                              />
+                              <Textarea placeholder="Describe your current workflow and what you'd like to improve" className="min-h-[120px] border-gray-200 focus:border-brand-600 transition-colors resize-none" {...field} />
                             </FormControl>
                             <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                          </FormItem>} />
                       
-                      <Button 
-                        type="submit" 
-                        size="lg" 
-                        className="w-full bg-brand-600 hover:bg-brand-700 text-white transition-colors"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <>Processing...</>
-                        ) : (
-                          <>
+                      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-brand-600 hover:bg-brand-700 transition-colors bg-zinc-950 hover:bg-zinc-800 text-gray-50 text-base font-medium">
+                        {isSubmitting ? <>Processing...</> : <>
                             Request My Free Audit <ArrowRight className="ml-2" size={16} />
-                          </>
-                        )}
+                          </>}
                       </Button>
                     </form>
                   </Form>
@@ -349,6 +286,5 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
