@@ -27,7 +27,7 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-    dedupe: ['three', 'react', 'react-dom']
+    dedupe: ['three', 'react', 'react-dom', '@react-three/fiber', '@react-three/drei']
   },
   // Add historyApiFallback for SPA routing
   build: {
@@ -42,7 +42,13 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false
   },
   optimizeDeps: {
-    include: ['three'],
-    force: true
+    include: ['three', '@react-three/fiber', '@react-three/drei'],
+    force: true,
+    esbuildOptions: {
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis'
+      }
+    }
   }
 }));
