@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Play, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-
 interface Testimonial {
   id: string;
   company: string;
@@ -13,53 +11,44 @@ interface Testimonial {
   position: string;
   videoId?: string;
 }
-
-const testimonials: Testimonial[] = [
-  {
-    id: "1",
-    company: "Customer 1",
-    logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
-    videoThumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
-    quote: "We've simplified our workflows while improving accuracy, and we are faster in closing with the help of automation. We could not have achieved this without the solutions Ramp brought to the table",
-    author: "Kaustubh Khandelwal",
-    position: "VP of Finance"
-  },
-  {
-    id: "2",
-    company: "Poshmark",
-    logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
-    videoThumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80",
-    quote: "We've simplified our workflows while improving accuracy, and we are faster in closing with the help of automation. We could not have achieved this without the solutions Ramp brought to the table",
-    author: "Kaustubh Khandelwal",
-    position: "VP of Finance"
-  },
-  {
-    id: "3",
-    company: "Glossier",
-    logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
-    videoThumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
-    quote: "90% of transactions are already coded with metadata like vendor and location and channel before they even reach Ramp, and the accounting team had to go in and do minimal work",
-    author: "Roxane Cosnard des Closets",
-    position: "Senior Manager of Finance"
-  }
-];
-
+const testimonials: Testimonial[] = [{
+  id: "1",
+  company: "Customer 1",
+  logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
+  videoThumbnail: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=800&q=80",
+  quote: "We've simplified our workflows while improving accuracy, and we are faster in closing with the help of automation. We could not have achieved this without the solutions Ramp brought to the table",
+  author: "Kaustubh Khandelwal",
+  position: "VP of Finance"
+}, {
+  id: "2",
+  company: "Poshmark",
+  logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
+  videoThumbnail: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80",
+  quote: "We've simplified our workflows while improving accuracy, and we are faster in closing with the help of automation. We could not have achieved this without the solutions Ramp brought to the table",
+  author: "Kaustubh Khandelwal",
+  position: "VP of Finance"
+}, {
+  id: "3",
+  company: "Glossier",
+  logo: "/lovable-uploads/fb2a31db-2e35-4af0-90aa-405488af2d05.png",
+  videoThumbnail: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=800&q=80",
+  quote: "90% of transactions are already coded with metadata like vendor and location and channel before they even reach Ramp, and the accounting team had to go in and do minimal work",
+  author: "Roxane Cosnard des Closets",
+  position: "Senior Manager of Finance"
+}];
 const VideoCard: React.FC<{
   testimonial: Testimonial;
 }> = ({
   testimonial
 }) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
-
   const handlePlayVideo = () => {
     setIsPlaying(true);
   };
-
   const handleCloseVideo = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsPlaying(false);
   };
-
   return <div className="flex flex-col h-full">
       <div className="relative w-full aspect-video rounded-lg overflow-hidden cursor-pointer mb-6" onClick={handlePlayVideo}>
         {!isPlaying ? <>
@@ -96,22 +85,7 @@ const VideoCard: React.FC<{
       </div>
     </div>;
 };
-
 const TestimonialVideos: React.FC = () => {
-  return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">What Our Clients Say</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="bg-white p-6 rounded-lg shadow-md">
-              <VideoCard testimonial={testimonial} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return;
 };
-
 export default TestimonialVideos;
