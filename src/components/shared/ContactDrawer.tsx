@@ -130,24 +130,38 @@ export default function ContactDrawer({
         {children || <Button className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">Let's Partner Up</Button>}
       </SheetTrigger>
       <SheetContent 
-        className="w-full sm:max-w-xl overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-3xl"
+        className="w-full sm:max-w-xl h-auto overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-l-3xl"
         style={{
-          animation: 'float 6s ease-in-out infinite',
+          animation: 'slide 0.3s ease-in-out',
+          transition: 'transform 0.3s ease-in-out'
         }}
       >
         <style>{`
-          @keyframes float {
-            0%, 100% {
-              transform: translateY(0px) translateX(-50%);
+          @keyframes slide {
+            from {
+              transform: translateX(100%);
             }
-            50% {
-              transform: translateY(-10px) translateX(-50%);
+            to {
+              transform: translateX(0);
+            }
+          }
+
+          .data-[state=closed]:animate-out {
+            animation: slideOut 0.3s ease-in-out;
+          }
+
+          @keyframes slideOut {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(100%);
             }
           }
         `}</style>
         
         {isSuccess ? (
-          <div className="h-full flex flex-col items-center justify-center text-center space-y-4 animate-in slide-in-from-bottom duration-500">
+          <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
               <Check className="w-8 h-8 text-green-600" />
             </div>
