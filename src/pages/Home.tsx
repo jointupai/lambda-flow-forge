@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -12,11 +11,9 @@ import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
 import WobbleCardDemo from "@/components/ui/wobble-card-demo";
 import ContactDrawer from "@/components/shared/ContactDrawer";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
-  
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
     stripe_event = json.loads(event['body'])
@@ -34,7 +31,6 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
   return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
@@ -50,17 +46,15 @@ export default function Home() {
                 We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  size="default"  // Changed from 'lg' to match header button
-                  variant="outline"
-                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-10 rounded-full"  // Adjusted height to h-10 to match header
-                  onClick={() => {
-                    const drawerButton = document.querySelector('[data-drawer-trigger]');
-                    if (drawerButton) {
-                      (drawerButton as HTMLElement).click();
-                    }
-                  }}
-                >
+                <Button size="default" // Changed from 'lg' to match header button
+              variant="outline"
+              // Adjusted height to h-10 to match header
+              onClick={() => {
+                const drawerButton = document.querySelector('[data-drawer-trigger]');
+                if (drawerButton) {
+                  (drawerButton as HTMLElement).click();
+                }
+              }} className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-12 rounded-full">
                   Let's Partner Up
                 </Button>
               </div>
