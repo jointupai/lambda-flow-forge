@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
@@ -45,7 +46,7 @@ export default function Navbar() {
                             <Cloud className="h-5 w-5 text-green-600" />
                           </div>
                           <div>
-                            <h3 className="">
+                            <h3 className="text-base font-semibold text-gray-900">
                               Automation Infrastructure
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -59,7 +60,7 @@ export default function Navbar() {
                             <Replace className="h-5 w-5 text-blue-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="text-base font-semibold text-gray-900">
                               Zapier Replacement
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -73,7 +74,7 @@ export default function Navbar() {
                             <CreditCard className="h-5 w-5 text-purple-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="text-base font-semibold text-gray-900">
                               Stripe Payment Workflows
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -87,7 +88,7 @@ export default function Navbar() {
                             <BarChart className="h-5 w-5 text-orange-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="text-base font-semibold text-gray-900">
                               CRM & Lead Flow Automation
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -101,7 +102,7 @@ export default function Navbar() {
                             <Webhook className="h-5 w-5 text-indigo-600" />
                           </div>
                           <div>
-                            <h3 className="">
+                            <h3 className="text-base font-semibold text-gray-900">
                               Webhook & API Orchestration
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -115,7 +116,7 @@ export default function Navbar() {
                             <Bot className="h-5 w-5 text-pink-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="text-base font-semibold text-gray-900">
                               Custom Cloud Solutions
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -234,13 +235,22 @@ export default function Navbar() {
             </div>
           </div>
 
-          <button className="lg:hidden rounded-md p-2 text-gray-600" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="flex items-center gap-2">
+            <div className="hidden md:flex items-center gap-4">
+              <Button asChild className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
+                <ContactDrawer />
+              </Button>
+            </div>
+            
+            <button className="lg:hidden rounded-md p-2 text-gray-600" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </div>
 
-      {isMenuOpen && <div className="md:hidden">
+      {isMenuOpen && (
+        <div className="md:hidden">
           <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
             <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
               Home
@@ -306,99 +316,19 @@ export default function Navbar() {
             </div>
 
             <div className="pt-2">
-              <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
-            setIsMenuOpen(false);
-            window.open('https://calendly.com/jointup/intro', '_blank');
-          }}>
+              <Button 
+                className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  window.open('https://calendly.com/jointup/intro', '_blank');
+                }}
+              >
                 Get a Free Audit
               </Button>
             </div>
-          </div>
-        </div>}
-
-          <div className="hidden md:flex items-center gap-4">
-            <Button asChild className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
-              <ContactDrawer />
-            </Button>
           </div>
         </div>
-      </div>
-
-      {isMenuOpen && <div className="md:hidden">
-          <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
-            <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-              Home
-            </Link>
-            
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Solutions
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/solutions/automation-infrastructure" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Cloud className="h-4 w-4 text-green-600" />
-                  <span>Automation Infrastructure</span>
-                </Link>
-                <Link to="/solutions/zapier-replacement" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Replace className="h-4 w-4 text-blue-600" />
-                  <span>Zapier Replacement Systems</span>
-                </Link>
-                <Link to="/solutions/stripe-payment-workflows" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <CreditCard className="h-4 w-4 text-purple-600" />
-                  <span>Stripe Payment Workflows</span>
-                </Link>
-                <Link to="/solutions/crm-lead-flow" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <BarChart className="h-4 w-4 text-orange-600" />
-                  <span>CRM & Lead Flow Automation</span>
-                </Link>
-                <Link to="/solutions/webhook-orchestration" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Webhook className="h-4 w-4 text-indigo-600" />
-                  <span>Webhook & API Orchestration</span>
-                </Link>
-                <Link to="/solutions/custom-cloud-solutions" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Bot className="h-4 w-4 text-pink-600" />
-                  <span>Custom Cloud Solutions</span>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Micro Products
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/stripe-webflow-kit" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
-                  <span>Stripe + Webflow Lambda Kit</span>
-                </Link>
-              </div>
-            </div>
-            
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Company
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/how-it-works" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  How it Works
-                </Link>
-                <Link to="/about" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  About
-                </Link>
-                <Link to="/portfolio" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  Portfolio
-                </Link>
-              </div>
-            </div>
-            
-            <div className="block py-2">
-              <ContactDrawer />
-            </div>
-
-            <div className="pt-2">
-              <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
-            setIsMenuOpen(false);
-            window.open('https://calendly.com/jointup/intro', '_blank');
-          }}>
-                Get a Free Audit
-              </Button>
-            </div>
-          </div>
-        </div>}
+      )}
     </header>
   );
 }

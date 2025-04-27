@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -47,13 +48,22 @@ export default function Home() {
                 We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <ContactDrawer />
+                <Button 
+                  size="lg" 
+                  className="w-full sm:w-auto bg-black text-white hover:bg-gray-800 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
+                  asChild
+                >
+                  <ContactDrawer />
+                </Button>
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
                   asChild
                 >
-                  <ContactDrawer />
+                  <Link to="/case-studies/usacartags" className="flex items-center cursor-pointer gap-1">
+                    Interactive Demo
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -98,9 +108,6 @@ export default function Home() {
       {/* Features Section */}
       <FeaturesSectionDemo />
 
-      {/* What We Build Section */}
-      
-
       {/* Problem Solution Section */}
       <ProblemSolutionSection />
 
@@ -111,13 +118,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Mini Use Case Section - Mobile Optimized */}
-      
-
       {/* Testimonial Videos */}
       <TestimonialVideos />
-
-      {/* CTA Section */}
-      
     </div>;
 }
