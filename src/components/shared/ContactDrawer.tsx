@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -30,6 +29,18 @@ type FormValues = z.infer<typeof formSchema>;
 interface ContactDrawerProps {
   children?: React.ReactNode;
 }
+
+const getServiceDescription = (service: string): string => {
+  const serviceMap: Record<string, string> = {
+    'automation': 'Automation Infrastructure',
+    'zapier': 'Zapier Replacement',
+    'stripe': 'Stripe Payment Workflows',
+    'crm': 'CRM & Lead Flow',
+    'webhook': 'Webhook Orchestration',
+    'cloud': 'Custom Cloud Solutions'
+  };
+  return `They are interested in ${serviceMap[service]}`;
+};
 
 export default function ContactDrawer({ children }: ContactDrawerProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,7 +77,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
         companySize: data.companySize,
         companyRevenue: data.companyRevenue,
         budget: data.budget,
-        intrestedin: data.intrestedin,
+        intrestedin: getServiceDescription(data.intrestedin),
         message: data.message || ""
       };
       
