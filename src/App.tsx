@@ -13,6 +13,7 @@ import About from "./pages/About";
 import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
 import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
+import NotFound from "./pages/NotFound";
 
 // Solution pages
 import AutomationInfrastructure from "./pages/solutions/AutomationInfrastructure";
