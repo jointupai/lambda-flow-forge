@@ -4,23 +4,18 @@ import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu,
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
-
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
-
-  return (
-    <>
-      {(showSolutions || showProducts || showCompany) && (
-        <div className="fixed inset-0 bg-black/20 z-40" onClick={() => {
-          setShowSolutions(false);
-          setShowProducts(false);
-          setShowCompany(false);
-        }} />
-      )}
+  return <>
+      {(showSolutions || showProducts || showCompany) && <div className="fixed inset-0 bg-black/20 z-40" onClick={() => {
+      setShowSolutions(false);
+      setShowProducts(false);
+      setShowCompany(false);
+    }} />}
       
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
@@ -40,8 +35,7 @@ export default function Navbar() {
                     <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-90' : ''}`} />
                   </button>
 
-                  {showSolutions && (
-                    <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  {showSolutions && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                       <div className="p-8">
                         <div className="mb-8">
                           <h4 className="text-base font-medium text-gray-900 mb-1">Solutions</h4>
@@ -141,8 +135,7 @@ export default function Navbar() {
                           <ChevronRight className="h-4 w-4" />
                         </Link>
                       </div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
 
                 {/* Micro Products Dropdown */}
@@ -152,8 +145,7 @@ export default function Navbar() {
                     <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-90' : ''}`} />
                   </button>
 
-                  {showProducts && (
-                    <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  {showProducts && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                       <div className="p-8">
                         <div className="mb-8">
                           <h4 className="text-base font-medium text-gray-900 mb-1">Micro Products</h4>
@@ -179,8 +171,7 @@ export default function Navbar() {
                           <ChevronRight className="h-4 w-4" />
                         </Link>
                       </div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
 
                 {/* Company Dropdown */}
@@ -190,8 +181,7 @@ export default function Navbar() {
                     <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-90' : ''}`} />
                   </button>
 
-                  {showCompany && (
-                    <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                  {showCompany && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                       <div className="p-8">
                         <div className="mb-8">
                           <h4 className="text-base font-medium text-gray-900 mb-1">Company</h4>
@@ -237,8 +227,7 @@ export default function Navbar() {
                           <ChevronRight className="h-4 w-4" />
                         </Link>
                       </div>
-                    </div>
-                  )}
+                    </div>}
                 </div>
               </div>
             </div>
@@ -248,12 +237,7 @@ export default function Navbar() {
                 <Button asChild className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
                   <ContactDrawer />
                 </Button>
-                <Button 
-                  className="bg-black text-white hover:bg-gray-800 rounded-full" 
-                  onClick={() => setShowCalendly(true)}
-                >
-                  Get a Free Audit
-                </Button>
+                
               </div>
               
               <button className="lg:hidden rounded-md p-2 text-gray-600" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -263,8 +247,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {isMenuOpen && (
-          <div className="md:hidden">
+        {isMenuOpen && <div className="md:hidden">
             <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
               <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
                 Home
@@ -330,20 +313,15 @@ export default function Navbar() {
               </div>
 
               <div className="pt-2">
-                <Button 
-                  className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" 
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    window.open('https://calendly.com/jointup/intro', '_blank');
-                  }}
-                >
+                <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
+              setIsMenuOpen(false);
+              window.open('https://calendly.com/jointup/intro', '_blank');
+            }}>
                   Get a Free Audit
                 </Button>
               </div>
             </div>
-          </div>
-        )}
+          </div>}
       </header>
-    </>
-  );
+    </>;
 }
