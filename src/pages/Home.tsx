@@ -1,8 +1,8 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from 'lucide-react';
+import TestimonialVideos from "@/components/home/TestimonialVideos";
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
 import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
@@ -47,6 +47,21 @@ export default function Home() {
               <p className="text-base md:text-lg mb-6 text-gray-600 max-w-2xl mx-auto lg:mx-0">
                 We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button 
+                  size="default"
+                  variant="outline"
+                  onClick={() => {
+                    const drawerButton = document.querySelector('[data-drawer-trigger]');
+                    if (drawerButton) {
+                      (drawerButton as HTMLElement).click();
+                    }
+                  }} 
+                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-14 rounded-full"
+                >
+                  Let's Partner Up
+                </Button>
+              </div>
             </div>
             <div className="relative mt-6 lg:mt-0 w-full max-w-full">
               <div className="w-full px-2 sm:px-4">
@@ -84,7 +99,7 @@ export default function Home() {
       </section>
 
       {/* Wobble Card Demo Section */}
-      <section className="py-12 md:py-16 lg:py-20">
+      <section className="py-12 md:py-16 lg:py-24">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <WobbleCardDemo />
         </div>
@@ -105,6 +120,11 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <CostCalculator />
         </div>
+      </section>
+
+      {/* Testimonial Videos */}
+      <section className="px-4 md:px-6 lg:px-8">
+        <TestimonialVideos />
       </section>
       
       {/* ContactDrawer with trigger attribute for programmatic opening */}
