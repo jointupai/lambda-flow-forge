@@ -16,13 +16,9 @@ export default function Navbar() {
 
       <div className="container flex h-16 items-center px-4 sm:px-8">
         <div className="flex w-full items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" alt="JointUp.ai Logo" className="h-8 w-auto" />
-          </Link>
-
-          <div className="hidden md:flex items-center justify-center space-x-6">
-            <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Home
+          <div className="flex items-center space-x-6">
+            <Link to="/" className="flex items-center space-x-2">
+              <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" alt="JointUp.ai Logo" className="h-8 w-auto" />
             </Link>
 
             <DropdownMenu>
@@ -136,13 +132,10 @@ export default function Navbar() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            
-            <div className="hidden md:block">
-              <ContactDrawer />
-            </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
+            <ContactDrawer />
             <Button 
               asChild 
               className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full"
