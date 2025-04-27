@@ -65,7 +65,7 @@ export default function Home() {
                 </span>
               </p>
               <Button asChild className="mt-6 bg-black text-white hover:bg-gray-900">
-                <Link to="/case-studies/usacartags" className="rounded-[100px] px-[26px] py-[26px]">
+                <Link to="/case-studies/usacartags" className="rounded-[1000px] px-[30px] my-[33px] py-[31px]">
                   USACARTAGS Demo <ArrowRight className="ml-2" size={16} />
                 </Link>
               </Button>
