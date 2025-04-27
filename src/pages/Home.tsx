@@ -32,8 +32,7 @@ export default function Home() {
     
     return {"statusCode": 200}`;
 
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       {/* Hero Section */}
@@ -44,14 +43,7 @@ export default function Home() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight text-gray-900 xl:text-5xl">Build Scalable Backend Automation That Powers Your Growth</h1>
               <p className="text-lg md:text-xl mb-6 md:mb-8 text-gray-600">We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
-                  onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
-                >
-                  Let's Partner Up
-                  <ArrowRight className="ml-2" />
-                </Button>
+                <ContactDrawer />
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
@@ -124,6 +116,5 @@ export default function Home() {
 
       {/* CTA Section */}
       
-    </div>
-  );
+    </div>;
 }
