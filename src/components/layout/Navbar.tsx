@@ -15,7 +15,7 @@ export default function Navbar() {
       
       <div className="container mx-auto px-4">
         <MegaMenu>
-          <NavbarBrand as={Link} to="/">
+          <NavbarBrand href="/">
             <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup.svg" alt="JointUp.ai Logo" className="h-8 w-auto" />
           </NavbarBrand>
           
@@ -103,7 +103,7 @@ export default function Navbar() {
                     </Link>
                   </li>
                 </ul>
-
+                
                 <ul className="space-y-4">
                   <li>
                     <Link to="/solutions/stripe-payment-workflows" className="flex items-center gap-2 hover:text-primary-600">
