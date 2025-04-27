@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Play, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+
 interface Testimonial {
   id: string;
   company: string;
@@ -11,6 +13,7 @@ interface Testimonial {
   position: string;
   videoId?: string;
 }
+
 const testimonials: Testimonial[] = [{
   id: "1",
   company: "Customer 1",
@@ -36,6 +39,7 @@ const testimonials: Testimonial[] = [{
   author: "Roxane Cosnard des Closets",
   position: "Senior Manager of Finance"
 }];
+
 const VideoCard: React.FC<{
   testimonial: Testimonial;
 }> = ({
@@ -85,7 +89,22 @@ const VideoCard: React.FC<{
       </div>
     </div>;
 };
+
 const TestimonialVideos: React.FC = () => {
-  return;
+  return (
+    <section className="py-16 md:py-24 bg-gray-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+          What Our Customers Say
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {testimonials.map(testimonial => (
+            <VideoCard key={testimonial.id} testimonial={testimonial} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
+
 export default TestimonialVideos;
