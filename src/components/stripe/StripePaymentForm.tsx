@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
@@ -171,4 +170,3 @@ const StripePaymentForm = () => {
 };
 
 export default StripePaymentForm;
-

@@ -24,21 +24,11 @@ export default defineConfig(({ mode }) => ({
   ].filter(Boolean),
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      // Explicitly alias Stripe packages to node_modules
-      "@stripe/stripe-js": path.resolve(__dirname, "node_modules/@stripe/stripe-js"),
-      "@stripe/react-stripe-js": path.resolve(__dirname, "node_modules/@stripe/react-stripe-js")
+      "@": path.resolve(__dirname, "./src")
     },
     dedupe: ['three', 'react', 'react-dom', '@react-three/fiber', '@react-three/drei']
   },
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined
-      },
-      // Remove Stripe packages from external config to bundle them properly
-      external: []
-    },
     commonjsOptions: {
       include: [/node_modules/]
     },
@@ -48,11 +38,8 @@ export default defineConfig(({ mode }) => ({
     include: [
       'three', 
       '@react-three/fiber', 
-      '@react-three/drei',
-      '@stripe/stripe-js', 
-      '@stripe/react-stripe-js'
+      '@react-three/drei'
     ],
-    force: true,
     esbuildOptions: {
       // Node.js global to browser globalThis
       define: {
