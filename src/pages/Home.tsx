@@ -63,8 +63,10 @@ export default function Home() {
                 </Button>
               </div>
             </div>
-            <div className="relative mt-6 lg:mt-0">
-              <AnimatedCodeBlock code={lambdaCode} />
+            <div className="relative mt-6 lg:mt-0 w-full max-w-full">
+              <div className="w-full px-2 sm:px-4">
+                <AnimatedCodeBlock code={lambdaCode} />
+              </div>
             </div>
           </div>
         </div>
