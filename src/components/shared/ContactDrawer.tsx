@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
@@ -15,14 +15,14 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email address" }),
-  role: z.string().min(2, { message: "Role is required" }),
+  companyRole: z.string().min(2, { message: "Role is required" }),
   companyName: z.string().min(2, { message: "Company name is required" }),
   website: z.string().url({ message: "Please enter a valid URL" }).or(z.string().length(0)),
   companySize: z.string().min(1, { message: "Company size is required" }),
-  revenue: z.string().min(1, { message: "Annual revenue is required" }),
+  companyRevenue: z.string().min(1, { message: "Annual revenue is required" }),
   budget: z.string().min(1, { message: "Budget range is required" }),
-  services: z.string().min(2, { message: "Please select at least one service" }),
-  message: z.string(),
+  intrestedin: z.string().min(2, { message: "Please select at least one service" }),
+  message: z.string()
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -41,14 +41,14 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
     defaultValues: {
       name: "",
       email: "",
-      role: "",
+      companyRole: "",
       companyName: "",
       website: "",
       companySize: "",
-      revenue: "",
+      companyRevenue: "",
       budget: "",
-      services: "",
-      message: "",
+      intrestedin: "",
+      message: ""
     }
   });
 
@@ -58,7 +58,18 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
       await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          companyName: data.companyName,
+          companyRole: data.companyRole,
+          website: data.website,
+          companySize: data.companySize,
+          companyRevenue: data.companyRevenue,
+          budget: data.budget,
+          intrestedin: data.intrestedin,
+          message: data.message
+        }),
         mode: "no-cors"
       });
 
@@ -89,174 +100,182 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
           <div className="mt-6">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">What is your name?</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your name" 
-                          {...field}
-                          className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">What is your email?</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="you@company.com" 
-                          type="email" 
-                          {...field}
-                          className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="role"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">What is your role in the company?</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Your role" 
-                          {...field}
-                          className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="companyName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">Company Name</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="Company name" 
-                          {...field}
-                          className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="website"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">Company Website</FormLabel>
-                      <FormControl>
-                        <Input 
-                          placeholder="https://yourcompany.com" 
-                          {...field}
-                          className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="companySize"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">Company Size</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Name</FormLabel>
                         <FormControl>
-                          <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
-                            <SelectValue placeholder="Select company size" />
-                          </SelectTrigger>
+                          <Input 
+                            placeholder="Your name" 
+                            {...field}
+                            className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
+                          />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="1-10">1-10 employees</SelectItem>
-                          <SelectItem value="11-50">11-50 employees</SelectItem>
-                          <SelectItem value="51-200">51-200 employees</SelectItem>
-                          <SelectItem value="201-500">201-500 employees</SelectItem>
-                          <SelectItem value="500+">500+ employees</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name="revenue"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">Company's Annual Revenue</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Email</FormLabel>
                         <FormControl>
-                          <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
-                            <SelectValue placeholder="Select annual revenue" />
-                          </SelectTrigger>
+                          <Input 
+                            placeholder="you@company.com" 
+                            type="email" 
+                            {...field}
+                            className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
+                          />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="<1M">Less than $1M</SelectItem>
-                          <SelectItem value="1M-5M">$1M - $5M</SelectItem>
-                          <SelectItem value="5M-10M">$5M - $10M</SelectItem>
-                          <SelectItem value="10M-50M">$10M - $50M</SelectItem>
-                          <SelectItem value="50M+">$50M+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-                <FormField
-                  control={form.control}
-                  name="budget"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-base font-medium text-gray-900">Project Budget</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="companyRole"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Your Role</FormLabel>
                         <FormControl>
-                          <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
-                            <SelectValue placeholder="Select budget range" />
-                          </SelectTrigger>
+                          <Input 
+                            placeholder="Your role" 
+                            {...field}
+                            className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
+                          />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="<10k">Less than $10k</SelectItem>
-                          <SelectItem value="10-50k">$10k - $50k</SelectItem>
-                          <SelectItem value="50-100k">$50k - $100k</SelectItem>
-                          <SelectItem value=">100k">More than $100k</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="companyName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Company Name</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Company name" 
+                            {...field}
+                            className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="website"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Website</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="https://yourcompany.com" 
+                            {...field}
+                            className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="companySize"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Company Size</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectValue placeholder="Select company size" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="1-10">1-10 employees</SelectItem>
+                            <SelectItem value="11-50">11-50 employees</SelectItem>
+                            <SelectItem value="51-200">51-200 employees</SelectItem>
+                            <SelectItem value="201-500">201-500 employees</SelectItem>
+                            <SelectItem value="500+">500+ employees</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="companyRevenue"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Annual Revenue</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectValue placeholder="Select annual revenue" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="<1M">Less than $1M</SelectItem>
+                            <SelectItem value="1M-5M">$1M - $5M</SelectItem>
+                            <SelectItem value="5M-10M">$5M - $10M</SelectItem>
+                            <SelectItem value="10M-50M">$10M - $50M</SelectItem>
+                            <SelectItem value="50M+">$50M+</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="budget"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-900">Project Budget</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectValue placeholder="Select budget range" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="<10k">Less than $10k</SelectItem>
+                            <SelectItem value="10-50k">$10k - $50k</SelectItem>
+                            <SelectItem value="50-100k">$50k - $100k</SelectItem>
+                            <SelectItem value=">100k">More than $100k</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <FormField
                   control={form.control}
-                  name="services"
+                  name="intrestedin"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-base font-medium text-gray-900">What services are you interested in?</FormLabel>
@@ -266,7 +285,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
                             <SelectValue placeholder="Select service" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="bg-white">
                           <SelectItem value="automation">Automation Infrastructure</SelectItem>
                           <SelectItem value="zapier">Zapier Replacement</SelectItem>
                           <SelectItem value="stripe">Stripe Payment Workflows</SelectItem>
