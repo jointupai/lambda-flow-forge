@@ -54,22 +54,31 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
+    
+    // Log the data being sent for debugging
+    console.log("Submitting form data:", data);
+    
     try {
+      // Make sure intrestedin is included in the payload
+      const payload = {
+        name: data.name,
+        email: data.email,
+        companyName: data.companyName,
+        companyRole: data.companyRole,
+        website: data.website,
+        companySize: data.companySize,
+        companyRevenue: data.companyRevenue,
+        budget: data.budget,
+        intrestedin: data.intrestedin, // Ensure this is correctly passed
+        message: data.message || ""
+      };
+      
+      console.log("Sending payload to API:", payload);
+      
       await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          companyName: data.companyName,
-          companyRole: data.companyRole,
-          website: data.website,
-          companySize: data.companySize,
-          companyRevenue: data.companyRevenue,
-          budget: data.budget,
-          intrestedin: data.intrestedin,
-          message: data.message || ""
-        }),
+        body: JSON.stringify(payload),
         mode: "no-cors"
       });
 
@@ -88,6 +97,9 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
       setIsSuccess(false);
     }, 300);
   };
+
+  // Make sure the form validates and gets all required fields
+  console.log("Form errors:", form.formState.errors);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -221,7 +233,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
                                 <SelectValue placeholder="Select company size" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border shadow-lg">
+                            <SelectContent className="bg-white border border-gray-200 shadow-lg">
                               <SelectItem value="1-10" className="cursor-pointer hover:bg-gray-100">1-10 employees</SelectItem>
                               <SelectItem value="11-50" className="cursor-pointer hover:bg-gray-100">11-50 employees</SelectItem>
                               <SelectItem value="51-200" className="cursor-pointer hover:bg-gray-100">51-200 employees</SelectItem>
@@ -248,7 +260,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
                                 <SelectValue placeholder="Select annual revenue" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border shadow-lg">
+                            <SelectContent className="bg-white border border-gray-200 shadow-lg">
                               <SelectItem value="<1M" className="cursor-pointer hover:bg-gray-100">Less than $1M</SelectItem>
                               <SelectItem value="1M-5M" className="cursor-pointer hover:bg-gray-100">$1M - $5M</SelectItem>
                               <SelectItem value="5M-10M" className="cursor-pointer hover:bg-gray-100">$5M - $10M</SelectItem>
@@ -272,7 +284,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
                                 <SelectValue placeholder="Select budget range" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border shadow-lg">
+                            <SelectContent className="bg-white border border-gray-200 shadow-lg">
                               <SelectItem value="<10k" className="cursor-pointer hover:bg-gray-100">Less than $10k</SelectItem>
                               <SelectItem value="10-50k" className="cursor-pointer hover:bg-gray-100">$10k - $50k</SelectItem>
                               <SelectItem value="50-100k" className="cursor-pointer hover:bg-gray-100">$50k - $100k</SelectItem>
@@ -297,7 +309,7 @@ export default function ContactDrawer({ children }: ContactDrawerProps) {
                               <SelectValue placeholder="Select service" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-white border shadow-lg">
+                          <SelectContent className="bg-white border border-gray-200 shadow-lg">
                             <SelectItem value="automation" className="cursor-pointer hover:bg-gray-100">Automation Infrastructure</SelectItem>
                             <SelectItem value="zapier" className="cursor-pointer hover:bg-gray-100">Zapier Replacement</SelectItem>
                             <SelectItem value="stripe" className="cursor-pointer hover:bg-gray-100">Stripe Payment Workflows</SelectItem>
