@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -53,17 +52,7 @@ export default function Home() {
                   className="w-full sm:w-auto bg-black text-white hover:bg-gray-800 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
                   asChild
                 >
-                  <ContactDrawer />
-                </Button>
-                <Button 
-                  size="lg" 
-                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
-                  asChild
-                >
-                  <Link to="/case-studies/usacartags" className="flex items-center cursor-pointer gap-1">
-                    Interactive Demo
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
+                  <ContactDrawer>Let's Partner Up</ContactDrawer>
                 </Button>
               </div>
             </div>
