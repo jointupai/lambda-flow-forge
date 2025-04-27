@@ -4,6 +4,7 @@ import { PieChart, MessageSquare, Menu, X, ChevronRight, CreditCard, MessageSqua
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [showCalendly, setShowCalendly] = React.useState(false);
@@ -147,8 +148,17 @@ export default function Navbar() {
 
           {/* Get Free Audit Button */}
           <div className="hidden md:block">
-            <Button size="sm" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')} className="bg-brand-primary-400 text-black hover:bg-brand-primary-500 rounded-full px-6 transition-all duration-300 py-[23px]">
-              Get a Free Audit
+            <Button 
+              asChild 
+              className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full"
+            >
+              <Link 
+                to="#" 
+                onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')} 
+                className="flex items-center cursor-pointer px-4 py-6 text-black hover:text-gray-800 transition-all duration-300"
+              >
+                Get a Free Audit
+              </Link>
             </Button>
           </div>
 
