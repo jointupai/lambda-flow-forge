@@ -133,7 +133,7 @@ export default function ContactDrawer({
             </Button>
           </div> : <>
             <SheetHeader>
-              <SheetTitle className="font-medium text-4xl py- my- ">Get In Touch
+              <SheetTitle className="font-medium py- my- text-3xl leading-sm">Get In Touch
           </SheetTitle>
             </SheetHeader>
             <div className="mt-6">
