@@ -85,13 +85,14 @@ export default function Contact() {
   return (
     <div className="min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
-      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
-        <div className="container mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl mx-auto text-center">
+      
+      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
               Let's Talk Automation
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-300 leading-relaxed">
               Book a free automation audit and discover how AWS Lambda can transform your workflows
             </p>
           </div>
@@ -99,44 +100,50 @@ export default function Contact() {
       </section>
 
       <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-12">
               <div className="md:col-span-1">
-                <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
+                <h2 className="text-2xl font-bold mb-8 text-gray-900">Get in Touch</h2>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
-                    <Mail className="text-brand-600 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold">Email Us</h3>
-                      <a href="mailto:hello@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">hello@jointup.ai</a>
+                <div className="space-y-8">
+                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-600/20 hover:bg-gray-50/80 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <Mail className="text-brand-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Email Us</h3>
+                        <a href="mailto:hello@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">hello@jointup.ai</a>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
-                    <Phone className="text-brand-600 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold">Call Us</h3>
-                      <a href="#" className="text-gray-600 hover:text-brand-600 transition-colors">Schedule a call online</a>
+                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-600/20 hover:bg-gray-50/80 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <Phone className="text-brand-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Call Us</h3>
+                        <a href="#" className="text-gray-600 hover:text-brand-600 transition-colors">Schedule a call online</a>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-3 hover:translate-x-1 transition-transform">
-                    <MessageSquare className="text-brand-600 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-semibold">Support</h3>
-                      <a href="mailto:support@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">support@jointup.ai</a>
+                  <div className="p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-600/20 hover:bg-gray-50/80 transition-all duration-300">
+                    <div className="flex items-start gap-3">
+                      <MessageSquare className="text-brand-600 flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Support</h3>
+                        <a href="mailto:support@jointup.ai" className="text-gray-600 hover:text-brand-600 transition-colors">support@jointup.ai</a>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-100">
-                  <h3 className="font-semibold mb-2 flex items-center gap-2">
-                    <AlertCircle className="h-4 w-4 text-brand-600" /> 
+                <div className="mt-12 p-6 bg-brand-600/5 rounded-xl border border-brand-600/10">
+                  <h3 className="font-semibold mb-3 text-gray-900 flex items-center gap-2">
+                    <AlertCircle className="h-5 w-5 text-brand-600" /> 
                     Why get an audit?
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-gray-600 leading-relaxed">
                     Our automation experts will analyze your current workflows, 
                     identify opportunities for improvement, and provide a 
                     customized plan to help you save time and money.
@@ -145,24 +152,113 @@ export default function Contact() {
               </div>
               
               <div className="md:col-span-2">
-                <h2 className="text-2xl font-bold mb-6">Book a Free Automation Audit</h2>
-                <p className="text-gray-600 mb-8">
-                  We'll map out your current stack, identify time-wasting tasks, and give you a simple blueprint to automate it with AWS Lambda.
-                </p>
-                
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                  <h2 className="text-2xl font-bold mb-2 text-gray-900">Book a Free Automation Audit</h2>
+                  <p className="text-gray-600 mb-8 leading-relaxed">
+                    We'll map out your current stack, identify time-wasting tasks, and give you a simple blueprint to automate it with AWS Lambda.
+                  </p>
+                  
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-2 text-gray-700">
+                                <User className="h-4 w-4" /> Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input 
+                                  placeholder="Your name" 
+                                  className="border-gray-200 focus:border-brand-600 transition-colors"
+                                  {...field} 
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-2 text-gray-700">
+                                <Mail className="h-4 w-4" /> Email
+                              </FormLabel>
+                              <FormControl>
+                                <Input 
+                                  placeholder="you@company.com" 
+                                  type="email"
+                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
+                                  {...field} 
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <FormField
+                          control={form.control}
+                          name="company"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-2 text-gray-700">
+                                <Building className="h-4 w-4" /> Company Name
+                              </FormLabel>
+                              <FormControl>
+                                <Input 
+                                  placeholder="Your company"
+                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
+                                  {...field} 
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        
+                        <FormField
+                          control={form.control}
+                          name="website"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="flex items-center gap-2 text-gray-700">
+                                <Globe className="h-4 w-4" /> Website (optional)
+                              </FormLabel>
+                              <FormControl>
+                                <Input 
+                                  placeholder="https://yourcompany.com"
+                                  className="border-gray-200 focus:border-brand-600 transition-colors" 
+                                  {...field} 
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      
                       <FormField
                         control={form.control}
-                        name="name"
+                        name="tools"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <User className="h-4 w-4" /> Name
+                            <FormLabel className="flex items-center gap-2 text-gray-700">
+                              <Wrench className="h-4 w-4" /> What tools are you currently using?
                             </FormLabel>
                             <FormControl>
-                              <Input placeholder="Your name" {...field} />
+                              <Input 
+                                placeholder="Stripe, Zapier, Supabase, etc."
+                                className="border-gray-200 focus:border-brand-600 transition-colors" 
+                                {...field} 
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -171,96 +267,28 @@ export default function Contact() {
                       
                       <FormField
                         control={form.control}
-                        name="email"
+                        name="automation"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <Mail className="h-4 w-4" /> Email
+                            <FormLabel className="flex items-center gap-2 text-gray-700">
+                              <FileText className="h-4 w-4" /> What do you want to automate?
                             </FormLabel>
                             <FormControl>
-                              <Input placeholder="you@company.com" type="email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <FormField
-                        control={form.control}
-                        name="company"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <Building className="h-4 w-4" /> Company Name
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your company" {...field} />
+                              <Textarea 
+                                placeholder="Describe your current workflow and what you'd like to improve" 
+                                className="min-h-[120px] border-gray-200 focus:border-brand-600 transition-colors resize-none"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
                       />
                       
-                      <FormField
-                        control={form.control}
-                        name="website"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <Globe className="h-4 w-4" /> Website (optional)
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="https://yourcompany.com" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    
-                    <FormField
-                      control={form.control}
-                      name="tools"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2">
-                            <Wrench className="h-4 w-4" /> What tools are you currently using?
-                          </FormLabel>
-                          <FormControl>
-                            <Input placeholder="Stripe, Zapier, Supabase, etc." {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <FormField
-                      control={form.control}
-                      name="automation"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2">
-                            <FileText className="h-4 w-4" /> What do you want to automate?
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea 
-                              placeholder="Describe your current workflow and what you'd like to improve" 
-                              className="min-h-[120px]"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    
-                    <div>
                       <Button 
                         type="submit" 
                         size="lg" 
-                        className="w-full bg-brand-600 hover:bg-brand-700"
+                        className="w-full bg-brand-600 hover:bg-brand-700 text-white transition-colors"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
@@ -271,9 +299,9 @@ export default function Contact() {
                           </>
                         )}
                       </Button>
-                    </div>
-                  </form>
-                </Form>
+                    </form>
+                  </Form>
+                </div>
               </div>
             </div>
           </div>
@@ -281,38 +309,38 @@ export default function Contact() {
       </section>
 
       <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">Frequently Asked Questions</h2>
             
-            <div className="space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-semibold mb-3">How long does it take to build a custom automation?</h3>
-                <p className="text-gray-600">
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">How long does it take to build a custom automation?</h3>
+                <p className="text-gray-600 leading-relaxed">
                   It depends on the complexity, but most projects take 2-4 weeks from initial call to deployment. 
                   Simple integrations can be completed in as little as a few days.
                 </p>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-semibold mb-3">Do I need my own AWS account?</h3>
-                <p className="text-gray-600">
+              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Do I need my own AWS account?</h3>
+                <p className="text-gray-600 leading-relaxed">
                   Yes, we deploy to your AWS account so you maintain full ownership of the code and infrastructure. 
                   We can help you set this up if needed.
                 </p>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-semibold mb-3">What happens if something breaks?</h3>
-                <p className="text-gray-600">
+              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">What happens if something breaks?</h3>
+                <p className="text-gray-600 leading-relaxed">
                   We set up comprehensive monitoring and provide support to fix any issues that arise. 
                   Our solutions are built with error handling and recovery in mind.
                 </p>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-semibold mb-3">How much does a typical project cost?</h3>
-                <p className="text-gray-600">
+              <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">How much does a typical project cost?</h3>
+                <p className="text-gray-600 leading-relaxed">
                   Pricing depends on the complexity and scope of the project. We provide fixed-price quotes 
                   after the initial discovery call, typically ranging from $2,000-$15,000.
                 </p>
