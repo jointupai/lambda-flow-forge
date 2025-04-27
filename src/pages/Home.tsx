@@ -11,7 +11,6 @@ import CardDemo from "@/components/ui/cards-demo-3";
 import FeaturesSectionDemo from "@/components/ui/features-section";
 import WobbleCardDemo from "@/components/ui/wobble-card-demo";
 import ContactDrawer from "@/components/shared/ContactDrawer";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
@@ -32,7 +31,6 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
   return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
@@ -49,12 +47,7 @@ export default function Home() {
                 We build cloud automation infrastructure for companies doing $1M–$100M+ — replacing brittle ops with real-time, resilient systems that scale with your growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  size="default"
-                  variant="outline"
-                  onClick={() => setOpenContactDrawer(true)} 
-                  className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-14 rounded-full"
-                >
+                <Button size="default" variant="outline" onClick={() => setOpenContactDrawer(true)} className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-14 rounded-full">
                   Let's Partner Up
                 </Button>
               </div>
@@ -112,8 +105,8 @@ export default function Home() {
       </div>
 
       {/* Cost Calculator Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <section className="py-12 md:py-16 bg-white lg:py-0">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 py-[60px]">
           <CostCalculator />
         </div>
       </section>
