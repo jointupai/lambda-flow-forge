@@ -34,7 +34,8 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: undefined
-      }
+      },
+      external: [] // Make sure no packages are externalized
     },
     commonjsOptions: {
       include: [/node_modules/]
@@ -42,7 +43,7 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false
   },
   optimizeDeps: {
-    include: ['three', '@react-three/fiber', '@react-three/drei'],
+    include: ['three', '@react-three/fiber', '@react-three/drei', '@stripe/stripe-js', '@stripe/react-stripe-js'],
     force: true,
     esbuildOptions: {
       // Node.js global to browser globalThis
