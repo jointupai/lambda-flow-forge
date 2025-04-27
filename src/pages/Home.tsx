@@ -51,6 +51,7 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button 
                   size="lg" 
+                  variant="outline"
                   className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto rounded-full"
                   onClick={() => {
                     const drawerButton = document.querySelector('[data-drawer-trigger]');
