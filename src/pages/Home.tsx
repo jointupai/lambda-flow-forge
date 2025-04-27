@@ -32,7 +32,8 @@ export default function Home() {
     
     return {"statusCode": 200}`;
 
-  return <div className="flex flex-col min-h-screen">
+  return (
+    <div className="flex flex-col min-h-screen">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       
       {/* Hero Section */}
@@ -123,5 +124,6 @@ export default function Home() {
 
       {/* CTA Section */}
       
-    </div>;
+    </div>
+  );
 }
