@@ -54,7 +54,7 @@ export default function Home() {
                 if (drawerButton) {
                   (drawerButton as HTMLElement).click();
                 }
-              }} className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-13 rounded-full">
+              }} className="w-full sm:w-auto bg-transparent border border-black text-black hover:bg-gray-100 text-base md:text-lg px-6 md:px-8 h-14 rounded-full">
                   Let's Partner Up
                 </Button>
               </div>
