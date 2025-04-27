@@ -95,7 +95,7 @@ export default function Navbar() {
                             <Webhook className="h-5 w-5 text-indigo-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="">
                               Webhook & API Orchestration
                             </h3>
                             <p className="text-sm text-gray-600">
