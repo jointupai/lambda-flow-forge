@@ -1,24 +1,15 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import ContactDrawer from "@/components/shared/ContactDrawer";
-
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
-
-  return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  return <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,18 +21,12 @@ export default function Navbar() {
 
             <div className="hidden lg:flex items-center space-x-8">
               <div className="relative group">
-                <button 
-                  onClick={() => setShowSolutions(!showSolutions)}
-                  className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-                >
+                <button onClick={() => setShowSolutions(!showSolutions)} className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
                   Solutions
-                  <ChevronRight 
-                    className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-90' : ''}`} 
-                  />
+                  <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-90' : ''}`} />
                 </button>
 
-                {showSolutions && (
-                  <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                {showSolutions && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl bg-white shadow-lg ring-1 ring-black ring-opacity-5">
                     <div className="p-8">
                       <div className="mb-8">
                         <h4 className="text-base font-medium text-gray-900 mb-1">Solutions</h4>
@@ -49,15 +34,12 @@ export default function Navbar() {
                       </div>
 
                       <div className="grid grid-cols-2 gap-5">
-                        <Link 
-                          to="/solutions/automation-infrastructure" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/automation-infrastructure" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-green-50">
                             <Cloud className="h-5 w-5 text-green-600" />
                           </div>
                           <div>
-                            <h3 className="text-base font-semibold text-gray-900 group-hover:text-primary transition-colors">
+                            <h3 className="">
                               Automation Infrastructure
                             </h3>
                             <p className="text-sm text-gray-600">
@@ -66,10 +48,7 @@ export default function Navbar() {
                           </div>
                         </Link>
 
-                        <Link 
-                          to="/solutions/zapier-replacement" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/zapier-replacement" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-blue-50">
                             <Replace className="h-5 w-5 text-blue-600" />
                           </div>
@@ -83,10 +62,7 @@ export default function Navbar() {
                           </div>
                         </Link>
 
-                        <Link 
-                          to="/solutions/stripe-payment-workflows" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/stripe-payment-workflows" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-purple-50">
                             <CreditCard className="h-5 w-5 text-purple-600" />
                           </div>
@@ -100,10 +76,7 @@ export default function Navbar() {
                           </div>
                         </Link>
 
-                        <Link 
-                          to="/solutions/crm-lead-flow" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/crm-lead-flow" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-orange-50">
                             <BarChart className="h-5 w-5 text-orange-600" />
                           </div>
@@ -117,10 +90,7 @@ export default function Navbar() {
                           </div>
                         </Link>
 
-                        <Link 
-                          to="/solutions/webhook-orchestration" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/webhook-orchestration" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-indigo-50">
                             <Webhook className="h-5 w-5 text-indigo-600" />
                           </div>
@@ -134,10 +104,7 @@ export default function Navbar() {
                           </div>
                         </Link>
 
-                        <Link 
-                          to="/solutions/custom-cloud-solutions" 
-                          className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors"
-                        >
+                        <Link to="/solutions/custom-cloud-solutions" className="group flex items-start gap-4 rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <div className="p-2 rounded-lg bg-pink-50">
                             <Bot className="h-5 w-5 text-pink-600" />
                           </div>
@@ -154,16 +121,12 @@ export default function Navbar() {
                     </div>
 
                     <div className="bg-gray-50 px-8 py-4 rounded-b-xl">
-                      <Link 
-                        to="/solutions"
-                        className="flex items-center justify-center gap-2 text-primary font-medium hover:text-primary/90 transition-colors"
-                      >
+                      <Link to="/solutions" className="flex items-center justify-center gap-2 text-primary font-medium hover:text-primary/90 transition-colors">
                         View All Solutions
                         <ChevronRight className="h-4 w-4" />
                       </Link>
                     </div>
-                  </div>
-                )}
+                  </div>}
               </div>
 
               <DropdownMenu>
@@ -210,31 +173,20 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button 
-              asChild 
-              className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full"
-            >
-              <Link 
-                to="#" 
-                onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')} 
-                className="flex items-center cursor-pointer px-4 py-6 text-black hover:text-gray-800 transition-all duration-300"
-              >
+            <Button asChild className="bg-transparent border border-black text-black hover:bg-gray-100 rounded-full">
+              <Link to="#" onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')} className="flex items-center cursor-pointer px-4 py-6 text-black hover:text-gray-800 transition-all duration-300">
                 Get a Free Audit
               </Link>
             </Button>
           </div>
 
-          <button 
-            className="lg:hidden rounded-md p-2 text-gray-600" 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <button className="lg:hidden rounded-md p-2 text-gray-600" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="md:hidden">
+      {isMenuOpen && <div className="md:hidden">
           <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
             <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
               Home
@@ -301,15 +253,13 @@ export default function Navbar() {
 
             <div className="pt-2">
               <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
-                setIsMenuOpen(false);
-                window.open('https://calendly.com/jointup/intro', '_blank');
-              }}>
+            setIsMenuOpen(false);
+            window.open('https://calendly.com/jointup/intro', '_blank');
+          }}>
                 Get a Free Audit
               </Button>
             </div>
           </div>
-        </div>
-      )}
-    </header>
-  );
+        </div>}
+    </header>;
 }
