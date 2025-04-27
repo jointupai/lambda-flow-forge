@@ -1,9 +1,7 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Activity, Webhook, Zap, Database, Bell } from "lucide-react";
 import { motion } from "framer-motion";
-
 export default function FeaturesSectionDemo() {
   const features = [{
     title: "Automation Infrastructure",
@@ -31,35 +29,8 @@ export default function FeaturesSectionDemo() {
     icon: <Activity className="h-6 w-6 text-neutral-600 dark:text-neutral-200" />,
     className: "col-span-1 lg:col-span-2 border-b lg:border-none dark:border-neutral-800"
   }];
-
-  return (
-    <section className="bg-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Core Capabilities</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-6 border border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
-            {features.map((feature, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <FeatureCard className={feature.className}>
-                  <div className="mb-4">{feature.icon}</div>
-                  <FeatureTitle>{feature.title}</FeatureTitle>
-                  <FeatureDescription>{feature.description}</FeatureDescription>
-                </FeatureCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return;
 }
-
 const FeatureCard = ({
   children,
   className
@@ -71,7 +42,6 @@ const FeatureCard = ({
       {children}
     </div>;
 };
-
 const FeatureTitle = ({
   children
 }: {
@@ -81,7 +51,6 @@ const FeatureTitle = ({
       {children}
     </h3>;
 };
-
 const FeatureDescription = ({
   children
 }: {

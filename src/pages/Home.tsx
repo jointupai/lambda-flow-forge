@@ -99,52 +99,7 @@ export default function Home() {
       </section>
 
       {/* Mini Use Case Section - Mobile Optimized */}
-      <section className="py-12 md:py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 md:mb-12 text-center">
-              How It Works: A Real Example
-            </h2>
-            
-            <div className="flex flex-col md:flex-row gap-6 md:gap-0">
-              {/* Step 1 */}
-              <div className="flex-1 relative">
-                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full">
-                  <div className="bg-[#F97316] text-white w-8 h-8 rounded-full flex items-center justify-center mb-4 font-bold">1</div>
-                  <h3 className="font-bold text-lg mb-3">Customer Checkout</h3>
-                  <p className="text-gray-700">A customer completes payment with Stripe, which triggers a webhook to your AWS Lambda function.</p>
-                </div>
-                <div className="hidden md:block absolute right-0 top-1/2 h-2 w-12 bg-gray-300 -mr-6 transform -translate-y-1/2"></div>
-              </div>
-              
-              {/* Step 2 */}
-              <div className="flex-1 relative">
-                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full">
-                  <div className="bg-[#F97316] text-white w-8 h-8 rounded-full flex items-center justify-center mb-4 font-bold">2</div>
-                  <h3 className="font-bold text-lg mb-3">Lambda Processing</h3>
-                  <p className="text-gray-700">Lambda parses payment + metadata, creates a new row in Supabase, and sends customer confirmation via Twilio SMS.</p>
-                </div>
-                <div className="hidden md:block absolute right-0 top-1/2 h-2 w-12 bg-gray-300 -mr-6 transform -translate-y-1/2"></div>
-              </div>
-              
-              {/* Step 3 */}
-              <div className="flex-1">
-                <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm h-full">
-                  <div className="bg-[#F97316] text-white w-8 h-8 rounded-full flex items-center justify-center mb-4 font-bold">3</div>
-                  <h3 className="font-bold text-lg mb-3">Team Notification</h3>
-                  <p className="text-gray-700">Your team receives instant notification in Slack with order details and customer information.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center mt-8 md:mt-12">
-              <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-lg font-medium text-sm md:text-base">
-                ✅ No Zapier. Just clean code and real-time results.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Testimonial Videos */}
       <TestimonialVideos />
