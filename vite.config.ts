@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: undefined
       },
-      external: [] // Make sure no packages are externalized
+      external: ['@stripe/stripe-js', '@stripe/react-stripe-js'] // Explicitly mark Stripe packages as external
     },
     commonjsOptions: {
       include: [/node_modules/]
