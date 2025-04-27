@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
@@ -125,7 +126,7 @@ export default function ContactDrawer({
   };
 
   const handleClose = () => {
-    setOpen(false);
+    onOpenChange(false);
     setTimeout(() => {
       setIsSuccess(false);
     }, 300);
