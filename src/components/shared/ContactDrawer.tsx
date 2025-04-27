@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -132,8 +132,8 @@ export default function ContactDrawer({
       <SheetContent 
         className="w-full sm:max-w-xl h-auto overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-l-3xl"
         style={{
-          animation: 'slide 0.3s ease-in-out',
-          transition: 'transform 0.3s ease-in-out'
+          animation: 'slide 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
         }}
       >
         <style>{`
@@ -147,7 +147,7 @@ export default function ContactDrawer({
           }
 
           .data-[state=closed]:animate-out {
-            animation: slideOut 0.3s ease-in-out;
+            animation: slideOut 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           }
 
           @keyframes slideOut {
@@ -160,6 +160,13 @@ export default function ContactDrawer({
           }
         `}</style>
         
+        <SheetHeader className="relative">
+          <SheetTitle className="font-medium py-2 my-2 tracking-tighter text-3xl">Get In Touch</SheetTitle>
+          <SheetClose className="absolute -right-1 -top-1 rounded-full p-2 text-gray-500 hover:text-gray-700 transition-colors">
+            <X className="h-6 w-6 stroke-[1.5]" />
+          </SheetClose>
+        </SheetHeader>
+
         {isSuccess ? (
           <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -175,9 +182,6 @@ export default function ContactDrawer({
           </div>
         ) : (
           <>
-            <SheetHeader>
-              <SheetTitle className="font-medium py-2 my-2 tracking-tighter text-3xl">Get In Touch</SheetTitle>
-            </SheetHeader>
             <div className="mt-6">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
