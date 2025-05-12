@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,30 +23,30 @@ export default {
     },
     extend: {
       colors: {
-        border: "#d9e2ec", 
+        border: "#e5e7eb", 
         'brand-primary': {
-          50: '#fcfcca',
-          100: '#f9f9a0',
-          200: '#f5f576',
-          300: '#f2f24c',
-          400: '#EBF212',
-          500: '#EBF212',
-          600: '#d6dd0f',
-          700: '#c2ca0c',
-          800: '#adb609',
-          900: '#99a306',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
         },
         'brand-secondary': {
-          50: '#f0f4f8',
-          100: '#d9e2ec',
-          200: '#bcccdc',
-          300: '#9fb3c8',
-          400: '#829ab1',
-          500: '#627d98',
-          600: '#486581',
-          700: '#334e68',
-          800: '#243b53',
-          900: '#102a43',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -53,22 +54,22 @@ export default {
         secondary: "hsl(var(--secondary))",
       },
       borderRadius: {
-        'lg': '0.75rem',
-        'xl': '1rem',
-        '2xl': '1.5rem',
+        'lg': '0.5rem',
+        'xl': '0.75rem',
+        '2xl': '1rem',
       },
       boxShadow: {
-        'modern': '0 10px 25px rgba(0, 112, 243, 0.1)',
-        'hover': '0 15px 35px rgba(0, 112, 243, 0.15)',
+        'modern': '0 4px 12px rgba(0, 0, 0, 0.08)',
+        'hover': '0 8px 16px rgba(0, 0, 0, 0.12)',
       },
       keyframes: {
         'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '0%': { opacity: '0', transform: 'translateY(10px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         'subtle-pulse': {
           '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(1.02)' },
+          '50%': { transform: 'scale(1.01)' },
         },
         'scroll': {
           '0%': { transform: 'translateX(0)' },
@@ -76,7 +77,7 @@ export default {
         }
       },
       animation: {
-        'fade-in': 'fade-in 0.6s ease-out',
+        'fade-in': 'fade-in 0.5s ease-out',
         'subtle-pulse': 'subtle-pulse 2s ease-in-out infinite',
         'scroll': 'scroll 20s linear infinite'
       },

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,13 +6,13 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 0 0% 0%;
     
-    /* Update primary color to the new accent color */
-    --primary: 61.3 89.4% 47.8%; /* HSL of #EBF212 */
-    --secondary: 220 13% 69%;
+    /* Update primary color to black for Vercel-like styling */
+    --primary: 0 0% 0%; /* Black as primary */
+    --secondary: 0 0% 70%; /* Gray for secondary elements */
     
-    --border-radius: 0.75rem;
+    --border-radius: 0.5rem;
   }
 
   * {
@@ -34,16 +35,28 @@
   }
 
   .modern-card {
-    @apply bg-white rounded-xl shadow-modern hover:shadow-hover transition-all duration-300 ease-in-out;
+    @apply bg-white rounded-md border border-gray-200 hover:border-gray-300 shadow-sm transition-all duration-300 ease-in-out;
+  }
+  
+  /* Vercel-inspired grid background */
+  .bg-grid-white {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* Vercel-inspired link style */
+  .vercel-link {
+    @apply font-medium text-black hover:underline transition-colors duration-200;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-br from-brand-primary-400 to-brand-primary-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-black to-gray-700 bg-clip-text text-transparent;
   }
 
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-lg;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-md;
   }
 }
