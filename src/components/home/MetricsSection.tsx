@@ -63,12 +63,12 @@ const MetricsSection = () => {
           
           {/* Right side with content */}
           <div className="md:w-1/2 lg:w-5/12 mt-10 md:mt-0">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-lg p-6">
+            <div className="bg-[#0000] border-none rounded-lg p-6">
               <p className="text-gray-300 leading-relaxed">
                 {metrics[selectedOption as keyof typeof metrics].content}
               </p>
               
-              <button className="mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-md flex items-center text-sm">
+              <button className="mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm">
                 Deploy AI Apps in seconds
                 <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
               </button>
