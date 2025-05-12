@@ -1,7 +1,7 @@
 
 import * as React from "react"
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
-import { Check, ChevronRight, Circle } from "lucide-react"
+import { Check, ChevronDown, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -37,7 +37,7 @@ const MenubarTrigger = React.forwardRef<
   <MenubarPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center rounded-sm px-3 py-1.5 text-sm font-medium outline-none relative focus:bg-zinc-800 data-[state=open]:bg-zinc-800 data-[state=open]:text-foreground",
+      "flex cursor-default select-none items-center rounded-sm px-3 py-1.5 text-sm font-medium outline-none relative focus:bg-zinc-800 data-[state=open]:inline-flex data-[state=open]:p-1 data-[state=open]:bg-zinc-900 data-[state=open]:rounded-full data-[state=open]:text-foreground",
       className
     )}
     {...props}
@@ -54,14 +54,14 @@ const MenubarSubTrigger = React.forwardRef<
   <MenubarPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-zinc-800 data-[state=open]:bg-zinc-800 data-[state=open]:text-foreground",
+      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-zinc-800 data-[state=open]:inline-flex data-[state=open]:p-1 data-[state=open]:bg-zinc-900 data-[state=open]:rounded-full data-[state=open]:text-foreground",
       inset && "pl-8",
       className
     )}
     {...props}
   >
     {children}
-    <ChevronRight className="ml-auto h-4 w-4" />
+    <ChevronDown className="ml-auto h-4 w-4 transition-transform duration-200 group-data-[state=open]:rotate-180" />
   </MenubarPrimitive.SubTrigger>
 ))
 MenubarSubTrigger.displayName = MenubarPrimitive.SubTrigger.displayName

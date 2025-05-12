@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
+import { ChevronDown, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
@@ -41,11 +41,11 @@ export default function Navbar() {
                     if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showSolutions ? 'menu-item-selected' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showSolutions ? "open" : "closed"}
                 >
                   Solutions
-                  <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-90' : ''}`} />
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
                 </button>
 
                 {showSolutions && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '750px' }}>
@@ -138,7 +138,7 @@ export default function Navbar() {
                     <div className="border-t border-zinc-800 p-3 text-center">
                       <Link to="/solutions" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Solutions
-                        <ChevronRight className="h-3 w-3" />
+                        <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
@@ -151,11 +151,11 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showProducts ? 'menu-item-selected' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showProducts ? "open" : "closed"}
                 >
                   Micro Products
-                  <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-90' : ''}`} />
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
                 </button>
 
                 {showProducts && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
@@ -174,7 +174,7 @@ export default function Navbar() {
                     <div className="border-t border-zinc-800 p-3 text-center">
                       <Link to="/micro-products" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Products
-                        <ChevronRight className="h-3 w-3" />
+                        <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
@@ -187,11 +187,11 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showProducts) setShowProducts(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showCompany ? 'menu-item-selected' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showCompany ? "open" : "closed"}
                 >
                   Company
-                  <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-90' : ''}`} />
+                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
                 </button>
 
                 {showCompany && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
@@ -230,7 +230,7 @@ export default function Navbar() {
                     <div className="border-t border-zinc-800 p-3 text-center">
                       <Link to="/company" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         Learn More About Us
-                        <ChevronRight className="h-3 w-3" />
+                        <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
