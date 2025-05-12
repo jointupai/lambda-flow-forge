@@ -8,12 +8,10 @@ import CardDemo from "@/components/ui/cards-demo-3";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
 import MetricsSection from "@/components/home/MetricsSection";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
   const [activeTab, setActiveTab] = useState('aws');
-  
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
     stripe_event = json.loads(event['body'])
@@ -31,9 +29,7 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
-  return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+  return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
@@ -44,26 +40,17 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-              Automate Work.<br/>Scale Smart.
+              Automate Work.<br />Scale Smart.
             </h1>
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl">
               We build AI-powered apps and automations that replace manual tasks and scale with your business. 
               Trusted by founders, ops leaders, and fast-growing teams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-              <Button
-                size="lg"
-                onClick={() => setShowCalendly(true)}
-                className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base h-12 px-8"
-              >
+              <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base h-12 px-8">
                 Book a Free Discovery Call
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => setOpenContactDrawer(true)} 
-                className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base h-12 px-8"
-              >
+              <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base h-12 px-8">
                 Let's Partner Up
               </Button>
             </div>
@@ -78,33 +65,10 @@ export default function Home() {
       </section>
 
       {/* Code display section */}
-      <section className="bg-black py-16 md:py-24 relative">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-zinc-900 rounded-md overflow-hidden shadow-2xl border border-gray-800">
-              <div className="bg-[#111111] px-4 py-2 flex items-center gap-2 border-b border-gray-800">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <div className="text-xs text-gray-400 ml-2">lambda_handler.py</div>
-              </div>
-              <div className="p-2 sm:p-4">
-                <AnimatedCodeBlock code={lambdaCode} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Integration Partners */}
-      <section className="bg-black py-10 md:py-16 border-t border-gray-800">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <p className="text-sm text-gray-500 font-medium">Seamlessly integrates with your tech stack</p>
-          </div>
-          <LogoScroller />
-        </div>
-      </section>
+      
 
       {/* Key Metrics Section - Replaced with the new interactive MetricsSection */}
       <MetricsSection />
@@ -185,18 +149,10 @@ export default function Home() {
               When you push code to the cloud with JointUp, we make it instantly available across the planet.
             </p>
             <div className="flex flex-wrap justify-center gap-4 mb-8">
-              <Button 
-                variant="outline" 
-                className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800"
-                onClick={() => setShowCalendly(true)}
-              >
+              <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setShowCalendly(true)}>
                 Book a Discovery Call
               </Button>
-              <Button 
-                variant="outline"
-                className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800"
-                onClick={() => setOpenContactDrawer(true)}
-              >
+              <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setOpenContactDrawer(true)}>
                 Learn about Enterprise
               </Button>
             </div>
@@ -245,11 +201,7 @@ export default function Home() {
                 </li>
               </ul>
               
-              <Button 
-                className="mt-8 bg-white text-black hover:bg-gray-100"
-                size="lg"
-                onClick={() => setShowCalendly(true)}
-              >
+              <Button className="mt-8 bg-white text-black hover:bg-gray-100" size="lg" onClick={() => setShowCalendly(true)}>
                 <span>Start Deploying</span>
                 <ArrowRight size={16} />
               </Button>
@@ -259,7 +211,7 @@ export default function Home() {
               <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
                 <div className="w-12 h-12 mb-4 flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path stroke="#FF4785" d="M5 3l14 9-14 9z" fill="none"/>
+                    <path stroke="#FF4785" d="M5 3l14 9-14 9z" fill="none" />
                   </svg>
                 </div>
                 <p className="text-gray-300">AWS Lambda</p>
@@ -313,25 +265,15 @@ export default function Home() {
               Book a free discovery call to explore how we can automate, integrate, and scale your operations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                onClick={() => setShowCalendly(true)} 
-                className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8"
-              >
+              <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8">
                 Book a Free Discovery Call
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => setOpenContactDrawer(true)} 
-                className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8"
-              >
+              <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
                 Let's Partner Up
               </Button>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
