@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,8 +90,8 @@
   
   /* Selected menu state - UPDATED */
   .nav-menu-item-selected {
-    @apply inline-flex p-2.5 bg-zinc-900 rounded-full;
-    min-width: max-content; /* Prevents width changes */
+    @apply inline-flex p-2.5 bg-zinc-900 rounded-full min-w-max;
+    width: 100%;
   }
   
   /* Dropdown container background - ENHANCED */

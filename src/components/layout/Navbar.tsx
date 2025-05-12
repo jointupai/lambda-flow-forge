@@ -43,9 +43,10 @@ export default function Navbar() {
                     if (showCompany) setShowCompany(false);
                   }} 
                   className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: showSolutions ? null : 'max-content' }}
                   data-state={showSolutions ? "open" : "closed"}
                 >
-                  <span className="flex items-center">
+                  <span className="flex items-center min-w-max">
                     Solutions
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
                   </span>
@@ -157,9 +158,10 @@ export default function Navbar() {
                     if (showCompany) setShowCompany(false);
                   }} 
                   className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: showProducts ? null : 'max-content' }}
                   data-state={showProducts ? "open" : "closed"}
                 >
-                  <span className="flex items-center">
+                  <span className="flex items-center min-w-max">
                     Micro Products
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
                   </span>
@@ -197,9 +199,10 @@ export default function Navbar() {
                     if (showProducts) setShowProducts(false);
                   }} 
                   className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: showCompany ? null : 'max-content' }}
                   data-state={showCompany ? "open" : "closed"}
                 >
-                  <span className="flex items-center">
+                  <span className="flex items-center min-w-max">
                     Company
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
                   </span>
