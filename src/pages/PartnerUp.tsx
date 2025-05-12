@@ -122,7 +122,7 @@ export default function PartnerUp() {
                 {errors.email && <span className="text-red-500 text-xs">Please enter a valid email address</span>}
               </div>
 
-              <div className={`space-y-6 transition-all duration-300 ease-in-out ${emailSubmitted ? 'opacity-100 max-h-[500px]' : 'opacity-0 max-h-0 overflow-hidden'}`}>
+              <div className={`space-y-6 transition-all duration-300 ease-in-out ${emailSubmitted ? 'opacity-100 max-h-[500px] animate-form-field-in' : 'opacity-0 max-h-0 overflow-hidden'}`}>
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
                     How can we help?
