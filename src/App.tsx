@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -14,6 +15,7 @@ import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
 import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
 import NotFound from "./pages/NotFound";
+import PartnerUp from "./pages/PartnerUp"; // Add the new page import
 
 // Solution pages
 import AutomationInfrastructure from "./pages/solutions/AutomationInfrastructure";
@@ -42,6 +44,7 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
+              <Route path="/partner" element={<PartnerUp />} /> {/* Add the new route */}
               
               {/* Solution Routes */}
               <Route path="/solutions/automation-infrastructure" element={<AutomationInfrastructure />} />

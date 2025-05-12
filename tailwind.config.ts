@@ -52,6 +52,11 @@ export default {
         foreground: "hsl(var(--foreground))",
         primary: "hsl(var(--primary))",
         secondary: "hsl(var(--secondary))",
+        blue: {
+          400: '#3b82f6',
+          500: '#1d9bf0',
+          600: '#0284c7',
+        },
       },
       borderRadius: {
         'lg': '0.5rem',
@@ -94,17 +99,22 @@ export default {
         'menu-slide-out': {
           '0%': { transform: 'translateY(0)', opacity: '1' },
           '100%': { transform: 'translateY(8px)', opacity: '0' }
+        },
+        'form-field-in': {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
         }
       },
       animation: {
-        'fade-in': 'fade-in 0.5s ease-out',
-        'fade-out': 'fade-out 0.5s ease-out',
+        'fade-in': 'fade-in 0.3s ease-out',
+        'fade-out': 'fade-out 0.3s ease-out',
         'scale-in': 'scale-in 0.2s ease-out',
         'scale-out': 'scale-out 0.2s ease-out',
         'subtle-pulse': 'subtle-pulse 2s ease-in-out infinite',
         'scroll': 'scroll 20s linear infinite',
         'menu-slide-in': 'menu-slide-in 0.3s ease-out',
-        'menu-slide-out': 'menu-slide-out 0.3s ease-in'
+        'menu-slide-out': 'menu-slide-out 0.3s ease-in',
+        'form-field-in': 'form-field-in 0.3s ease-out'
       },
     },
   },

@@ -90,7 +90,7 @@
   
   /* Selected menu state - NEW */
   .menu-item-selected {
-    @apply bg-zinc-800;
+    @apply bg-zinc-800/70;
   }
   
   /* Dropdown container background - ENHANCED */
@@ -107,7 +107,7 @@
   
   /* Vercel-style menu item */
   .vercel-menu-item {
-    @apply flex items-start gap-3 p-4 hover:bg-zinc-900 transition-colors duration-200;
+    @apply flex items-start gap-3 p-4 hover:bg-zinc-800/70 transition-colors duration-200;
   }
   
   .vercel-menu-item-icon {
@@ -124,6 +124,29 @@
   
   .vercel-menu-item-description {
     @apply text-xs text-gray-400;
+  }
+  
+  /* Partner Form Styles */
+  .partner-form-input {
+    @apply bg-black border border-zinc-700 rounded-md px-4 py-2.5 text-white w-full transition-all duration-200;
+    @apply focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .partner-form-label {
+    @apply text-sm font-medium text-white mb-1.5 block;
+  }
+  
+  .partner-form-textarea {
+    @apply bg-black border border-zinc-700 rounded-md px-4 py-2.5 text-white w-full h-32 resize-none transition-all duration-200;
+    @apply focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500;
+  }
+  
+  .partner-form-button {
+    @apply bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md px-6 py-2.5 transition-colors duration-200;
+  }
+  
+  .partner-form-button-outline {
+    @apply bg-transparent border border-zinc-700 text-gray-200 hover:bg-zinc-800 font-medium rounded-md px-6 py-2.5 transition-colors duration-200;
   }
 }
 
@@ -188,5 +211,24 @@
   .btn-hover-effect:hover::after {
     transform: translateX(0);
   }
+  
+  /* Form field animation */
+  .form-field-animate {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .form-field-animate-enter {
+    animation: formFieldEnter 0.3s ease forwards;
+  }
+  
+  @keyframes formFieldEnter {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
-
