@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
@@ -41,14 +42,14 @@ export default function Navbar() {
                     if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showSolutions ? "open" : "closed"}
                 >
                   Solutions
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showSolutions && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '750px' }}>
+                {showSolutions && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div className="vercel-grid-section">
                       <Link to="/solutions/automation-infrastructure" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon bg-zinc-800">
@@ -151,14 +152,14 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showProducts ? "open" : "closed"}
                 >
                   Micro Products
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showProducts && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
+                {showProducts && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
                       <Link to="/stripe-webflow-kit" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon bg-zinc-800">
@@ -187,14 +188,14 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showProducts) setShowProducts(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'inline-flex p-1 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
                   data-state={showCompany ? "open" : "closed"}
                 >
                   Company
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showCompany && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
+                {showCompany && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
                       <Link to="/how-it-works" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon bg-zinc-800">

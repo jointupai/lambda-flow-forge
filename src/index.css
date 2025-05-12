@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,14 +90,13 @@
   
   /* Selected menu state - UPDATED */
   .menu-item-selected {
-    @apply inline-flex p-1 bg-zinc-900 rounded-full;
+    @apply inline-flex p-2.5 bg-zinc-900 rounded-full;
   }
   
   /* Dropdown container background - ENHANCED */
   .dropdown-container {
-    @apply bg-black border border-zinc-800 rounded-lg shadow-2xl backdrop-blur-lg p-0;
+    @apply bg-black border border-zinc-800 rounded-lg shadow-2xl backdrop-blur-lg p-0 overflow-hidden;
     width: auto !important;
-    min-width: 300px;
   }
   
   /* Vercel-style grid sections */
@@ -106,11 +106,11 @@
   
   /* Vercel-style menu item */
   .vercel-menu-item {
-    @apply flex items-start gap-3 p-4 hover:bg-zinc-900 transition-colors duration-200;
+    @apply flex items-start gap-3 p-5 hover:bg-zinc-900 transition-colors duration-200;
   }
   
   .vercel-menu-item-icon {
-    @apply flex-shrink-0 p-1.5 rounded-md;
+    @apply flex-shrink-0 p-2 rounded-md;
   }
   
   .vercel-menu-item-content {
