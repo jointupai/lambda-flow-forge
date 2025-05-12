@@ -47,10 +47,10 @@ export default function Home() {
               Trusted by founders, ops leaders, and fast-growing teams.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-              <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base h-12 px-8">
+              <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-full text-base h-12 px-8">
                 Book a Free Discovery Call
               </Button>
-              <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base h-12 px-8">
+              <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
                 Let's Partner Up
               </Button>
             </div>
