@@ -64,9 +64,9 @@
     @apply font-medium text-white hover:text-gray-300 transition-colors duration-200;
   }
 
-  /* Dropdown menu styling */
+  /* Dropdown menu styling - ENHANCED for Vercel style */
   .dropdown-menu-item {
-    @apply transition-all duration-200 ease-in-out rounded-lg px-3 py-2 text-sm hover:bg-zinc-800;
+    @apply transition-all duration-200 ease-in-out rounded-md px-3 py-2.5 text-sm hover:bg-zinc-800;
   }
 
   /* Navigation menu styling - ENHANCED */
@@ -75,7 +75,7 @@
   }
   
   .nav-menu-trigger::after {
-    @apply content-[''] absolute left-0 right-0 bottom-0 h-[2px] bg-white scale-x-0 transition-transform duration-300 ease-out origin-center;
+    @apply content-[''] absolute left-0 right-0 bottom-0 h-[1px] bg-white scale-x-0 transition-transform duration-300 ease-out origin-center;
   }
   
   .nav-menu-trigger:hover::after,
@@ -85,21 +85,45 @@
   
   /* Menu item hover effect - ENHANCED */
   .menu-item-hover {
-    @apply relative overflow-hidden;
+    @apply relative overflow-hidden rounded-md transition-colors duration-200 hover:bg-zinc-800;
   }
   
-  .menu-item-hover::before {
-    @apply content-[''] absolute -inset-1 bg-zinc-800 rounded-lg opacity-0 scale-95 transition-all duration-200 ease-in-out;
-    z-index: -1;
+  /* Selected menu state - NEW */
+  .menu-item-selected {
+    @apply bg-zinc-800;
   }
   
-  .menu-item-hover:hover::before {
-    @apply opacity-100 scale-100;
-  }
-  
-  /* Dropdown container background */
+  /* Dropdown container background - ENHANCED */
   .dropdown-container {
-    @apply bg-black border border-zinc-800 rounded-xl shadow-2xl backdrop-blur-lg;
+    @apply bg-black border border-zinc-800 rounded-lg shadow-2xl backdrop-blur-lg p-0;
+    width: auto !important;
+    min-width: 300px;
+  }
+  
+  /* Vercel-style grid sections */
+  .vercel-grid-section {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0;
+  }
+  
+  /* Vercel-style menu item */
+  .vercel-menu-item {
+    @apply flex items-start gap-3 p-4 hover:bg-zinc-900 transition-colors duration-200;
+  }
+  
+  .vercel-menu-item-icon {
+    @apply flex-shrink-0 p-1.5 rounded-md;
+  }
+  
+  .vercel-menu-item-content {
+    @apply flex flex-col gap-0.5;
+  }
+  
+  .vercel-menu-item-title {
+    @apply text-sm font-medium text-white;
+  }
+  
+  .vercel-menu-item-description {
+    @apply text-xs text-gray-400;
   }
 }
 
@@ -114,17 +138,17 @@
   
   /* Enhanced animations for menus */
   .menu-animate-in {
-    animation: menuAnimateIn 0.3s ease forwards;
+    animation: menuAnimateIn 0.2s ease forwards;
   }
   
   .menu-animate-out {
-    animation: menuAnimateOut 0.3s ease forwards;
+    animation: menuAnimateOut 0.2s ease forwards;
   }
   
   @keyframes menuAnimateIn {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(4px);
     }
     to {
       opacity: 1;
@@ -139,7 +163,7 @@
     }
     to {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(4px);
     }
   }
   
@@ -165,3 +189,4 @@
     transform: translateX(0);
   }
 }
+

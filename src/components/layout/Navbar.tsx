@@ -41,111 +41,104 @@ export default function Navbar() {
                     if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className="flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger"
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showSolutions ? 'menu-item-selected' : ''}`}
                   data-state={showSolutions ? "open" : "closed"}
                 >
                   Solutions
                   <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-90' : ''}`} />
                 </button>
 
-                {showSolutions && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl dropdown-container menu-animate-in">
-                    <div className="p-8">
-                      <div className="mb-8">
-                        <h4 className="text-base font-medium text-white mb-1">Solutions</h4>
-                        <p className="text-sm text-gray-400">Discover our range of automation solutions</p>
-                      </div>
+                {showSolutions && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '750px' }}>
+                    <div className="vercel-grid-section">
+                      <Link to="/solutions/automation-infrastructure" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Cloud className="h-4 w-4 text-green-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            Automation Infrastructure
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Build scalable cloud automation
+                          </p>
+                        </div>
+                      </Link>
 
-                      <div className="grid grid-cols-2 gap-5">
-                        <Link to="/solutions/automation-infrastructure" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Cloud className="h-5 w-5 text-green-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              Automation Infrastructure
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Build scalable cloud automation that powers your growth
-                            </p>
-                          </div>
-                        </Link>
+                      <Link to="/solutions/zapier-replacement" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Replace className="h-4 w-4 text-blue-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            Zapier Replacement
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Enterprise-grade automation
+                          </p>
+                        </div>
+                      </Link>
 
-                        <Link to="/solutions/zapier-replacement" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Replace className="h-5 w-5 text-blue-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              Zapier Replacement
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Enterprise-grade automation to replace Zapier
-                            </p>
-                          </div>
-                        </Link>
+                      <Link to="/solutions/stripe-payment-workflows" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <CreditCard className="h-4 w-4 text-purple-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            Stripe Payment Workflows
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Automate payment workflows
+                          </p>
+                        </div>
+                      </Link>
 
-                        <Link to="/solutions/stripe-payment-workflows" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <CreditCard className="h-5 w-5 text-purple-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              Stripe Payment Workflows
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Automate your payment workflows with Stripe
-                            </p>
-                          </div>
-                        </Link>
+                      <Link to="/solutions/crm-lead-flow" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <BarChart className="h-4 w-4 text-orange-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            CRM & Lead Flow Automation
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Automate CRM processes
+                          </p>
+                        </div>
+                      </Link>
 
-                        <Link to="/solutions/crm-lead-flow" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <BarChart className="h-5 w-5 text-orange-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              CRM & Lead Flow Automation
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Automate your CRM and lead flow processes
-                            </p>
-                          </div>
-                        </Link>
+                      <Link to="/solutions/webhook-orchestration" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Webhook className="h-4 w-4 text-indigo-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            Webhook & API Orchestration
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Orchestrate API workflows
+                          </p>
+                        </div>
+                      </Link>
 
-                        <Link to="/solutions/webhook-orchestration" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Webhook className="h-5 w-5 text-indigo-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              Webhook & API Orchestration
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Orchestrate your API and webhook workflows
-                            </p>
-                          </div>
-                        </Link>
-
-                        <Link to="/solutions/custom-cloud-solutions" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Bot className="h-5 w-5 text-pink-400" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">
-                              Custom Cloud Solutions
-                            </h3>
-                            <p className="text-sm text-gray-400">
-                              Build custom cloud solutions tailored to your needs
-                            </p>
-                          </div>
-                        </Link>
-                      </div>
+                      <Link to="/solutions/custom-cloud-solutions" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Bot className="h-4 w-4 text-pink-400" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">
+                            Custom Cloud Solutions
+                          </h3>
+                          <p className="vercel-menu-item-description">
+                            Tailored to your needs
+                          </p>
+                        </div>
+                      </Link>
                     </div>
 
-                    <div className="bg-zinc-900 px-8 py-4 rounded-b-xl">
-                      <Link to="/solutions" className="flex items-center justify-center gap-2 text-white font-medium hover:text-gray-300 transition-colors">
+                    <div className="border-t border-zinc-800 p-3 text-center">
+                      <Link to="/solutions" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Solutions
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
@@ -158,37 +151,30 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className="flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger"
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showProducts ? 'menu-item-selected' : ''}`}
                   data-state={showProducts ? "open" : "closed"}
                 >
                   Micro Products
                   <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-90' : ''}`} />
                 </button>
 
-                {showProducts && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl dropdown-container menu-animate-in">
-                    <div className="p-8">
-                      <div className="mb-8">
-                        <h4 className="text-base font-medium text-white mb-1">Micro Products</h4>
-                        <p className="text-sm text-gray-400">Explore our standalone solutions</p>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-5">
-                        <Link to="/stripe-webflow-kit" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-6 w-auto" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">Stripe Embed Kit</h3>
-                            <p className="text-sm text-gray-400">Seamlessly integrate Stripe payments into your Webflow site</p>
-                          </div>
-                        </Link>
-                      </div>
+                {showProducts && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
+                    <div>
+                      <Link to="/stripe-webflow-kit" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">Stripe Embed Kit</h3>
+                          <p className="vercel-menu-item-description">Integrate Stripe into Webflow</p>
+                        </div>
+                      </Link>
                     </div>
 
-                    <div className="bg-zinc-900 px-8 py-4 rounded-b-xl">
-                      <Link to="/micro-products" className="flex items-center justify-center gap-2 text-white font-medium hover:text-gray-300 transition-colors">
+                    <div className="border-t border-zinc-800 p-3 text-center">
+                      <Link to="/micro-products" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Products
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
@@ -201,57 +187,50 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showProducts) setShowProducts(false);
                   }} 
-                  className="flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger"
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 nav-menu-trigger ${showCompany ? 'menu-item-selected' : ''}`}
                   data-state={showCompany ? "open" : "closed"}
                 >
                   Company
                   <ChevronRight className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-90' : ''}`} />
                 </button>
 
-                {showCompany && <div className="absolute left-0 top-full mt-2 w-[850px] rounded-xl dropdown-container menu-animate-in">
-                    <div className="p-8">
-                      <div className="mb-8">
-                        <h4 className="text-base font-medium text-white mb-1">Company</h4>
-                        <p className="text-sm text-gray-400">Learn more about who we are</p>
-                      </div>
+                {showCompany && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '350px' }}>
+                    <div>
+                      <Link to="/how-it-works" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <BarChart className="h-4 w-4 text-gray-300" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">How it Works</h3>
+                          <p className="vercel-menu-item-description">Our process and methodology</p>
+                        </div>
+                      </Link>
 
-                      <div className="grid grid-cols-2 gap-5">
-                        <Link to="/how-it-works" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <BarChart className="h-5 w-5 text-gray-300" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">How it Works</h3>
-                            <p className="text-sm text-gray-400">Learn about our process and methodology</p>
-                          </div>
-                        </Link>
+                      <Link to="/about" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Bot className="h-4 w-4 text-gray-300" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">About</h3>
+                          <p className="vercel-menu-item-description">Our team and mission</p>
+                        </div>
+                      </Link>
 
-                        <Link to="/about" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Bot className="h-5 w-5 text-gray-300" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">About</h3>
-                            <p className="text-sm text-gray-400">Get to know our team and mission</p>
-                          </div>
-                        </Link>
-
-                        <Link to="/portfolio" className="group flex items-start gap-4 rounded-lg p-4 menu-item-hover">
-                          <div className="p-2 rounded-lg bg-zinc-800">
-                            <Replace className="h-5 w-5 text-gray-300" />
-                          </div>
-                          <div>
-                            <h3 className="text-base font-semibold text-white">Portfolio</h3>
-                            <p className="text-sm text-gray-400">View our past work and case studies</p>
-                          </div>
-                        </Link>
-                      </div>
+                      <Link to="/portfolio" className="vercel-menu-item">
+                        <div className="vercel-menu-item-icon bg-zinc-800">
+                          <Replace className="h-4 w-4 text-gray-300" />
+                        </div>
+                        <div className="vercel-menu-item-content">
+                          <h3 className="vercel-menu-item-title">Portfolio</h3>
+                          <p className="vercel-menu-item-description">Past work and case studies</p>
+                        </div>
+                      </Link>
                     </div>
 
-                    <div className="bg-zinc-900 px-8 py-4 rounded-b-xl">
-                      <Link to="/company" className="flex items-center justify-center gap-2 text-white font-medium hover:text-gray-300 transition-colors">
+                    <div className="border-t border-zinc-800 p-3 text-center">
+                      <Link to="/company" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         Learn More About Us
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="h-3 w-3" />
                       </Link>
                     </div>
                   </div>}
