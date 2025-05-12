@@ -1,10 +1,8 @@
-
 import React, { useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-
 const MetricsSection = () => {
   const [selectedOption, setSelectedOption] = useState('aws');
-  
+
   // Updated metrics data with additional information content
   const metrics = {
     aws: {
@@ -32,16 +30,20 @@ const MetricsSection = () => {
       content: 'Deploy your database and API in seconds. Built on open source technology, Supabase gives you the tools to create a complete backend in record time.'
     }
   };
-
-  const buttonOptions = [
-    { value: 'aws', label: 'AI Apps' },
-    { value: 'zapier', label: 'Web Apps' },
-    { value: 'stripe', label: 'Ecommerce' },
-    { value: 'supabase', label: 'Marketing' },
-  ];
-
-  return (
-    <section className="bg-black py-16 md:py-24 w-full relative">
+  const buttonOptions = [{
+    value: 'aws',
+    label: 'AI Apps'
+  }, {
+    value: 'zapier',
+    label: 'Web Apps'
+  }, {
+    value: 'stripe',
+    label: 'Ecommerce'
+  }, {
+    value: 'supabase',
+    label: 'Marketing'
+  }];
+  return <section className="bg-black py-16 md:py-24 w-full relative">
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="md:flex md:justify-between md:items-start gap-16">
           {/* Left side with metrics */}
@@ -50,25 +52,12 @@ const MetricsSection = () => {
               <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> builds times went from days to hours.
             </p>
             
-            <div className="mb-8">
-              <p className="text-5xl font-bold text-white">{metrics[selectedOption as keyof typeof metrics].metric}</p>
-              <p className="text-gray-400 mt-2">{metrics[selectedOption as keyof typeof metrics].description}</p>
-            </div>
+            
             
             <div className="inline-flex p-1 bg-zinc-900 rounded-full">
-              {buttonOptions.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setSelectedOption(option.value)}
-                  className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                    selectedOption === option.value 
-                      ? 'bg-zinc-800 text-white' 
-                      : 'text-gray-400 hover:text-gray-300'
-                  }`}
-                >
+              {buttonOptions.map(option => <button key={option.value} onClick={() => setSelectedOption(option.value)} className={`px-4 py-2 rounded-full text-sm transition-colors ${selectedOption === option.value ? 'bg-zinc-800 text-white' : 'text-gray-400 hover:text-gray-300'}`}>
                   {option.label}
-                </button>
-              ))}
+                </button>)}
             </div>
           </div>
           
@@ -87,8 +76,6 @@ const MetricsSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default MetricsSection;
