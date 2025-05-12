@@ -11,7 +11,7 @@ const MetricsSection = () => {
       company: 'JointUp.ai',
       metric: '95%',
       description: 'Reduction in operational costs',
-      content: 'Get started using our pre-built templates. Easily stream long-running workflows for a better user experience with zero-config infrastructure that's always globally performant.'
+      content: 'Get started using our pre-built templates. Easily stream long-running workflows for a better user experience with zero-config infrastructure that\'s always globally performant.'
     },
     zapier: {
       company: 'Zapier',
