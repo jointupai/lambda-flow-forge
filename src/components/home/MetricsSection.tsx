@@ -46,38 +46,40 @@ const MetricsSection = () => {
     label: 'Marketing'
   }];
   return (
-    <section className="bg-black py-16 md:py-24 w-full relative">
-      <div className="px-4 md:px-6 lg:px-8">
-        <div className="md:flex md:justify-between md:items-start gap-16">
-          {/* Left side with metrics */}
-          <div className="md:w-1/2 lg:w-5/12">
-            <p className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
-              <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> builds times went from days to hours.
-            </p>
-            
-            <div className="mb-8">
-              <p className="text-5xl font-bold text-white">{metrics[selectedOption as keyof typeof metrics].metric}</p>
-              <p className="text-gray-400 mt-2">{metrics[selectedOption as keyof typeof metrics].description}</p>
-            </div>
-            
-            <div className="inline-flex p-1 bg-zinc-900 rounded-full">
-              {buttonOptions.map(option => <button key={option.value} onClick={() => setSelectedOption(option.value)} className={`px-4 py-2 rounded-full text-sm transition-colors ${selectedOption === option.value ? 'bg-zinc-800 text-white' : 'text-gray-400 hover:text-gray-300'}`}>
-                  {option.label}
-                </button>)}
-            </div>
-          </div>
-          
-          {/* Right side with content */}
-          <div className="md:w-1/2 lg:w-5/12 mt-10 md:mt-0">
-            <div className="bg-[#0000] border-none rounded-lg p-6">
-              <p className="text-gray-300 leading-relaxed">
-                {metrics[selectedOption as keyof typeof metrics].content}
+    <section className="w-full relative py-16 md:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
+        <div className="border border-gray-800 rounded-lg bg-black overflow-hidden">
+          <div className="px-8 py-12 md:flex md:justify-between md:items-start gap-16">
+            {/* Left side with metrics */}
+            <div className="md:w-1/2 lg:w-5/12">
+              <p className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
+                <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> builds times went from days to hours.
               </p>
               
-              <button className="mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm">
-                Deploy AI Apps in seconds
-                <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
-              </button>
+              <div className="mb-8">
+                <p className="text-5xl font-bold text-white">{metrics[selectedOption as keyof typeof metrics].metric}</p>
+                <p className="text-gray-400 mt-2">{metrics[selectedOption as keyof typeof metrics].description}</p>
+              </div>
+              
+              <div className="inline-flex p-1 bg-zinc-900 rounded-full">
+                {buttonOptions.map(option => <button key={option.value} onClick={() => setSelectedOption(option.value)} className={`px-4 py-2 rounded-full text-sm transition-colors ${selectedOption === option.value ? 'bg-zinc-800 text-white' : 'text-gray-400 hover:text-gray-300'}`}>
+                    {option.label}
+                  </button>)}
+              </div>
+            </div>
+            
+            {/* Right side with content */}
+            <div className="md:w-1/2 lg:w-5/12 mt-10 md:mt-0">
+              <div className="bg-[#0000] border-none rounded-lg p-6">
+                <p className="text-gray-300 leading-relaxed">
+                  {metrics[selectedOption as keyof typeof metrics].content}
+                </p>
+                
+                <button className="mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm">
+                  Deploy AI Apps in seconds
+                  <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
