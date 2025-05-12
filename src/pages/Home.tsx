@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -6,10 +5,12 @@ import { ArrowRight, Code, Link as LinkIcon, Zap, Database, Github, TerminalSqua
 import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
+import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
 import MetricsSection from "@/components/home/MetricsSection";
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
+  const [openContactDrawer, setOpenContactDrawer] = useState(false);
   const [activeTab, setActiveTab] = useState('aws');
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
@@ -30,6 +31,7 @@ export default function Home() {
     return {"statusCode": 200}`;
   return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
+      <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
       {/* Hero Section - Full width with contained content */}
       <section className="w-full py-0 pt-[80px]">
@@ -51,8 +53,8 @@ export default function Home() {
                     <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-full text-base h-12 px-8">
                       Book a Free Discovery Call
                     </Button>
-                    <Button variant="outline" size="lg" asChild className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
-                      <Link to="/partner">Let's Partner Up</Link>
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
+                      Let's Partner Up
                     </Button>
                   </div>
                   <div className="pt-4">
@@ -153,8 +155,8 @@ export default function Home() {
                 <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setShowCalendly(true)}>
                   Book a Discovery Call
                 </Button>
-                <Button variant="outline" asChild className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800">
-                  <Link to="/partner">Learn about Enterprise</Link>
+                <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setOpenContactDrawer(true)}>
+                  Learn about Enterprise
                 </Button>
               </div>
             </div>
@@ -275,8 +277,8 @@ export default function Home() {
                     <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8">
                       Book a Free Discovery Call
                     </Button>
-                    <Button variant="outline" size="lg" asChild className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
-                      <Link to="/partner">Let's Partner Up</Link>
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
+                      Let's Partner Up
                     </Button>
                   </div>
                 </div>

@@ -42,7 +42,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName
 const NavigationMenuItem = NavigationMenuPrimitive.Item
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 relative data-[active]:bg-zinc-800/70 data-[state=open]:bg-zinc-800/70 nav-menu-trigger"
+  "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 relative data-[active]:bg-zinc-800 data-[state=open]:bg-zinc-800 nav-menu-trigger"
 )
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -70,7 +70,7 @@ const NavigationMenuContent = React.forwardRef<
   <NavigationMenuPrimitive.Content
     ref={ref}
     className={cn(
-      "left-0 top-0 w-full bg-black border border-zinc-800 rounded-lg shadow-2xl md:absolute md:w-auto menu-animate-in data-[motion=from-end]:slide-in-from-right-10 data-[motion=from-start]:slide-in-from-left-10 data-[motion=to-end]:slide-out-to-right-10 data-[motion=to-start]:slide-out-to-left-10 backdrop-blur-lg dropdown-container",
+      "left-0 top-0 w-full bg-black border border-zinc-800 rounded-lg shadow-lg md:absolute md:w-auto menu-animate-in data-[motion=from-end]:slide-in-from-right-10 data-[motion=from-start]:slide-in-from-left-10 data-[motion=to-end]:slide-out-to-right-10 data-[motion=to-start]:slide-out-to-left-10 backdrop-blur-lg",
       className
     )}
     {...props}
