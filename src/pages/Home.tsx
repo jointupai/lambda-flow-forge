@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -8,10 +9,12 @@ import CardDemo from "@/components/ui/cards-demo-3";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
 import MetricsSection from "@/components/home/MetricsSection";
+
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
   const [activeTab, setActiveTab] = useState('aws');
+  
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
     stripe_event = json.loads(event['body'])
@@ -29,15 +32,17 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-  return <div className="flex flex-col min-h-screen overflow-x-hidden">
+
+  return (
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
-      {/* Hero Section */}
+      {/* Hero Section - Full width with contained content */}
       <section className="bg-black py-20 md:py-28 w-full relative overflow-hidden">
         <div className="absolute inset-0 bg-grid"></div>
         <div className="absolute inset-0 glow-effect"></div>
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
               Automate Work.<br />Scale Smart.
@@ -64,18 +69,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Code display section */}
-      
-
-      {/* Integration Partners */}
-      
-
-      {/* Key Metrics Section - Replaced with the new interactive MetricsSection */}
-      <MetricsSection />
+      {/* Metrics Section (already a component) */}
+      <div className="max-w-[1200px] mx-auto">
+        <MetricsSection />
+      </div>
 
       {/* Services Section */}
       <section className="bg-black py-16 md:py-24 w-full border-t border-gray-800">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Services</h2>
             <p className="text-lg text-gray-400 max-w-3xl mx-auto">
@@ -140,7 +141,7 @@ export default function Home() {
 
       {/* Deploy Anywhere Section */}
       <section className="bg-black py-16 md:py-24 w-full border-t border-gray-800">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Deploy once, deliver everywhere.
@@ -162,7 +163,7 @@ export default function Home() {
 
       {/* Framework Deployment Section */}
       <section className="bg-black py-16 md:py-24 w-full border-t border-gray-800">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
@@ -256,7 +257,7 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-black relative overflow-hidden border-t border-gray-800">
         <div className="absolute inset-0 bg-grid"></div>
         <div className="absolute inset-0 glow-effect"></div>
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
+        <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
               Let's Build Something Better
@@ -275,5 +276,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>;
+    </div>
+  );
 }
