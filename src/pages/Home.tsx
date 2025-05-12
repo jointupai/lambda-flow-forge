@@ -1,9 +1,10 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Zap, Database, Code, Link as LinkIcon } from 'lucide-react';
 import TestimonialVideos from "@/components/home/TestimonialVideos";
-import InteractiveWorkflow from "@/components/home/InteractiveWorkflow";
+import AnimatedCodeBlock from "@/components/home/AnimatedCodeBlock";
 import CostCalculator from "@/components/home/CostCalculator";
 import ProblemSolutionSection from "@/components/home/ProblemSolutionSection";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
@@ -84,9 +85,11 @@ export default function Home() {
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  <div className="text-xs text-gray-400 ml-2">workflow_automation.js</div>
+                  <div className="text-xs text-gray-400 ml-2">lambda_handler.py</div>
                 </div>
-                <InteractiveWorkflow />
+                <div className="p-2 sm:p-4">
+                  <AnimatedCodeBlock code={lambdaCode} />
+                </div>
               </div>
               <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full bg-gradient-to-br from-primary to-primary/70 rounded-xl blur-md opacity-30"></div>
             </div>
