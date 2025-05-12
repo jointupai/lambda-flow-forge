@@ -23,7 +23,7 @@ export default {
     },
     extend: {
       colors: {
-        border: "#e5e7eb", 
+        border: "#27272a", 
         'brand-primary': {
           50: '#f9fafb',
           100: '#f3f4f6',
@@ -59,8 +59,8 @@ export default {
         '2xl': '1rem',
       },
       boxShadow: {
-        'modern': '0 4px 12px rgba(0, 0, 0, 0.08)',
-        'hover': '0 8px 16px rgba(0, 0, 0, 0.12)',
+        'modern': '0 4px 12px rgba(0, 0, 0, 0.2)',
+        'hover': '0 8px 16px rgba(0, 0, 0, 0.3)',
       },
       keyframes: {
         'fade-in': {

@@ -5,23 +5,22 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 0 0% 0%; /* Black background */
+    --foreground: 0 0% 100%; /* White text */
     
-    /* Update primary color to black for Vercel-like styling */
-    --primary: 0 0% 0%; /* Black as primary */
-    --secondary: 0 0% 70%; /* Gray for secondary elements */
+    --primary: 0 0% 100%; /* White as primary */
+    --secondary: 0 0% 70%; /* Light gray for secondary elements */
     
     --border-radius: 0.5rem;
   }
 
   * {
-    @apply border-gray-200 scroll-smooth;
+    @apply border-gray-800 scroll-smooth;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-black text-white antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 }
 
@@ -35,25 +34,40 @@
   }
 
   .modern-card {
-    @apply bg-white rounded-md border border-gray-200 hover:border-gray-300 shadow-sm transition-all duration-300 ease-in-out;
+    @apply bg-zinc-900 rounded-md border border-gray-800 hover:border-gray-700 shadow-sm transition-all duration-300 ease-in-out;
   }
   
   /* Vercel-inspired grid background */
-  .bg-grid-white {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
+  .bg-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* Vercel-inspired color glow effect */
+  .glow-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(0, 122, 255, 0.15), rgba(255, 38, 142, 0.15), transparent 60%);
+    z-index: 0;
+    opacity: 0.6;
   }
   
   /* Vercel-inspired link style */
   .vercel-link {
-    @apply font-medium text-black hover:underline transition-colors duration-200;
+    @apply font-medium text-white hover:text-gray-300 transition-colors duration-200;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-br from-black to-gray-700 bg-clip-text text-transparent;
+    @apply bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent;
   }
 
   .hover-lift {
