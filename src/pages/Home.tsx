@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -9,12 +8,10 @@ import CardDemo from "@/components/ui/cards-demo-3";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
 import MetricsSection from "@/components/home/MetricsSection";
-
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
   const [activeTab, setActiveTab] = useState('aws');
-  
   const lambdaCode = `def lambda_handler(event, context):
     # Parse Stripe webhook
     stripe_event = json.loads(event['body'])
@@ -32,14 +29,12 @@ export default function Home() {
     post_to_slack(customer)
     
     return {"statusCode": 200}`;
-
-  return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden">
+  return <div className="flex flex-col min-h-screen overflow-x-hidden">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
       {/* Hero Section - Full width with contained content */}
-      <section className="w-full py-0">
+      <section className="w-full py-0 pt-[80px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           <div className="border border-gray-800 rounded-none bg-black overflow-hidden">
             <div className="relative py-20 md:py-28 px-8">
@@ -292,6 +287,5 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>;
 }
