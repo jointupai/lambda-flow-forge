@@ -46,9 +46,9 @@ const MetricsSection = () => {
     label: 'Marketing'
   }];
   return (
-    <section className="w-full relative py-16 md:py-24">
+    <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-        <div className="border border-gray-800 rounded-lg bg-black overflow-hidden">
+        <div className="border border-gray-800 rounded-none bg-black">
           <div className="px-8 py-12 md:flex md:justify-between md:items-start gap-16">
             {/* Left side with metrics */}
             <div className="md:w-1/2 lg:w-5/12">

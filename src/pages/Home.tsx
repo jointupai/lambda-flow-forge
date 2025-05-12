@@ -39,31 +39,37 @@ export default function Home() {
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
       {/* Hero Section - Full width with contained content */}
-      <section className="bg-black py-20 md:py-28 w-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid"></div>
-        <div className="absolute inset-0 glow-effect"></div>
+      <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
-              Automate Work.<br />Scale Smart.
-            </h1>
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl">
-              We build AI-powered apps and automations that replace manual tasks and scale with your business. 
-              Trusted by founders, ops leaders, and fast-growing teams.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
-              <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-full text-base h-12 px-8">
-                Book a Free Discovery Call
-              </Button>
-              <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
-                Let's Partner Up
-              </Button>
-            </div>
-            <div className="pt-4">
-              <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-                <Zap size={16} className="text-white" />
-                <span>No-code setup, enterprise-grade reliability</span>
-              </p>
+          <div className="border border-gray-800 rounded-none bg-black overflow-hidden">
+            <div className="relative py-20 md:py-28 px-8">
+              <div className="absolute inset-0 bg-grid"></div>
+              <div className="absolute inset-0 glow-effect"></div>
+              <div className="relative z-10">
+                <div className="flex flex-col items-center text-center space-y-6 max-w-3xl mx-auto">
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-white">
+                    Automate Work.<br />Scale Smart.
+                  </h1>
+                  <p className="text-lg md:text-xl text-gray-400 max-w-2xl">
+                    We build AI-powered apps and automations that replace manual tasks and scale with your business. 
+                    Trusted by founders, ops leaders, and fast-growing teams.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                    <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-full text-base h-12 px-8">
+                      Book a Free Discovery Call
+                    </Button>
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
+                      Let's Partner Up
+                    </Button>
+                  </div>
+                  <div className="pt-4">
+                    <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
+                      <Zap size={16} className="text-white" />
+                      <span>No-code setup, enterprise-grade reliability</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -73,9 +79,9 @@ export default function Home() {
       <MetricsSection />
 
       {/* Services Section */}
-      <section className="w-full py-16 md:py-24">
+      <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border border-gray-800 rounded-lg bg-black overflow-hidden p-8 md:p-12">
+          <div className="border border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Services</h2>
               <p className="text-lg text-gray-400 max-w-3xl mx-auto">
@@ -140,9 +146,9 @@ export default function Home() {
       </section>
 
       {/* Deploy Anywhere Section */}
-      <section className="w-full py-16 md:py-24">
+      <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border border-gray-800 rounded-lg bg-black overflow-hidden p-8 md:p-12">
+          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
                 Deploy once, deliver everywhere.
@@ -164,9 +170,9 @@ export default function Home() {
       </section>
 
       {/* Framework Deployment Section */}
-      <section className="w-full py-16 md:py-24">
+      <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border border-gray-800 rounded-lg bg-black overflow-hidden p-8 md:p-12">
+          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
@@ -258,25 +264,29 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 w-full relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid"></div>
-        <div className="absolute inset-0 glow-effect"></div>
+      <section className="w-full py-0 pb-16">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-          <div className="border border-gray-800 rounded-lg bg-black overflow-hidden p-8 md:p-12">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-                Let's Build Something Better
-              </h2>
-              <p className="text-lg md:text-xl text-gray-400 mb-8">
-                Book a free discovery call to explore how we can automate, integrate, and scale your operations.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8">
-                  Book a Free Discovery Call
-                </Button>
-                <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
-                  Let's Partner Up
-                </Button>
+          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden">
+            <div className="relative py-16 md:py-24 px-8">
+              <div className="absolute inset-0 bg-grid"></div>
+              <div className="absolute inset-0 glow-effect"></div>
+              <div className="relative z-10">
+                <div className="max-w-3xl mx-auto text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+                    Let's Build Something Better
+                  </h2>
+                  <p className="text-lg md:text-xl text-gray-400 mb-8">
+                    Book a free discovery call to explore how we can automate, integrate, and scale your operations.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8">
+                      Book a Free Discovery Call
+                    </Button>
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
+                      Let's Partner Up
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
