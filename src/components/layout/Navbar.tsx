@@ -49,10 +49,11 @@ export default function Navbar() {
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showSolutions && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
+                {showSolutions && (
+                  <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div className="vercel-grid-section">
                       <Link to="/solutions/automation-infrastructure" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Cloud className="h-4 w-4 text-green-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -66,7 +67,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/solutions/zapier-replacement" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Replace className="h-4 w-4 text-blue-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -80,7 +81,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/solutions/stripe-payment-workflows" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <CreditCard className="h-4 w-4 text-purple-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -94,7 +95,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/solutions/crm-lead-flow" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <BarChart className="h-4 w-4 text-orange-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -108,7 +109,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/solutions/webhook-orchestration" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Webhook className="h-4 w-4 text-indigo-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -122,7 +123,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/solutions/custom-cloud-solutions" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Bot className="h-4 w-4 text-pink-400" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -136,13 +137,14 @@ export default function Navbar() {
                       </Link>
                     </div>
 
-                    <div className="border-t border-zinc-800 p-3 text-center">
+                    <div className="dropdown-footer">
                       <Link to="/solutions" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Solutions
                         <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
-                  </div>}
+                  </div>
+                )}
               </div>
 
               <div className="relative group">
@@ -159,10 +161,11 @@ export default function Navbar() {
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showProducts && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
+                {showProducts && (
+                  <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
                       <Link to="/stripe-webflow-kit" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -172,13 +175,14 @@ export default function Navbar() {
                       </Link>
                     </div>
 
-                    <div className="border-t border-zinc-800 p-3 text-center">
+                    <div className="dropdown-footer">
                       <Link to="/micro-products" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Products
                         <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
-                  </div>}
+                  </div>
+                )}
               </div>
 
               <div className="relative group">
@@ -195,10 +199,11 @@ export default function Navbar() {
                   <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
                 </button>
 
-                {showCompany && <div className="absolute left-0 top-full mt-2 rounded-lg dropdown-container menu-animate-in" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
+                {showCompany && (
+                  <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
                       <Link to="/how-it-works" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <BarChart className="h-4 w-4 text-gray-300" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -208,7 +213,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/about" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Bot className="h-4 w-4 text-gray-300" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -218,7 +223,7 @@ export default function Navbar() {
                       </Link>
 
                       <Link to="/portfolio" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon bg-zinc-800">
+                        <div className="vercel-menu-item-icon">
                           <Replace className="h-4 w-4 text-gray-300" />
                         </div>
                         <div className="vercel-menu-item-content">
@@ -228,13 +233,14 @@ export default function Navbar() {
                       </Link>
                     </div>
 
-                    <div className="border-t border-zinc-800 p-3 text-center">
+                    <div className="dropdown-footer">
                       <Link to="/company" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         Learn More About Us
                         <ChevronDown className="h-3 w-3" />
                       </Link>
                     </div>
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -256,7 +262,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu - unchanged */}
+      {/* Mobile menu */}
       {isMenuOpen && <div className="md:hidden">
           <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
             <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
