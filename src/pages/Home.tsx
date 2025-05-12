@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -8,6 +7,7 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
+import MetricsSection from "@/components/home/MetricsSection";
 
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
@@ -106,46 +106,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Key Metrics Section */}
-      <section className="bg-black py-16 md:py-24 w-full relative">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="md:flex md:justify-between items-start">
-            <div className="mb-8 md:mb-0 md:max-w-md">
-              <p className="text-3xl md:text-4xl font-bold text-white leading-tight">
-                <span className="text-gradient">JointUp.ai</span> builds times went from days to hours.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <p className="text-5xl font-bold text-white">95%</p>
-                <p className="text-gray-400 mt-2">Reduction in operational costs</p>
-              </div>
-              <div>
-                <p className="text-5xl font-bold text-white">24x</p>
-                <p className="text-gray-400 mt-2">Faster development cycles</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-12 flex flex-wrap gap-4 justify-center">
-            <div className="px-4 py-2 bg-zinc-900 rounded-full text-gray-300 text-sm font-medium">
-              AWS Lambda
-            </div>
-            <div className="px-4 py-2 bg-zinc-900 rounded-full text-gray-300 text-sm font-medium">
-              API Integration
-            </div>
-            <div className="px-4 py-2 bg-zinc-900 rounded-full text-gray-300 text-sm font-medium">
-              Automation
-            </div>
-            <div className="px-4 py-2 bg-zinc-900 rounded-full text-gray-300 text-sm font-medium">
-              Cloud Services
-            </div>
-            <div className="px-4 py-2 bg-zinc-900 rounded-full text-gray-300 text-sm font-medium">
-              Serverless
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Key Metrics Section - Replaced with the new interactive MetricsSection */}
+      <MetricsSection />
 
       {/* Services Section */}
       <section className="bg-black py-16 md:py-24 w-full border-t border-gray-800">
