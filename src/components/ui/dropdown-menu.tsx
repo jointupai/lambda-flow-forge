@@ -26,14 +26,16 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-all duration-200 focus:bg-zinc-800 data-[state=open]:inline-flex data-[state=open]:p-1 data-[state=open]:bg-zinc-900 data-[state=open]:rounded-full hover:bg-zinc-800 menu-item-hover",
+      "flex cursor-default select-none items-center rounded-lg px-2 py-1.5 text-sm outline-none transition-all duration-200 focus:bg-zinc-800 data-[state=open]:bg-zinc-900 data-[state=open]:rounded-full hover:bg-zinc-800 menu-item-hover",
       inset && "pl-8",
       className
     )}
     {...props}
   >
-    {children}
-    <ChevronRight className="ml-auto h-4 w-4 transition duration-200" />
+    <span className="min-w-max">
+      {children}
+      <ChevronRight className="ml-auto h-4 w-4 transition duration-200" />
+    </span>
   </DropdownMenuPrimitive.SubTrigger>
 ))
 DropdownMenuSubTrigger.displayName =

@@ -42,11 +42,13 @@ export default function Navbar() {
                     if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
                   data-state={showSolutions ? "open" : "closed"}
                 >
-                  Solutions
-                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center">
+                    Solutions
+                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
+                  </span>
                 </button>
 
                 {showSolutions && (
@@ -154,11 +156,13 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'nav-menu-item-selected' : ''}`}
                   data-state={showProducts ? "open" : "closed"}
                 >
-                  Micro Products
-                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center">
+                    Micro Products
+                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
+                  </span>
                 </button>
 
                 {showProducts && (
@@ -192,11 +196,13 @@ export default function Navbar() {
                     if (showSolutions) setShowSolutions(false);
                     if (showProducts) setShowProducts(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'inline-flex p-2.5 bg-zinc-900 rounded-full' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'nav-menu-item-selected' : ''}`}
                   data-state={showCompany ? "open" : "closed"}
                 >
-                  Company
-                  <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
+                  <span className="flex items-center">
+                    Company
+                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
+                  </span>
                 </button>
 
                 {showCompany && (
