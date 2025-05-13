@@ -253,30 +253,41 @@ export default function Documentation() {
                                 const isSelected = selectedPost?._id === post._id;
                                 // Build category/kebab-case for URL
                                 const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
+                                const hasSlug = !!post.slug?.current;
                                 return (
                                   <li key={post._id} className="relative flex items-center">
-                                  <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
-                                    {isSelected && (
-                                      <span
-                                        className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
-                                        style={{
-                                          animation: 'fade-in-scale-divider 0.2s ease-in'
-                                        }}
+                                    <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
+                                      {isSelected && (
+                                        <span
+                                          className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
+                                          style={{
+                                            animation: 'fade-in-scale-divider 0.2s ease-in'
+                                          }}
+                                        >
+                                          <PiLineVerticalThin className="text-white" size={18} />
+                                        </span>
+                                      )}
+                                    </span>
+                                    {hasSlug ? (
+                                      <Link
+                                        to={`/documentation/${catUrl}/${post.slug.current}`}
+                                        className={`w-full text-left px-3 py-2 text-sm flex items-center
+                                          transition-colors duration-100
+                                          ${isSelected
+                                            ? "text-white font-bold"
+                                            : "text-gray-300 hover:bg-zinc-800"}
+                                        `}
                                       >
-                                        <PiLineVerticalThin className="text-white" size={18} />
+                                        {post.title || "(Untitled)"}
+                                      </Link>
+                                    ) : (
+                                      <span
+                                        className="w-full text-left px-3 py-2 text-sm flex items-center text-gray-500 cursor-not-allowed"
+                                        title="No slug for this article"
+                                      >
+                                        {post.title || "(Untitled)"}
                                       </span>
                                     )}
-                                  </span>
-                                    <Link
-                                      to={`/documentation/${catUrl}/${post.slug?.current}`}
-                                      className={`w-full text-left px-3 py-2 text-sm flex items-center
-                                        transition-colors duration-100
-                                        ${isSelected
-                                          ? "text-white font-bold"
-                                          : "text-gray-300 hover:bg-zinc-800"}`}
-                                    >
-                                      {post.title || "(Untitled)"}
-                                    </Link>
                                   </li>
                                 );
                               })}
