@@ -157,26 +157,51 @@ export default function Documentation() {
         );
       },
       image: (props) => {
-        // Try both url and _ref using utility
+        // Enhanced image block
         const { value } = props;
-        const imageUrl = value && value.asset ? urlFor(value.asset) : undefined;
-        const alt = value && value.alt ? value.alt : "Image";
-        if (imageUrl) {
-          return (
-            <img
-              src={imageUrl}
-              alt={alt}
-              className="max-w-full h-auto mb-4 rounded-lg mx-auto"
-              loading="lazy"
-            />
-          );
-        } else {
+        if (!value || !value.asset) {
           return (
             <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
-              Image could not be loaded (missing url)
+              Image could not be loaded (missing asset)
             </div>
           );
         }
+        const { asset, alt, caption, displaySize, alignment } = value;
+
+        // Size and alignment Tailwind classes
+        const sizeClasses: Record<string, string> = {
+          "25": "w-1/4",
+          "50": "w-1/2",
+          "75": "w-3/4",
+          "100": "w-full"
+        };
+        const alignmentClasses: Record<string, string> = {
+          left: "mr-auto",
+          center: "mx-auto",
+          right: "ml-auto"
+        };
+
+        const imageUrl = urlFor(asset);
+        // Show image if URL, otherwise error message
+        return imageUrl ? (
+          <figure className={`my-8 ${alignmentClasses[alignment] || 'mx-auto'}`}>
+            <img
+              src={imageUrl}
+              alt={alt || "Image"}
+              className={`${sizeClasses[String(displaySize)] || 'w-full'} h-auto rounded-lg`}
+              loading="lazy"
+            />
+            {caption && (
+              <figcaption className="text-center text-sm text-gray-400 mt-2">
+                {caption}
+              </figcaption>
+            )}
+          </figure>
+        ) : (
+          <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+            Image could not be loaded (missing url)
+          </div>
+        );
       },
     },
   };
