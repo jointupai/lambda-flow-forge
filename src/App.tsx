@@ -52,10 +52,11 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/portfolio" element={<Portfolio />} />
-              {/* Add this new dynamic route BEFORE existing /documentation/post/:id and /documentation/:slug */}
-              <Route path="/documentation/:category/:id" element={<PostPage />} />
+              {/* Route post view to Documentation, NOT PostPage */}
+              <Route path="/documentation/:category/:id" element={<Documentation />} />
               <Route path="/documentation" element={<Documentation />} />
               <Route path="/documentation/:slug" element={<DocumentationArticle />} />
+              {/* Remove this, or keep for backwards-compatibility if some ID-only links exist */}
               <Route path="/documentation/post/:id" element={<PostPage />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               
