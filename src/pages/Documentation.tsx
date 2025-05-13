@@ -277,8 +277,8 @@ export default function Documentation() {
                                       style={{
                                         outline: "none"
                                       }}
-                                      // Instead of setSelectedPost, navigate!
-                                      onClick={() => navigate(`/documentation/${encodeURIComponent(cat)}/${post._id}`)}
+                                      // Restore original handler:
+                                      onClick={() => setSelectedPost(post)}
                                     >
                                       {post.title || "(Untitled)"}
                                     </button>
