@@ -102,6 +102,51 @@ export default function Documentation() {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
+  // Add custom components for PortableText, to support headings/lists/etc.
+  const portableTextComponents = {
+    block: {
+      h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
+      h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
+      h3: ({ children }) => <h3 className="text-xl font-semibold mb-2">{children}</h3>,
+      h4: ({ children }) => <h4 className="text-lg font-semibold mb-2">{children}</h4>,
+      normal: ({ children }) => <p className="mb-4">{children}</p>,
+      blockquote: ({ children }) => <blockquote className="border-l-4 border-gray-700 pl-4 italic text-gray-400 mb-4">{children}</blockquote>,
+    },
+    list: {
+      bullet: ({ children }) => <ul className="list-disc ml-6 mb-4">{children}</ul>,
+      number: ({ children }) => <ol className="list-decimal ml-6 mb-4">{children}</ol>,
+    },
+    listItem: {
+      bullet: ({ children }) => <li className="mb-2">{children}</li>,
+      number: ({ children }) => <li className="mb-2">{children}</li>,
+    },
+    marks: {
+      link: ({ children, value }) => (
+        <a
+          href={value?.href}
+          className="underline text-blue-400 hover:text-blue-600"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ),
+      strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+      em: ({ children }) => <em className="italic">{children}</em>,
+      code: ({ children }) => (
+        <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{children}</code>
+      ),
+    },
+    types: {
+      code: ({ value }) => (
+        <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
+          <code>{value.code}</code>
+        </pre>
+      ),
+      // ...add more custom types if needed
+    },
+  };
+
   return (
     <div className="min-h-screen bg-black text-white w-full">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
@@ -199,33 +244,11 @@ export default function Documentation() {
                     </div>
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
-                  {/* Only this div should have the prose classes */}
                   <div className="prose prose-invert max-w-none mb-8">
                     {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? (
                       <PortableText
                         value={selectedPost.content}
-                        // Minimal sensible PortableText components example
-                        components={{
-                          types: {
-                            code: ({ value }) => (
-                              <pre>
-                                <code>{value.code}</code>
-                              </pre>
-                            ),
-                          },
-                          marks: {
-                            link: ({ children, value }) => (
-                              <a
-                                href={value?.href}
-                                className="underline text-blue-400 hover:text-blue-600"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {children}
-                              </a>
-                            ),
-                          },
-                        }}
+                        components={portableTextComponents}
                       />
                     ) : selectedPost.content ? (
                       // fallback for non-array content
