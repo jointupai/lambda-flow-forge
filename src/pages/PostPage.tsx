@@ -21,8 +21,19 @@ export default function PostPage() {
       try {
         setIsLoading(true);
         const allContent = await fetchContent();
-        // Find by id (string), no need to check category (but could be added if needed)
-        const foundPost = (allContent as any[]).find((item) => item._id === id) || null;
+        let foundPost = null;
+        if (id && category) {
+          // If both category and id (which is really SLUG), find by both
+          foundPost = (allContent as any[]).find(
+            (item) =>
+              item.category === category &&
+              item.slug &&
+              item.slug.current === id
+          ) || null;
+        } else if (id) {
+          // Fallback: find by Sanity document _id
+          foundPost = (allContent as any[]).find((item) => item._id === id) || null;
+        }
         setPost(foundPost);
         setIsLoading(false);
       } catch (error) {
@@ -35,7 +46,7 @@ export default function PostPage() {
       }
     };
     if (id) loadPost();
-  }, [id]);
+  }, [id, category]);
 
   if (isLoading) {
     return (
@@ -103,3 +114,4 @@ export default function PostPage() {
     </div>
   );
 }
+
