@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
 import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
+import { urlFor } from "@/lib/sanityImageUrl";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -156,29 +157,20 @@ export default function Documentation() {
         );
       },
       image: (props) => {
-        // Sanity images may have value.asset.url or value.asset._ref.
+        // Try both url and _ref using utility
         const { value } = props;
-        // Try to use value.asset.url if available, or skip image if not present.
-        let url: string | undefined = undefined;
-        if (value && value.asset) {
-          // Sanity may return an asset with a url or only a _ref (which requires an image builder).
-          if (typeof value.asset.url === "string") {
-            url = value.asset.url;
-          }
-        }
+        const imageUrl = value && value.asset ? urlFor(value.asset) : undefined;
         const alt = value && value.alt ? value.alt : "Image";
-        // Only render if we get a url.
-        if (url) {
+        if (imageUrl) {
           return (
             <img
-              src={url}
+              src={imageUrl}
               alt={alt}
               className="max-w-full h-auto mb-4 rounded-lg mx-auto"
               loading="lazy"
             />
           );
         } else {
-          // For debugging: show a placeholder or an error message.
           return (
             <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
               Image could not be loaded (missing url)
