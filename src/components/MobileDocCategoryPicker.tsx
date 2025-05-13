@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, X } from "lucide-react";
 
@@ -34,44 +33,79 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
   onPostChange,
 }) => {
   const [open, setOpen] = React.useState(false);
-  const [localCategory, setLocalCategory] = React.useState(selectedCategory || "");
-  const [localPostId, setLocalPostId] = React.useState(selectedPost?._id || "");
-  const posts = localCategory ? groupedContent[localCategory] || [] : [];
+  const [expandedCat, setExpandedCat] = React.useState<string | null>(selectedCategory || null);
 
-  // Sync with parent
   React.useEffect(() => {
-    setLocalCategory(selectedCategory || "");
+    setExpandedCat(selectedCategory || null);
   }, [selectedCategory]);
-  React.useEffect(() => {
-    setLocalPostId(selectedPost?._id || "");
-  }, [selectedPost]);
 
+  // Ensure focus trap within the menu overlay.
+  const menuRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (open && menuRef.current) {
+      menuRef.current.focus();
+    }
+  }, [open]);
+
+  // Animate close: after animation, unmount the overlay
+  const [closing, setClosing] = React.useState(false);
+  const handleClose = () => {
+    setClosing(true);
+    setTimeout(() => {
+      setOpen(false);
+      setClosing(false);
+    }, 260); // Match animation duration
+  };
+
+  // Category click handler (expand/collapse)
+  const handleCategoryClick = (cat: string) => {
+    setExpandedCat(expandedCat === cat ? null : cat);
+    onCategoryChange(cat);
+  };
+
+  // Post click handler
+  const handlePostClick = (cat: string, post: ContentItem) => {
+    onPostChange(cat, post);
+    handleClose();
+  };
+
+  // Always at least 1/3 of screen, scrollable if content is larger
   return (
     <>
-      {open && (
+      {/* Overlay modal */}
+      {(open || closing) && (
         <div
-          className="fixed inset-0 z-[120] bg-black bg-opacity-40 flex items-end md:hidden"
-          style={{ transition: 'background 0.25s' }}
-          onClick={() => setOpen(false)}
+          className={`
+            fixed inset-0 z-[130] flex items-end md:hidden
+            bg-black bg-opacity-40
+            transition-colors duration-200
+            ${closing ? "opacity-0" : "opacity-100"}
+          `}
+          style={{ transition: 'opacity 0.24s' }}
+          tabIndex={-1}
+          onClick={handleClose}
         >
           <div
+            ref={menuRef}
+            tabIndex={0}
             className={`
-              w-full sm:max-w-md mx-auto 
+              w-full sm:max-w-md mx-auto
               rounded-t-2xl shadow-lg
               bg-zinc-900 border-t border-zinc-800
-              p-0
-              animate-slide-up-fast
+              pb-2
               relative
-              z-[121]
+              z-[131]
+              select-none
+              min-h-[33vh] max-h-[90vh]
+              overflow-hidden
               flex flex-col
-              max-h-[80vh]
+              ${closing ? "animate-slide-down-fast" : "animate-slide-up-fast"}
             `}
-            style={{
-              animation: "slide-up-fast 0.28s cubic-bezier(0.32,0.72,0.42,1.09)",
-              willChange: "transform, opacity",
-              overflow: "visible"
-            }}
             onClick={e => e.stopPropagation()}
+            style={{
+              willChange: "transform, opacity"
+            }}
           >
             <div className="w-full flex items-center justify-between px-6 pt-5 pb-2 border-b border-zinc-800">
               <span className="text-lg font-semibold text-white">Browse Documentation</span>
@@ -79,76 +113,94 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
                 variant="ghost"
                 size="icon"
                 className="text-gray-400 hover:text-white"
-                onClick={() => setOpen(false)}
+                onClick={handleClose}
                 aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </Button>
             </div>
-            <div className="flex flex-col gap-2 px-6 pb-2 pt-4 overflow-y-auto"
-                 style={{
-                   maxHeight: "calc(80vh - 60px)",
-                   overscrollBehavior: "contain"
-                 }}
+            <nav
+              className="flex-1 overflow-y-auto px-4 pb-4 pt-2 space-y-2"
+              style={{
+                minHeight: "120px", // Always visible at least 1/3 of mobile screen
+                overscrollBehavior: "contain"
+              }}
             >
-              {/* Category picker */}
-              <div className="">
-                <label className="block text-gray-400 text-sm mb-2">Select Category</label>
-                <Select
-                  value={localCategory}
-                  onValueChange={value => {
-                    setLocalCategory(value);
-                    setLocalPostId("");
-                    onCategoryChange(value);
-                  }}
-                >
-                  <SelectTrigger className="w-full bg-zinc-800 border-zinc-700">
-                    <SelectValue placeholder="Pick a category..." />
-                  </SelectTrigger>
-                  <SelectContent className="z-[130] bg-zinc-800 border-zinc-700">
-                    {categories.map(cat => (
-                      <SelectItem key={cat} value={cat}>
-                        {categoryDisplayNames[cat] || cat}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              {/* Post picker */}
-              {localCategory && (
-                <div>
-                  <label className="block text-gray-400 text-sm mb-2">Select Post</label>
-                  <Select
-                    value={localPostId}
-                    onValueChange={postId => {
-                      setLocalPostId(postId);
-                      const post = posts.find(p => p._id === postId);
-                      if (post) {
-                        onPostChange(localCategory, post);
-                        setOpen(false);
-                      }
-                    }}
-                  >
-                    <SelectTrigger className="w-full bg-zinc-800 border-zinc-700">
-                      <SelectValue placeholder="Pick a post..." />
-                    </SelectTrigger>
-                    <SelectContent className="z-[130] bg-zinc-800 border-zinc-700 max-h-60 overflow-y-auto">
-                      {posts.length > 0 ? (
-                        posts.map(post => (
-                          <SelectItem key={post._id} value={post._id}>
-                            {post.title || "(Untitled)"}
-                          </SelectItem>
-                        ))
-                      ) : (
-                        <div className="px-4 py-2 text-gray-400 text-sm">No posts</div>
-                      )}
-                    </SelectContent>
-                  </Select>
-                </div>
+              {categories.length === 0 ? (
+                <div className="text-gray-500 text-sm py-8 text-center">No categories found.</div>
+              ) : (
+                categories.map(cat => (
+                  <div key={cat} className="mb-1">
+                    <button
+                      className={`
+                        w-full flex items-center justify-between py-3 px-2 text-base font-medium rounded-lg
+                        ${
+                          expandedCat === cat
+                            ? "bg-zinc-800 text-white"
+                            : "text-gray-200 hover:bg-zinc-800"
+                        }
+                        transition-colors
+                        outline-none
+                      `}
+                      aria-expanded={expandedCat === cat}
+                      onClick={() => handleCategoryClick(cat)}
+                    >
+                      <span className="truncate">{categoryDisplayNames[cat] || cat}</span>
+                      <ChevronDown
+                        className={`ml-2 w-4 h-4 transition-transform duration-200 ${
+                          expandedCat === cat ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                    {/* Posts list (collapsible) */}
+                    <div
+                      className={`
+                        overflow-hidden transition-all duration-200
+                        ${expandedCat === cat ? "max-h-96 animate-fade-in" : "max-h-0 opacity-0"}
+                      `}
+                      style={{
+                        background: expandedCat === cat ? "#18181b" : undefined,
+                        borderRadius: "0 0 12px 12px",
+                      }}
+                    >
+                      <ul>
+                        {expandedCat === cat &&
+                          (groupedContent[cat]?.length
+                            ? groupedContent[cat].map(post => {
+                                const isSelected =
+                                  selectedPost?._id === post._id;
+                                return (
+                                  <li key={post._id}>
+                                    <button
+                                      onClick={() =>
+                                        handlePostClick(cat, post)
+                                      }
+                                      className={`w-full text-left px-4 py-2 text-sm rounded
+                                        transition-colors duration-100
+                                        ${
+                                          isSelected
+                                            ? "text-white font-bold bg-zinc-700"
+                                            : "text-gray-200 hover:bg-zinc-700"
+                                        }`}
+                                    >
+                                      {post.title || "(Untitled)"}
+                                    </button>
+                                  </li>
+                                );
+                              })
+                            : (
+                              <li className="px-4 py-2 text-gray-400 text-sm">
+                                No posts in this category.
+                              </li>
+                            )
+                          )
+                        }
+                      </ul>
+                    </div>
+                  </div>
+                ))
               )}
-              {/* Padding at bottom */}
-              <div className="h-4" />
-            </div>
+            </nav>
             <style>
               {`
                 @keyframes slide-up-fast {
@@ -158,18 +210,39 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
                   }
                   to {
                     opacity: 1;
-                    transform: translateY(0);
+                    transform: translateY(0%);
                   }
                 }
                 .animate-slide-up-fast {
-                  animation: slide-up-fast 0.28s cubic-bezier(0.32,0.72,0.42,1.09);
+                  animation: slide-up-fast 0.26s cubic-bezier(0.32,0.7,0.42,1.05);
+                }
+                @keyframes slide-down-fast {
+                  from {
+                    opacity: 1;
+                    transform: translateY(0%);
+                  }
+                  to {
+                    opacity: 0;
+                    transform: translateY(100%);
+                  }
+                }
+                .animate-slide-down-fast {
+                  animation: slide-down-fast 0.26s cubic-bezier(0.48,0.46,0.47,1.08);
+                }
+                @keyframes fade-in {
+                  from { opacity: 0; }
+                  to { opacity: 1; }
+                }
+                .animate-fade-in {
+                  animation: fade-in 0.2s ease;
                 }
               `}
             </style>
           </div>
         </div>
       )}
-      <div className="fixed z-[121] bottom-0 inset-x-0 flex items-center justify-center px-4 py-3 bg-black/80 border-t border-zinc-800 md:hidden">
+      {/* Button at the bottom to open menu */}
+      <div className="fixed z-[129] bottom-0 inset-x-0 flex items-center justify-center px-4 py-3 bg-black/80 border-t border-zinc-800 md:hidden">
         <Button
           className="w-full max-w-xs bg-white text-black hover:bg-gray-200 flex justify-between items-center"
           onClick={() => setOpen(true)}
@@ -187,3 +260,4 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
 };
 
 export default MobileDocCategoryPicker;
+
