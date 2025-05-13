@@ -276,23 +276,33 @@ export default function Documentation() {
                               <ChevronRight className="ml-2 w-4 h-4" />
                             )}
                           </button>
-                          {/* Dropdown of posts in category if expanded */}
+                          {/* Sidebar dropdown of posts */}
                           {expandedCategory === cat && groupedContent[cat] && (
-                            <ul className="ml-3 mt-0.5 space-y-1">
-                              {filteredPosts(cat).map((post) => (
-                                <li key={post._id}>
-                                  <button
-                                    className={`block px-2 py-1 text-sm rounded transition w-full text-left hover:bg-zinc-700 ${
-                                      selectedPost?._id === post._id
-                                        ? "bg-zinc-700 text-white font-medium"
-                                        : "text-gray-300"
-                                    }`}
-                                    onClick={() => setSelectedPost(post)}
-                                  >
-                                    {post.title || "(Untitled)"}
-                                  </button>
-                                </li>
-                              ))}
+                            <ul className="ml-0 mt-0.5 bg-black rounded-md shadow-lg border border-zinc-900 py-2 select-none z-10">
+                              {filteredPosts(cat).map((post) => {
+                                const isSelected = selectedPost?._id === post._id;
+                                return (
+                                  <li key={post._id}>
+                                    <button
+                                      className={
+                                        `w-full text-left px-5 py-2 text-sm
+                                        transition-colors duration-100
+                                        ${
+                                          isSelected
+                                            ? "border-l-2 border-white text-white bg-zinc-900 font-bold"
+                                            : "border-l-2 border-transparent text-gray-300 hover:bg-zinc-800"
+                                        }`
+                                      }
+                                      style={{
+                                        outline: "none",
+                                      }}
+                                      onClick={() => setSelectedPost(post)}
+                                    >
+                                      {post.title || "(Untitled)"}
+                                    </button>
+                                  </li>
+                                );
+                              })}
                             </ul>
                           )}
                           <Separator className="bg-zinc-800 mt-2" />
