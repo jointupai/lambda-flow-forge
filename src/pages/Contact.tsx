@@ -111,7 +111,7 @@ export default function Contact() {
             <div className="relative z-10">
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 gap-0">
-                  <div className="border border-zinc-800 rounded-none p-8">
+                  <div className="bg-black border border-zinc-800 rounded-none p-8">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Talk to our Sales team.</h1>
                     
                     <div className="space-y-6 mt-6">
