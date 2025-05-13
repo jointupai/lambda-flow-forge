@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-normal mb-4">MENU</h3>
+            <h3 className="text-sm font-semibold text-white tracking-normal mb-4">Menu</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white">Home</Link>
@@ -50,9 +50,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
-              Contact
-            </h3>
+            <h3 className="text-sm font-semibold text-white tracking-normal mb-4">Contact Options</h3>
             <ul className="space-y-2">
               <li className="flex items-center gap-2 text-gray-400">
                 <Mail size={16} className="flex-shrink-0" />
