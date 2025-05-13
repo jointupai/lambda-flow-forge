@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,10 +113,9 @@ export default function Contact() {
   return (
     <div className="w-full py-0 pt-[80px]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        <div className="border border-gray-800 rounded-none bg-black overflow-hidden">
+        <div className="border border-gray-800 rounded-none overflow-hidden">
           <div className="relative py-12 md:py-16 px-8">
             <div className="absolute inset-0 bg-grid"></div>
-            <div className="absolute inset-0 glow-effect"></div>
             <div className="relative z-10">
               <div className="container mx-auto">
                 <div className="grid md:grid-cols-2 gap-12">
@@ -176,7 +174,7 @@ export default function Contact() {
                     </div>
                   </div>
                   
-                  <div className="bg-black/60 border border-zinc-800 rounded-xl p-8">
+                  <div className="border border-zinc-800 rounded-xl p-8">
                     {isSuccess ? (
                       <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
