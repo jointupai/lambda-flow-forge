@@ -289,7 +289,7 @@ export default function Documentation() {
                                         transition-colors duration-100
                                         ${
                                           isSelected
-                                            ? "border-l-2 border-white text-white bg-zinc-900 font-bold"
+                                            ? "text-white font-bold"
                                             : "border-l-2 border-transparent text-gray-300 hover:bg-zinc-800"
                                         }`
                                       }
