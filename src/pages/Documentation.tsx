@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import {
   ChevronRight,
   ChevronDown,
@@ -9,16 +8,15 @@ import {
   Database,
   Search,
   Shield,
-  Loader2
+  Loader2,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
+import { PortableText } from "@portabletext/react";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -34,6 +32,7 @@ export default function Documentation() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedPost, setSelectedPost] = useState<ContentItem | null>(null);
 
   // Grouped content by category
   const groupedContent = React.useMemo(() => {
@@ -64,14 +63,20 @@ export default function Documentation() {
       } catch (error) {
         toast({
           title: "Error loading documentation",
-          description: "Could not connect to the content server. Please try again later.",
-          variant: "destructive"
+          description:
+            "Could not connect to the content server. Please try again later.",
+          variant: "destructive",
         });
         setIsLoading(false);
       }
     };
     fetchDocContent();
   }, []);
+
+  // Reset selection if search or content changes
+  useEffect(() => {
+    setSelectedPost(null);
+  }, [searchQuery, content]);
 
   // Search filter in sidebar: only categories and posts matching query
   const filteredCategories = categories.filter((cat) => {
@@ -80,21 +85,32 @@ export default function Documentation() {
     const posts = groupedContent[cat] || [];
     return posts.some(
       (post) =>
-        (post.title?.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        (typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
     );
   });
 
+  const filteredPosts = (cat: string) => {
+    if (!searchQuery) return groupedContent[cat] || [];
+    return (groupedContent[cat] || []).filter(
+      (post) =>
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  };
+
   // Show/hide posts under given category
   const handleCategoryToggle = (cat: string) => {
-    setExpandedCategory(prev => prev === cat ? null : cat);
+    setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="flex">
+    <div className="min-h-screen bg-black text-white w-full">
+      <div className="flex w-full">
         {/* Sidebar */}
-        <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16">
+        <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16 left-0">
           <div className="p-4">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
@@ -109,7 +125,9 @@ export default function Documentation() {
           <nav className="px-4 pb-16">
             <div className="space-y-8">
               <div>
-                <span className="text-sm font-bold text-gray-200 mb-3 block">Categories</span>
+                <span className="text-sm font-bold text-gray-200 mb-3 block">
+                  Categories
+                </span>
                 {isLoading ? (
                   Array(5)
                     .fill(0)
@@ -123,7 +141,11 @@ export default function Documentation() {
                   filteredCategories.map((cat) => (
                     <div key={cat} className="mb-2">
                       <button
-                        className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "bg-zinc-800 text-white font-semibold" : ""}`}
+                        className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${
+                          expandedCategory === cat
+                            ? "bg-zinc-800 text-white font-semibold"
+                            : ""
+                        }`}
                         onClick={() => handleCategoryToggle(cat)}
                         aria-expanded={expandedCategory === cat}
                       >
@@ -137,14 +159,18 @@ export default function Documentation() {
                       {/* Dropdown of posts in category if expanded */}
                       {expandedCategory === cat && groupedContent[cat] && (
                         <ul className="ml-3 mt-0.5 space-y-1">
-                          {groupedContent[cat].map((post) => (
+                          {filteredPosts(cat).map((post) => (
                             <li key={post._id}>
-                              <Link
-                                to={`/documentation/post/${post._id}`}
-                                className="block px-2 py-1 text-sm rounded hover:bg-zinc-700 text-gray-300 transition"
+                              <button
+                                className={`block px-2 py-1 text-sm rounded transition w-full text-left hover:bg-zinc-700 ${
+                                  selectedPost?._id === post._id
+                                    ? "bg-zinc-700 text-white font-medium"
+                                    : "text-gray-300"
+                                }`}
+                                onClick={() => setSelectedPost(post)}
                               >
                                 {post.title || "(Untitled)"}
-                              </Link>
+                              </button>
                             </li>
                           ))}
                         </ul>
@@ -153,58 +179,96 @@ export default function Documentation() {
                     </div>
                   ))
                 ) : (
-                  <span className="text-gray-500 text-sm">No categories found.</span>
+                  <span className="text-gray-500 text-sm">
+                    No categories found.
+                  </span>
                 )}
               </div>
             </div>
           </nav>
         </div>
-
-        {/* Main content */}
+        {/* Main content area (with consistent container width) */}
         <div className="flex-1 md:ml-64">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 max-w-5xl">
-            <div className="mb-16">
-              <h1 className="text-4xl font-bold mb-4">JointUp Documentation</h1>
-              <p className="text-xl text-gray-400">
-                JointUp is a cloud automation and integration platform for modern businesses.
-                <br />
-                <span className="text-sm block mt-2 text-zinc-400">
-                  Select a category and a post from the sidebar to view its content.
-                </span>
-              </p>
-            </div>
+          <div className="container mx-auto px-4 sm:px-6 md:px-12 py-12 max-w-5xl">
             {isLoading ? (
               <div className="flex items-center justify-center my-20">
                 <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
               </div>
+            ) : selectedPost ? (
+              <div>
+                <div className="mb-4 flex flex-col gap-2">
+                  <div className="text-sm text-gray-400">
+                    {selectedPost.category}
+                  </div>
+                  <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
+                </div>
+                <div className="text-gray-400 prose prose-invert max-w-none mb-8">
+                  {Array.isArray(selectedPost.content) ? (
+                    <PortableText value={selectedPost.content} />
+                  ) : selectedPost.content ? (
+                    <div>{selectedPost.content}</div>
+                  ) : (
+                    <span>No content</span>
+                  )}
+                </div>
+                <Button
+                  className="bg-white text-black hover:bg-gray-200"
+                  onClick={() => setSelectedPost(null)}
+                >
+                  Back to categories
+                </Button>
+              </div>
             ) : (
               <div>
+                <div className="mb-16">
+                  <h1 className="text-4xl font-bold mb-4">
+                    JointUp Documentation
+                  </h1>
+                  <p className="text-xl text-gray-400">
+                    JointUp is a cloud automation and integration platform for
+                    modern businesses.
+                    <br />
+                    <span className="text-sm block mt-2 text-zinc-400">
+                      Select a category and a post from the sidebar to view its
+                      content.
+                    </span>
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <Database className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">Infrastructure from your code</h3>
+                      <h3 className="text-lg font-semibold">
+                        Infrastructure from your code
+                      </h3>
                     </div>
                     <p className="text-gray-400">
-                      Deploy your applications with a simple push, automatically creating the necessary infrastructure.
+                      Deploy your applications with a simple push,
+                      automatically creating the necessary infrastructure.
                     </p>
                   </div>
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <Code className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">Use your favorite developer tools</h3>
+                      <h3 className="text-lg font-semibold">
+                        Use your favorite developer tools
+                      </h3>
                     </div>
                     <p className="text-gray-400">
-                      Work with your preferred frameworks and libraries while we handle the deployment.
+                      Work with your preferred frameworks and libraries while we
+                      handle the deployment.
                     </p>
                   </div>
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <Shield className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">Stay fast and secure</h3>
+                      <h3 className="text-lg font-semibold">
+                        Stay fast and secure
+                      </h3>
                     </div>
                     <p className="text-gray-400">
-                      Built-in security features and performance optimizations for all your applications.
+                      Built-in security features and performance optimizations
+                      for all your applications.
                     </p>
                   </div>
                   <div>
@@ -213,17 +277,18 @@ export default function Documentation() {
                       <h3 className="text-lg font-semibold">Observability</h3>
                     </div>
                     <p className="text-gray-400">
-                      Monitor and analyze your application's performance with detailed metrics.
+                      Monitor and analyze your application's performance with
+                      detailed metrics.
                     </p>
                   </div>
                 </div>
+                <div className="flex justify-center">
+                  <Button className="bg-white text-black hover:bg-gray-200">
+                    Start building today
+                  </Button>
+                </div>
               </div>
             )}
-            <div className="flex justify-center">
-              <Button className="bg-white text-black hover:bg-gray-200">
-                Start building today
-              </Button>
-            </div>
           </div>
         </div>
       </div>
