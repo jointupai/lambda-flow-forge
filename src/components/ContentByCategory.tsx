@@ -1,12 +1,13 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchContent } from "@/lib/sanity";
+import { PortableText } from "@portabletext/react";
 
 interface Post {
   _id: string;
   category?: string;
   title?: string;
-  content?: string;
+  content?: any; // Can be string or Portable Text array
 }
 
 interface Categories {
@@ -51,7 +52,15 @@ const ContentByCategory: React.FC = () => {
           {posts.map((post) => (
             <div key={post._id} className="mb-6 p-4 rounded bg-zinc-900 border border-zinc-800">
               <h3 className="text-lg font-bold mb-2">{post.title}</h3>
-              <div className="text-gray-300">{post.content}</div>
+              <div className="text-gray-300">
+                {Array.isArray(post.content) ? (
+                  <PortableText value={post.content} />
+                ) : post.content ? (
+                  <span>{post.content}</span>
+                ) : (
+                  <span>No content</span>
+                )}
+              </div>
             </div>
           ))}
         </div>
