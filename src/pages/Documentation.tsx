@@ -53,6 +53,7 @@ export default function Documentation() {
       try {
         setIsLoading(true);
         const contentData = await fetchContent();
+        console.log('Fetched docs content:', contentData); // DEBUG: Inspect fetched content
         setContent(contentData || []);
         const allCategories = Array.from(new Set((contentData || []).map((item: ContentItem) => item.category).filter((c): c is string => !!c))) as string[];
         setCategories(allCategories);
