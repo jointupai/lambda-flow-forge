@@ -102,7 +102,7 @@ export default function Documentation() {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
-  // Add custom components for PortableText, to support headings/lists/etc.
+  // Add custom components for PortableText, fixed for type compatibility
   const portableTextComponents = {
     block: {
       h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
@@ -123,7 +123,7 @@ export default function Documentation() {
     marks: {
       link: ({ children, value }) => (
         <a
-          href={value?.href}
+          href={value?.href || "#"}
           className="underline text-blue-400 hover:text-blue-600"
           target="_blank"
           rel="noopener noreferrer"
@@ -140,7 +140,7 @@ export default function Documentation() {
     types: {
       code: ({ value }) => (
         <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
-          <code>{value.code}</code>
+          <code>{value?.code}</code>
         </pre>
       ),
       // ...add more custom types if needed
