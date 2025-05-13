@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,6 +15,7 @@ import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
 import Documentation from "./pages/Documentation";
 import DocumentationArticle from "./pages/DocumentationArticle";
+import PostPage from "./pages/PostPage";
 import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
 import NotFound from "./pages/NotFound";
 
@@ -54,6 +54,7 @@ const App = () => (
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/documentation" element={<Documentation />} />
               <Route path="/documentation/:slug" element={<DocumentationArticle />} />
+              <Route path="/documentation/post/:id" element={<PostPage />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               
               {/* New Solution Routes */}
