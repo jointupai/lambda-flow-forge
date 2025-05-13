@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, Globe } from "lucide-react";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer className="bg-gray-950 text-gray-200">
+  return <footer className="bg-black text-gray-200">
       <div className="container mx-auto px-4 sm:px-8 py-2">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
