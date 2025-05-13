@@ -121,28 +121,43 @@ export default function Documentation() {
       number: ({ children }) => <li className="mb-2">{children}</li>,
     },
     marks: {
-      link: ({ children, value }) => (
-        <a
-          href={value?.href || "#"}
-          className="underline text-blue-400 hover:text-blue-600"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ),
-      strong: ({ children }) => <strong className="font-bold">{children}</strong>,
-      em: ({ children }) => <em className="italic">{children}</em>,
-      code: ({ children }) => (
-        <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{children}</code>
-      ),
+      link: (props) => {
+        const { children, value } = props;
+        return (
+          <a
+            href={value?.href || "#"}
+            className="underline text-blue-400 hover:text-blue-600"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {children}
+          </a>
+        );
+      },
+      strong: (props) => {
+        const { children } = props;
+        return <strong className="font-bold">{children}</strong>;
+      },
+      em: (props) => {
+        const { children } = props;
+        return <em className="italic">{children}</em>;
+      },
+      code: (props) => {
+        const { children } = props;
+        return (
+          <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{children}</code>
+        );
+      },
     },
     types: {
-      code: ({ value }) => (
-        <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
-          <code>{value?.code}</code>
-        </pre>
-      ),
+      code: (props) => {
+        const { value } = props;
+        return (
+          <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
+            <code>{value?.code}</code>
+          </pre>
+        );
+      },
       // ...add more custom types if needed
     },
   };
