@@ -1,17 +1,16 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
 export default function CustomWebDevelopment() {
-  return (
-    <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-24">
         {/* Hero Section - Boxed layout with border */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="p-16 flex flex-col items-center justify-center text-center relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
                 Custom Web Application Development
@@ -21,10 +20,10 @@ export default function CustomWebDevelopment() {
               </p>
               
               <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-4">
-                <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-auto" size="lg">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-[16px]">
                   Start Your Project
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-auto" size="lg">
+                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-[16px]">
                   Get a Demo
                 </Button>
               </div>
@@ -35,7 +34,9 @@ export default function CustomWebDevelopment() {
         {/* Testimonial Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <div className="flex flex-col md:flex-row gap-12">
                 <div className="flex-1">
@@ -62,42 +63,35 @@ export default function CustomWebDevelopment() {
         {/* Features Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">What We Offer</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "Intuitive User Interfaces",
-                    description: "We design and build user-friendly interfaces that enhance user experience and engagement."
-                  },
-                  {
-                    title: "Scalable Architecture",
-                    description: "Our applications are built to handle growth, ensuring your solution works as your business scales."
-                  },
-                  {
-                    title: "API Integration",
-                    description: "Seamless integration with third-party services and existing systems for unified operations."
-                  },
-                  {
-                    title: "Performance Optimization",
-                    description: "Fast-loading applications optimized for speed and efficiency across all devices."
-                  },
-                  {
-                    title: "Security First",
-                    description: "We implement industry best practices to keep your data and users secure."
-                  },
-                  {
-                    title: "Ongoing Support",
-                    description: "Continuous maintenance and support to ensure your application runs smoothly."
-                  }
-                ].map((feature, index) => (
-                  <div key={index} className="border border-zinc-800 rounded-lg p-6 hover:bg-zinc-900/50 transition-colors duration-300">
+                {[{
+                title: "Intuitive User Interfaces",
+                description: "We design and build user-friendly interfaces that enhance user experience and engagement."
+              }, {
+                title: "Scalable Architecture",
+                description: "Our applications are built to handle growth, ensuring your solution works as your business scales."
+              }, {
+                title: "API Integration",
+                description: "Seamless integration with third-party services and existing systems for unified operations."
+              }, {
+                title: "Performance Optimization",
+                description: "Fast-loading applications optimized for speed and efficiency across all devices."
+              }, {
+                title: "Security First",
+                description: "We implement industry best practices to keep your data and users secure."
+              }, {
+                title: "Ongoing Support",
+                description: "Continuous maintenance and support to ensure your application runs smoothly."
+              }].map((feature, index) => <div key={index} className="border border-zinc-800 rounded-lg p-6 hover:bg-zinc-900/50 transition-colors duration-300">
                     <h3 className="text-xl font-medium mb-3">{feature.title}</h3>
                     <p className="text-gray-400">{feature.description}</p>
-                  </div>
-                ))}
+                  </div>)}
               </div>
 
               <div className="mt-16 text-center">
@@ -112,6 +106,5 @@ export default function CustomWebDevelopment() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
