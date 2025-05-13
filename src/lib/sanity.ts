@@ -15,7 +15,8 @@ export const fetchContent = async () => {
       _id,
       category,
       title,
-      content
+      content,
+      slug
     }`;
     const content = await sanityClient.fetch(query);
     return content;
