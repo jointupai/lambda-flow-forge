@@ -46,31 +46,33 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
     setLocalPostId(selectedPost?._id || "");
   }, [selectedPost]);
 
-  // Animation: When open, slide menu from bottom with fade (using Tailwind transitions)
   return (
     <>
-      {/* Animated menu overlay */}
       {open && (
         <div
-          className="fixed inset-0 z-[100] bg-black bg-opacity-40 flex items-end md:hidden"
+          className="fixed inset-0 z-[120] bg-black bg-opacity-40 flex items-end md:hidden"
           style={{ transition: 'background 0.25s' }}
           onClick={() => setOpen(false)}
         >
           <div
             className={`
-              w-full sm:max-w-md mx-auto
+              w-full sm:max-w-md mx-auto 
               rounded-t-2xl shadow-lg
               bg-zinc-900 border-t border-zinc-800
               p-0
               animate-slide-up-fast
+              relative
+              z-[121]
+              flex flex-col
+              max-h-[80vh]
             `}
             style={{
               animation: "slide-up-fast 0.28s cubic-bezier(0.32,0.72,0.42,1.09)",
               willChange: "transform, opacity",
+              overflow: "visible"
             }}
             onClick={e => e.stopPropagation()}
           >
-            {/* Header with close */}
             <div className="w-full flex items-center justify-between px-6 pt-5 pb-2 border-b border-zinc-800">
               <span className="text-lg font-semibold text-white">Browse Documentation</span>
               <Button
@@ -83,85 +85,91 @@ const MobileDocCategoryPicker: React.FC<MobileDocCategoryPickerProps> = ({
                 <X className="w-5 h-5" />
               </Button>
             </div>
-            {/* Category picker */}
-            <div className="px-6 pt-4 pb-2">
-              <label className="block text-gray-400 text-sm mb-2">Select Category</label>
-              <Select
-                value={localCategory}
-                onValueChange={value => {
-                  setLocalCategory(value);
-                  setLocalPostId("");
-                  onCategoryChange(value);
-                }}
-              >
-                <SelectTrigger className="w-full bg-zinc-800 border-zinc-700">
-                  <SelectValue placeholder="Pick a category..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {categories.map(cat => (
-                    <SelectItem key={cat} value={cat}>
-                      {categoryDisplayNames[cat] || cat}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            {/* Post picker */}
-            {localCategory && (
-              <div className="px-6 pb-2">
-                <label className="block text-gray-400 text-sm mb-2">Select Post</label>
+            <div className="flex flex-col gap-2 px-6 pb-2 pt-4 overflow-y-auto"
+                 style={{
+                   maxHeight: "calc(80vh - 60px)",
+                   overscrollBehavior: "contain"
+                 }}
+            >
+              {/* Category picker */}
+              <div className="">
+                <label className="block text-gray-400 text-sm mb-2">Select Category</label>
                 <Select
-                  value={localPostId}
-                  onValueChange={postId => {
-                    setLocalPostId(postId);
-                    const post = posts.find(p => p._id === postId);
-                    if (post) {
-                      onPostChange(localCategory, post);
-                      setOpen(false);
-                    }
+                  value={localCategory}
+                  onValueChange={value => {
+                    setLocalCategory(value);
+                    setLocalPostId("");
+                    onCategoryChange(value);
                   }}
                 >
                   <SelectTrigger className="w-full bg-zinc-800 border-zinc-700">
-                    <SelectValue placeholder="Pick a post..." />
+                    <SelectValue placeholder="Pick a category..." />
                   </SelectTrigger>
-                  <SelectContent>
-                    {posts.length > 0 ? (
-                      posts.map(post => (
-                        <SelectItem key={post._id} value={post._id}>
-                          {post.title || "(Untitled)"}
-                        </SelectItem>
-                      ))
-                    ) : (
-                      <div className="px-4 py-2 text-gray-400 text-sm">No posts</div>
-                    )}
+                  <SelectContent className="z-[130] bg-zinc-800 border-zinc-700">
+                    {categories.map(cat => (
+                      <SelectItem key={cat} value={cat}>
+                        {categoryDisplayNames[cat] || cat}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
-            )}
-            {/* Padding at bottom */}
-            <div className="h-4" />
+              {/* Post picker */}
+              {localCategory && (
+                <div>
+                  <label className="block text-gray-400 text-sm mb-2">Select Post</label>
+                  <Select
+                    value={localPostId}
+                    onValueChange={postId => {
+                      setLocalPostId(postId);
+                      const post = posts.find(p => p._id === postId);
+                      if (post) {
+                        onPostChange(localCategory, post);
+                        setOpen(false);
+                      }
+                    }}
+                  >
+                    <SelectTrigger className="w-full bg-zinc-800 border-zinc-700">
+                      <SelectValue placeholder="Pick a post..." />
+                    </SelectTrigger>
+                    <SelectContent className="z-[130] bg-zinc-800 border-zinc-700 max-h-60 overflow-y-auto">
+                      {posts.length > 0 ? (
+                        posts.map(post => (
+                          <SelectItem key={post._id} value={post._id}>
+                            {post.title || "(Untitled)"}
+                          </SelectItem>
+                        ))
+                      ) : (
+                        <div className="px-4 py-2 text-gray-400 text-sm">No posts</div>
+                      )}
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+              {/* Padding at bottom */}
+              <div className="h-4" />
+            </div>
+            <style>
+              {`
+                @keyframes slide-up-fast {
+                  from {
+                    opacity: 0;
+                    transform: translateY(100%);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+                .animate-slide-up-fast {
+                  animation: slide-up-fast 0.28s cubic-bezier(0.32,0.72,0.42,1.09);
+                }
+              `}
+            </style>
           </div>
-          <style>
-            {`
-              @keyframes slide-up-fast {
-                from {
-                  opacity: 0;
-                  transform: translateY(100%);
-                }
-                to {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
-              }
-              .animate-slide-up-fast {
-                animation: slide-up-fast 0.28s cubic-bezier(0.32,0.72,0.42,1.09);
-              }
-            `}
-          </style>
         </div>
       )}
-      {/* Browse documentation button fixed at bottom */}
-      <div className="fixed z-[101] bottom-0 inset-x-0 flex items-center justify-center px-4 py-3 bg-black/80 border-t border-zinc-800 md:hidden">
+      <div className="fixed z-[121] bottom-0 inset-x-0 flex items-center justify-center px-4 py-3 bg-black/80 border-t border-zinc-800 md:hidden">
         <Button
           className="w-full max-w-xs bg-white text-black hover:bg-gray-200 flex justify-between items-center"
           onClick={() => setOpen(true)}
