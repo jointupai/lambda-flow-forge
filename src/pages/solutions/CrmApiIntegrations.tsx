@@ -1,17 +1,16 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
 export default function CrmApiIntegrations() {
-  return (
-    <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-24">
         {/* Hero Section - Boxed layout with border */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="p-16 flex flex-col items-center justify-center text-center relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
                 CRM & API Integrations
@@ -21,10 +20,10 @@ export default function CrmApiIntegrations() {
               </p>
               
               <div className="flex flex-col md:flex-row gap-4 mt-4 justify-center">
-                <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-auto" size="lg">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-[16px]">
                   Start Integrating
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-auto" size="lg">
+                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-[16px]">
                   Get a Demo
                 </Button>
               </div>
@@ -35,7 +34,9 @@ export default function CrmApiIntegrations() {
         {/* Testimonial Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <div className="flex flex-col md:flex-row gap-12">
                 <div className="flex-1">
@@ -62,42 +63,35 @@ export default function CrmApiIntegrations() {
         {/* Features Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{
+            backgroundSize: '40px 40px'
+          }}></div>
             <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">Integration Solutions</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    title: "CRM System Integration",
-                    description: "Connect your CRM with other business systems for unified data and streamlined operations."
-                  },
-                  {
-                    title: "Custom API Development",
-                    description: "Build tailored APIs that enable your systems to communicate effectively."
-                  },
-                  {
-                    title: "Middleware Solutions",
-                    description: "Create reliable connections between disparate systems with custom middleware."
-                  },
-                  {
-                    title: "Data Synchronization",
-                    description: "Keep information consistent across all platforms with automated sync processes."
-                  },
-                  {
-                    title: "E-commerce Integration",
-                    description: "Connect your online store with inventory, shipping, and customer management systems."
-                  },
-                  {
-                    title: "Workflow Automation",
-                    description: "Automate business processes that span multiple systems for increased efficiency."
-                  }
-                ].map((feature, index) => (
-                  <div key={index} className="border border-zinc-800 rounded-lg p-6 hover:bg-zinc-900/50 transition-colors duration-300">
+                {[{
+                title: "CRM System Integration",
+                description: "Connect your CRM with other business systems for unified data and streamlined operations."
+              }, {
+                title: "Custom API Development",
+                description: "Build tailored APIs that enable your systems to communicate effectively."
+              }, {
+                title: "Middleware Solutions",
+                description: "Create reliable connections between disparate systems with custom middleware."
+              }, {
+                title: "Data Synchronization",
+                description: "Keep information consistent across all platforms with automated sync processes."
+              }, {
+                title: "E-commerce Integration",
+                description: "Connect your online store with inventory, shipping, and customer management systems."
+              }, {
+                title: "Workflow Automation",
+                description: "Automate business processes that span multiple systems for increased efficiency."
+              }].map((feature, index) => <div key={index} className="border border-zinc-800 rounded-lg p-6 hover:bg-zinc-900/50 transition-colors duration-300">
                     <h3 className="text-xl font-medium mb-3">{feature.title}</h3>
                     <p className="text-gray-400">{feature.description}</p>
-                  </div>
-                ))}
+                  </div>)}
               </div>
 
               <div className="mt-16 text-center">
@@ -112,6 +106,5 @@ export default function CrmApiIntegrations() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
