@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
+import { PiLineVerticalThin } from "react-icons/pi";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
@@ -190,7 +190,7 @@ export default function Documentation() {
                     </span>
                     {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
-                            <Separator className="bg-zinc-800" />
+                            
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
                           <button
                             className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
@@ -221,9 +221,23 @@ export default function Documentation() {
                               filteredPosts(cat).map(post => {
                                 const isSelected = selectedPost?._id === post._id;
                                 return (
-                                  <li key={post._id}>
+                                  <li key={post._id} className="relative flex items-center">
+                                  {/* Animated divider for selected post */}
+                                  <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
+                                    {isSelected && (
+                                      <span
+                                        className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
+                                        style={{
+                                          // Custom keyframes: fade and scale in
+                                          animation: 'fade-in-scale-divider 0.2s ease-in'
+                                        }}
+                                      >
+                                        <PiLineVerticalThin className="text-white" size={18} />
+                                      </span>
+                                    )}
+                                  </span>
                                     <button
-                                      className={`w-full text-left px-5 py-2 text-sm
+                                      className={`w-full text-left px-3 py-2 text-sm flex items-center
                                       transition-colors duration-100
                                       ${isSelected
                                         ? "text-white font-bold"
@@ -240,7 +254,7 @@ export default function Documentation() {
                               })}
                           </ul>
                           </div>
-                          <Separator className="bg-zinc-800 mt-2" />
+                          
                         </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
                       </span>}
@@ -342,5 +356,27 @@ export default function Documentation() {
           </main>
         </div>
       </div>
+      {/* Add fade-in-scale-divider keyframes for the divider animation */}
+      <style>
+        {`
+        @keyframes fade-in-scale-divider {
+          0% {
+            opacity: 0;
+            transform: scaleY(0.2);
+          }
+          80% {
+            opacity: 1;
+            transform: scaleY(1.1);
+          }
+          100% {
+            opacity: 1;
+            transform: scaleY(1);
+          }
+        }
+        .animate-\\[fade-in-scale-divider_0\\.15s_ease-in\\] {
+          animation: fade-in-scale-divider 0.15s ease-in;
+        }
+      `}
+      </style>
     </div>;
 }
