@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   ChevronRight,
@@ -103,7 +102,7 @@ export default function Documentation() {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
-  // Add custom components for PortableText, including image support and correct types
+  // Add custom components for PortableText, including robust image support
   const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
       h1: (props) => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
@@ -157,21 +156,35 @@ export default function Documentation() {
         );
       },
       image: (props) => {
-        // value is possibly undefined and may not have asset.url
-        const url =
-          props.value &&
-          props.value.asset &&
-          (props.value.asset.url || (props.value.asset._ref ? undefined : undefined)); // Unless you've got a custom image builder
-        const alt = props.value && props.value.alt ? props.value.alt : "Image";
-        // Only render if we actually get a url, otherwise fallback
-        return url ? (
-          <img
-            src={url}
-            alt={alt}
-            className="max-w-full h-auto mb-4 rounded-lg mx-auto"
-            loading="lazy"
-          />
-        ) : null;
+        // Sanity images may have value.asset.url or value.asset._ref.
+        const { value } = props;
+        // Try to use value.asset.url if available, or skip image if not present.
+        let url: string | undefined = undefined;
+        if (value && value.asset) {
+          // Sanity may return an asset with a url or only a _ref (which requires an image builder).
+          if (typeof value.asset.url === "string") {
+            url = value.asset.url;
+          }
+        }
+        const alt = value && value.alt ? value.alt : "Image";
+        // Only render if we get a url.
+        if (url) {
+          return (
+            <img
+              src={url}
+              alt={alt}
+              className="max-w-full h-auto mb-4 rounded-lg mx-auto"
+              loading="lazy"
+            />
+          );
+        } else {
+          // For debugging: show a placeholder or an error message.
+          return (
+            <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+              Image could not be loaded (missing url)
+            </div>
+          );
+        }
       },
     },
   };
