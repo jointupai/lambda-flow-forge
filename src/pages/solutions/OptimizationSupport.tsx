@@ -20,7 +20,7 @@ export default function OptimizationSupport() {
                 Keep your digital solutions running at peak performance with our comprehensive optimization and support services.
               </p>
               
-              <div className="flex flex-col md:flex-row gap-4 mt-4">
+              <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-4">
                 <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-auto" size="lg">
                   Get Support
                 </Button>
