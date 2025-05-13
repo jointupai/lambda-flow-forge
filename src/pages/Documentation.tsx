@@ -9,6 +9,7 @@ import { toast } from "@/hooks/use-toast";
 import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
 import { urlFor } from "@/lib/sanityImageUrl";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import SEO from "@/components/SEO";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -16,6 +17,15 @@ interface ContentItem {
   category?: string;
   title?: string;
   content?: any;
+  slug?: {
+    current: string;
+  };
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    keywords?: string[];
+    ogImage?: any;
+  };
 }
 export default function Documentation() {
   const [content, setContent] = useState<ContentItem[]>([]);
@@ -172,7 +182,27 @@ export default function Documentation() {
       }
     }
   };
-  return <div className="min-h-screen bg-black text-white w-full">
+  return (
+    <div className="min-h-screen bg-black text-white w-full">
+      {/* --- SEO tags (for documentation post view) --- */}
+      {selectedPost && (
+        <SEO
+          title={
+            selectedPost.seo?.metaTitle ||
+            selectedPost.title ||
+            "JointUp Documentation"
+          }
+          description={
+            selectedPost.seo?.metaDescription ||
+            (typeof selectedPost.content === "string"
+              ? selectedPost.content
+              : "")
+          }
+          keywords={selectedPost.seo?.keywords}
+          ogImage={selectedPost.seo?.ogImage}
+          slug={selectedPost.slug?.current}
+        />
+      )}
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
@@ -378,5 +408,6 @@ export default function Documentation() {
         }
       `}
       </style>
-    </div>;
+    </div>
+  );
 }
