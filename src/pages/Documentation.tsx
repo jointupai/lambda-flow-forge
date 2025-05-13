@@ -72,6 +72,20 @@ export default function Documentation() {
   useEffect(() => {
     setSelectedPost(null);
   }, [searchQuery, content]);
+
+  // This function helps us safely get the string slug, and debug if not
+  function getStringSlug(slug: unknown, postObj: unknown) {
+    if (typeof slug === "string") return slug;
+    if (slug && typeof slug === "object" && 'current' in slug && typeof slug.current === "string") {
+      return slug.current;
+    }
+    // Extra debugging for malformed slugs
+    if (slug) {
+      console.error("Malformed slug found in post:", postObj);
+    }
+    return null;
+  }
+
   const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
@@ -224,84 +238,89 @@ export default function Documentation() {
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                             
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
-                          <button
-                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
-                            onClick={() => handleCategoryToggle(cat)}
-                            aria-expanded={expandedCategory === cat}
-                          >
-                            <span className="flex-1">{cat}</span>
-                            {/* Animate the arrow rotation */}
-                            <ChevronDown
-                              className={`ml-2 w-4 h-4 transform transition-transform duration-200
-                                ${expandedCategory === cat ? "rotate-180" : ""}
-                              `}
-                            />
-                          </button>
-                          {/* Sidebar dropdown of posts */}
-                          <div style={{overflow: 'hidden'}}>
-                          <ul
-                            className={`
-                              ml-0 mt-0.5 rounded-md select-none z-10
-                              transition-all duration-200
-                              ${expandedCategory === cat
-                                ? "animate-fade-in opacity-100 max-h-96 visible"
-                                : "opacity-0 max-h-0 invisible"}
+                        <button
+                          className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
+                          onClick={() => handleCategoryToggle(cat)}
+                          aria-expanded={expandedCategory === cat}
+                        >
+                          <span className="flex-1">{cat}</span>
+                          {/* Animate the arrow rotation */}
+                          <ChevronDown
+                            className={`ml-2 w-4 h-4 transform transition-transform duration-200
+                              ${expandedCategory === cat ? "rotate-180" : ""}
                             `}
-                            style={{ background: "black" }}
-                          >
-                            {expandedCategory === cat &&
-                              filteredPosts(cat).map(post => {
-                                const isSelected = selectedPost?._id === post._id;
-                                // Build category/kebab-case for URL
-                                const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
-                                // Updated logic to handle slug as string or object
-                                const slugString = typeof post.slug === 'string'
-                                  ? post.slug
-                                  : post.slug && typeof post.slug.current === 'string'
-                                    ? post.slug.current
-                                    : null;
-                                const hasSlug = !!slugString;
-                                return (
-                                  <li key={post._id} className="relative flex items-center">
-                                    <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
-                                      {isSelected && (
-                                        <span
-                                          className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
-                                          style={{
-                                            animation: 'fade-in-scale-divider 0.2s ease-in'
-                                          }}
-                                        >
-                                          <PiLineVerticalThin className="text-white" size={18} />
-                                        </span>
-                                      )}
-                                    </span>
-                                    {hasSlug ? (
-                                      <Link
-                                        to={`/documentation/${catUrl}/${slugString}`}
-                                        className={`w-full text-left px-3 py-2 text-sm flex items-center
-                                          transition-colors duration-100
-                                          ${isSelected
-                                            ? "text-white font-bold"
-                                            : "text-gray-300 hover:bg-zinc-800"}
-                                        `}
-                                      >
-                                        {post.title || "(Untitled)"}
-                                      </Link>
-                                    ) : (
+                          />
+                        </button>
+                        {/* Sidebar dropdown of posts */}
+                        <div style={{overflow: 'hidden'}}>
+                        <ul
+                          className={`
+                            ml-0 mt-0.5 rounded-md select-none z-10
+                            transition-all duration-200
+                            ${expandedCategory === cat
+                              ? "animate-fade-in opacity-100 max-h-96 visible"
+                              : "opacity-0 max-h-0 invisible"}
+                          `}
+                          style={{ background: "black" }}
+                        >
+                          {expandedCategory === cat &&
+                            filteredPosts(cat).map(post => {
+                              const slugString = getStringSlug(post.slug, post);
+                              const isSelected = selectedPost?._id === post._id;
+                              // Build category/kebab-case for URL
+                              const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
+                              const hasSlug = !!slugString;
+
+                              // DEBUG LOGGING
+                              console.log('Rendering post in sidebar:', {
+                                post,
+                                slug: post.slug,
+                                slugType: typeof post.slug,
+                                slugString,
+                                hasSlug
+                              });
+
+                              return (
+                                <li key={post._id} className="relative flex items-center">
+                                  <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
+                                    {isSelected && (
                                       <span
-                                        className="w-full text-left px-3 py-2 text-sm flex items-center text-gray-500 cursor-not-allowed"
-                                        title="No slug for this article"
+                                        className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
+                                        style={{
+                                          animation: 'fade-in-scale-divider 0.2s ease-in'
+                                        }}
                                       >
-                                        {post.title || "(Untitled)"}
+                                        <PiLineVerticalThin className="text-white" size={18} />
                                       </span>
                                     )}
-                                  </li>
-                                );
-                              })}
-                          </ul>
-                          </div>
-                          
-                        </div>) : <span className="text-gray-500 text-sm">
+                                  </span>
+                                  {hasSlug ? (
+                                    <Link
+                                      to={`/documentation/${catUrl}/${slugString}`}
+                                      className={`w-full text-left px-3 py-2 text-sm flex items-center
+                                        transition-colors duration-100
+                                        ${isSelected
+                                          ? "text-white font-bold"
+                                          : "text-gray-300 hover:bg-zinc-800"}
+                                      `}
+                                    >
+                                      {post.title || "(Untitled)"}
+                                    </Link>
+                                  ) : (
+                                    <span
+                                      className="w-full text-left px-3 py-2 text-sm flex items-center text-gray-500 cursor-not-allowed"
+                                      title="No slug for this article"
+                                    >
+                                      {post.title || "(Untitled)"}
+                                    </span>
+                                  )}
+                                </li>
+                              );
+                            })}
+                        </ul>
+                        </div>
+                        
+                      </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
                       </span>}
                   </div>
