@@ -13,6 +13,7 @@ import YouTubeEmbed from "@/components/YouTubeEmbed";
 import SEO from "@/components/SEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import MobileDocCategoryPicker from "@/components/MobileDocCategoryPicker";
+import { Slant as Hamburger } from "hamburger-react";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -281,6 +282,8 @@ export default function Documentation() {
   };
 
   const isMobile = useIsMobile();
+  // Add mobile menu state for demonstration (or use your own toggle logic if already there)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-black text-white w-full">
@@ -303,7 +306,41 @@ export default function Documentation() {
           slug={selectedPost.slug?.current}
         />
       )}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-12">
+      {/* --- Mobile-ONLY: Top divider just below header --- */}
+      {isMobile && (
+        <div className="block md:hidden w-full h-[1.5px] bg-[#8E9196]"></div>
+      )}
+      {/* --- Mobile-ONLY: Fixed header section with Hamburger icon --- */}
+      {isMobile && (
+        <div className="fixed top-0 left-0 w-full z-50 bg-[#1A1F2C] flex items-center justify-between px-2 h-12 border-b border-[#8E9196]">
+          <div>
+            {/* Optional: Logo or page title */}
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen((v) => !v)}
+            aria-label="Open menu"
+            className="flex items-center justify-center rounded-full border border-[#8E9196] w-10 h-10 bg-transparent focus:outline-none transition-all ease-in-out duration-150"
+            style={{
+              boxShadow: "0 0 0 1.5px #8E9196 inset",
+            }}
+          >
+            <Hamburger
+              toggled={mobileMenuOpen}
+              toggle={setMobileMenuOpen}
+              direction="right"
+              size={24}
+              rounded
+              color="#fff"
+              hideOutline={true}
+            />
+          </button>
+        </div>
+      )}
+      <div
+        // Add pt-0 on mobile, pt-12 on desktop, extra space to avoid covered content under fixed header
+        className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-12"
+        style={isMobile ? { paddingTop: "52px" } : {}}
+      >
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
           <aside className="w-full md:w-64 md:flex-shrink-0">
