@@ -335,7 +335,7 @@ export default function Contact() {
                                 By clicking "Talk to JointUp", I acknowledge I have read and understand the Privacy Notice.
                               </p>
                               
-                              <Button type="submit" disabled={isSubmitting} className="w-1/3 h-12 bg-[#0872F5] hover:bg-blue-500 text-white text-base font-medium rounded-lg">
+                              <Button type="submit" disabled={isSubmitting} className="w-1/2 h-12 bg-[#0872F5] hover:bg-blue-500 text-white text-base font-medium rounded-full">
                                 {isSubmitting ? "Processing..." : "Talk to JointUp"}
                               </Button>
                             </div>
