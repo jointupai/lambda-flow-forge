@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
 import Documentation from "./pages/Documentation";
+import DocumentationArticle from "./pages/DocumentationArticle";
 import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
 import NotFound from "./pages/NotFound";
 
@@ -52,6 +53,7 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/documentation" element={<Documentation />} />
+              <Route path="/documentation/:slug" element={<DocumentationArticle />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               
               {/* New Solution Routes */}
