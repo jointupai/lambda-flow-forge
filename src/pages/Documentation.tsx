@@ -21,7 +21,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-import { sanityClient } from "@/lib/sanity";
+import { sanityClient, fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
 
 // Types for Sanity content
@@ -43,10 +43,20 @@ interface DocArticle {
   publishedAt: string;
 }
 
+interface ContentItem {
+  _id: string;
+  introduction?: string;
+  technologyStack?: string;
+  ourProcess?: string;
+  resources?: string;
+  aiAgents?: string;
+}
+
 export default function Documentation() {
   const [categories, setCategories] = useState<DocCategory[]>([]);
   const [articles, setArticles] = useState<DocArticle[]>([]);
   const [featuredArticles, setFeaturedArticles] = useState<DocArticle[]>([]);
+  const [content, setContent] = useState<ContentItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   
@@ -80,11 +90,16 @@ export default function Documentation() {
         
         console.log("Articles fetched:", articlesData);
         
+        // Fetch content items
+        const contentData = await fetchContent();
+        console.log("Content items fetched:", contentData);
+        
         // Set featured articles (first 3)
         setFeaturedArticles(articlesData.slice(0, 3));
         
         setCategories(categoriesData);
         setArticles(articlesData);
+        setContent(contentData);
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch documentation content:", error);
@@ -162,6 +177,47 @@ export default function Documentation() {
               </div>
             ) : (
               <>
+                {/* Content items from Sanity */}
+                {content.length > 0 && (
+                  <div className="mb-16">
+                    <h2 className="text-3xl font-bold mb-6">Content from Sanity</h2>
+                    {content.map((item) => (
+                      <Card key={item._id} className="bg-zinc-900 border-zinc-800 p-6 hover:border-zinc-600 transition-all mb-6">
+                        {item.introduction && (
+                          <div className="mb-4">
+                            <h3 className="text-xl font-bold">Introduction</h3>
+                            <p className="text-gray-400">{item.introduction}</p>
+                          </div>
+                        )}
+                        {item.technologyStack && (
+                          <div className="mb-4">
+                            <h3 className="text-xl font-bold">Technology Stack</h3>
+                            <p className="text-gray-400">{item.technologyStack}</p>
+                          </div>
+                        )}
+                        {item.ourProcess && (
+                          <div className="mb-4">
+                            <h3 className="text-xl font-bold">Our Process</h3>
+                            <p className="text-gray-400">{item.ourProcess}</p>
+                          </div>
+                        )}
+                        {item.resources && (
+                          <div className="mb-4">
+                            <h3 className="text-xl font-bold">Resources</h3>
+                            <p className="text-gray-400">{item.resources}</p>
+                          </div>
+                        )}
+                        {item.aiAgents && (
+                          <div>
+                            <h3 className="text-xl font-bold">AI Agents</h3>
+                            <p className="text-gray-400">{item.aiAgents}</p>
+                          </div>
+                        )}
+                      </Card>
+                    ))}
+                  </div>
+                )}
+                
                 <div className="mb-16">
                   <h2 className="text-3xl font-bold mb-6">Start with an idea</h2>
                   <p className="text-lg mb-8">
