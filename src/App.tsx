@@ -33,7 +33,6 @@ import CrmLeadFlow from "./pages/solutions/CrmLeadFlow";
 import WebhookOrchestration from "./pages/solutions/WebhookOrchestration";
 import CustomCloudSolutions from "./pages/solutions/CustomCloudSolutions";
 import DocumentationCategory from "./pages/DocumentationCategory";
-import DocumentationArticle from "./pages/DocumentationArticle";
 
 const queryClient = new QueryClient();
 
