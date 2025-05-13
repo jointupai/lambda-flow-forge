@@ -308,11 +308,12 @@ export default function Documentation() {
           {/* Sidebar */}
           <aside className="w-full md:w-64 md:flex-shrink-0">
             <div className="p-0">
-              <div className="relative mb-6">
+              {/* Hide search and categories on mobile, show only on md+ */}
+              <div className="relative mb-6 hidden md:block">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
                 <Input placeholder="Search documentation..." className="pl-8 bg-zinc-900 border-zinc-700 w-full" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
               </div>
-              <nav className="pb-16">
+              <nav className="pb-16 hidden md:block">
                 <div className="space-y-8">
                   <div>
                     <span className="text-sm font-bold text-gray-200 mb-3 block">
