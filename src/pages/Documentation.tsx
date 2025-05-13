@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ChevronRight, ChevronDown, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -192,25 +192,54 @@ export default function Documentation() {
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                             <Separator className="bg-zinc-800" />
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
-                          <button className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "bg-zinc-800 text-white font-semibold" : ""}`} onClick={() => handleCategoryToggle(cat)} aria-expanded={expandedCategory === cat}>
+                          <button
+                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
+                            onClick={() => handleCategoryToggle(cat)}
+                            aria-expanded={expandedCategory === cat}
+                          >
                             <span className="flex-1">{cat}</span>
-                            {expandedCategory === cat ? <ChevronDown className="ml-2 w-4 h-4" /> : <ChevronRight className="ml-2 w-4 h-4" />}
+                            {/* Animate the arrow rotation */}
+                            <ChevronDown
+                              className={`ml-2 w-4 h-4 transform transition-transform duration-200
+                                ${expandedCategory === cat ? "rotate-180" : ""}
+                              `}
+                            />
                           </button>
                           {/* Sidebar dropdown of posts */}
-                          {expandedCategory === cat && groupedContent[cat] && <ul className="ml-0 mt-0.5 bg-black rounded-md shadow-lg py-2 select-none z-10">
-                              {filteredPosts(cat).map(post => {
-                        const isSelected = selectedPost?._id === post._id;
-                        return <li key={post._id}>
-                                    <button className={`w-full text-left px-5 py-2 text-sm
-                                        transition-colors duration-100
-                                        ${isSelected ? "border-l-2 border-white text-white bg-zinc-900 font-bold" : "border-l-2 border-transparent text-gray-300 hover:bg-zinc-800"}`} style={{
-                            outline: "none"
-                          }} onClick={() => setSelectedPost(post)}>
+                          <div style={{overflow: 'hidden'}}>
+                          <ul
+                            className={`
+                              ml-0 mt-0.5 rounded-md select-none z-10
+                              transition-all duration-200
+                              ${expandedCategory === cat
+                                ? "animate-fade-in opacity-100 max-h-96 visible"
+                                : "opacity-0 max-h-0 invisible"}
+                            `}
+                            style={{ background: "black" }}
+                          >
+                            {expandedCategory === cat &&
+                              filteredPosts(cat).map(post => {
+                                const isSelected = selectedPost?._id === post._id;
+                                return (
+                                  <li key={post._id}>
+                                    <button
+                                      className={`w-full text-left px-5 py-2 text-sm
+                                      transition-colors duration-100
+                                      ${isSelected
+                                        ? "text-white font-bold"
+                                        : "text-gray-300 hover:bg-zinc-800"}`}
+                                      style={{
+                                        outline: "none"
+                                      }}
+                                      onClick={() => setSelectedPost(post)}
+                                    >
                                       {post.title || "(Untitled)"}
                                     </button>
-                                  </li>;
-                      })}
-                            </ul>}
+                                  </li>
+                                );
+                              })}
+                          </ul>
+                          </div>
                           <Separator className="bg-zinc-800 mt-2" />
                         </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
