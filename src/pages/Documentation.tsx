@@ -89,12 +89,14 @@ export default function Documentation() {
 
   // --- Handle URL update and initial load from URL ---
   useEffect(() => {
-    // Try to parse /documentation/:category/:id
+    // Try to parse /documentation/:category/:slug
     const match = location.pathname.match(/^\/documentation\/([^/]+)\/([^/]+)/);
     if (match && content.length) {
       const category = decodeURIComponent(match[1]);
-      const id = match[2];
-      const found = getPostByCategoryAndId(category, id);
+      const slug = decodeURIComponent(match[2]);
+      const posts = groupedContent[category] || [];
+      // Find by slug instead of _id
+      const found = posts.find(post => post.slug && post.slug.current === slug);
       if (found) {
         setSelectedPost(found);
         setExpandedCategory(category);
@@ -103,7 +105,6 @@ export default function Documentation() {
     }
     // Otherwise, normal mode
     setSelectedPost(null);
-  // Run this when location changes or content updates
   }, [location.pathname, content]);
 
   useEffect(() => {
@@ -138,7 +139,9 @@ export default function Documentation() {
 
   // Custom: when clicking post, change URL *without reload* and set selected post just like before
   const handlePostClick = (cat: string, post: ContentItem) => {
-    const url = `/documentation/${encodeURIComponent(cat)}/${post._id}`;
+    // Instead of using _id, use the slug in the URL
+    const slug = post.slug && post.slug.current ? post.slug.current : post._id; // fallback to _id just in case (should not happen)
+    const url = `/documentation/${encodeURIComponent(cat)}/${encodeURIComponent(slug)}`;
     window.history.pushState(null, "", url);
     setSelectedPost(post);
     setExpandedCategory(cat);
