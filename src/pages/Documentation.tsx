@@ -11,6 +11,8 @@ import { PortableText, type PortableTextReactComponents } from "@portabletext/re
 import { urlFor } from "@/lib/sanityImageUrl";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import SEO from "@/components/SEO";
+import { useIsMobile } from "@/hooks/use-mobile";
+import MobileDocCategoryPicker from "@/components/MobileDocCategoryPicker";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -166,6 +168,19 @@ export default function Documentation() {
     setExpandedCategory(cat);
   };
 
+  // Helper for MobileDocCategoryPicker
+  const handlePickerCategoryChange = (cat: string) => {
+    setExpandedCategory(cat);
+  };
+  const handlePickerPostChange = (cat: string, post: ContentItem) => {
+    // mimic same navigation as handlePostClick
+    const slug = post.slug && post.slug.current ? post.slug.current : post._id;
+    const url = `/documentation/${encodeURIComponent(cat)}/${encodeURIComponent(slug)}`;
+    window.history.pushState(null, "", url);
+    setSelectedPost(post);
+    setExpandedCategory(cat);
+  };
+
   // PortableText
   const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
@@ -264,6 +279,8 @@ export default function Documentation() {
       }
     }
   };
+
+  const isMobile = useIsMobile();
 
   return (
     <div className="min-h-screen bg-black text-white w-full">
@@ -470,6 +487,19 @@ export default function Documentation() {
           </main>
         </div>
       </div>
+      {/* Mobile-only picker bar */}
+      {isMobile && (
+        <MobileDocCategoryPicker
+          categories={filteredCategories}
+          groupedContent={groupedContent}
+          categoryDisplayNames={categoryDisplayNames}
+          selectedCategory={expandedCategory}
+          selectedPost={selectedPost}
+          onCategoryChange={handlePickerCategoryChange}
+          onPostChange={handlePickerPostChange}
+        />
+      )}
+
       {/* Add fade-in-scale-divider keyframes for the divider animation */}
       <style>
         {`
