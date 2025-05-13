@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
+import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
@@ -58,7 +57,7 @@ export default function Navbar() {
                     <div className="vercel-grid-section">
                       <Link to="/solutions/custom-web-development" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Cloud className="h-4 w-4 text-green-400" />
+                          <Globe className="h-4 w-4 text-white" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
@@ -72,7 +71,7 @@ export default function Navbar() {
 
                       <Link to="/solutions/ai-automation" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Bot className="h-4 w-4 text-blue-400" />
+                          <Bot className="h-4 w-4 text-white" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
@@ -86,7 +85,7 @@ export default function Navbar() {
 
                       <Link to="/solutions/crm-api-integrations" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Replace className="h-4 w-4 text-purple-400" />
+                          <Wrench className="h-4 w-4 text-white" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
@@ -100,7 +99,7 @@ export default function Navbar() {
 
                       <Link to="/solutions/optimization-support" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <BarChart className="h-4 w-4 text-orange-400" />
+                          <BarChart className="h-4 w-4 text-white" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
@@ -259,19 +258,19 @@ export default function Navbar() {
               Solutions
               <div className="pl-4 space-y-2 mt-2">
                 <Link to="/solutions/custom-web-development" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Cloud className="h-4 w-4 text-green-600" />
+                  <Globe className="h-4 w-4 text-white" />
                   <span>Custom Web Application Development</span>
                 </Link>
                 <Link to="/solutions/ai-automation" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Bot className="h-4 w-4 text-blue-600" />
+                  <Bot className="h-4 w-4 text-white" />
                   <span>AI-Powered Automation</span>
                 </Link>
                 <Link to="/solutions/crm-api-integrations" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Replace className="h-4 w-4 text-purple-600" />
+                  <Wrench className="h-4 w-4 text-white" />
                   <span>CRM & API Integrations</span>
                 </Link>
                 <Link to="/solutions/optimization-support" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <BarChart className="h-4 w-4 text-orange-600" />
+                  <BarChart className="h-4 w-4 text-white" />
                   <span>Ongoing Optimization & Support</span>
                 </Link>
               </div>
