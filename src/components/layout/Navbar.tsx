@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X } from "lucide-react";
+import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
@@ -164,6 +164,10 @@ export default function Navbar() {
                 )}
               </div>
 
+              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
+                Documentation
+              </Link>
+
               <div className="relative group">
                 <button 
                   onClick={() => {
@@ -286,6 +290,13 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
+            
+            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                <span>Documentation</span>
+              </div>
+            </Link>
             
             <div className="block py-2 text-base font-medium text-foreground/80">
               Company
