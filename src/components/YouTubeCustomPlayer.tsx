@@ -140,7 +140,7 @@ export const YouTubeCustomPlayer: React.FC<YouTubeCustomPlayerProps> = ({
         <div className="relative pb-[56.25%] h-0 rounded-lg overflow-hidden">
           <div
             ref={playerRef}
-            className="absolute top-0 left-0 w-full h-full"
+            className="absolute top-0 left-0 w-full h-full pointer-events-none"
             aria-label={title || "YouTube video player"}
           ></div>
         </div>
@@ -179,3 +179,4 @@ export const YouTubeCustomPlayer: React.FC<YouTubeCustomPlayerProps> = ({
 };
 
 export default YouTubeCustomPlayer;
+
