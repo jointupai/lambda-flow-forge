@@ -73,12 +73,10 @@ export default function Documentation() {
     fetchDocContent();
   }, []);
 
-  // Reset selection if search or content changes
   useEffect(() => {
     setSelectedPost(null);
   }, [searchQuery, content]);
 
-  // Search filter in sidebar: only categories and posts matching query
   const filteredCategories = categories.filter((cat) => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
@@ -101,195 +99,197 @@ export default function Documentation() {
     );
   };
 
-  // Show/hide posts under given category
   const handleCategoryToggle = (cat: string) => {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
   return (
     <div className="min-h-screen bg-black text-white w-full">
-      <div className="flex w-full">
-        {/* Sidebar */}
-        <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16 left-0">
-          <div className="p-4">
-            <div className="relative">
-              <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
-              <Input
-                placeholder="Search documentation..."
-                className="pl-8 bg-zinc-900 border-zinc-700 w-full"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-          </div>
-          <nav className="px-4 pb-16">
-            <div className="space-y-8">
-              <div>
-                <span className="text-sm font-bold text-gray-200 mb-3 block">
-                  Categories
-                </span>
-                {isLoading ? (
-                  Array(5)
-                    .fill(0)
-                    .map((_, index) => (
-                      <div key={index} className="space-y-2">
-                        <Skeleton className="h-6 w-32 bg-zinc-800" />
-                        <Separator className="bg-zinc-800" />
-                      </div>
-                    ))
-                ) : filteredCategories.length > 0 ? (
-                  filteredCategories.map((cat) => (
-                    <div key={cat} className="mb-2">
-                      <button
-                        className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${
-                          expandedCategory === cat
-                            ? "bg-zinc-800 text-white font-semibold"
-                            : ""
-                        }`}
-                        onClick={() => handleCategoryToggle(cat)}
-                        aria-expanded={expandedCategory === cat}
-                      >
-                        <span className="flex-1">{cat}</span>
-                        {expandedCategory === cat ? (
-                          <ChevronDown className="ml-2 w-4 h-4" />
-                        ) : (
-                          <ChevronRight className="ml-2 w-4 h-4" />
-                        )}
-                      </button>
-                      {/* Dropdown of posts in category if expanded */}
-                      {expandedCategory === cat && groupedContent[cat] && (
-                        <ul className="ml-3 mt-0.5 space-y-1">
-                          {filteredPosts(cat).map((post) => (
-                            <li key={post._id}>
-                              <button
-                                className={`block px-2 py-1 text-sm rounded transition w-full text-left hover:bg-zinc-700 ${
-                                  selectedPost?._id === post._id
-                                    ? "bg-zinc-700 text-white font-medium"
-                                    : "text-gray-300"
-                                }`}
-                                onClick={() => setSelectedPost(post)}
-                              >
-                                {post.title || "(Untitled)"}
-                              </button>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                      <Separator className="bg-zinc-800 mt-2" />
-                    </div>
-                  ))
-                ) : (
-                  <span className="text-gray-500 text-sm">
-                    No categories found.
-                  </span>
-                )}
+      {/* Outer container with same classes as Home */}
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
+        <div className="flex flex-col md:flex-row gap-12">
+          {/* Sidebar */}
+          <aside className="w-full md:w-64 md:flex-shrink-0">
+            <div className="p-0">
+              <div className="relative mb-6">
+                <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
+                <Input
+                  placeholder="Search documentation..."
+                  className="pl-8 bg-zinc-900 border-zinc-700 w-full"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
               </div>
-            </div>
-          </nav>
-        </div>
-        {/* Main content area (with consistent container width) */}
-        <div className="flex-1 md:ml-64">
-          <div className="container mx-auto px-4 sm:px-6 md:px-12 py-12 max-w-5xl">
-            {isLoading ? (
-              <div className="flex items-center justify-center my-20">
-                <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
-              </div>
-            ) : selectedPost ? (
-              <div>
-                <div className="mb-4 flex flex-col gap-2">
-                  <div className="text-sm text-gray-400">
-                    {selectedPost.category}
-                  </div>
-                  <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
-                </div>
-                <div className="text-gray-400 prose prose-invert max-w-none mb-8">
-                  {Array.isArray(selectedPost.content) ? (
-                    <PortableText value={selectedPost.content} />
-                  ) : selectedPost.content ? (
-                    <div>{selectedPost.content}</div>
-                  ) : (
-                    <span>No content</span>
-                  )}
-                </div>
-                <Button
-                  className="bg-white text-black hover:bg-gray-200"
-                  onClick={() => setSelectedPost(null)}
-                >
-                  Back to categories
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <div className="mb-16">
-                  <h1 className="text-4xl font-bold mb-4">
-                    JointUp Documentation
-                  </h1>
-                  <p className="text-xl text-gray-400">
-                    JointUp is a cloud automation and integration platform for
-                    modern businesses.
-                    <br />
-                    <span className="text-sm block mt-2 text-zinc-400">
-                      Select a category and a post from the sidebar to view its
-                      content.
+              <nav className="pb-16">
+                <div className="space-y-8">
+                  <div>
+                    <span className="text-sm font-bold text-gray-200 mb-3 block">
+                      Categories
                     </span>
-                  </p>
+                    {isLoading ? (
+                      Array(5)
+                        .fill(0)
+                        .map((_, index) => (
+                          <div key={index} className="space-y-2">
+                            <Skeleton className="h-6 w-32 bg-zinc-800" />
+                            <Separator className="bg-zinc-800" />
+                          </div>
+                        ))
+                    ) : filteredCategories.length > 0 ? (
+                      filteredCategories.map((cat) => (
+                        <div key={cat} className="mb-2">
+                          <button
+                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${
+                              expandedCategory === cat
+                                ? "bg-zinc-800 text-white font-semibold"
+                                : ""
+                            }`}
+                            onClick={() => handleCategoryToggle(cat)}
+                            aria-expanded={expandedCategory === cat}
+                          >
+                            <span className="flex-1">{cat}</span>
+                            {expandedCategory === cat ? (
+                              <ChevronDown className="ml-2 w-4 h-4" />
+                            ) : (
+                              <ChevronRight className="ml-2 w-4 h-4" />
+                            )}
+                          </button>
+                          {/* Dropdown of posts in category if expanded */}
+                          {expandedCategory === cat && groupedContent[cat] && (
+                            <ul className="ml-3 mt-0.5 space-y-1">
+                              {filteredPosts(cat).map((post) => (
+                                <li key={post._id}>
+                                  <button
+                                    className={`block px-2 py-1 text-sm rounded transition w-full text-left hover:bg-zinc-700 ${
+                                      selectedPost?._id === post._id
+                                        ? "bg-zinc-700 text-white font-medium"
+                                        : "text-gray-300"
+                                    }`}
+                                    onClick={() => setSelectedPost(post)}
+                                  >
+                                    {post.title || "(Untitled)"}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          <Separator className="bg-zinc-800 mt-2" />
+                        </div>
+                      ))
+                    ) : (
+                      <span className="text-gray-500 text-sm">
+                        No categories found.
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Database className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">
-                        Infrastructure from your code
-                      </h3>
-                    </div>
-                    <p className="text-gray-400">
-                      Deploy your applications with a simple push,
-                      automatically creating the necessary infrastructure.
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Code className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">
-                        Use your favorite developer tools
-                      </h3>
-                    </div>
-                    <p className="text-gray-400">
-                      Work with your preferred frameworks and libraries while we
-                      handle the deployment.
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <Shield className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">
-                        Stay fast and secure
-                      </h3>
-                    </div>
-                    <p className="text-gray-400">
-                      Built-in security features and performance optimizations
-                      for all your applications.
-                    </p>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-4">
-                      <BarChart className="h-5 w-5 text-white" />
-                      <h3 className="text-lg font-semibold">Observability</h3>
-                    </div>
-                    <p className="text-gray-400">
-                      Monitor and analyze your application's performance with
-                      detailed metrics.
-                    </p>
-                  </div>
+              </nav>
+            </div>
+          </aside>
+          {/* Main content area with same width/spacing as homepage */}
+          <main className="flex-1 min-w-0">
+            <div className="w-full">
+              {isLoading ? (
+                <div className="flex items-center justify-center my-20">
+                  <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
                 </div>
-                <div className="flex justify-center">
-                  <Button className="bg-white text-black hover:bg-gray-200">
-                    Start building today
+              ) : selectedPost ? (
+                <div>
+                  <div className="mb-4 flex flex-col gap-2">
+                    <div className="text-sm text-gray-400">
+                      {selectedPost.category}
+                    </div>
+                    <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
+                  </div>
+                  <div className="text-gray-400 prose prose-invert max-w-none mb-8">
+                    {Array.isArray(selectedPost.content) ? (
+                      <PortableText value={selectedPost.content} />
+                    ) : selectedPost.content ? (
+                      <div>{selectedPost.content}</div>
+                    ) : (
+                      <span>No content</span>
+                    )}
+                  </div>
+                  <Button
+                    className="bg-white text-black hover:bg-gray-200"
+                    onClick={() => setSelectedPost(null)}
+                  >
+                    Back to categories
                   </Button>
                 </div>
-              </div>
-            )}
-          </div>
+              ) : (
+                <div>
+                  <div className="mb-16">
+                    <h1 className="text-4xl font-bold mb-4">
+                      JointUp Documentation
+                    </h1>
+                    <p className="text-xl text-gray-400">
+                      JointUp is a cloud automation and integration platform for
+                      modern businesses.
+                      <br />
+                      <span className="text-sm block mt-2 text-zinc-400">
+                        Select a category and a post from the sidebar to view its
+                        content.
+                      </span>
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Database className="h-5 w-5 text-white" />
+                        <h3 className="text-lg font-semibold">
+                          Infrastructure from your code
+                        </h3>
+                      </div>
+                      <p className="text-gray-400">
+                        Deploy your applications with a simple push,
+                        automatically creating the necessary infrastructure.
+                      </p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Code className="h-5 w-5 text-white" />
+                        <h3 className="text-lg font-semibold">
+                          Use your favorite developer tools
+                        </h3>
+                      </div>
+                      <p className="text-gray-400">
+                        Work with your preferred frameworks and libraries while we
+                        handle the deployment.
+                      </p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <Shield className="h-5 w-5 text-white" />
+                        <h3 className="text-lg font-semibold">
+                          Stay fast and secure
+                        </h3>
+                      </div>
+                      <p className="text-gray-400">
+                        Built-in security features and performance optimizations
+                        for all your applications.
+                      </p>
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <BarChart className="h-5 w-5 text-white" />
+                        <h3 className="text-lg font-semibold">Observability</h3>
+                      </div>
+                      <p className="text-gray-400">
+                        Monitor and analyze your application's performance with
+                        detailed metrics.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    <Button className="bg-white text-black hover:bg-gray-200">
+                      Start building today
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </main>
         </div>
       </div>
     </div>
