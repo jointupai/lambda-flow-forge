@@ -24,7 +24,7 @@ interface ContentItem {
   _id: string;
   category?: string;
   title?: string;
-  content?: string;
+  content?: any; // Accept any for now; ideally use: TypedObject | TypedObject[] | string
 }
 
 export default function Documentation() {
@@ -161,9 +161,11 @@ export default function Documentation() {
                           <h3 className="text-xl font-bold">{item.title}</h3>
                         </div>
                         <div className="text-gray-400 mb-2">
-                          {item.content ? (
+                          {Array.isArray(item.content) ? (
                             <PortableText value={item.content} />
-                          ) : null}
+                          ) : (
+                            item.content ? <div>{item.content}</div> : null
+                          )}
                         </div>
                         {item.category && (
                           <div className="text-xs text-gray-500 mt-2">Category: {item.category}</div>
