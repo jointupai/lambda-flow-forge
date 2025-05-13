@@ -56,86 +56,58 @@ export default function Navbar() {
                 {showSolutions && (
                   <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div className="vercel-grid-section">
-                      <Link to="/solutions/automation-infrastructure" className="vercel-menu-item">
+                      <Link to="/solutions/custom-web-development" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <Cloud className="h-4 w-4 text-green-400" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
-                            Automation Infrastructure
+                            Custom Web Application Development
                           </h3>
                           <p className="vercel-menu-item-description">
-                            Build scalable cloud automation
+                            Tailored web solutions for your business
                           </p>
                         </div>
                       </Link>
 
-                      <Link to="/solutions/zapier-replacement" className="vercel-menu-item">
+                      <Link to="/solutions/ai-automation" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Replace className="h-4 w-4 text-blue-400" />
+                          <Bot className="h-4 w-4 text-blue-400" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
-                            Zapier Replacement
+                            AI-Powered Automation
                           </h3>
                           <p className="vercel-menu-item-description">
-                            Enterprise-grade automation
+                            Intelligent automation solutions
                           </p>
                         </div>
                       </Link>
 
-                      <Link to="/solutions/stripe-payment-workflows" className="vercel-menu-item">
+                      <Link to="/solutions/crm-api-integrations" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <CreditCard className="h-4 w-4 text-purple-400" />
+                          <Replace className="h-4 w-4 text-purple-400" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
-                            Stripe Payment Workflows
+                            CRM & API Integrations
                           </h3>
                           <p className="vercel-menu-item-description">
-                            Automate payment workflows
+                            Seamless system connections
                           </p>
                         </div>
                       </Link>
 
-                      <Link to="/solutions/crm-lead-flow" className="vercel-menu-item">
+                      <Link to="/solutions/optimization-support" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <BarChart className="h-4 w-4 text-orange-400" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
-                            CRM & Lead Flow Automation
+                            Ongoing Optimization & Support
                           </h3>
                           <p className="vercel-menu-item-description">
-                            Automate CRM processes
-                          </p>
-                        </div>
-                      </Link>
-
-                      <Link to="/solutions/webhook-orchestration" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon">
-                          <Webhook className="h-4 w-4 text-indigo-400" />
-                        </div>
-                        <div className="vercel-menu-item-content">
-                          <h3 className="vercel-menu-item-title">
-                            Webhook & API Orchestration
-                          </h3>
-                          <p className="vercel-menu-item-description">
-                            Orchestrate API workflows
-                          </p>
-                        </div>
-                      </Link>
-
-                      <Link to="/solutions/custom-cloud-solutions" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon">
-                          <Bot className="h-4 w-4 text-pink-400" />
-                        </div>
-                        <div className="vercel-menu-item-content">
-                          <h3 className="vercel-menu-item-title">
-                            Custom Cloud Solutions
-                          </h3>
-                          <p className="vercel-menu-item-description">
-                            Tailored to your needs
+                            Continuous improvement and maintenance
                           </p>
                         </div>
                       </Link>
@@ -286,29 +258,21 @@ export default function Navbar() {
             <div className="block py-2 text-base font-medium text-foreground/80">
               Solutions
               <div className="pl-4 space-y-2 mt-2">
-                <Link to="/solutions/automation-infrastructure" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/solutions/custom-web-development" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
                   <Cloud className="h-4 w-4 text-green-600" />
-                  <span>Automation Infrastructure</span>
+                  <span>Custom Web Application Development</span>
                 </Link>
-                <Link to="/solutions/zapier-replacement" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Replace className="h-4 w-4 text-blue-600" />
-                  <span>Zapier Replacement Systems</span>
+                <Link to="/solutions/ai-automation" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                  <Bot className="h-4 w-4 text-blue-600" />
+                  <span>AI-Powered Automation</span>
                 </Link>
-                <Link to="/solutions/stripe-payment-workflows" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <CreditCard className="h-4 w-4 text-purple-600" />
-                  <span>Stripe Payment Workflows</span>
+                <Link to="/solutions/crm-api-integrations" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                  <Replace className="h-4 w-4 text-purple-600" />
+                  <span>CRM & API Integrations</span>
                 </Link>
-                <Link to="/solutions/crm-lead-flow" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                <Link to="/solutions/optimization-support" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
                   <BarChart className="h-4 w-4 text-orange-600" />
-                  <span>CRM & Lead Flow Automation</span>
-                </Link>
-                <Link to="/solutions/webhook-orchestration" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Webhook className="h-4 w-4 text-indigo-600" />
-                  <span>Webhook & API Orchestration</span>
-                </Link>
-                <Link to="/solutions/custom-cloud-solutions" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Bot className="h-4 w-4 text-pink-600" />
-                  <span>Custom Cloud Solutions</span>
+                  <span>Ongoing Optimization & Support</span>
                 </Link>
               </div>
             </div>

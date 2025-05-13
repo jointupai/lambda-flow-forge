@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -46,7 +45,13 @@ const App = () => (
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               
-              {/* Solution Routes */}
+              {/* Solution Routes - Using existing pages for now */}
+              <Route path="/solutions/custom-web-development" element={<AutomationInfrastructure />} />
+              <Route path="/solutions/ai-automation" element={<ZapierReplacement />} />
+              <Route path="/solutions/crm-api-integrations" element={<CrmLeadFlow />} />
+              <Route path="/solutions/optimization-support" element={<CustomCloudSolutions />} />
+              
+              {/* Keep old routes for backward compatibility */}
               <Route path="/solutions/automation-infrastructure" element={<AutomationInfrastructure />} />
               <Route path="/solutions/zapier-replacement" element={<ZapierReplacement />} />
               <Route path="/solutions/stripe-payment-workflows" element={<StripePaymentWorkflows />} />
