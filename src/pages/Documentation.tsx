@@ -111,9 +111,16 @@ export default function Documentation() {
     }
   }, [location.pathname, content, groupedContent]);
 
+  // Only clear selected post on search/content change IF no post is selected by URL:
   useEffect(() => {
-    setSelectedPost(null);
-  }, [searchQuery, content]);
+    // If the URL matches a post route, don't clear selectedPost
+    const match = location.pathname.match(/^\/documentation\/([^/]+)\/([^/]+)/);
+    if (!match) {
+      setSelectedPost(null);
+    }
+    // else, do nothing: let the useEffect above handle selectedPost for post routes.
+    // This ensures refreshing on a post keeps it open!
+  }, [searchQuery, content, location.pathname]);
 
   const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
