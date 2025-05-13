@@ -8,3 +8,14 @@ export const sanityClient = createClient({
   apiVersion: '2023-05-03',
   useCdn: true,
 });
+
+// Function to fetch content
+export const fetchContent = async () => {
+  try {
+    const content = await sanityClient.fetch('*[_type == "content"]');
+    return content;
+  } catch (error) {
+    console.error('Error fetching content from Sanity:', error);
+    throw error;
+  }
+};
