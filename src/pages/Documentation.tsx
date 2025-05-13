@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
 import { PiLineVerticalThin } from "react-icons/pi";
 import { Input } from "@/components/ui/input";
@@ -34,6 +35,7 @@ export default function Documentation() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState<ContentItem | null>(null);
+  const navigate = useNavigate();
 
   // Grouped content by category
   const groupedContent = React.useMemo(() => {
@@ -275,7 +277,8 @@ export default function Documentation() {
                                       style={{
                                         outline: "none"
                                       }}
-                                      onClick={() => setSelectedPost(post)}
+                                      // Instead of setSelectedPost, navigate!
+                                      onClick={() => navigate(`/documentation/${encodeURIComponent(cat)}/${post._id}`)}
                                     >
                                       {post.title || "(Untitled)"}
                                     </button>
@@ -293,7 +296,7 @@ export default function Documentation() {
               </nav>
             </div>
           </aside>
-          {/* Main content area with same width/spacing as homepage */}
+          {/* Main content area */}
           <main className="flex-1 min-w-0">
             <div className="w-full">
               {isLoading ? <div className="flex items-center justify-center my-20">

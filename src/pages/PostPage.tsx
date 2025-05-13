@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Loader2, ChevronRight, ArrowLeft } from "lucide-react";
+import { Loader2, ArrowLeft } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { PortableText } from "@portabletext/react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,25 +10,10 @@ import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import SEO from "@/components/SEO";
 
-interface ContentItem {
-  _id: string;
-  category?: string;
-  title?: string;
-  content?: any;
-  slug?: {
-    current: string;
-  };
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    keywords?: string[];
-    ogImage?: any;
-  };
-}
-
+// Bring category param into useParams
 export default function PostPage() {
-  const { id } = useParams<{ id: string }>();
-  const [post, setPost] = useState<ContentItem | null>(null);
+  const { id, category } = useParams<{ id?: string; category?: string }>();
+  const [post, setPost] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +21,8 @@ export default function PostPage() {
       try {
         setIsLoading(true);
         const allContent = await fetchContent();
-        const foundPost = (allContent as ContentItem[]).find((item) => item._id === id) || null;
+        // Find by id (string), no need to check category (but could be added if needed)
+        const foundPost = (allContent as any[]).find((item) => item._id === id) || null;
         setPost(foundPost);
         setIsLoading(false);
       } catch (error) {

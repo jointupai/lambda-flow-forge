@@ -52,6 +52,8 @@ const App = () => (
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/portfolio" element={<Portfolio />} />
+              {/* Add this new dynamic route BEFORE existing /documentation/post/:id and /documentation/:slug */}
+              <Route path="/documentation/:category/:id" element={<PostPage />} />
               <Route path="/documentation" element={<Documentation />} />
               <Route path="/documentation/:slug" element={<DocumentationArticle />} />
               <Route path="/documentation/post/:id" element={<PostPage />} />
