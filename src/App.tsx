@@ -32,6 +32,8 @@ import StripePaymentWorkflows from "./pages/solutions/StripePaymentWorkflows";
 import CrmLeadFlow from "./pages/solutions/CrmLeadFlow";
 import WebhookOrchestration from "./pages/solutions/WebhookOrchestration";
 import CustomCloudSolutions from "./pages/solutions/CustomCloudSolutions";
+import DocumentationCategory from "./pages/DocumentationCategory";
+import DocumentationArticle from "./pages/DocumentationArticle";
 
 const queryClient = new QueryClient();
 
@@ -53,8 +55,11 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/documentation" element={<Documentation />} />
-              <Route path="/documentation/:slug" element={<DocumentationArticle />} />
-              <Route path="/documentation/post/:id" element={<PostPage />} />
+              <Route path="/documentation/:category" element={<DocumentationCategory />} />
+              <Route path="/documentation/:category/:slug" element={<DocumentationArticle />} />
+              {/* REMOVE old documentation/:slug and /documentation/post/:id routes */}
+              {/* <Route path="/documentation/:slug" element={<DocumentationArticle />} /> */}
+              {/* <Route path="/documentation/post/:id" element={<PostPage />} /> */}
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               
               {/* New Solution Routes */}

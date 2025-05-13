@@ -10,6 +10,7 @@ import { PortableText, type PortableTextReactComponents } from "@portabletext/re
 import { urlFor } from "@/lib/sanityImageUrl";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import SEO from "@/components/SEO";
+import { Link } from "react-router-dom";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -250,15 +251,15 @@ export default function Documentation() {
                             {expandedCategory === cat &&
                               filteredPosts(cat).map(post => {
                                 const isSelected = selectedPost?._id === post._id;
+                                // Build category/kebab-case for URL
+                                const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
                                 return (
                                   <li key={post._id} className="relative flex items-center">
-                                  {/* Animated divider for selected post */}
                                   <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
                                     {isSelected && (
                                       <span
                                         className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
                                         style={{
-                                          // Custom keyframes: fade and scale in
                                           animation: 'fade-in-scale-divider 0.2s ease-in'
                                         }}
                                       >
@@ -266,19 +267,16 @@ export default function Documentation() {
                                       </span>
                                     )}
                                   </span>
-                                    <button
+                                    <Link
+                                      to={`/documentation/${catUrl}/${post.slug?.current}`}
                                       className={`w-full text-left px-3 py-2 text-sm flex items-center
-                                      transition-colors duration-100
-                                      ${isSelected
-                                        ? "text-white font-bold"
-                                        : "text-gray-300 hover:bg-zinc-800"}`}
-                                      style={{
-                                        outline: "none"
-                                      }}
-                                      onClick={() => setSelectedPost(post)}
+                                        transition-colors duration-100
+                                        ${isSelected
+                                          ? "text-white font-bold"
+                                          : "text-gray-300 hover:bg-zinc-800"}`}
                                     >
                                       {post.title || "(Untitled)"}
-                                    </button>
+                                    </Link>
                                   </li>
                                 );
                               })}
