@@ -303,7 +303,7 @@ export default function Documentation() {
           slug={selectedPost.slug?.current}
         />
       )}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-4 pb-12 md:py-12">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
           <aside className="w-full md:w-64 md:flex-shrink-0">
