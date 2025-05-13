@@ -87,25 +87,29 @@ export default function Documentation() {
     fetchDocContent();
   }, []);
 
-  // --- Handle URL update and initial load from URL ---
+  // --- Handle URL update and initial load from URL (now matches by category & slug, not ID) ---
   useEffect(() => {
-    // Try to parse /documentation/:category/:slug
+    // Try to parse /documentation/:category/:slug (slug, not id)
     const match = location.pathname.match(/^\/documentation\/([^/]+)\/([^/]+)/);
     if (match && content.length) {
       const category = decodeURIComponent(match[1]);
       const slug = decodeURIComponent(match[2]);
       const posts = groupedContent[category] || [];
-      // Find by slug instead of _id
-      const found = posts.find(post => post.slug && post.slug.current === slug);
+      // Here, find post by slug, not id
+      const found = posts.find(
+        post => post.slug && post.slug.current === slug
+      );
       if (found) {
         setSelectedPost(found);
         setExpandedCategory(category);
         return;
+      } else {
+        setSelectedPost(null);
       }
+    } else {
+      setSelectedPost(null);
     }
-    // Otherwise, normal mode
-    setSelectedPost(null);
-  }, [location.pathname, content]);
+  }, [location.pathname, content, groupedContent]);
 
   useEffect(() => {
     setSelectedPost(null);
