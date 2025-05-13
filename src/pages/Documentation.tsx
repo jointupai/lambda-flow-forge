@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
 import { PiLineVerticalThin } from "react-icons/pi";
 import { Input } from "@/components/ui/input";
@@ -29,13 +29,15 @@ interface ContentItem {
   };
 }
 export default function Documentation() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [content, setContent] = useState<ContentItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState<ContentItem | null>(null);
-  const navigate = useNavigate();
 
   // Grouped content by category
   const groupedContent = React.useMemo(() => {
@@ -49,13 +51,28 @@ export default function Documentation() {
     });
     return grouped;
   }, [content]);
+
+  // Util: get post from category and id
+  const getPostByCategoryAndId = (category: string, id: string) => {
+    if (!category || !id) return null;
+    const posts = groupedContent[category];
+    if (!posts) return null;
+    return posts.find(post => post._id === id) || null;
+  };
+
   useEffect(() => {
     const fetchDocContent = async () => {
       try {
         setIsLoading(true);
         const contentData = await fetchContent();
         setContent(contentData || []);
-        const allCategories = Array.from(new Set((contentData || []).map((item: ContentItem) => item.category).filter((c): c is string => !!c))) as string[];
+        const allCategories = Array.from(
+          new Set(
+            (contentData || [])
+              .map((item: ContentItem) => item.category)
+              .filter((c): c is string => !!c)
+          )
+        ) as string[];
         setCategories(allCategories);
         setIsLoading(false);
       } catch (error) {
@@ -69,24 +86,65 @@ export default function Documentation() {
     };
     fetchDocContent();
   }, []);
+
+  // --- Handle URL update and initial load from URL ---
+  useEffect(() => {
+    // Try to parse /documentation/:category/:id
+    const match = location.pathname.match(/^\/documentation\/([^/]+)\/([^/]+)/);
+    if (match && content.length) {
+      const category = decodeURIComponent(match[1]);
+      const id = match[2];
+      const found = getPostByCategoryAndId(category, id);
+      if (found) {
+        setSelectedPost(found);
+        setExpandedCategory(category);
+        return;
+      }
+    }
+    // Otherwise, normal mode
+    setSelectedPost(null);
+  // Run this when location changes or content updates
+  }, [location.pathname, content]);
+
   useEffect(() => {
     setSelectedPost(null);
   }, [searchQuery, content]);
+
   const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
     const posts = groupedContent[cat] || [];
-    return posts.some(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
+    return posts.some(
+      post =>
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
   });
+
   const filteredPosts = (cat: string) => {
     if (!searchQuery) return groupedContent[cat] || [];
-    return (groupedContent[cat] || []).filter(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
-  };
-  const handleCategoryToggle = (cat: string) => {
-    setExpandedCategory(prev => prev === cat ? null : cat);
+    return (groupedContent[cat] || []).filter(
+      post =>
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
   };
 
-  // Add custom components for PortableText, including robust image and YouTube support
+  const handleCategoryToggle = (cat: string) => {
+    setExpandedCategory(prev => (prev === cat ? null : cat));
+  };
+
+  // Custom: when clicking post, change URL *without reload* and set selected post just like before
+  const handlePostClick = (cat: string, post: ContentItem) => {
+    const url = `/documentation/${encodeURIComponent(cat)}/${post._id}`;
+    window.history.pushState(null, "", url);
+    setSelectedPost(post);
+    setExpandedCategory(cat);
+  };
+
+  // PortableText
   const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
       h1: props => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
@@ -184,6 +242,7 @@ export default function Documentation() {
       }
     }
   };
+
   return (
     <div className="min-h-screen bg-black text-white w-full">
       {/* --- SEO tags (for documentation post view) --- */}
@@ -277,8 +336,7 @@ export default function Documentation() {
                                       style={{
                                         outline: "none"
                                       }}
-                                      // Restore original handler:
-                                      onClick={() => setSelectedPost(post)}
+                                      onClick={() => handlePostClick(cat, post)}
                                     >
                                       {post.title || "(Untitled)"}
                                     </button>
@@ -313,7 +371,10 @@ export default function Documentation() {
                 // fallback for non-array content
                 <span>{selectedPost.content}</span> : <span>No content</span>}
                   </div>
-                  <Button className="bg-white text-black hover:bg-gray-200" onClick={() => setSelectedPost(null)}>
+                  <Button className="bg-white text-black hover:bg-gray-200" onClick={() => {
+                    window.history.pushState(null, "", "/documentation");
+                    setSelectedPost(null)
+                  }}>
                     Back to categories
                   </Button>
                 </div> : <div>
