@@ -1,51 +1,27 @@
 
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronRight, Search, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { createClient } from '@sanity/client';
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Initialize Sanity client
-const sanityClient = createClient({
-  projectId: 'skXgnCwTZhsxZ2AirHVrE41Z8UEuVmgmcBAHNL4OmF0QD5zuK8D7BZufwZrQxdcOIy8FMyEhWHQZJGzoXLtxD85WMOnHMEkMZVO6SkRIIldEKxMixBaWJOL4SLLw66cEOQATwU4iPqhAn2JkMFPjxufksbAFWOZOJDAQlCHbmuwwAKfqh4cF',
-  dataset: 'production',
-  apiVersion: '2023-05-03',
-  useCdn: true,
-});
-
-// Types for Sanity content
-interface DocCategory {
-  _id: string;
-  title: string;
-  slug: string;
-}
-
-interface DocArticle {
-  _id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  content: any[]; // This would be richer content from Sanity's block content
-  category: {
-    title: string;
-    slug: string;
-  };
-  publishedAt: string;
-}
+import { sanityClient, type DocCategory, type DocArticle } from "@/lib/sanity";
 
 export default function DocumentationArticle() {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const [article, setArticle] = useState<DocArticle | null>(null);
   const [categories, setCategories] = useState<DocCategory[]>([]);
+  const [relatedArticles, setRelatedArticles] = useState<DocArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   
   useEffect(() => {
     const fetchArticle = async () => {
       try {
+        setIsLoading(true);
+        
         // Fetch categories for sidebar
         const categoriesData = await sanityClient.fetch(`
           *[_type == "docCategory"] {
@@ -63,10 +39,29 @@ export default function DocumentationArticle() {
             "slug": slug.current,
             excerpt,
             content,
-            "category": category->{title, "slug": slug.current},
+            "category": category->{_id, title, "slug": slug.current},
             publishedAt
           }
         `, { slug });
+        
+        if (articleData && articleData.category) {
+          // Fetch related articles from the same category
+          const relatedData = await sanityClient.fetch(`
+            *[_type == "docArticle" && category._ref == $categoryId && _id != $articleId] | order(publishedAt desc)[0...4] {
+              _id,
+              title,
+              "slug": slug.current,
+              excerpt,
+              "category": category->{title, "slug": slug.current},
+              publishedAt
+            }
+          `, { 
+            categoryId: articleData.category._id,
+            articleId: articleData._id
+          });
+          
+          setRelatedArticles(relatedData);
+        }
         
         setCategories(categoriesData);
         setArticle(articleData);
@@ -81,6 +76,14 @@ export default function DocumentationArticle() {
       fetchArticle();
     }
   }, [slug]);
+
+  // Handle search
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/documentation?search=${encodeURIComponent(searchQuery)}`);
+    }
+  };
   
   return (
     <div className="min-h-screen bg-black text-white">
@@ -88,7 +91,7 @@ export default function DocumentationArticle() {
         {/* Sidebar */}
         <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16">
           <div className="p-4">
-            <div className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
               <Input 
                 placeholder="Search documentation..." 
@@ -96,7 +99,7 @@ export default function DocumentationArticle() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-            </div>
+            </form>
           </div>
           <nav className="px-4 pb-16">
             <div className="space-y-8">
@@ -126,8 +129,14 @@ export default function DocumentationArticle() {
         <div className="flex-1 md:ml-64">
           <div className="container mx-auto px-4 sm:px-6 md:px-8 py-12 max-w-3xl">
             {isLoading ? (
-              <div className="flex items-center justify-center my-20">
-                <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+              <div className="space-y-8">
+                <Skeleton className="h-8 w-48 bg-zinc-800" />
+                <Skeleton className="h-6 w-full bg-zinc-800" />
+                <div className="space-y-4">
+                  <Skeleton className="h-4 w-full bg-zinc-800" />
+                  <Skeleton className="h-4 w-full bg-zinc-800" />
+                  <Skeleton className="h-4 w-3/4 bg-zinc-800" />
+                </div>
               </div>
             ) : article ? (
               <>
@@ -138,7 +147,7 @@ export default function DocumentationArticle() {
                   </Link>
                   
                   <div className="text-sm text-gray-400 mb-2">
-                    {article.category.title} • {new Date(article.publishedAt).toLocaleDateString()}
+                    {article.category?.title} • {new Date(article.publishedAt).toLocaleDateString()}
                   </div>
                   
                   <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
@@ -151,10 +160,14 @@ export default function DocumentationArticle() {
                   {/* Simple rendering of content - in a real app you would use a Portable Text renderer */}
                   <div className="prose prose-invert max-w-none">
                     {article.content ? (
-                      <p className="text-gray-300">
+                      <div className="text-gray-300 space-y-4">
                         {JSON.stringify(article.content)}
                         {/* In a real implementation, you would use @portabletext/react to render this content */}
-                      </p>
+                        <p className="text-gray-400 italic mt-8">
+                          Note: For a proper rendering of rich text content, install the @portabletext/react package
+                          and implement a PortableText component to render the article content.
+                        </p>
+                      </div>
                     ) : (
                       <p className="text-gray-400">
                         This article's content is not available in a format we can display right now.
@@ -163,6 +176,25 @@ export default function DocumentationArticle() {
                     )}
                   </div>
                 </div>
+                
+                {/* Related articles section */}
+                {relatedArticles.length > 0 && (
+                  <div className="mt-12">
+                    <h3 className="text-xl font-bold mb-6">Related Articles</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {relatedArticles.map(related => (
+                        <Link 
+                          key={related._id}
+                          to={`/documentation/${related.slug}`}
+                          className="p-4 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-zinc-700 transition-colors"
+                        >
+                          <h4 className="font-medium mb-1">{related.title}</h4>
+                          <p className="text-sm text-gray-400 line-clamp-2">{related.excerpt}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 
                 <div className="mt-12 p-6 bg-zinc-900 border border-zinc-800 rounded-lg">
                   <h3 className="text-xl font-bold mb-4">Need more help?</h3>
