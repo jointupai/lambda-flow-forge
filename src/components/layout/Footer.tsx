@@ -29,9 +29,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-sm font-semibold text-white tracking-wider uppercase mb-4">
-              Site Map
-            </h3>
+            <h3 className="text-sm font-semibold text-white tracking-normal mb-4">MENU</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-400 hover:text-white">Home</Link>
