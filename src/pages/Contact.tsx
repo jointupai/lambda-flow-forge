@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Check, Phone } from "lucide-react";
-
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters"
@@ -40,9 +39,7 @@ const formSchema = z.object({
   }),
   message: z.string().optional()
 });
-
 type FormValues = z.infer<typeof formSchema>;
-
 const getServiceDescription = (service: string): string => {
   const serviceMap: Record<string, string> = {
     'automation': 'Automation Infrastructure',
@@ -54,11 +51,9 @@ const getServiceDescription = (service: string): string => {
   };
   return `They are interested in ${serviceMap[service]}`;
 };
-
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -74,7 +69,6 @@ export default function Contact() {
       message: ""
     }
   });
-
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     console.log("Submitting form data:", data);
@@ -109,9 +103,7 @@ export default function Contact() {
     }
     setIsSubmitting(false);
   };
-
-  return (
-    <div className="w-full py-0 pt-[80px]">
+  return <div className="w-full py-0 pt-[80px]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="border border-gray-800 rounded-none overflow-hidden">
           <div className="relative py-12 md:py-16 px-8">
@@ -174,9 +166,8 @@ export default function Contact() {
                     </div>
                   </div>
                   
-                  <div className="border border-zinc-800 rounded-xl p-8">
-                    {isSuccess ? (
-                      <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                  <div className="border border-zinc-800 rounded-none p-8">
+                    {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
                           <Check className="w-8 h-8 text-green-600" />
                         </div>
@@ -187,66 +178,65 @@ export default function Contact() {
                         <Button onClick={() => setIsSuccess(false)} className="mt-6">
                           Submit Another Request
                         </Button>
-                      </div>
-                    ) : (
-                      <div>
-                        <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
+                      </div> : <div>
+                        
                         <Form {...form}>
                           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="name" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="name" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Name *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Your name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="email" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="email" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Email *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="you@company.com" type="email" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="companyRole" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="companyRole" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Your Role *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Your role" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="companyName" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="companyName" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Company Name *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Company name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="website" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="website" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Website</FormLabel>
                                   <FormControl>
                                     <Input placeholder="https://yourcompany.com" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="companySize" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="companySize" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Company Size *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -263,13 +253,13 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="companyRevenue" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="companyRevenue" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Annual Revenue *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -286,10 +276,10 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="budget" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="budget" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-base font-medium text-gray-200">Project Budget *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -305,12 +295,12 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
-                            <FormField control={form.control} name="intrestedin" render={({field}) => (
-                              <FormItem>
+                            <FormField control={form.control} name="intrestedin" render={({
+                          field
+                        }) => <FormItem>
                                 <FormLabel className="text-base font-medium text-gray-200">What services are you interested in? *</FormLabel>
                                 <Select value={field.value} onValueChange={field.onChange}>
                                   <FormControl>
@@ -328,32 +318,30 @@ export default function Contact() {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
-                              </FormItem>
-                            )} />
+                              </FormItem>} />
 
-                            <FormField control={form.control} name="message" render={({field}) => (
-                              <FormItem>
+                            <FormField control={form.control} name="message" render={({
+                          field
+                        }) => <FormItem>
                                 <FormLabel className="text-base font-medium text-gray-200">Message (optional)</FormLabel>
                                 <FormControl>
                                   <Textarea placeholder="Tell us more about your project" className="min-h-[120px] text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )} />
+                              </FormItem>} />
                             
                             <div>
                               <p className="text-xs text-gray-500 mb-4">
                                 By clicking "Talk to JointUp", I acknowledge I have read and understand the Privacy Notice.
                               </p>
                               
-                              <Button type="submit" disabled={isSubmitting} className="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white text-base font-medium rounded-lg">
+                              <Button type="submit" disabled={isSubmitting} className="w-1/3 h-12 bg-[#0872F5] hover:bg-blue-500 text-white text-base font-medium rounded-lg">
                                 {isSubmitting ? "Processing..." : "Talk to JointUp"}
                               </Button>
                             </div>
                           </form>
                         </Form>
-                      </div>
-                    )}
+                      </div>}
                   </div>
                 </div>
               </div>
@@ -361,6 +349,5 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
