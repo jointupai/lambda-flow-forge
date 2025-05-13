@@ -39,6 +39,14 @@ export default function Documentation() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedPost, setSelectedPost] = useState<ContentItem | null>(null);
 
+  // Friendly names for categories
+  const categoryDisplayNames: Record<string, string> = {
+    "ai-agents": "AI Agents",
+    "introduction": "Introduction",
+    "client-results": "Client Results",
+    // Fallback: show the original if not mapped
+  };
+
   // Grouped content by category
   const groupedContent = React.useMemo(() => {
     const grouped: {
@@ -295,14 +303,13 @@ export default function Documentation() {
                     </span>
                     {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
-                            
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
                           <button
                             className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
                             onClick={() => handleCategoryToggle(cat)}
                             aria-expanded={expandedCategory === cat}
                           >
-                            <span className="flex-1">{cat}</span>
+                            <span className="flex-1">{categoryDisplayNames[cat] || cat}</span>
                             {/* Animate the arrow rotation */}
                             <ChevronDown
                               className={`ml-2 w-4 h-4 transform transition-transform duration-200
@@ -359,7 +366,6 @@ export default function Documentation() {
                               })}
                           </ul>
                           </div>
-                          
                         </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
                       </span>}
@@ -376,7 +382,7 @@ export default function Documentation() {
                 </div> : selectedPost ? <div>
                   <div className="mb-4 flex flex-col gap-2">
                     <div className="text-sm text-gray-400">
-                      {selectedPost.category}
+                      {categoryDisplayNames[selectedPost.category || ""] || selectedPost.category}
                     </div>
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
