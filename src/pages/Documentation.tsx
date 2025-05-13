@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import {
   ChevronRight,
@@ -105,7 +104,6 @@ export default function Documentation() {
 
   return (
     <div className="min-h-screen bg-black text-white w-full">
-      {/* Outer container with same classes as Home */}
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
@@ -201,11 +199,37 @@ export default function Documentation() {
                     </div>
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
-                  <div className="text-gray-400 prose prose-invert max-w-none mb-8">
-                    {Array.isArray(selectedPost.content) ? (
-                      <PortableText value={selectedPost.content} />
+                  {/* Only this div should have the prose classes */}
+                  <div className="prose prose-invert max-w-none mb-8">
+                    {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? (
+                      <PortableText
+                        value={selectedPost.content}
+                        // Minimal sensible PortableText components example
+                        components={{
+                          types: {
+                            code: ({ value }) => (
+                              <pre>
+                                <code>{value.code}</code>
+                              </pre>
+                            ),
+                          },
+                          marks: {
+                            link: ({ children, value }) => (
+                              <a
+                                href={value?.href}
+                                className="underline text-blue-400 hover:text-blue-600"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {children}
+                              </a>
+                            ),
+                          },
+                        }}
+                      />
                     ) : selectedPost.content ? (
-                      <div>{selectedPost.content}</div>
+                      // fallback for non-array content
+                      <span>{selectedPost.content}</span>
                     ) : (
                       <span>No content</span>
                     )}
