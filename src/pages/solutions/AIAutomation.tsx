@@ -11,7 +11,7 @@ export default function AIAutomation() {
         {/* Hero Section - Boxed layout with border */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="bg-grid p-16 flex flex-col items-center justify-center text-center relative">
-            <div className="absolute inset-0" style={{ backgroundSize: '40px 40px', backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
             <div className="relative z-10">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 max-w-4xl">
                 AI-Powered Automation
@@ -35,7 +35,7 @@ export default function AIAutomation() {
         {/* Testimonial Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden mb-16">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0" style={{ backgroundSize: '40px 40px', backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
             <div className="relative z-10">
               <div className="flex flex-col md:flex-row gap-12">
                 <div className="flex-1">
@@ -62,7 +62,7 @@ export default function AIAutomation() {
         {/* Features Section */}
         <div className="border border-zinc-800 rounded-xl overflow-hidden">
           <div className="p-12 md:p-16 relative">
-            <div className="absolute inset-0" style={{ backgroundSize: '40px 40px', backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)' }}></div>
+            <div className="absolute inset-0 bg-grid" style={{ backgroundSize: '40px 40px' }}></div>
             <div className="relative z-10">
               <h2 className="text-3xl font-bold mb-12 text-center">AI Capabilities</h2>
               
