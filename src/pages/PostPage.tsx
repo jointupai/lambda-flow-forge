@@ -23,7 +23,7 @@ export default function PostPage() {
         const allContent = await fetchContent();
         let foundPost = null;
         if (id && category) {
-          // If both category and id (which is really SLUG), find by both
+          // If both category and id (which is really SLUG), find by both category and slug
           foundPost = (allContent as any[]).find(
             (item) =>
               item.category === category &&
@@ -114,4 +114,3 @@ export default function PostPage() {
     </div>
   );
 }
-
