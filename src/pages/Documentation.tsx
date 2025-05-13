@@ -17,6 +17,7 @@ import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
 import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
 import { urlFor } from "@/lib/sanityImageUrl";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -103,7 +104,7 @@ export default function Documentation() {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
-  // Add custom components for PortableText, including robust image support
+  // Add custom components for PortableText, including robust image and YouTube support
   const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
       h1: (props) => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
@@ -203,6 +204,25 @@ export default function Documentation() {
           </div>
         );
       },
+      youtube: (props) => {
+        const { url, title, caption, displaySize, alignment } = props.value || {};
+        if (!url) {
+          return (
+            <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+              Video could not be loaded (missing url)
+            </div>
+          );
+        }
+        return (
+          <YouTubeEmbed
+            url={url}
+            title={title}
+            caption={caption}
+            displaySize={displaySize}
+            alignment={alignment}
+          />
+        );
+      }
     },
   };
 
