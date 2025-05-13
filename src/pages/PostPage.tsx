@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Loader2, ChevronRight, ArrowLeft } from "lucide-react";
@@ -7,22 +8,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
-import SEO from "@/components/SEO";
 
 interface ContentItem {
   _id: string;
   category?: string;
   title?: string;
   content?: any;
-  slug?: {
-    current: string;
-  };
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    keywords?: string[];
-    ogImage?: any;
-  };
 }
 
 export default function PostPage() {
@@ -76,19 +67,6 @@ export default function PostPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* --- SEO tags for post page --- */}
-      {post && (
-        <SEO
-          title={post.seo?.metaTitle || post.title || "Documentation post"}
-          description={
-            post.seo?.metaDescription ||
-            (typeof post.content === "string" ? post.content : "")
-          }
-          keywords={post.seo?.keywords}
-          ogImage={post.seo?.ogImage}
-          slug={post.slug?.current}
-        />
-      )}
       <div className="flex">
         {/* Main content */}
         <div className="flex-1 mx-auto max-w-3xl pt-16 px-4">

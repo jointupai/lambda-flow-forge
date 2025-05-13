@@ -9,8 +9,6 @@ import { toast } from "@/hooks/use-toast";
 import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
 import { urlFor } from "@/lib/sanityImageUrl";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
-import SEO from "@/components/SEO";
-import { Link } from "react-router-dom";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -18,15 +16,6 @@ interface ContentItem {
   category?: string;
   title?: string;
   content?: any;
-  slug?: {
-    current: string;
-  };
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    keywords?: string[];
-    ogImage?: any;
-  };
 }
 export default function Documentation() {
   const [content, setContent] = useState<ContentItem[]>([]);
@@ -53,7 +42,6 @@ export default function Documentation() {
       try {
         setIsLoading(true);
         const contentData = await fetchContent();
-        console.log('Fetched docs content:', contentData); // DEBUG: Inspect fetched content
         setContent(contentData || []);
         const allCategories = Array.from(new Set((contentData || []).map((item: ContentItem) => item.category).filter((c): c is string => !!c))) as string[];
         setCategories(allCategories);
@@ -72,20 +60,6 @@ export default function Documentation() {
   useEffect(() => {
     setSelectedPost(null);
   }, [searchQuery, content]);
-
-  // This function helps us safely get the string slug, and debug if not
-  function getStringSlug(slug: unknown, postObj: unknown) {
-    if (typeof slug === "string") return slug;
-    if (slug && typeof slug === "object" && 'current' in slug && typeof slug.current === "string") {
-      return slug.current;
-    }
-    // Extra debugging for malformed slugs
-    if (slug) {
-      console.error("Malformed slug found in post:", postObj);
-    }
-    return null;
-  }
-
   const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
@@ -198,27 +172,7 @@ export default function Documentation() {
       }
     }
   };
-  return (
-    <div className="min-h-screen bg-black text-white w-full">
-      {/* --- SEO tags (for documentation post view) --- */}
-      {selectedPost && (
-        <SEO
-          title={
-            selectedPost.seo?.metaTitle ||
-            selectedPost.title ||
-            "JointUp Documentation"
-          }
-          description={
-            selectedPost.seo?.metaDescription ||
-            (typeof selectedPost.content === "string"
-              ? selectedPost.content
-              : "")
-          }
-          keywords={selectedPost.seo?.keywords}
-          ogImage={selectedPost.seo?.ogImage}
-          slug={selectedPost.slug?.current}
-        />
-      )}
+  return <div className="min-h-screen bg-black text-white w-full">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
@@ -238,55 +192,43 @@ export default function Documentation() {
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                             
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
-                        <button
-                          className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
-                          onClick={() => handleCategoryToggle(cat)}
-                          aria-expanded={expandedCategory === cat}
-                        >
-                          <span className="flex-1">{cat}</span>
-                          {/* Animate the arrow rotation */}
-                          <ChevronDown
-                            className={`ml-2 w-4 h-4 transform transition-transform duration-200
-                              ${expandedCategory === cat ? "rotate-180" : ""}
+                          <button
+                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
+                            onClick={() => handleCategoryToggle(cat)}
+                            aria-expanded={expandedCategory === cat}
+                          >
+                            <span className="flex-1">{cat}</span>
+                            {/* Animate the arrow rotation */}
+                            <ChevronDown
+                              className={`ml-2 w-4 h-4 transform transition-transform duration-200
+                                ${expandedCategory === cat ? "rotate-180" : ""}
+                              `}
+                            />
+                          </button>
+                          {/* Sidebar dropdown of posts */}
+                          <div style={{overflow: 'hidden'}}>
+                          <ul
+                            className={`
+                              ml-0 mt-0.5 rounded-md select-none z-10
+                              transition-all duration-200
+                              ${expandedCategory === cat
+                                ? "animate-fade-in opacity-100 max-h-96 visible"
+                                : "opacity-0 max-h-0 invisible"}
                             `}
-                          />
-                        </button>
-                        {/* Sidebar dropdown of posts */}
-                        <div style={{overflow: 'hidden'}}>
-                        <ul
-                          className={`
-                            ml-0 mt-0.5 rounded-md select-none z-10
-                            transition-all duration-200
-                            ${expandedCategory === cat
-                              ? "animate-fade-in opacity-100 max-h-96 visible"
-                              : "opacity-0 max-h-0 invisible"}
-                          `}
-                          style={{ background: "black" }}
-                        >
-                          {expandedCategory === cat &&
-                            filteredPosts(cat).map(post => {
-                              const slugString = getStringSlug(post.slug, post);
-                              const isSelected = selectedPost?._id === post._id;
-                              // Build category/kebab-case for URL
-                              const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
-                              const hasSlug = !!slugString;
-
-                              // DEBUG LOGGING
-                              console.log('Rendering post in sidebar:', {
-                                post,
-                                slug: post.slug,
-                                slugType: typeof post.slug,
-                                slugString,
-                                hasSlug
-                              });
-
-                              return (
-                                <li key={post._id} className="relative flex items-center">
+                            style={{ background: "black" }}
+                          >
+                            {expandedCategory === cat &&
+                              filteredPosts(cat).map(post => {
+                                const isSelected = selectedPost?._id === post._id;
+                                return (
+                                  <li key={post._id} className="relative flex items-center">
+                                  {/* Animated divider for selected post */}
                                   <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
                                     {isSelected && (
                                       <span
                                         className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
                                         style={{
+                                          // Custom keyframes: fade and scale in
                                           animation: 'fade-in-scale-divider 0.2s ease-in'
                                         }}
                                       >
@@ -294,33 +236,26 @@ export default function Documentation() {
                                       </span>
                                     )}
                                   </span>
-                                  {hasSlug ? (
-                                    <Link
-                                      to={`/documentation/${catUrl}/${slugString}`}
+                                    <button
                                       className={`w-full text-left px-3 py-2 text-sm flex items-center
-                                        transition-colors duration-100
-                                        ${isSelected
-                                          ? "text-white font-bold"
-                                          : "text-gray-300 hover:bg-zinc-800"}
-                                      `}
+                                      transition-colors duration-100
+                                      ${isSelected
+                                        ? "text-white font-bold"
+                                        : "text-gray-300 hover:bg-zinc-800"}`}
+                                      style={{
+                                        outline: "none"
+                                      }}
+                                      onClick={() => setSelectedPost(post)}
                                     >
                                       {post.title || "(Untitled)"}
-                                    </Link>
-                                  ) : (
-                                    <span
-                                      className="w-full text-left px-3 py-2 text-sm flex items-center text-gray-500 cursor-not-allowed"
-                                      title="No slug for this article"
-                                    >
-                                      {post.title || "(Untitled)"}
-                                    </span>
-                                  )}
-                                </li>
-                              );
-                            })}
-                        </ul>
-                        </div>
-                        
-                      </div>) : <span className="text-gray-500 text-sm">
+                                    </button>
+                                  </li>
+                                );
+                              })}
+                          </ul>
+                          </div>
+                          
+                        </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
                       </span>}
                   </div>
@@ -443,6 +378,5 @@ export default function Documentation() {
         }
       `}
       </style>
-    </div>
-  );
+    </div>;
 }

@@ -3,8 +3,6 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-// Add the import for HelmetProvider
-import { HelmetProvider } from 'react-helmet-async';
 
 console.log("React version:", React.version);
 console.log("Initializing application...");
@@ -19,11 +17,8 @@ if (!rootElement) {
   const root = createRoot(rootElement);
   root.render(
     <React.StrictMode>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
+      <App />
     </React.StrictMode>
   );
   console.log("React application mounted");
 }
-
