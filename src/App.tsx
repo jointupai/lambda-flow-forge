@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -10,6 +11,7 @@ import Home from "./pages/Home";
 import Services from "./pages/Services";
 import HowItWorks from "./pages/HowItWorks";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import StripeWebflowKit from "./pages/StripeWebflowKit";
 import Portfolio from "./pages/Portfolio";
 import USACarTagsCaseStudy from "./pages/case-studies/USACarTags";
@@ -40,6 +42,7 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/how-it-works" element={<HowItWorks />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/stripe-webflow-kit" element={<StripeWebflowKit />} />
               

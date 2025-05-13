@@ -1,12 +1,13 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Cloud, CreditCard, BarChart, Bot, Replace, Webhook, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -251,13 +252,17 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
+              
+              <Link to="/contact" className="text-sm font-medium text-white hover:text-gray-300">
+                Contact Us
+              </Link>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-4">
               <Button 
-                onClick={() => setOpenContactDrawer(true)} 
+                onClick={() => navigate('/contact')}
                 className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800 rounded-full transition-all duration-300"
               >
                 Let's Partner Up
@@ -333,14 +338,14 @@ export default function Navbar() {
               </div>
             </div>
             
-            <div className="block py-2">
-              <ContactDrawer />
-            </div>
+            <Link to="/contact" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+              Contact Us
+            </Link>
 
             <div className="pt-2">
               <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
                 setIsMenuOpen(false);
-                window.open('https://calendly.com/jointup/intro', '_blank');
+                navigate('/contact');
               }}>
                 Get a Free Audit
               </Button>

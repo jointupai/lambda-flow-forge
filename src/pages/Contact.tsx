@@ -1,7 +1,6 @@
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone, MessageSquare, User, Building, Globe, Wrench, FileText, AlertCircle, Check } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
@@ -9,7 +8,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import CalendlyDialog from "@/components/shared/CalendlyDialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Check, Phone } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -18,285 +18,341 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address"
   }),
-  company: z.string().min(2, {
+  companyRole: z.string().min(2, {
+    message: "Role is required"
+  }),
+  companyName: z.string().min(2, {
     message: "Company name is required"
   }),
   website: z.string().url({
     message: "Please enter a valid URL"
   }).or(z.string().length(0)),
-  tools: z.string().min(2, {
-    message: "Please list at least one tool"
+  companySize: z.string().min(1, {
+    message: "Company size is required"
   }),
-  automation: z.string().min(10, {
-    message: "Please provide more details about your automation needs"
-  })
+  companyRevenue: z.string().min(1, {
+    message: "Annual revenue is required"
+  }),
+  budget: z.string().min(1, {
+    message: "Budget range is required"
+  }),
+  intrestedin: z.string().min(1, {
+    message: "Please select at least one service"
+  }),
+  message: z.string().optional()
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
+const getServiceDescription = (service: string): string => {
+  const serviceMap: Record<string, string> = {
+    'automation': 'Automation Infrastructure',
+    'zapier': 'Zapier Replacement',
+    'stripe': 'Stripe Payment Workflows',
+    'crm': 'CRM & Lead Flow',
+    'webhook': 'Webhook Orchestration',
+    'cloud': 'Custom Cloud Solutions'
+  };
+  return `They are interested in ${serviceMap[service]}`;
+};
+
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
-      company: "",
+      companyRole: "",
+      companyName: "",
       website: "",
-      tools: "",
-      automation: ""
+      companySize: "",
+      companyRevenue: "",
+      budget: "",
+      intrestedin: "",
+      message: ""
     }
   });
-  
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showCalendly, setShowCalendly] = useState(false);
-  
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    
-    const payload = {
-      name: data.name,
-      email: data.email,
-      companyName: data.company,
-      website: data.website,
-      tools: data.tools,
-      automationGoal: data.automation
-    };
-    
+    console.log("Submitting form data:", data);
     try {
-      const response = await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
+      const payload = {
+        name: data.name,
+        email: data.email,
+        companyName: data.companyName,
+        companyRole: data.companyRole,
+        website: data.website,
+        companySize: data.companySize,
+        companyRevenue: data.companyRevenue,
+        budget: data.budget,
+        intrestedin: getServiceDescription(data.intrestedin),
+        message: data.message || ""
+      };
+      console.log("Sending payload to API:", payload);
+      await fetch("https://kktvtpzkcf.execute-api.us-east-2.amazonaws.com/default/website-email-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(payload),
-        mode: "no-cors" 
+        mode: "no-cors"
       });
-
-      toast.success("Form submitted successfully!", {
-        description: "We'll be in touch soon about your automation audit.",
-        icon: <Check className="h-4 w-4" />
-      });
+      setIsSuccess(true);
+      toast.success("Thank you! Your message has been submitted successfully.");
       form.reset();
-      setShowCalendly(true);
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error("There was an issue submitting your form. Please try again.");
     }
-    
     setIsSubmitting(false);
   };
 
   return (
-    <div className="min-h-screen">
-      <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
-      
-      <section className="bg-black text-white py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
-              Let's Talk Automation
-            </h1>
-            <p className="text-xl text-gray-400 leading-relaxed">
-              Book a free automation audit and discover how AWS Lambda can transform your workflows
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-12">
-              <div className="md:col-span-1">
-                <h2 className="text-2xl font-bold mb-8 text-black">Get in Touch</h2>
-                
-                <div className="space-y-8">
-                  <div className="p-4 bg-gray-50 rounded-md border border-gray-200 hover:border-gray-300 transition-all duration-300">
-                    <div className="flex items-start gap-3">
-                      <Mail className="text-black flex-shrink-0 mt-1" />
-                      <div>
-                        <h3 className="font-semibold text-black">Email Us</h3>
-                        <a href="mailto:hello@jointup.ai" className="text-gray-600 hover:text-black transition-colors">hello@jointup.ai</a>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 bg-gray-50 rounded-md border border-gray-200 hover:border-gray-300 transition-all duration-300">
-                    <div className="flex items-start gap-3">
-                      <Phone className="text-black flex-shrink-0 mt-1" />
-                      <div>
-                        <h3 className="font-semibold text-black">Call Us</h3>
-                        <a href="#" className="text-gray-600 hover:text-black transition-colors">Schedule a call online</a>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 bg-gray-50 rounded-md border border-gray-200 hover:border-gray-300 transition-all duration-300">
-                    <div className="flex items-start gap-3">
-                      <MessageSquare className="text-black flex-shrink-0 mt-1" />
-                      <div>
-                        <h3 className="font-semibold text-black">Support</h3>
-                        <a href="mailto:support@jointup.ai" className="text-gray-600 hover:text-black transition-colors">support@jointup.ai</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-12 p-6 bg-gray-50 rounded-md border border-gray-200">
-                  <h3 className="font-semibold mb-3 text-black flex items-center gap-2">
-                    <AlertCircle className="h-5 w-5 text-black" /> 
-                    Why get an audit?
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Our automation experts will analyze your current workflows, 
-                    identify opportunities for improvement, and provide a 
-                    customized plan to help you save time and money.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="md:col-span-2">
-                <div className="bg-white p-8 rounded-md border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                  <h2 className="text-2xl font-bold mb-2 text-black">Book a Free Automation Audit</h2>
-                  <p className="text-gray-600 mb-8 leading-relaxed">
-                    We'll map out your current stack, identify time-wasting tasks, and give you a simple blueprint to automate it with AWS Lambda.
-                  </p>
-                  
-                  <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField control={form.control} name="name" render={({field}) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2 text-gray-700">
-                              <User className="h-4 w-4" /> Name
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" className="border-gray-200 focus:border-black transition-colors" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )} />
-                        
-                        <FormField control={form.control} name="email" render={({field}) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2 text-gray-700">
-                              <Mail className="h-4 w-4" /> Email
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="you@company.com" type="email" className="border-gray-200 focus:border-black transition-colors" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )} />
-                      </div>
-                      
-                      <div className="grid md:grid-cols-2 gap-6">
-                        <FormField control={form.control} name="company" render={({field}) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2 text-gray-700">
-                              <Building className="h-4 w-4" /> Company Name
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your company" className="border-gray-200 focus:border-black transition-colors" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )} />
-                        
-                        <FormField control={form.control} name="website" render={({field}) => (
-                          <FormItem>
-                            <FormLabel className="flex items-center gap-2 text-gray-700">
-                              <Globe className="h-4 w-4" /> Website (optional)
-                            </FormLabel>
-                            <FormControl>
-                              <Input placeholder="https://yourcompany.com" className="border-gray-200 focus:border-black transition-colors" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )} />
-                      </div>
-                      
-                      <FormField control={form.control} name="tools" render={({field}) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2 text-gray-700">
-                            <Wrench className="h-4 w-4" /> What tools are you currently using?
-                          </FormLabel>
-                          <FormControl>
-                            <Input placeholder="Stripe, Zapier, Supabase, etc." className="border-gray-200 focus:border-black transition-colors" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
-                      
-                      <FormField control={form.control} name="automation" render={({field}) => (
-                        <FormItem>
-                          <FormLabel className="flex items-center gap-2 text-gray-700">
-                            <FileText className="h-4 w-4" /> What do you want to automate?
-                          </FormLabel>
-                          <FormControl>
-                            <Textarea placeholder="Describe your current workflow and what you'd like to improve" className="min-h-[120px] border-gray-200 focus:border-black transition-colors resize-none" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )} />
-                      
-                      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-black hover:bg-gray-800 text-white text-base font-medium">
-                        {isSubmitting ? <>Processing...</> : (
-                          <>
-                            Request My Free Audit <ArrowRight className="ml-2" size={16} />
-                          </>
-                        )}
-                      </Button>
-                    </form>
-                  </Form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center text-black">Frequently Asked Questions</h2>
+    <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Talk to our Sales team.</h1>
             
-            <div className="space-y-6">
-              <div className="bg-white p-6 rounded-md shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
-                <h3 className="text-xl font-semibold mb-3 text-black">How long does it take to build a custom automation?</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  It depends on the complexity, but most projects take 2-4 weeks from initial call to deployment. 
-                  Simple integrations can be completed in as little as a few days.
-                </p>
+            <div className="space-y-6 mt-6">
+              <div className="flex items-start gap-4">
+                <div className="bg-zinc-900 p-2 rounded-full">
+                  <Phone className="h-6 w-6 text-gray-300" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Get a custom demo.</h3>
+                  <p className="text-gray-400">Discover the value of JointUp for your enterprise and explore our custom plans and pricing.</p>
+                </div>
               </div>
               
-              <div className="bg-white p-6 rounded-md shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
-                <h3 className="text-xl font-semibold mb-3 text-black">Do I need my own AWS account?</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Yes, we deploy to your AWS account so you maintain full ownership of the code and infrastructure. 
-                  We can help you set this up if needed.
-                </p>
+              <div className="flex items-start gap-4">
+                <div className="bg-zinc-900 p-2 rounded-full">
+                  <Phone className="h-6 w-6 text-gray-300" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">Set up your Enterprise trial.</h3>
+                  <p className="text-gray-400">See for yourself how JointUp Enterprise speeds up your workflow & impact.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-zinc-800 pt-6 mt-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <p className="text-xl font-bold">6x faster</p>
+                  <p className="text-gray-400">to build and deploy.</p>
+                  <div className="mt-4">
+                    <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-6" />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <p className="text-xl font-bold">98% faster</p>
+                  <p className="text-gray-400">time to market.</p>
+                  <div className="mt-4">
+                    <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-6" />
+                  </div>
+                </div>
               </div>
               
-              <div className="bg-white p-6 rounded-md shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
-                <h3 className="text-xl font-semibold mb-3 text-black">What happens if something breaks?</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We set up comprehensive monitoring and provide support to fix any issues that arise. 
-                  Our solutions are built with error handling and recovery in mind.
-                </p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-md shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200">
-                <h3 className="text-xl font-semibold mb-3 text-black">How much does a typical project cost?</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Pricing depends on the complexity and scope of the project. We provide fixed-price quotes 
-                  after the initial discovery call, typically ranging from $2,000-$15,000.
-                </p>
+              <div className="mt-10">
+                <blockquote className="border-l-2 border-zinc-700 pl-4 italic">
+                  <p className="text-lg">"JointUp makes <span className="font-semibold">our developers happier</span> and lets us go to market quicker."</p>
+                </blockquote>
+                <div className="mt-4">
+                  <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="Client" className="h-6" />
+                </div>
               </div>
             </div>
           </div>
+          
+          <div className="bg-black/60 border border-zinc-800 rounded-xl p-8">
+            {isSuccess ? (
+              <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                  <Check className="w-8 h-8 text-green-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-gray-100">Thank You!</h2>
+                <p className="text-gray-400">
+                  We've received your submission and will be in touch soon.
+                </p>
+                <Button onClick={() => setIsSuccess(false)} className="mt-6">
+                  Submit Another Request
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField control={form.control} name="name" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Name *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Your name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                      <FormField control={form.control} name="email" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Email *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="you@company.com" type="email" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField control={form.control} name="companyRole" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Your Role *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Your role" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                      <FormField control={form.control} name="companyName" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Company Name *</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Company name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField control={form.control} name="website" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Website</FormLabel>
+                          <FormControl>
+                            <Input placeholder="https://yourcompany.com" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                      <FormField control={form.control} name="companySize" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Company Size *</FormLabel>
+                          <Select value={field.value} onValueChange={field.onChange}>
+                            <FormControl>
+                              <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                <SelectValue placeholder="Select company size" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                              <SelectItem value="1-10" className="cursor-pointer hover:bg-zinc-800">1-10 employees</SelectItem>
+                              <SelectItem value="11-50" className="cursor-pointer hover:bg-zinc-800">11-50 employees</SelectItem>
+                              <SelectItem value="51-200" className="cursor-pointer hover:bg-zinc-800">51-200 employees</SelectItem>
+                              <SelectItem value="201-500" className="cursor-pointer hover:bg-zinc-800">201-500 employees</SelectItem>
+                              <SelectItem value="500+" className="cursor-pointer hover:bg-zinc-800">500+ employees</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <FormField control={form.control} name="companyRevenue" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Annual Revenue *</FormLabel>
+                          <Select value={field.value} onValueChange={field.onChange}>
+                            <FormControl>
+                              <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                <SelectValue placeholder="Select annual revenue" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                              <SelectItem value="<1M" className="cursor-pointer hover:bg-zinc-800">Less than $1M</SelectItem>
+                              <SelectItem value="1M-5M" className="cursor-pointer hover:bg-zinc-800">$1M - $5M</SelectItem>
+                              <SelectItem value="5M-10M" className="cursor-pointer hover:bg-zinc-800">$5M - $10M</SelectItem>
+                              <SelectItem value="10M-50M" className="cursor-pointer hover:bg-zinc-800">$10M - $50M</SelectItem>
+                              <SelectItem value="50M+" className="cursor-pointer hover:bg-zinc-800">$50M+</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                      <FormField control={form.control} name="budget" render={({field}) => (
+                        <FormItem>
+                          <FormLabel className="text-base font-medium text-gray-200">Project Budget *</FormLabel>
+                          <Select value={field.value} onValueChange={field.onChange}>
+                            <FormControl>
+                              <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                <SelectValue placeholder="Select budget range" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                              <SelectItem value="<10k" className="cursor-pointer hover:bg-zinc-800">Less than $10k</SelectItem>
+                              <SelectItem value="10-50k" className="cursor-pointer hover:bg-zinc-800">$10k - $50k</SelectItem>
+                              <SelectItem value="50-100k" className="cursor-pointer hover:bg-zinc-800">$50k - $100k</SelectItem>
+                              <SelectItem value=">100k" className="cursor-pointer hover:bg-zinc-800">More than $100k</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )} />
+                    </div>
+
+                    <FormField control={form.control} name="intrestedin" render={({field}) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-200">What services are you interested in? *</FormLabel>
+                        <Select value={field.value} onValueChange={field.onChange}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                              <SelectValue placeholder="Select service" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                            <SelectItem value="automation" className="cursor-pointer hover:bg-zinc-800">Automation Infrastructure</SelectItem>
+                            <SelectItem value="zapier" className="cursor-pointer hover:bg-zinc-800">Zapier Replacement</SelectItem>
+                            <SelectItem value="stripe" className="cursor-pointer hover:bg-zinc-800">Stripe Payment Workflows</SelectItem>
+                            <SelectItem value="crm" className="cursor-pointer hover:bg-zinc-800">CRM & Lead Flow</SelectItem>
+                            <SelectItem value="webhook" className="cursor-pointer hover:bg-zinc-800">Webhook Orchestration</SelectItem>
+                            <SelectItem value="cloud" className="cursor-pointer hover:bg-zinc-800">Custom Cloud Solutions</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+
+                    <FormField control={form.control} name="message" render={({field}) => (
+                      <FormItem>
+                        <FormLabel className="text-base font-medium text-gray-200">Message (optional)</FormLabel>
+                        <FormControl>
+                          <Textarea placeholder="Tell us more about your project" className="min-h-[120px] text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors resize-none" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    
+                    <div>
+                      <p className="text-xs text-gray-500 mb-4">
+                        By clicking "Talk to JointUp", I acknowledge I have read and understand the Privacy Notice.
+                      </p>
+                      
+                      <Button type="submit" disabled={isSubmitting} className="w-full h-12 bg-blue-600 hover:bg-blue-500 text-white text-base font-medium rounded-lg">
+                        {isSubmitting ? "Processing..." : "Talk to JointUp"}
+                      </Button>
+                    </div>
+                  </form>
+                </Form>
+              </div>
+            )}
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
