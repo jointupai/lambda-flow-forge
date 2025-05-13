@@ -95,14 +95,16 @@ export default function CustomCloudSolutions() {
         <div className="container mx-auto px-4 sm:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-6 text-black">Ready to build your custom cloud solution?</h2>
-            <Button 
-              size="lg"
-              variant="outline" 
-              className="border-black text-black hover:bg-black hover:text-brand-primary-400"
-              onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
-            >
-              Schedule a Discovery Call
-            </Button>
+            <div className="flex justify-center">
+              <Button 
+                size="lg"
+                variant="outline" 
+                className="border-black text-black hover:bg-black hover:text-brand-primary-400"
+                onClick={() => window.open('https://calendly.com/jointup/intro', '_blank')}
+              >
+                Schedule a Discovery Call
+              </Button>
+            </div>
           </div>
         </div>
       </section>

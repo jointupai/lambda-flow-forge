@@ -20,7 +20,7 @@ export default function AIAutomation() {
                 Leverage the power of AI to automate processes, make data-driven decisions, and transform your business operations.
               </p>
               
-              <div className="flex flex-col md:flex-row gap-4 mt-4">
+              <div className="flex flex-col md:flex-row gap-4 mt-4 justify-center">
                 <Button className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-auto" size="lg">
                   Start Automating
                 </Button>
@@ -101,7 +101,7 @@ export default function AIAutomation() {
               </div>
 
               <div className="mt-16 text-center">
-                <Link to="/contact">
+                <Link to="/contact" className="inline-block">
                   <Button className="group bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-auto" size="lg">
                     Discuss Your AI Needs
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

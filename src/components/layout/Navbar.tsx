@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X } from "lucide-react";
@@ -205,7 +206,7 @@ export default function Navbar() {
 
                       <Link to="/portfolio" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Replace className="h-4 w-4 text-gray-300" />
+                          <Wrench className="h-4 w-4 text-gray-300" />
                         </div>
                         <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">Portfolio</h3>
