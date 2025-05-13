@@ -20,10 +20,10 @@ export default function OptimizationSupport() {
               </p>
               
               <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-4">
-                <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-4 h-auto">
+                <Button size="lg" className="bg-white text-black hover:bg-gray-200 rounded-full px-8 py-6 h-[16px]">
                   Get Support
                 </Button>
-                <Button variant="outline" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-auto" size="lg">
+                <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-zinc-800 rounded-full px-8 py-6 h-[16px]">
                   See Plans
                 </Button>
               </div>
