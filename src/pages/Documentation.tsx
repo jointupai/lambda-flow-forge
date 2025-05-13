@@ -253,7 +253,13 @@ export default function Documentation() {
                                 const isSelected = selectedPost?._id === post._id;
                                 // Build category/kebab-case for URL
                                 const catUrl = cat.toLowerCase().replace(/\s+/g, "-");
-                                const hasSlug = !!post.slug?.current;
+                                // Updated logic to handle slug as string or object
+                                const slugString = typeof post.slug === 'string'
+                                  ? post.slug
+                                  : post.slug && typeof post.slug.current === 'string'
+                                    ? post.slug.current
+                                    : null;
+                                const hasSlug = !!slugString;
                                 return (
                                   <li key={post._id} className="relative flex items-center">
                                     <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
@@ -270,7 +276,7 @@ export default function Documentation() {
                                     </span>
                                     {hasSlug ? (
                                       <Link
-                                        to={`/documentation/${catUrl}/${post.slug.current}`}
+                                        to={`/documentation/${catUrl}/${slugString}`}
                                         className={`w-full text-left px-3 py-2 text-sm flex items-center
                                           transition-colors duration-100
                                           ${isSelected
