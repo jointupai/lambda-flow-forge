@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ChevronRight, Search, Loader2 } from "lucide-react";
@@ -28,12 +29,50 @@ interface DocArticle {
   publishedAt: string;
 }
 
+// Mock data for fallback
+const mockCategories: DocCategory[] = [
+  { _id: "1", title: "Getting Started", slug: "getting-started" },
+  { _id: "2", title: "API Reference", slug: "api-reference" },
+  { _id: "3", title: "Tutorials", slug: "tutorials" },
+  { _id: "4", title: "FAQs", slug: "faqs" }
+];
+
+const mockArticle: DocArticle = {
+  _id: "1",
+  title: "Introduction to JointUp",
+  slug: "introduction",
+  excerpt: "Learn the basics of JointUp platform and how to get started.",
+  content: [
+    {
+      _type: 'block',
+      children: [
+        {
+          _type: 'span',
+          text: 'JointUp is a powerful cloud automation and integration platform designed for modern businesses. This guide will help you get started with the platform and understand its core features.'
+        }
+      ]
+    },
+    {
+      _type: 'block',
+      children: [
+        {
+          _type: 'span',
+          text: 'Key features include automated workflows, API integrations, and custom development capabilities that allow you to create powerful solutions without extensive coding knowledge.'
+        }
+      ]
+    }
+  ],
+  category: { title: "Getting Started", slug: "getting-started" },
+  publishedAt: "2025-01-10"
+};
+
 export default function DocumentationArticle() {
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<DocArticle | null>(null);
   const [categories, setCategories] = useState<DocCategory[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
   
   useEffect(() => {
     const fetchArticle = async () => {
@@ -59,15 +98,38 @@ export default function DocumentationArticle() {
             publishedAt
           }
         `, { slug });
+
+        console.log("Categories fetched:", categoriesData);
+        console.log("Article fetched:", articleData);
         
-        setCategories(categoriesData);
-        setArticle(articleData);
+        if ((!categoriesData || categoriesData.length === 0) && !articleData) {
+          console.log("No content found, using mock data");
+          setCategories(mockCategories);
+          // If there's a slug parameter but no article, use the mock article
+          setArticle(mockArticle);
+          setIsUsingMockData(true);
+          toast({
+            title: "Using sample content",
+            description: "Could not load content from Sanity. Displaying sample content instead.",
+            variant: "default"
+          });
+        } else {
+          setCategories(categoriesData || []);
+          setArticle(articleData);
+        }
+        
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch article:", error);
+        
+        // Use mock data on error
+        setCategories(mockCategories);
+        setArticle(mockArticle);
+        setIsUsingMockData(true);
+        
         toast({
           title: "Error loading documentation",
-          description: "Could not connect to the content server. Please try again later.",
+          description: "Could not connect to the content server. Displaying sample content instead.",
           variant: "destructive"
         });
         setIsLoading(false);
@@ -76,11 +138,20 @@ export default function DocumentationArticle() {
     
     if (slug) {
       fetchArticle();
+    } else {
+      // No slug provided
+      setIsLoading(false);
+      setArticle(null);
     }
   }, [slug]);
   
   return (
     <div className="min-h-screen bg-black text-white">
+      {isUsingMockData && (
+        <div className="bg-amber-600 text-white p-2 text-center text-sm">
+          Currently displaying sample content. The connection to the content management system is unavailable.
+        </div>
+      )}
       <div className="flex">
         {/* Sidebar */}
         <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16">

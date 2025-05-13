@@ -1,18 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { 
   ChevronRight,
   Search,
-  BookOpen,
   Code,
-  Server,
-  Database,
-  Shield,
-  BarChart,
-  Layers,
-  GitBranch,
-  Bot,
   Loader2
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -43,12 +34,48 @@ interface DocArticle {
   publishedAt: string;
 }
 
+// Mock data in case API fails
+const mockCategories: DocCategory[] = [
+  { _id: "1", title: "Getting Started", slug: "getting-started" },
+  { _id: "2", title: "API Reference", slug: "api-reference" },
+  { _id: "3", title: "Tutorials", slug: "tutorials" },
+  { _id: "4", title: "FAQs", slug: "faqs" }
+];
+
+const mockArticles: DocArticle[] = [
+  {
+    _id: "1",
+    title: "Introduction to JointUp",
+    slug: "introduction",
+    excerpt: "Learn the basics of JointUp platform and how to get started.",
+    category: { title: "Getting Started", slug: "getting-started" },
+    publishedAt: "2025-01-10"
+  },
+  {
+    _id: "2",
+    title: "Authentication Guide",
+    slug: "authentication",
+    excerpt: "Learn how to implement authentication in your JointUp applications.",
+    category: { title: "API Reference", slug: "api-reference" },
+    publishedAt: "2025-02-15"
+  },
+  {
+    _id: "3",
+    title: "Building Your First Integration",
+    slug: "first-integration",
+    excerpt: "Step-by-step guide to creating your first integration with JointUp.",
+    category: { title: "Tutorials", slug: "tutorials" },
+    publishedAt: "2025-03-20"
+  }
+];
+
 export default function Documentation() {
   const [categories, setCategories] = useState<DocCategory[]>([]);
   const [articles, setArticles] = useState<DocArticle[]>([]);
   const [featuredArticles, setFeaturedArticles] = useState<DocArticle[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
   
   useEffect(() => {
     const fetchDocContent = async () => {
@@ -79,18 +106,38 @@ export default function Documentation() {
         `);
         
         console.log("Articles fetched:", articlesData);
+
+        if (categoriesData.length === 0 && articlesData.length === 0) {
+          console.log("No content found, using mock data");
+          setCategories(mockCategories);
+          setArticles(mockArticles);
+          setFeaturedArticles(mockArticles.slice(0, 3));
+          setIsUsingMockData(true);
+          toast({
+            title: "Using sample content",
+            description: "Could not load content from Sanity. Displaying sample content instead.",
+            variant: "default"
+          });
+        } else {
+          // Set featured articles (first 3)
+          setFeaturedArticles(articlesData.slice(0, 3));
+          setCategories(categoriesData);
+          setArticles(articlesData);
+        }
         
-        // Set featured articles (first 3)
-        setFeaturedArticles(articlesData.slice(0, 3));
-        
-        setCategories(categoriesData);
-        setArticles(articlesData);
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch documentation content:", error);
+        
+        // Use mock data on error
+        setCategories(mockCategories);
+        setArticles(mockArticles);
+        setFeaturedArticles(mockArticles.slice(0, 3));
+        setIsUsingMockData(true);
+        
         toast({
           title: "Error loading documentation",
-          description: "Could not connect to the content server. Please try again later.",
+          description: "Could not connect to the content server. Displaying sample content instead.",
           variant: "destructive"
         });
         setIsLoading(false);
@@ -108,6 +155,11 @@ export default function Documentation() {
   
   return (
     <div className="min-h-screen bg-black text-white">
+      {isUsingMockData && (
+        <div className="bg-amber-600 text-white p-2 text-center text-sm">
+          Currently displaying sample content. The connection to the content management system is unavailable.
+        </div>
+      )}
       <div className="flex">
         {/* Sidebar */}
         <div className="hidden md:block w-64 h-screen border-r border-zinc-800 overflow-y-auto fixed top-16">
