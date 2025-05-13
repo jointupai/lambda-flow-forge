@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -18,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
+import { PortableText } from '@portabletext/react';
 
 // Types for Sanity content
 interface ContentItem {
@@ -47,7 +47,7 @@ export default function Documentation() {
               .map((item: ContentItem) => item.category)
               .filter((c): c is string => !!c)
           )
-        );
+        ) as string[]; // FIX: Cast to string[]
         setCategories(allCategories);
         setIsLoading(false);
       } catch (error) {
@@ -160,7 +160,11 @@ export default function Documentation() {
                           <Code size={24} className="text-white" />
                           <h3 className="text-xl font-bold">{item.title}</h3>
                         </div>
-                        <div className="text-gray-400 mb-2">{item.content}</div>
+                        <div className="text-gray-400 mb-2">
+                          {item.content ? (
+                            <PortableText value={item.content} />
+                          ) : null}
+                        </div>
                         {item.category && (
                           <div className="text-xs text-gray-500 mt-2">Category: {item.category}</div>
                         )}
