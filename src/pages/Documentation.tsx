@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ChevronRight,
-  ChevronDown,
-  BarChart,
-  Code,
-  Database,
-  Search,
-  Shield,
-  Loader2,
-} from "lucide-react";
+import { ChevronRight, ChevronDown, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -26,7 +17,6 @@ interface ContentItem {
   title?: string;
   content?: any;
 }
-
 export default function Documentation() {
   const [content, setContent] = useState<ContentItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -37,137 +27,110 @@ export default function Documentation() {
 
   // Grouped content by category
   const groupedContent = React.useMemo(() => {
-    const grouped: { [category: string]: ContentItem[] } = {};
-    content.forEach((item) => {
+    const grouped: {
+      [category: string]: ContentItem[];
+    } = {};
+    content.forEach(item => {
       if (!item.category) return;
       if (!grouped[item.category]) grouped[item.category] = [];
       grouped[item.category].push(item);
     });
     return grouped;
   }, [content]);
-
   useEffect(() => {
     const fetchDocContent = async () => {
       try {
         setIsLoading(true);
         const contentData = await fetchContent();
         setContent(contentData || []);
-        const allCategories = Array.from(
-          new Set(
-            (contentData || [])
-              .map((item: ContentItem) => item.category)
-              .filter((c): c is string => !!c)
-          )
-        ) as string[];
+        const allCategories = Array.from(new Set((contentData || []).map((item: ContentItem) => item.category).filter((c): c is string => !!c))) as string[];
         setCategories(allCategories);
         setIsLoading(false);
       } catch (error) {
         toast({
           title: "Error loading documentation",
-          description:
-            "Could not connect to the content server. Please try again later.",
-          variant: "destructive",
+          description: "Could not connect to the content server. Please try again later.",
+          variant: "destructive"
         });
         setIsLoading(false);
       }
     };
     fetchDocContent();
   }, []);
-
   useEffect(() => {
     setSelectedPost(null);
   }, [searchQuery, content]);
-
-  const filteredCategories = categories.filter((cat) => {
+  const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
     const posts = groupedContent[cat] || [];
-    return posts.some(
-      (post) =>
-        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (typeof post.content === "string" &&
-          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+    return posts.some(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
   });
-
   const filteredPosts = (cat: string) => {
     if (!searchQuery) return groupedContent[cat] || [];
-    return (groupedContent[cat] || []).filter(
-      (post) =>
-        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (typeof post.content === "string" &&
-          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+    return (groupedContent[cat] || []).filter(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
   };
-
   const handleCategoryToggle = (cat: string) => {
-    setExpandedCategory((prev) => (prev === cat ? null : cat));
+    setExpandedCategory(prev => prev === cat ? null : cat);
   };
 
   // Add custom components for PortableText, including robust image and YouTube support
   const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
-      h1: (props) => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
-      h2: (props) => <h2 className="text-2xl font-semibold mb-3">{props.children}</h2>,
-      h3: (props) => <h3 className="text-xl font-semibold mb-2">{props.children}</h3>,
-      h4: (props) => <h4 className="text-lg font-semibold mb-2">{props.children}</h4>,
-      normal: (props) => <p className="mb-4">{props.children}</p>,
-      blockquote: (props) => (
-        <blockquote className="border-l-4 border-gray-700 pl-4 italic text-gray-400 mb-4">
+      h1: props => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
+      h2: props => <h2 className="text-2xl font-semibold mb-3">{props.children}</h2>,
+      h3: props => <h3 className="text-xl font-semibold mb-2">{props.children}</h3>,
+      h4: props => <h4 className="text-lg font-semibold mb-2">{props.children}</h4>,
+      normal: props => <p className="mb-4">{props.children}</p>,
+      blockquote: props => <blockquote className="border-l-4 border-gray-700 pl-4 italic text-gray-400 mb-4">
           {props.children}
         </blockquote>
-      ),
     },
     list: {
-      bullet: (props) => <ul className="list-disc ml-6 mb-4">{props.children}</ul>,
-      number: (props) => <ol className="list-decimal ml-6 mb-4">{props.children}</ol>,
+      bullet: props => <ul className="list-disc ml-6 mb-4">{props.children}</ul>,
+      number: props => <ol className="list-decimal ml-6 mb-4">{props.children}</ol>
     },
     listItem: {
-      bullet: (props) => <li className="mb-2">{props.children}</li>,
-      number: (props) => <li className="mb-2">{props.children}</li>,
+      bullet: props => <li className="mb-2">{props.children}</li>,
+      number: props => <li className="mb-2">{props.children}</li>
     },
     marks: {
-      link: (props) => {
+      link: props => {
         // value is possibly undefined
-        const href = props.value && "href" in props.value ? (props.value.href as string) : "#";
-        return (
-          <a
-            href={href}
-            className="underline text-blue-400 hover:text-blue-600"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+        const href = props.value && "href" in props.value ? props.value.href as string : "#";
+        return <a href={href} className="underline text-blue-400 hover:text-blue-600" target="_blank" rel="noopener noreferrer">
             {props.children}
-          </a>
-        );
+          </a>;
       },
-      strong: (props) => <strong className="font-bold">{props.children}</strong>,
-      em: (props) => <em className="italic">{props.children}</em>,
-      code: (props) => (
-        <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{props.children}</code>
-      ),
+      strong: props => <strong className="font-bold">{props.children}</strong>,
+      em: props => <em className="italic">{props.children}</em>,
+      code: props => <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{props.children}</code>
     },
     types: {
-      code: (props) => {
+      code: props => {
         // value is possibly undefined
         const codeString = props.value && "code" in props.value ? props.value.code : "";
-        return (
-          <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
+        return <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
             <code>{codeString}</code>
-          </pre>
-        );
+          </pre>;
       },
-      image: (props) => {
+      image: props => {
         // Enhanced image block
-        const { value } = props;
+        const {
+          value
+        } = props;
         if (!value || !value.asset) {
-          return (
-            <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+          return <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
               Image could not be loaded (missing asset)
-            </div>
-          );
+            </div>;
         }
-        const { asset, alt, caption, displaySize, alignment } = value;
+        const {
+          asset,
+          alt,
+          caption,
+          displaySize,
+          alignment
+        } = value;
 
         // Size and alignment Tailwind classes
         const sizeClasses: Record<string, string> = {
@@ -181,53 +144,35 @@ export default function Documentation() {
           center: "mx-auto",
           right: "ml-auto"
         };
-
         const imageUrl = urlFor(asset);
         // Show image if URL, otherwise error message
-        return imageUrl ? (
-          <figure className={`my-8 ${alignmentClasses[alignment] || 'mx-auto'}`}>
-            <img
-              src={imageUrl}
-              alt={alt || "Image"}
-              className={`${sizeClasses[String(displaySize)] || 'w-full'} h-auto rounded-lg`}
-              loading="lazy"
-            />
-            {caption && (
-              <figcaption className="text-center text-sm text-gray-400 mt-2">
+        return imageUrl ? <figure className={`my-8 ${alignmentClasses[alignment] || 'mx-auto'}`}>
+            <img src={imageUrl} alt={alt || "Image"} className={`${sizeClasses[String(displaySize)] || 'w-full'} h-auto rounded-lg`} loading="lazy" />
+            {caption && <figcaption className="text-center text-sm text-gray-400 mt-2">
                 {caption}
-              </figcaption>
-            )}
-          </figure>
-        ) : (
-          <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+              </figcaption>}
+          </figure> : <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
             Image could not be loaded (missing url)
-          </div>
-        );
+          </div>;
       },
-      youtube: (props) => {
-        const { url, title, caption, displaySize, alignment } = props.value || {};
+      youtube: props => {
+        const {
+          url,
+          title,
+          caption,
+          displaySize,
+          alignment
+        } = props.value || {};
         if (!url) {
-          return (
-            <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
+          return <div className="bg-zinc-800 text-red-400 px-3 py-2 rounded mb-4 text-xs text-center">
               Video could not be loaded (missing url)
-            </div>
-          );
+            </div>;
         }
-        return (
-          <YouTubeEmbed
-            url={url}
-            title={title}
-            caption={caption}
-            displaySize={displaySize}
-            alignment={alignment}
-          />
-        );
+        return <YouTubeEmbed url={url} title={title} caption={caption} displaySize={displaySize} alignment={alignment} />;
       }
-    },
+    }
   };
-
-  return (
-    <div className="min-h-screen bg-black text-white w-full">
+  return <div className="min-h-screen bg-black text-white w-full">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row gap-12">
           {/* Sidebar */}
@@ -235,12 +180,7 @@ export default function Documentation() {
             <div className="p-0">
               <div className="relative mb-6">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
-                <Input
-                  placeholder="Search documentation..."
-                  className="pl-8 bg-zinc-900 border-zinc-700 w-full"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+                <Input placeholder="Search documentation..." className="pl-8 bg-zinc-900 border-zinc-700 w-full" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
               </div>
               <nav className="pb-16">
                 <div className="space-y-8">
@@ -248,71 +188,33 @@ export default function Documentation() {
                     <span className="text-sm font-bold text-gray-200 mb-3 block">
                       Categories
                     </span>
-                    {isLoading ? (
-                      Array(5)
-                        .fill(0)
-                        .map((_, index) => (
-                          <div key={index} className="space-y-2">
+                    {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                             <Separator className="bg-zinc-800" />
-                          </div>
-                        ))
-                    ) : filteredCategories.length > 0 ? (
-                      filteredCategories.map((cat) => (
-                        <div key={cat} className="mb-2">
-                          <button
-                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${
-                              expandedCategory === cat
-                                ? "bg-zinc-800 text-white font-semibold"
-                                : ""
-                            }`}
-                            onClick={() => handleCategoryToggle(cat)}
-                            aria-expanded={expandedCategory === cat}
-                          >
+                          </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
+                          <button className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "bg-zinc-800 text-white font-semibold" : ""}`} onClick={() => handleCategoryToggle(cat)} aria-expanded={expandedCategory === cat}>
                             <span className="flex-1">{cat}</span>
-                            {expandedCategory === cat ? (
-                              <ChevronDown className="ml-2 w-4 h-4" />
-                            ) : (
-                              <ChevronRight className="ml-2 w-4 h-4" />
-                            )}
+                            {expandedCategory === cat ? <ChevronDown className="ml-2 w-4 h-4" /> : <ChevronRight className="ml-2 w-4 h-4" />}
                           </button>
                           {/* Sidebar dropdown of posts */}
-                          {expandedCategory === cat && groupedContent[cat] && (
-                            <ul className="ml-0 mt-0.5 bg-black rounded-md shadow-lg border border-zinc-900 py-2 select-none z-10">
-                              {filteredPosts(cat).map((post) => {
-                                const isSelected = selectedPost?._id === post._id;
-                                return (
-                                  <li key={post._id}>
-                                    <button
-                                      className={
-                                        `w-full text-left px-5 py-2 text-sm
+                          {expandedCategory === cat && groupedContent[cat] && <ul className="ml-0 mt-0.5 bg-black rounded-md shadow-lg py-2 select-none z-10">
+                              {filteredPosts(cat).map(post => {
+                        const isSelected = selectedPost?._id === post._id;
+                        return <li key={post._id}>
+                                    <button className={`w-full text-left px-5 py-2 text-sm
                                         transition-colors duration-100
-                                        ${
-                                          isSelected
-                                            ? "border-l-2 border-white text-white bg-zinc-900 font-bold"
-                                            : "border-l-2 border-transparent text-gray-300 hover:bg-zinc-800"
-                                        }`
-                                      }
-                                      style={{
-                                        outline: "none",
-                                      }}
-                                      onClick={() => setSelectedPost(post)}
-                                    >
+                                        ${isSelected ? "border-l-2 border-white text-white bg-zinc-900 font-bold" : "border-l-2 border-transparent text-gray-300 hover:bg-zinc-800"}`} style={{
+                            outline: "none"
+                          }} onClick={() => setSelectedPost(post)}>
                                       {post.title || "(Untitled)"}
                                     </button>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          )}
+                                  </li>;
+                      })}
+                            </ul>}
                           <Separator className="bg-zinc-800 mt-2" />
-                        </div>
-                      ))
-                    ) : (
-                      <span className="text-gray-500 text-sm">
+                        </div>) : <span className="text-gray-500 text-sm">
                         No categories found.
-                      </span>
-                    )}
+                      </span>}
                   </div>
                 </div>
               </nav>
@@ -321,12 +223,9 @@ export default function Documentation() {
           {/* Main content area with same width/spacing as homepage */}
           <main className="flex-1 min-w-0">
             <div className="w-full">
-              {isLoading ? (
-                <div className="flex items-center justify-center my-20">
+              {isLoading ? <div className="flex items-center justify-center my-20">
                   <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
-                </div>
-              ) : selectedPost ? (
-                <div>
+                </div> : selectedPost ? <div>
                   <div className="mb-4 flex flex-col gap-2">
                     <div className="text-sm text-gray-400">
                       {selectedPost.category}
@@ -334,27 +233,14 @@ export default function Documentation() {
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
                   <div className="prose prose-invert max-w-none mb-8">
-                    {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? (
-                      <PortableText
-                        value={selectedPost.content}
-                        components={portableTextComponents}
-                      />
-                    ) : selectedPost.content ? (
-                      // fallback for non-array content
-                      <span>{selectedPost.content}</span>
-                    ) : (
-                      <span>No content</span>
-                    )}
+                    {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? <PortableText value={selectedPost.content} components={portableTextComponents} /> : selectedPost.content ?
+                // fallback for non-array content
+                <span>{selectedPost.content}</span> : <span>No content</span>}
                   </div>
-                  <Button
-                    className="bg-white text-black hover:bg-gray-200"
-                    onClick={() => setSelectedPost(null)}
-                  >
+                  <Button className="bg-white text-black hover:bg-gray-200" onClick={() => setSelectedPost(null)}>
                     Back to categories
                   </Button>
-                </div>
-              ) : (
-                <div>
+                </div> : <div>
                   <div className="mb-16">
                     <h1 className="text-4xl font-bold mb-4">
                       JointUp Documentation
@@ -422,12 +308,10 @@ export default function Documentation() {
                       Start building today
                     </Button>
                   </div>
-                </div>
-              )}
+                </div>}
             </div>
           </main>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
