@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   ChevronRight,
@@ -15,7 +16,7 @@ import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
-import { PortableText } from "@portabletext/react";
+import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
 
 // ContentItem from Sanity
 interface ContentItem {
@@ -102,63 +103,76 @@ export default function Documentation() {
     setExpandedCategory((prev) => (prev === cat ? null : cat));
   };
 
-  // Add custom components for PortableText, fixed for type compatibility
-  const portableTextComponents = {
+  // Add custom components for PortableText, including image support and correct types
+  const portableTextComponents: Partial<PortableTextReactComponents> = {
     block: {
-      h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
-      h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
-      h3: ({ children }) => <h3 className="text-xl font-semibold mb-2">{children}</h3>,
-      h4: ({ children }) => <h4 className="text-lg font-semibold mb-2">{children}</h4>,
-      normal: ({ children }) => <p className="mb-4">{children}</p>,
-      blockquote: ({ children }) => <blockquote className="border-l-4 border-gray-700 pl-4 italic text-gray-400 mb-4">{children}</blockquote>,
+      h1: (props) => <h1 className="text-3xl font-bold mb-4">{props.children}</h1>,
+      h2: (props) => <h2 className="text-2xl font-semibold mb-3">{props.children}</h2>,
+      h3: (props) => <h3 className="text-xl font-semibold mb-2">{props.children}</h3>,
+      h4: (props) => <h4 className="text-lg font-semibold mb-2">{props.children}</h4>,
+      normal: (props) => <p className="mb-4">{props.children}</p>,
+      blockquote: (props) => (
+        <blockquote className="border-l-4 border-gray-700 pl-4 italic text-gray-400 mb-4">
+          {props.children}
+        </blockquote>
+      ),
     },
     list: {
-      bullet: ({ children }) => <ul className="list-disc ml-6 mb-4">{children}</ul>,
-      number: ({ children }) => <ol className="list-decimal ml-6 mb-4">{children}</ol>,
+      bullet: (props) => <ul className="list-disc ml-6 mb-4">{props.children}</ul>,
+      number: (props) => <ol className="list-decimal ml-6 mb-4">{props.children}</ol>,
     },
     listItem: {
-      bullet: ({ children }) => <li className="mb-2">{children}</li>,
-      number: ({ children }) => <li className="mb-2">{children}</li>,
+      bullet: (props) => <li className="mb-2">{props.children}</li>,
+      number: (props) => <li className="mb-2">{props.children}</li>,
     },
     marks: {
       link: (props) => {
-        const { children, value } = props;
+        // value is possibly undefined
+        const href = props.value && "href" in props.value ? (props.value.href as string) : "#";
         return (
           <a
-            href={value?.href || "#"}
+            href={href}
             className="underline text-blue-400 hover:text-blue-600"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {children}
+            {props.children}
           </a>
         );
       },
-      strong: (props) => {
-        const { children } = props;
-        return <strong className="font-bold">{children}</strong>;
-      },
-      em: (props) => {
-        const { children } = props;
-        return <em className="italic">{children}</em>;
-      },
-      code: (props) => {
-        const { children } = props;
-        return (
-          <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{children}</code>
-        );
-      },
+      strong: (props) => <strong className="font-bold">{props.children}</strong>,
+      em: (props) => <em className="italic">{props.children}</em>,
+      code: (props) => (
+        <code className="bg-zinc-800 px-2 py-1 rounded text-sm">{props.children}</code>
+      ),
     },
     types: {
       code: (props) => {
-        const { value } = props;
+        // value is possibly undefined
+        const codeString = props.value && "code" in props.value ? props.value.code : "";
         return (
           <pre className="bg-zinc-800 rounded p-4 mb-4 whitespace-pre overflow-x-auto">
-            <code>{value?.code}</code>
+            <code>{codeString}</code>
           </pre>
         );
       },
-      // ...add more custom types if needed
+      image: (props) => {
+        // value is possibly undefined and may not have asset.url
+        const url =
+          props.value &&
+          props.value.asset &&
+          (props.value.asset.url || (props.value.asset._ref ? undefined : undefined)); // Unless you've got a custom image builder
+        const alt = props.value && props.value.alt ? props.value.alt : "Image";
+        // Only render if we actually get a url, otherwise fallback
+        return url ? (
+          <img
+            src={url}
+            alt={alt}
+            className="max-w-full h-auto mb-4 rounded-lg mx-auto"
+            loading="lazy"
+          />
+        ) : null;
+      },
     },
   };
 
