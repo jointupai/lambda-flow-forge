@@ -20,16 +20,9 @@ import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { createClient } from '@sanity/client';
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Initialize Sanity client
-const sanityClient = createClient({
-  projectId: 'skXgnCwTZhsxZ2AirHVrE41Z8UEuVmgmcBAHNL4OmF0QD5zuK8D7BZufwZrQxdcOIy8FMyEhWHQZJGzoXLtxD85WMOnHMEkMZVO6SkRIIldEKxMixBaWJOL4SLLw66cEOQATwU4iPqhAn2JkMFPjxufksbAFWOZOJDAQlCHbmuwwAKfqh4cF',
-  dataset: 'production',
-  apiVersion: '2023-05-03',
-  useCdn: true,
-});
+import { sanityClient } from "@/lib/sanity";
+import { toast } from "@/hooks/use-toast";
 
 // Types for Sanity content
 interface DocCategory {
@@ -60,6 +53,8 @@ export default function Documentation() {
   useEffect(() => {
     const fetchDocContent = async () => {
       try {
+        console.log("Fetching documentation content...");
+        
         // Fetch categories
         const categoriesData = await sanityClient.fetch(`
           *[_type == "docCategory"] {
@@ -68,6 +63,8 @@ export default function Documentation() {
             "slug": slug.current
           }
         `);
+        
+        console.log("Categories fetched:", categoriesData);
         
         // Fetch articles
         const articlesData = await sanityClient.fetch(`
@@ -81,6 +78,8 @@ export default function Documentation() {
           } | order(publishedAt desc)
         `);
         
+        console.log("Articles fetched:", articlesData);
+        
         // Set featured articles (first 3)
         setFeaturedArticles(articlesData.slice(0, 3));
         
@@ -89,6 +88,11 @@ export default function Documentation() {
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch documentation content:", error);
+        toast({
+          title: "Error loading documentation",
+          description: "Could not connect to the content server. Please try again later.",
+          variant: "destructive"
+        });
         setIsLoading(false);
       }
     };

@@ -1,20 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ChevronRight, Search, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { createClient } from '@sanity/client';
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Initialize Sanity client
-const sanityClient = createClient({
-  projectId: 'skXgnCwTZhsxZ2AirHVrE41Z8UEuVmgmcBAHNL4OmF0QD5zuK8D7BZufwZrQxdcOIy8FMyEhWHQZJGzoXLtxD85WMOnHMEkMZVO6SkRIIldEKxMixBaWJOL4SLLw66cEOQATwU4iPqhAn2JkMFPjxufksbAFWOZOJDAQlCHbmuwwAKfqh4cF',
-  dataset: 'production',
-  apiVersion: '2023-05-03',
-  useCdn: true,
-});
+import { sanityClient } from "@/lib/sanity";
+import { toast } from "@/hooks/use-toast";
 
 // Types for Sanity content
 interface DocCategory {
@@ -73,6 +65,11 @@ export default function DocumentationArticle() {
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to fetch article:", error);
+        toast({
+          title: "Error loading documentation",
+          description: "Could not connect to the content server. Please try again later.",
+          variant: "destructive"
+        });
         setIsLoading(false);
       }
     };
