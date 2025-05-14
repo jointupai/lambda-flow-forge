@@ -11,31 +11,36 @@ const MetricsSection = () => {
       company: 'AI Automations That Help You Scale',
       metric: '268%',
       description: 'Reduction in manual work',
-      content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing'
+      content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing',
+      heading: 'launched in days, not months.'
     },
     apps: {
       company: 'Full Stack Web Apps',
       metric: '24x',
       description: 'Faster build speed',
-      content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.'
+      content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.',
+      heading: 'deployed in weeks, not quarters.'
     },
-    API: {
-      company: 'API Connections',
+    ops: {
+      company: 'Operations Solutions',
       metric: '85%',
-      description: 'Increase in automation efficiency',
-      content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.'
+      description: 'Increase in operational efficiency',
+      content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.',
+      heading: 'optimized in hours, not days.'
     },
     crm: {
       company: 'CRM Solutions',
       metric: '78%',
       description: 'Increase in customer retention',
-      content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.'
+      content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.',
+      heading: 'integrated in days, not weeks.'
     },
     data: {
       company: 'DataMetrics',
       metric: '40s',
       description: 'Average data processing time',
-      content: 'Process and analyze your data in seconds. Built on open source technology, our data tools give you the insights you need to make informed decisions quickly.'
+      content: 'Process and analyze your data in seconds. Built on open source technology, our data tools give you the insights you need to make informed decisions quickly.',
+      heading: 'analyzed in seconds, not hours.'
     }
   };
 
@@ -46,8 +51,8 @@ const MetricsSection = () => {
     value: 'apps',
     label: 'Apps'
   }, {
-    value: 'API',
-    label: 'API'
+    value: 'ops',
+    label: 'Ops'
   }, {
     value: 'crm',
     label: 'CRM'
@@ -64,7 +69,7 @@ const MetricsSection = () => {
             {/* Left side with metrics */}
             <div className="md:w-1/2 lg:w-5/12">
               <p className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
-                <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> launched in days, not months.
+                <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> {metrics[selectedOption as keyof typeof metrics].heading}
               </p>
               
               <div className="mb-8">
