@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X, FileText } from "lucide-react";
@@ -5,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
-// Simple bubble background component for nav links
+// Enhanced bubble background component with consistent padding and improved animation
 const BubbleBg: React.FC<{ active: boolean }> = ({ active }) => (
   <span
     aria-hidden
@@ -59,8 +60,7 @@ export default function Navbar() {
                     setShowSolutions(!showSolutions);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative px-2 py-1 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
-                  style={{ minWidth: showSolutions ? undefined : 'max-content' }}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative p-2 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
                   data-state={showSolutions ? "open" : "closed"}
                 >
                   <span className="flex items-center min-w-max relative">
@@ -73,11 +73,12 @@ export default function Navbar() {
                 {showSolutions && (
                   <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div className="vercel-grid-section">
-                      <Link to="/solutions/custom-web-development" className="vercel-menu-item">
+                      <Link to="/solutions/custom-web-development" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
                           <Globe className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">
                             Custom Web Application Development
                           </h3>
@@ -86,11 +87,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/ai-automation" className="vercel-menu-item">
+                      <Link to="/solutions/ai-automation" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
                           <Bot className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">
                             AI-Powered Automation
                           </h3>
@@ -99,11 +101,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/crm-api-integrations" className="vercel-menu-item">
+                      <Link to="/solutions/crm-api-integrations" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
                           <Wrench className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">
                             CRM & API Integrations
                           </h3>
@@ -112,11 +115,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/optimization-support" className="vercel-menu-item">
+                      <Link to="/solutions/optimization-support" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
                           <BarChart className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">
                             Ongoing Optimization & Support
                           </h3>
@@ -143,8 +147,7 @@ export default function Navbar() {
                     setShowCompany(!showCompany);
                     if (showSolutions) setShowSolutions(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative px-2 py-1 ${showCompany ? 'nav-menu-item-selected' : ''}`}
-                  style={{ minWidth: showCompany ? undefined : 'max-content' }}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative p-2 ${showCompany ? 'nav-menu-item-selected' : ''}`}
                   data-state={showCompany ? "open" : "closed"}
                 >
                   <span className="flex items-center min-w-max relative">
@@ -156,29 +159,32 @@ export default function Navbar() {
                 {showCompany && (
                   <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
-                      <Link to="/how-it-works" className="vercel-menu-item">
+                      <Link to="/how-it-works" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
-                          <BarChart className="h-4 w-4 text-gray-300" />
+                          <BarChart className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">How it Works</h3>
                           <p className="vercel-menu-item-description">Our process and methodology</p>
                         </div>
                       </Link>
-                      <Link to="/about" className="vercel-menu-item">
+                      <Link to="/about" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
-                          <Bot className="h-4 w-4 text-gray-300" />
+                          <Bot className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">About</h3>
                           <p className="vercel-menu-item-description">Our team and mission</p>
                         </div>
                       </Link>
-                      <Link to="/portfolio" className="vercel-menu-item">
+                      <Link to="/portfolio" className="vercel-menu-item group">
                         <div className="vercel-menu-item-icon">
-                          <Wrench className="h-4 w-4 text-gray-300" />
+                          <Wrench className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content">
+                        <div className="vercel-menu-item-content relative">
+                          <BubbleBg active={false} />
                           <h3 className="vercel-menu-item-title">Portfolio</h3>
                           <p className="vercel-menu-item-description">Past work and case studies</p>
                         </div>
@@ -195,7 +201,7 @@ export default function Navbar() {
               </div>
 
               {/* Docs third */}
-              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300 relative px-2 py-1 group">
+              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300 relative p-2 group">
                 <span className="relative flex items-center min-w-max">
                   <BubbleBg active={false}/>
                   Docs

@@ -89,7 +89,7 @@
   
   /* Selected menu state - UPDATED */
   .nav-menu-item-selected {
-    @apply inline-flex p-2.5 bg-zinc-900 rounded-full min-w-max;
+    @apply inline-flex bg-zinc-900 rounded-full min-w-max;
     width: 100%;
   }
   
@@ -192,11 +192,19 @@
     }
   }
   
-  /* Added animation for menu slide in effect */
+  /* Enhanced animation for menu slide in effect with alternating directions */
   @keyframes menu-slide-in {
     0% { 
       transform: translateX(-100%);
       opacity: 0;
+    }
+    50% {
+      transform: translateX(5%);
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateX(-2%);
+      opacity: 0.9;
     }
     100% { 
       transform: translateX(0);
