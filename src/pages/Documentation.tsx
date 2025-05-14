@@ -261,7 +261,7 @@ export default function Documentation() {
   return <div className="min-h-screen bg-black text-white w-full">
       {/* --- SEO tags (for documentation post view) --- */}
       {selectedPost && <SEO title={selectedPost.seo?.metaTitle || selectedPost.title || "JointUp Documentation"} description={selectedPost.seo?.metaDescription || (typeof selectedPost.content === "string" ? selectedPost.content : "")} keywords={selectedPost.seo?.keywords} ogImage={selectedPost.seo?.ogImage} slug={selectedPost.slug?.current} />}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-0">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-0 lg:px-8 pt-0 pb-12 md:py-0">
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
           <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0">
@@ -338,7 +338,7 @@ export default function Documentation() {
           <Separator orientation="vertical" className="hidden md:block h-screen sticky top-0 border-[#1F1F1F]" />
           
           {/* Main content area */}
-          <main className="flex-1 min-w-0 md:py-12 px-8">
+          <main className="flex-1 min-w-0 px-8 md:px-8 md:py-12\n">
             <div className="w-full">
               {/* Posts content */}
               {isLoading ? <div className="flex items-center justify-center my-20">
