@@ -204,7 +204,7 @@ export default function Home() {
                   </li>
                 </ul>
                 
-                <Button className="mt-8 bg-white text-black hover:bg-gray-100" size="lg" onClick={() => setShowCalendly(true)}>
+                <Button size="lg" onClick={() => setShowCalendly(true)} className="mt-8 bg-white text-black hover:bg-gray-100mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                   <span>Start Deploying</span>
                   <ArrowRight size={16} />
                 </Button>
@@ -272,10 +272,10 @@ export default function Home() {
                     Book a free discovery call to explore how we can automate, integrate, and scale your operations.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-md text-base md:text-lg h-12 px-8">
+                    <Button size="lg" onClick={() => setShowCalendly(true)} className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                       Book a Free Discovery Call
                     </Button>
-                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-md text-base md:text-lg h-12 px-8">
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-grey-900">
                       Let's Partner Up
                     </Button>
                   </div>
