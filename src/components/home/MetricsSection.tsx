@@ -1,11 +1,14 @@
+
 import React, { useState } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from 'react-router-dom';
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+
 const MetricsSection = () => {
   const [selectedOption, setSelectedOption] = useState('ai');
   const isMobile = useIsMobile();
 
-  // Updated metrics data with the five options and button text
+  // Updated metrics data with the five options, button text, and page routes
   const metrics = {
     ai: {
       company: 'AI Automations That Help You Scale',
@@ -13,7 +16,8 @@ const MetricsSection = () => {
       description: 'Reduction in manual work',
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing',
       heading: 'launched in days, not months.',
-      buttonText: 'Automate with AI'
+      buttonText: 'Automate with AI',
+      route: '/solutions/ai-automation'
     },
     apps: {
       company: 'Full Stack Web Apps',
@@ -21,7 +25,8 @@ const MetricsSection = () => {
       description: 'Faster build speed',
       content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.',
       heading: 'deployed in weeks, not quarters.',
-      buttonText: 'Launch Your App'
+      buttonText: 'Launch Your App',
+      route: '/solutions/custom-web-development'
     },
     ops: {
       company: 'Operations Solutions',
@@ -29,7 +34,8 @@ const MetricsSection = () => {
       description: 'Increase in operational efficiency',
       content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.',
       heading: 'optimized in hours, not days.',
-      buttonText: 'Fix My Workflow'
+      buttonText: 'Fix My Workflow',
+      route: '/solutions/optimization-support'
     },
     crm: {
       company: 'CRM Solutions',
@@ -37,7 +43,8 @@ const MetricsSection = () => {
       description: 'Increase in customer retention',
       content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.',
       heading: 'integrated in days, not weeks.',
-      buttonText: 'Fix CRM Sync'
+      buttonText: 'Fix CRM Sync',
+      route: '/solutions/crm-api-integrations'
     },
     data: {
       company: 'Connect, transform, and act on your business data',
@@ -45,9 +52,11 @@ const MetricsSection = () => {
       description: 'Average data processing time',
       content: 'Real-time pipelines, live dashboards, and back-end automations to keep your systems in sync.',
       heading: 'analyzed in seconds, not hours.',
-      buttonText: 'Sync My Stack'
+      buttonText: 'Sync My Stack',
+      route: '/solutions/webhook-orchestration'
     }
   };
+
   const buttonOptions = [{
     value: 'ai',
     label: 'AI'
@@ -64,6 +73,7 @@ const MetricsSection = () => {
     value: 'data',
     label: 'API'
   }];
+
   return <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
         <div className="border border-gray-800 rounded-none bg-black">
@@ -95,10 +105,13 @@ const MetricsSection = () => {
                   {metrics[selectedOption as keyof typeof metrics].content}
                 </p>
                 
-                <button className="mt-2 md:mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm">
+                <Link 
+                  to={metrics[selectedOption as keyof typeof metrics].route} 
+                  className="mt-2 md:mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm"
+                >
                   {metrics[selectedOption as keyof typeof metrics].buttonText}
                   <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -106,4 +119,5 @@ const MetricsSection = () => {
       </div>
     </section>;
 };
+
 export default MetricsSection;
