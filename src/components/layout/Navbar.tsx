@@ -54,7 +54,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <CalendlyDialog open={showCalendly} onOpenChange={setShowCalendly} />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 border-b border-b-[1px] border-[#292929]\n\n\n\n\n\n\n">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center gap-6">
             <Link to="/" className="flex items-center space-x-2">
