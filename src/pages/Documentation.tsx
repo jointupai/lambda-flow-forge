@@ -338,7 +338,7 @@ export default function Documentation() {
           <Separator orientation="vertical" className="hidden md:block h-screen sticky top-0 border-[#1F1F1F]" />
           
           {/* Main content area */}
-          <main className="flex-1 min-w-0 px-8 md:px-8 md:py-12\n">
+          <main className="flex-1 min-w-0 px-8 md:px-8 md:py-12">
             <div className="w-full">
               {/* Posts content */}
               {isLoading ? <div className="flex items-center justify-center my-20">
