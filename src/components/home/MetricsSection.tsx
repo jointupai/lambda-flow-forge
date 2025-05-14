@@ -5,42 +5,47 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 const MetricsSection = () => {
   const [selectedOption, setSelectedOption] = useState('ai');
 
-  // Updated metrics data with the five options
+  // Updated metrics data with the five options and button text
   const metrics = {
     ai: {
       company: 'AI Automations That Help You Scale',
       metric: '268%',
       description: 'Reduction in manual work',
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing',
-      heading: 'launched in days, not months.'
+      heading: 'launched in days, not months.',
+      buttonText: 'Deploy AI Apps in seconds'
     },
     apps: {
       company: 'Full Stack Web Apps',
       metric: '24x',
       description: 'Faster build speed',
       content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.',
-      heading: 'deployed in weeks, not quarters.'
+      heading: 'deployed in weeks, not quarters.',
+      buttonText: 'Build Web Apps in days'
     },
     ops: {
       company: 'Operations Solutions',
       metric: '85%',
       description: 'Increase in operational efficiency',
       content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.',
-      heading: 'optimized in hours, not days.'
+      heading: 'optimized in hours, not days.',
+      buttonText: 'Optimize Operations now'
     },
     crm: {
       company: 'CRM Solutions',
       metric: '78%',
       description: 'Increase in customer retention',
       content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.',
-      heading: 'integrated in days, not weeks.'
+      heading: 'integrated in days, not weeks.',
+      buttonText: 'Integrate CRM tools today'
     },
     data: {
       company: 'DataMetrics',
       metric: '40s',
       description: 'Average data processing time',
       content: 'Process and analyze your data in seconds. Built on open source technology, our data tools give you the insights you need to make informed decisions quickly.',
-      heading: 'analyzed in seconds, not hours.'
+      heading: 'analyzed in seconds, not hours.',
+      buttonText: 'Process Data instantly'
     }
   };
 
@@ -92,7 +97,7 @@ const MetricsSection = () => {
                 </p>
                 
                 <button className="mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm">
-                  Deploy AI Apps in seconds
+                  {metrics[selectedOption as keyof typeof metrics].buttonText}
                   <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
                 </button>
               </div>
