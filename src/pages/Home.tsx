@@ -7,7 +7,7 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 import CardDemo from "@/components/ui/cards-demo-3";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import LogoScroller from "@/components/home/LogoScroller";
-
+import MetricsSection from "@/components/home/MetricsSection";
 export default function Home() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
@@ -69,6 +69,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Metrics Section (already a component) */}
+      <MetricsSection />
 
       {/* Services Section */}
       <section className="w-full py-0">
@@ -222,7 +225,7 @@ export default function Home() {
                 <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center">
                     <svg viewBox="0 0 256 256" className="w-10 h-10" fill="none">
-                      <path fill="#00D8FF" d="M128 110.7c9.6 0 17.3 7.7 17.3 17.3s-7.7 17.3-17.3 17.3-17.3-7.7-17.3-17.3 7.7-17.3 17.3 17.3z"></path>
+                      <path fill="#00D8FF" d="M128 110.7c9.6 0 17.3 7.7 17.3 17.3s-7.7 17.3-17.3 17.3-17.3-7.7-17.3-17.3 7.7-17.3 17.3-17.3z"></path>
                       <path fill="#00D8FF" d="M128 83.8c23.3 0 44 3.5 60.6 9.4 19.7 7.1 31.7 18 31.7 28.9 0 11.2-13 22.8-34.1 30.2-16 5.5-36.8 8.4-58.2 8.4-22.2 0-43.6-2.7-59.9-8.5-19.7-7-32.2-18.4-32.2-30 0-10.8 11.7-21.5 31.1-28.6 16.8-6.2 38.7-9.8 61-9.8z" strokeWidth="2"></path>
                       <path fill="#00D8FF" d="M98.4 96.2c11.6-20 25.3-36.1 38.1-45.6 15.2-11.3 29-14.2 36.7-9 8 5.5 10.8 21 6.4 42.5-3.3 16.5-11.7 35.9-23.6 55.1-12.4 19.9-26.4 36.2-39.4 45.5-15.5 11.2-30.4 13.7-38.3 8.4-7.6-5.2-10.5-19.2-6.7-38.8 3.1-16.8 11.7-37 26.8-58.1z" strokeWidth="2"></path>
                       <path fill="#00D8FF" d="M98.3 159.7c-11.6-19.9-20.2-40-23.5-56.7-3.9-19.9-.9-34.8 6.9-40.1 8.1-5.6 22.9-2.9 38.5 8.1 12 8.5 25.8 23.1 38 42.6 12.9 20.4 21.7 40.2 25.1 56.3 4 19.1 1.1 33.5-6.8 39-7.6 5.3-20.9 2.7-35.7-7.5-13.4-9.3-27.6-25.3-41.5-49.7z" strokeWidth="2"></path>
