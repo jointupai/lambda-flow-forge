@@ -14,7 +14,7 @@ const MetricsSection = () => {
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing'
     },
     apps: {
-      company: 'Ops Launch',
+      company: 'Full Stack Web Apps',
       metric: '24x',
       description: 'Faster build speed',
       content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.'
