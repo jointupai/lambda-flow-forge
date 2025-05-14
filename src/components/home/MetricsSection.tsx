@@ -3,48 +3,59 @@ import React, { useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const MetricsSection = () => {
-  const [selectedOption, setSelectedOption] = useState('aws');
+  const [selectedOption, setSelectedOption] = useState('ai');
 
-  // Updated metrics data with additional information content
+  // Updated metrics data with the five options
   const metrics = {
-    aws: {
+    ai: {
       company: 'JointUp.ai',
       metric: '95%',
       description: 'Reduction in operational costs',
-      content: 'Get started using our pre-built templates. Easily stream long-running workflows for a better user experience with zero-config infrastructure that\'s always globally performant.'
+      content: 'Get started using our pre-built AI templates. Easily stream long-running workflows for a better user experience with zero-config infrastructure that\'s always globally performant.'
     },
-    zapier: {
-      company: 'Zapier',
+    apps: {
+      company: 'WebApps Inc',
       metric: '24x',
       description: 'Faster development cycles',
-      content: 'Build your automation workflows with our no-code interface. Connect your favorite apps and services with our extensive library of integrations.'
+      content: 'Build your web applications with our no-code interface. Connect your favorite apps and services with our extensive library of integrations.'
     },
-    stripe: {
-      company: 'Stripe',
+    ops: {
+      company: 'OpsTech',
       metric: '85%',
       description: 'Increase in automation efficiency',
-      content: 'Streamline your payment processing with our secure and reliable infrastructure. Accept payments from customers around the world with minimal setup.'
+      content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.'
     },
-    supabase: {
-      company: 'Supabase',
+    crm: {
+      company: 'CRM Solutions',
+      metric: '78%',
+      description: 'Increase in customer retention',
+      content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.'
+    },
+    data: {
+      company: 'DataMetrics',
       metric: '40s',
-      description: 'Average deployment time',
-      content: 'Deploy your database and API in seconds. Built on open source technology, Supabase gives you the tools to create a complete backend in record time.'
+      description: 'Average data processing time',
+      content: 'Process and analyze your data in seconds. Built on open source technology, our data tools give you the insights you need to make informed decisions quickly.'
     }
   };
+
   const buttonOptions = [{
-    value: 'aws',
-    label: 'AI Apps'
+    value: 'ai',
+    label: 'AI'
   }, {
-    value: 'zapier',
-    label: 'Web Apps'
+    value: 'apps',
+    label: 'Apps'
   }, {
-    value: 'stripe',
-    label: 'Ecommerce'
+    value: 'ops',
+    label: 'Ops'
   }, {
-    value: 'supabase',
-    label: 'Marketing'
+    value: 'crm',
+    label: 'CRM'
+  }, {
+    value: 'data',
+    label: 'Data'
   }];
+
   return (
     <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
