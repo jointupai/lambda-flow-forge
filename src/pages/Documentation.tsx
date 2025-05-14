@@ -265,7 +265,7 @@ export default function Documentation() {
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
           <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0 border-r border-[#1F1F1F] border-l border-[#1F1F1F]">
-            <div className="p-0 md:py-12">
+            <div className="p-0 md:py-4">
               {/* Hide search and categories on mobile, show only on md+ */}
               <div className="relative mb-4 hidden md:block">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
