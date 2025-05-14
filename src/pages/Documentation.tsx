@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
@@ -305,16 +304,20 @@ export default function Documentation() {
           slug={selectedPost.slug?.current}
         />
       )}
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-12">
-        <div className="flex flex-col md:flex-row gap-12">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-0">
+        <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
-          <aside className="w-full md:w-64 md:flex-shrink-0">
-            <div className="p-0">
+          <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0">
+            <div className="p-0 md:py-12">
               {/* Hide search and categories on mobile, show only on md+ */}
-              <div className="relative mb-6 hidden md:block">
+              <div className="relative mb-4 hidden md:block">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
                 <Input placeholder="Search documentation..." className="pl-8 bg-zinc-900 border-zinc-700 w-full" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
               </div>
+              
+              {/* Separator between search and categories */}
+              <Separator className="my-4 hidden md:block" />
+              
               <nav className="pb-16 hidden md:block">
                 <div className="space-y-8">
                   <div>
@@ -395,11 +398,11 @@ export default function Documentation() {
             </div>
           </aside>
           
-          {/* Vertical separator between sidebar and main content */}
-          <Separator orientation="vertical" className="hidden md:block h-auto border-[#1F1F1F]" />
+          {/* Vertical separator between sidebar and main content - now extends full height */}
+          <Separator orientation="vertical" className="hidden md:block h-screen sticky top-0 border-[#1F1F1F]" />
           
           {/* Main content area */}
-          <main className="flex-1 min-w-0">
+          <main className="flex-1 min-w-0 md:py-12">
             <div className="w-full">
               {/* Posts content */}
               {isLoading ? <div className="flex items-center justify-center my-20">
@@ -412,8 +415,7 @@ export default function Documentation() {
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
                   
-                  {/* Horizontal separator between post header and content */}
-                  <Separator className="my-4 border-[#1F1F1F]" />
+                  {/* Removed the separator between post title and content */}
                   
                   <div className="prose prose-invert max-w-none mb-8">
                     {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? <PortableText value={selectedPost.content} components={portableTextComponents} /> : selectedPost.content ?
@@ -427,7 +429,7 @@ export default function Documentation() {
                     Back to categories
                   </Button>
                 </div> : <div>
-                  <div className="mb-16">
+                  <div className="mb-8">
                     <h1 className="text-4xl font-bold mb-4">
                       JointUp Documentation
                     </h1>
@@ -442,7 +444,7 @@ export default function Documentation() {
                     </p>
                   </div>
                   
-                  {/* Horizontal separator between header and content */}
+                  {/* Divider after navigation/header section */}
                   <Separator className="my-6 border-[#1F1F1F]" />
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
