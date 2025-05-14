@@ -136,7 +136,7 @@ export default function ContactDrawer({
       <SheetTrigger asChild data-drawer-trigger>
         {children}
       </SheetTrigger>
-      <SheetContent className="w-full sm:max-w-xl h-auto overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-l-3xl" style={{
+      <SheetContent className="w-full sm:max-w-xl h-[100svh] sm:h-auto overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-2xl rounded-l-3xl" style={{
       animation: 'slide 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
       transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
     }}>
@@ -165,90 +165,90 @@ export default function ContactDrawer({
         `}</style>
         
         <SheetHeader className="relative">
-          <SheetTitle className="font-medium py-2 my-2 tracking-tighter text-3xl">Get In Touch</SheetTitle>
-          <SheetClose className="absolute -right-1 -top-1 rounded-full p-2 text-gray-500 hover:text-gray-700 transition-colors">
-            <X className="h-6 w-6 stroke-[1.5]" />
+          <SheetTitle className="font-medium py-2 my-2 tracking-tighter text-2xl sm:text-3xl">Get In Touch</SheetTitle>
+          <SheetClose className="absolute -right-1 -top-1 rounded-full p-1.5 sm:p-2 text-gray-500 hover:text-gray-700 transition-colors">
+            <X className="h-5 w-5 sm:h-6 sm:w-6 stroke-[1.5]" />
           </SheetClose>
         </SheetHeader>
 
-        {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-              <Check className="w-8 h-8 text-green-600" />
+        {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4 py-8">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <Check className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900">Thank You!</h2>
-            <p className="text-gray-600">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Thank You!</h2>
+            <p className="text-sm sm:text-base text-gray-600 max-w-xs mx-auto">
               We've received your submission and will be in touch soon.
             </p>
-            <Button onClick={handleClose} className="mt-6">
+            <Button onClick={handleClose} className="mt-4 sm:mt-6">
               Close
             </Button>
           </div> : <>
-            <div className="mt-6">
+            <div className="mt-4 sm:mt-6">
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-4">
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField control={form.control} name="name" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Name *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your name" {...field} className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
+                            <Input placeholder="Your name" {...field} className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>} />
                     <FormField control={form.control} name="email" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Email *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Email *</FormLabel>
                           <FormControl>
-                            <Input placeholder="you@company.com" type="email" {...field} className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
+                            <Input placeholder="you@company.com" type="email" {...field} className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>} />
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField control={form.control} name="companyRole" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Your Role *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Your Role *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your role" {...field} className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
+                            <Input placeholder="Your role" {...field} className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>} />
                     <FormField control={form.control} name="companyName" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Company Name *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Company Name *</FormLabel>
                           <FormControl>
-                            <Input placeholder="Company name" {...field} className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
+                            <Input placeholder="Company name" {...field} className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>} />
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField control={form.control} name="website" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Website</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Website</FormLabel>
                           <FormControl>
-                            <Input placeholder="https://yourcompany.com" {...field} className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
+                            <Input placeholder="https://yourcompany.com" {...field} className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>} />
                     <FormField control={form.control} name="companySize" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Company Size *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Company Size *</FormLabel>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <FormControl>
-                              <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
                                 <SelectValue placeholder="Select company size" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border border-gray-100 shadow-lg">
+                            <SelectContent className="bg-white border border-gray-100 shadow-lg max-h-[200px]">
                               <SelectItem value="1-10" className="cursor-pointer hover:bg-gray-100">1-10 employees</SelectItem>
                               <SelectItem value="11-50" className="cursor-pointer hover:bg-gray-100">11-50 employees</SelectItem>
                               <SelectItem value="51-200" className="cursor-pointer hover:bg-gray-100">51-200 employees</SelectItem>
@@ -260,18 +260,18 @@ export default function ContactDrawer({
                         </FormItem>} />
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
                     <FormField control={form.control} name="companyRevenue" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Annual Revenue *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Annual Revenue *</FormLabel>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <FormControl>
-                              <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
                                 <SelectValue placeholder="Select annual revenue" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border border-gray-100 shadow-lg">
+                            <SelectContent className="bg-white border border-gray-100 shadow-lg max-h-[200px]">
                               <SelectItem value="<1M" className="cursor-pointer hover:bg-gray-100">Less than $1M</SelectItem>
                               <SelectItem value="1M-5M" className="cursor-pointer hover:bg-gray-100">$1M - $5M</SelectItem>
                               <SelectItem value="5M-10M" className="cursor-pointer hover:bg-gray-100">$5M - $10M</SelectItem>
@@ -284,14 +284,14 @@ export default function ContactDrawer({
                     <FormField control={form.control} name="budget" render={({
                   field
                 }) => <FormItem>
-                          <FormLabel className="text-base font-medium text-gray-900">Project Budget *</FormLabel>
+                          <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Project Budget *</FormLabel>
                           <Select value={field.value} onValueChange={field.onChange}>
                             <FormControl>
-                              <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                              <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
                                 <SelectValue placeholder="Select budget range" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-white border border-gray-100 shadow-lg">
+                            <SelectContent className="bg-white border border-gray-100 shadow-lg max-h-[200px]">
                               <SelectItem value="<10k" className="cursor-pointer hover:bg-gray-100">Less than $10k</SelectItem>
                               <SelectItem value="10-50k" className="cursor-pointer hover:bg-gray-100">$10k - $50k</SelectItem>
                               <SelectItem value="50-100k" className="cursor-pointer hover:bg-gray-100">$50k - $100k</SelectItem>
@@ -305,14 +305,14 @@ export default function ContactDrawer({
                   <FormField control={form.control} name="intrestedin" render={({
                 field
               }) => <FormItem>
-                        <FormLabel className="text-base font-medium text-gray-900">What services are you interested in? *</FormLabel>
+                        <FormLabel className="text-sm sm:text-base font-medium text-gray-900">What services are you interested in? *</FormLabel>
                         <Select value={field.value} onValueChange={field.onChange}>
                           <FormControl>
-                            <SelectTrigger className="h-12 text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
+                            <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors">
                               <SelectValue placeholder="Select service" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-white border border-gray-100 shadow-lg">
+                          <SelectContent className="bg-white border border-gray-100 shadow-lg max-h-[200px]">
                             <SelectItem value="automation" className="cursor-pointer hover:bg-gray-100">Automation Infrastructure</SelectItem>
                             <SelectItem value="zapier" className="cursor-pointer hover:bg-gray-100">Zapier Replacement</SelectItem>
                             <SelectItem value="stripe" className="cursor-pointer hover:bg-gray-100">Stripe Payment Workflows</SelectItem>
@@ -327,14 +327,14 @@ export default function ContactDrawer({
                   <FormField control={form.control} name="message" render={({
                 field
               }) => <FormItem>
-                        <FormLabel className="text-base font-medium text-gray-900">Message (optional)</FormLabel>
+                        <FormLabel className="text-sm sm:text-base font-medium text-gray-900">Message (optional)</FormLabel>
                         <FormControl>
-                          <Textarea placeholder="Tell us more about your project" className="min-h-[120px] text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors resize-none" {...field} />
+                          <Textarea placeholder="Tell us more about your project" className="min-h-[100px] sm:min-h-[120px] text-sm sm:text-base bg-gray-50 border-gray-200 hover:border-gray-300 focus:border-black transition-colors resize-none" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>} />
 
-                  <Button type="submit" disabled={isSubmitting} className="w-full h-12 bg-zinc-950 hover:bg-zinc-800 text-gray-50 text-base font-medium rounded-full">
+                  <Button type="submit" disabled={isSubmitting} className="w-full h-10 sm:h-12 bg-zinc-950 hover:bg-zinc-800 text-gray-50 text-sm sm:text-base font-medium rounded-full">
                     {isSubmitting ? "Processing..." : "Submit"}
                   </Button>
                 </form>

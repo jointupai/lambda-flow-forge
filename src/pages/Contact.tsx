@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Check, Phone } from "lucide-react";
+
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters"
@@ -106,141 +107,142 @@ export default function Contact() {
   return <div className="w-full py-0 pt-[80px]">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="border border-gray-800 rounded-none overflow-hidden">
-          <div className="relative py-12 md:py-16 px-8">
+          <div className="relative py-8 md:py-16 px-4 md:px-8">
             <div className="absolute inset-0 bg-grid"></div>
             <div className="relative z-10">
               <div className="container mx-auto">
-                <div className="grid md:grid-cols-2 gap-0">
-                  <div className="bg-black border border-zinc-800 rounded-none p-8">
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Talk to our Sales team.</h1>
+                <div className="grid md:grid-cols-2 gap-4 md:gap-0">
+                  <div className="bg-black border border-zinc-800 rounded-none p-4 md:p-8">
+                    <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Talk to our Sales team.</h1>
                     
-                    <div className="space-y-6 mt-6">
-                      <div className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full">
-                          <Phone className="h-6 w-6 text-gray-300" />
+                    <div className="space-y-4 md:space-y-6 mt-6">
+                      <div className="flex items-start gap-3 md:gap-4">
+                        <div className="bg-zinc-900 p-2 rounded-full shrink-0">
+                          <Phone className="h-5 w-5 md:h-6 md:w-6 text-gray-300" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold">Get a custom demo.</h3>
-                          <p className="text-gray-400">Discover the value of JointUp for your enterprise and explore our custom plans and pricing.</p>
+                          <h3 className="text-base md:text-lg font-semibold">Get a custom demo.</h3>
+                          <p className="text-sm md:text-base text-gray-400">Discover the value of JointUp for your enterprise and explore our custom plans and pricing.</p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start gap-4">
-                        <div className="bg-zinc-900 p-2 rounded-full">
-                          <Phone className="h-6 w-6 text-gray-300" />
+                      <div className="flex items-start gap-3 md:gap-4">
+                        <div className="bg-zinc-900 p-2 rounded-full shrink-0">
+                          <Phone className="h-5 w-5 md:h-6 md:w-6 text-gray-300" />
                         </div>
                         <div>
-                          <h3 className="text-lg font-semibold">Set up your Enterprise trial.</h3>
-                          <p className="text-gray-400">See for yourself how JointUp Enterprise speeds up your workflow & impact.</p>
+                          <h3 className="text-base md:text-lg font-semibold">Set up your Enterprise trial.</h3>
+                          <p className="text-sm md:text-base text-gray-400">See for yourself how JointUp Enterprise speeds up your workflow & impact.</p>
                         </div>
                       </div>
                     </div>
                     
-                    <div className="border-t border-zinc-800 pt-6 mt-6">
-                      <div className="grid grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <p className="text-xl font-bold">6x faster</p>
-                          <p className="text-gray-400">to build and deploy.</p>
-                          <div className="mt-4">
-                            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-6" />
+                    <div className="border-t border-zinc-800 pt-4 md:pt-6 mt-4 md:mt-6">
+                      <div className="grid grid-cols-2 gap-4 md:gap-6">
+                        <div className="space-y-1 md:space-y-2">
+                          <p className="text-lg md:text-xl font-bold">6x faster</p>
+                          <p className="text-sm md:text-base text-gray-400">to build and deploy.</p>
+                          <div className="mt-3 md:mt-4">
+                            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-5 md:h-6" />
                           </div>
                         </div>
                         
-                        <div className="space-y-2">
-                          <p className="text-xl font-bold">98% faster</p>
-                          <p className="text-gray-400">time to market.</p>
-                          <div className="mt-4">
-                            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-6" />
+                        <div className="space-y-1 md:space-y-2">
+                          <p className="text-lg md:text-xl font-bold">98% faster</p>
+                          <p className="text-sm md:text-base text-gray-400">time to market.</p>
+                          <div className="mt-3 md:mt-4">
+                            <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp" className="h-5 md:h-6" />
                           </div>
                         </div>
                       </div>
                       
-                      <div className="mt-10">
+                      <div className="mt-6 md:mt-10">
                         <blockquote className="border-l-2 border-zinc-700 pl-4 italic">
-                          <p className="text-lg">"JointUp makes <span className="font-semibold">our developers happier</span> and lets us go to market quicker."</p>
+                          <p className="text-base md:text-lg">"JointUp makes <span className="font-semibold">our developers happier</span> and lets us go to market quicker."</p>
                         </blockquote>
-                        <div className="mt-4">
-                          <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="Client" className="h-6" />
+                        <div className="mt-3 md:mt-4">
+                          <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="Client" className="h-5 md:h-6" />
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-black border border-zinc-800 rounded-none p-8">
-                    {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                          <Check className="w-8 h-8 text-green-600" />
+                  <div className="bg-black border border-zinc-800 rounded-none p-4 md:p-8">
+                    {isSuccess ? (
+                      <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                        <div className="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center">
+                          <Check className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
                         </div>
-                        <h2 className="text-2xl font-bold text-gray-100">Thank You!</h2>
-                        <p className="text-gray-400">
+                        <h2 className="text-xl md:text-2xl font-bold text-gray-100">Thank You!</h2>
+                        <p className="text-sm md:text-base text-gray-400">
                           We've received your submission and will be in touch soon.
                         </p>
-                        <Button onClick={() => setIsSuccess(false)} className="mt-6">
+                        <Button onClick={() => setIsSuccess(false)} className="mt-4 md:mt-6">
                           Submit Another Request
                         </Button>
-                      </div> : <div>
-                        
+                      </div>
+                    ) : (
+                      <div>
                         <Form {...form}>
-                          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="name" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Name *</FormLabel>
+                          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                              <FormField control={form.control} name="name" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Name *</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="Your name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                                    <Input placeholder="Your name" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>} />
-                              <FormField control={form.control} name="email" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Email *</FormLabel>
+                                </FormItem>
+                              )} />
+                              <FormField control={form.control} name="email" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Email *</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="you@company.com" type="email" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                                    <Input placeholder="you@company.com" type="email" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>} />
+                                </FormItem>
+                              )} />
                             </div>
 
-                            <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="companyRole" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Your Role *</FormLabel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                              <FormField control={form.control} name="companyRole" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Your Role *</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="Your role" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                                    <Input placeholder="Your role" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>} />
-                              <FormField control={form.control} name="companyName" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Company Name *</FormLabel>
+                                </FormItem>
+                              )} />
+                              <FormField control={form.control} name="companyName" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Company Name *</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="Company name" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                                    <Input placeholder="Company name" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>} />
+                                </FormItem>
+                              )} />
                             </div>
 
-                            <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="website" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Website</FormLabel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                              <FormField control={form.control} name="website" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Website</FormLabel>
                                   <FormControl>
-                                    <Input placeholder="https://yourcompany.com" {...field} className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
+                                    <Input placeholder="https://yourcompany.com" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>} />
-                              <FormField control={form.control} name="companySize" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Company Size *</FormLabel>
+                                </FormItem>
+                              )} />
+                              <FormField control={form.control} name="companySize" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Company Size *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
-                                      <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                      <SelectTrigger className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
                                         <SelectValue placeholder="Select company size" />
                                       </SelectTrigger>
                                     </FormControl>
@@ -253,21 +255,21 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>} />
+                                </FormItem>
+                              )} />
                             </div>
 
-                            <div className="grid md:grid-cols-2 gap-4">
-                              <FormField control={form.control} name="companyRevenue" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Annual Revenue *</FormLabel>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                              <FormField control={form.control} name="companyRevenue" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Annual Revenue *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
-                                      <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                      <SelectTrigger className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
                                         <SelectValue placeholder="Select annual revenue" />
                                       </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                                    <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg max-h-[200px]">
                                       <SelectItem value="<1M" className="cursor-pointer hover:bg-zinc-800">Less than $1M</SelectItem>
                                       <SelectItem value="1M-5M" className="cursor-pointer hover:bg-zinc-800">$1M - $5M</SelectItem>
                                       <SelectItem value="5M-10M" className="cursor-pointer hover:bg-zinc-800">$5M - $10M</SelectItem>
@@ -276,18 +278,18 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>} />
-                              <FormField control={form.control} name="budget" render={({
-                            field
-                          }) => <FormItem>
-                                  <FormLabel className="text-base font-medium text-gray-200">Project Budget *</FormLabel>
+                                </FormItem>
+                              )} />
+                              <FormField control={form.control} name="budget" render={({field}) => (
+                                <FormItem>
+                                  <FormLabel className="text-sm md:text-base font-medium text-gray-200">Project Budget *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
-                                      <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                      <SelectTrigger className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
                                         <SelectValue placeholder="Select budget range" />
                                       </SelectTrigger>
                                     </FormControl>
-                                    <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                                    <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg max-h-[200px]">
                                       <SelectItem value="<10k" className="cursor-pointer hover:bg-zinc-800">Less than $10k</SelectItem>
                                       <SelectItem value="10-50k" className="cursor-pointer hover:bg-zinc-800">$10k - $50k</SelectItem>
                                       <SelectItem value="50-100k" className="cursor-pointer hover:bg-zinc-800">$50k - $100k</SelectItem>
@@ -295,20 +297,20 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>} />
+                                </FormItem>
+                              )} />
                             </div>
 
-                            <FormField control={form.control} name="intrestedin" render={({
-                          field
-                        }) => <FormItem>
-                                <FormLabel className="text-base font-medium text-gray-200">What services are you interested in? *</FormLabel>
+                            <FormField control={form.control} name="intrestedin" render={({field}) => (
+                              <FormItem>
+                                <FormLabel className="text-sm md:text-base font-medium text-gray-200">What services are you interested in? *</FormLabel>
                                 <Select value={field.value} onValueChange={field.onChange}>
                                   <FormControl>
-                                    <SelectTrigger className="h-12 text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
+                                    <SelectTrigger className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors">
                                       <SelectValue placeholder="Select service" />
                                     </SelectTrigger>
                                   </FormControl>
-                                  <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg">
+                                  <SelectContent className="bg-zinc-900 border border-gray-800 shadow-lg max-h-[200px]">
                                     <SelectItem value="automation" className="cursor-pointer hover:bg-zinc-800">Automation Infrastructure</SelectItem>
                                     <SelectItem value="zapier" className="cursor-pointer hover:bg-zinc-800">Zapier Replacement</SelectItem>
                                     <SelectItem value="stripe" className="cursor-pointer hover:bg-zinc-800">Stripe Payment Workflows</SelectItem>
@@ -318,30 +320,32 @@ export default function Contact() {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
-                              </FormItem>} />
+                              </FormItem>
+                            )} />
 
-                            <FormField control={form.control} name="message" render={({
-                          field
-                        }) => <FormItem>
-                                <FormLabel className="text-base font-medium text-gray-200">Message (optional)</FormLabel>
+                            <FormField control={form.control} name="message" render={({field}) => (
+                              <FormItem>
+                                <FormLabel className="text-sm md:text-base font-medium text-gray-200">Message (optional)</FormLabel>
                                 <FormControl>
-                                  <Textarea placeholder="Tell us more about your project" className="min-h-[120px] text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors resize-none" {...field} />
+                                  <Textarea placeholder="Tell us more about your project" className="min-h-[100px] md:min-h-[120px] text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>} />
+                              </FormItem>
+                            )} />
                             
                             <div>
                               <p className="text-xs text-gray-500 mb-4">
                                 By clicking "Talk to JointUp", I acknowledge I have read and understand the Privacy Notice.
                               </p>
                               
-                              <Button type="submit" disabled={isSubmitting} className="w-1/2 h-12 bg-[#0872F5] hover:bg-blue-500 text-white text-base font-medium rounded-full">
+                              <Button type="submit" disabled={isSubmitting} className="w-full md:w-1/2 h-10 md:h-12 bg-[#0872F5] hover:bg-blue-500 text-white text-sm md:text-base font-medium rounded-full">
                                 {isSubmitting ? "Processing..." : "Talk to JointUp"}
                               </Button>
                             </div>
                           </form>
                         </Form>
-                      </div>}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
