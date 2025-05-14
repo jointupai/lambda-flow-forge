@@ -8,10 +8,10 @@ const MetricsSection = () => {
   // Updated metrics data with the five options
   const metrics = {
     ai: {
-      company: 'JointUp.ai',
-      metric: '95%',
+      company: 'USACarTags',
+      metric: '10x',
       description: 'Reduction in operational costs',
-      content: 'Get started using our pre-built AI templates. Easily stream long-running workflows for a better user experience with zero-config infrastructure that\'s always globally performant.'
+      content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing'
     },
     apps: {
       company: 'WebApps Inc',
