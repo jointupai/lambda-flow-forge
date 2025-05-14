@@ -34,6 +34,7 @@ interface ContentItem {
 export default function Documentation() {
   const navigate = useNavigate();
   const location = useLocation();
+
   const [content, setContent] = useState<ContentItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
@@ -45,7 +46,7 @@ export default function Documentation() {
   const categoryDisplayNames: Record<string, string> = {
     "ai-agents": "AI Agents",
     "introduction": "Introduction",
-    "client-results": "Client Results"
+    "client-results": "Client Results",
     // Fallback: show the original if not mapped
   };
 
@@ -69,13 +70,20 @@ export default function Documentation() {
     if (!posts) return null;
     return posts.find(post => post._id === id) || null;
   };
+
   useEffect(() => {
     const fetchDocContent = async () => {
       try {
         setIsLoading(true);
         const contentData = await fetchContent();
         setContent(contentData || []);
-        const allCategories = Array.from(new Set((contentData || []).map((item: ContentItem) => item.category).filter((c): c is string => !!c))) as string[];
+        const allCategories = Array.from(
+          new Set(
+            (contentData || [])
+              .map((item: ContentItem) => item.category)
+              .filter((c): c is string => !!c)
+          )
+        ) as string[];
         setCategories(allCategories);
         setIsLoading(false);
       } catch (error) {
@@ -99,7 +107,9 @@ export default function Documentation() {
       const slug = decodeURIComponent(match[2]);
       const posts = groupedContent[category] || [];
       // Here, find post by slug, not id
-      const found = posts.find(post => post.slug && post.slug.current === slug);
+      const found = posts.find(
+        post => post.slug && post.slug.current === slug
+      );
       if (found) {
         setSelectedPost(found);
         setExpandedCategory(category);
@@ -122,18 +132,31 @@ export default function Documentation() {
     // else, do nothing: let the useEffect above handle selectedPost for post routes.
     // This ensures refreshing on a post keeps it open!
   }, [searchQuery, content, location.pathname]);
+
   const filteredCategories = categories.filter(cat => {
     if (!searchQuery) return true;
     if (cat.toLowerCase().includes(searchQuery.toLowerCase())) return true;
     const posts = groupedContent[cat] || [];
-    return posts.some(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
+    return posts.some(
+      post =>
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
   });
+
   const filteredPosts = (cat: string) => {
     if (!searchQuery) return groupedContent[cat] || [];
-    return (groupedContent[cat] || []).filter(post => post.title?.toLowerCase().includes(searchQuery.toLowerCase()) || typeof post.content === "string" && post.content.toLowerCase().includes(searchQuery.toLowerCase()));
+    return (groupedContent[cat] || []).filter(
+      post =>
+        post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (typeof post.content === "string" &&
+          post.content.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
   };
+
   const handleCategoryToggle = (cat: string) => {
-    setExpandedCategory(prev => prev === cat ? null : cat);
+    setExpandedCategory(prev => (prev === cat ? null : cat));
   };
 
   // Custom: when clicking post, change URL *without reload* and set selected post just like before
@@ -257,10 +280,30 @@ export default function Documentation() {
       }
     }
   };
+
   const isMobile = useIsMobile();
-  return <div className="min-h-screen bg-black text-white w-full">
+
+  return (
+    <div className="min-h-screen bg-black text-white w-full">
       {/* --- SEO tags (for documentation post view) --- */}
-      {selectedPost && <SEO title={selectedPost.seo?.metaTitle || selectedPost.title || "JointUp Documentation"} description={selectedPost.seo?.metaDescription || (typeof selectedPost.content === "string" ? selectedPost.content : "")} keywords={selectedPost.seo?.keywords} ogImage={selectedPost.seo?.ogImage} slug={selectedPost.slug?.current} />}
+      {selectedPost && (
+        <SEO
+          title={
+            selectedPost.seo?.metaTitle ||
+            selectedPost.title ||
+            "JointUp Documentation"
+          }
+          description={
+            selectedPost.seo?.metaDescription ||
+            (typeof selectedPost.content === "string"
+              ? selectedPost.content
+              : "")
+          }
+          keywords={selectedPost.seo?.keywords}
+          ogImage={selectedPost.seo?.ogImage}
+          slug={selectedPost.slug?.current}
+        />
+      )}
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 pt-0 pb-12 md:py-0">
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
@@ -284,45 +327,66 @@ export default function Documentation() {
                     {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
-                          <button className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`} onClick={() => handleCategoryToggle(cat)} aria-expanded={expandedCategory === cat}>
+                          <button
+                            className={`flex items-center w-full py-2 px-2 rounded hover:bg-zinc-800 text-gray-300 transition text-left ${expandedCategory === cat ? "text-white font-semibold" : ""}`}
+                            onClick={() => handleCategoryToggle(cat)}
+                            aria-expanded={expandedCategory === cat}
+                          >
                             <span className="flex-1">{categoryDisplayNames[cat] || cat}</span>
                             {/* Animate the arrow rotation */}
-                            <ChevronDown className={`ml-2 w-4 h-4 transform transition-transform duration-200
+                            <ChevronDown
+                              className={`ml-2 w-4 h-4 transform transition-transform duration-200
                                 ${expandedCategory === cat ? "rotate-180" : ""}
-                              `} />
+                              `}
+                            />
                           </button>
                           {/* Sidebar dropdown of posts */}
-                          <div style={{
-                      overflow: 'hidden'
-                    }}>
-                          <ul className={`
+                          <div style={{overflow: 'hidden'}}>
+                          <ul
+                            className={`
                               ml-0 mt-0.5 rounded-md select-none z-10
                               transition-all duration-200
-                              ${expandedCategory === cat ? "animate-fade-in opacity-100 max-h-96 visible" : "opacity-0 max-h-0 invisible"}
-                            `} style={{
-                        background: "black"
-                      }}>
-                            {expandedCategory === cat && filteredPosts(cat).map(post => {
-                          const isSelected = selectedPost?._id === post._id;
-                          return <li key={post._id} className="relative flex items-center">
+                              ${expandedCategory === cat
+                                ? "animate-fade-in opacity-100 max-h-96 visible"
+                                : "opacity-0 max-h-0 invisible"}
+                            `}
+                            style={{ background: "black" }}
+                          >
+                            {expandedCategory === cat &&
+                              filteredPosts(cat).map(post => {
+                                const isSelected = selectedPost?._id === post._id;
+                                return (
+                                  <li key={post._id} className="relative flex items-center">
                                   {/* Animated divider for selected post */}
                                   <span className="mr-1 flex-shrink-0 w-4 h-6 flex items-center justify-center">
-                                    {isSelected && <span className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left" style={{
-                                // Custom keyframes: fade and scale in
-                                animation: 'fade-in-scale-divider 0.2s ease-in'
-                              }}>
+                                    {isSelected && (
+                                      <span
+                                        className="block animate-[fade-in-scale-divider_0.15s_ease-in] origin-left"
+                                        style={{
+                                          // Custom keyframes: fade and scale in
+                                          animation: 'fade-in-scale-divider 0.2s ease-in'
+                                        }}
+                                      >
                                         <PiLineVerticalThin className="text-white" size={18} />
-                                      </span>}
+                                      </span>
+                                    )}
                                   </span>
-                                    <button className={`w-full text-left px-3 py-2 text-sm flex items-center
+                                    <button
+                                      className={`w-full text-left px-3 py-2 text-sm flex items-center
                                       transition-colors duration-100
-                                      ${isSelected ? "text-white font-bold" : "text-gray-300 hover:bg-zinc-800"}`} style={{
-                              outline: "none"
-                            }} onClick={() => handlePostClick(cat, post)}>
+                                      ${isSelected
+                                        ? "text-white font-bold"
+                                        : "text-gray-300 hover:bg-zinc-800"}`}
+                                      style={{
+                                        outline: "none"
+                                      }}
+                                      onClick={() => handlePostClick(cat, post)}
+                                    >
                                       {post.title || "(Untitled)"}
                                     </button>
-                                  </li>;
-                        })}
+                                  </li>
+                                );
+                              })}
                           </ul>
                           </div>
                         </div>) : <span className="text-gray-500 text-sm">
@@ -359,9 +423,9 @@ export default function Documentation() {
                 <span>{selectedPost.content}</span> : <span>No content</span>}
                   </div>
                   <Button className="bg-white text-black hover:bg-gray-200" onClick={() => {
-                window.history.pushState(null, "", "/documentation");
-                setSelectedPost(null);
-              }}>
+                    window.history.pushState(null, "", "/documentation");
+                    setSelectedPost(null)
+                  }}>
                     Back to categories
                   </Button>
                 </div> : <div>
@@ -442,7 +506,17 @@ export default function Documentation() {
         </div>
       </div>
       {/* Mobile-only picker bar */}
-      {isMobile && <MobileDocCategoryPicker categories={filteredCategories} groupedContent={groupedContent} categoryDisplayNames={categoryDisplayNames} selectedCategory={expandedCategory} selectedPost={selectedPost} onCategoryChange={handlePickerCategoryChange} onPostChange={handlePickerPostChange} />}
+      {isMobile && (
+        <MobileDocCategoryPicker
+          categories={filteredCategories}
+          groupedContent={groupedContent}
+          categoryDisplayNames={categoryDisplayNames}
+          selectedCategory={expandedCategory}
+          selectedPost={selectedPost}
+          onCategoryChange={handlePickerCategoryChange}
+          onPostChange={handlePickerPostChange}
+        />
+      )}
 
       {/* Add fade-in-scale-divider keyframes for the divider animation */}
       <style>
@@ -466,5 +540,6 @@ export default function Documentation() {
         }
       `}
       </style>
-    </div>;
+    </div>
+  );
 }
