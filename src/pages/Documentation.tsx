@@ -264,7 +264,7 @@ export default function Documentation() {
       <div className="max-w-[1210px] mx-auto px-0 md:px-0 lg:px-0 pt-0 pb-12 md:py-0">
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
-          <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0">
+          <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0 border-r border-[#1F1F1F] border-l border-[#1F1F1F]">
             <div className="p-0 md:py-12">
               {/* Hide search and categories on mobile, show only on md+ */}
               <div className="relative mb-4 hidden md:block">
@@ -337,6 +337,9 @@ export default function Documentation() {
           
           {/* Main content area */}
           <main className="flex-1 min-w-0 px-[54px] md:px-8 md:py-12">
+            {/* Border below header navigation */}
+            <Separator className="mb-8 border-[#1F1F1F]" />
+            
             <div className="w-full">
               {/* Posts content */}
               {isLoading ? <div className="flex items-center justify-center my-20">
