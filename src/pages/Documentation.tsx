@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { ChevronRight, ChevronDown, ChevronUp, BarChart, Code, Database, Search, Shield, Loader2 } from "lucide-react";
@@ -5,6 +6,7 @@ import { PiLineVerticalThin } from "react-icons/pi";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Separator } from "@/components/ui/separator";
 import { fetchContent } from "@/lib/sanity";
 import { toast } from "@/hooks/use-toast";
 import { PortableText, type PortableTextReactComponents } from "@portabletext/react";
@@ -392,9 +394,14 @@ export default function Documentation() {
               </nav>
             </div>
           </aside>
+          
+          {/* Vertical separator between sidebar and main content */}
+          <Separator orientation="vertical" className="hidden md:block h-auto border-[#1F1F1F]" />
+          
           {/* Main content area */}
           <main className="flex-1 min-w-0">
             <div className="w-full">
+              {/* Posts content */}
               {isLoading ? <div className="flex items-center justify-center my-20">
                   <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
                 </div> : selectedPost ? <div>
@@ -404,6 +411,10 @@ export default function Documentation() {
                     </div>
                     <h1 className="text-3xl font-bold">{selectedPost.title}</h1>
                   </div>
+                  
+                  {/* Horizontal separator between post header and content */}
+                  <Separator className="my-4 border-[#1F1F1F]" />
+                  
                   <div className="prose prose-invert max-w-none mb-8">
                     {Array.isArray(selectedPost.content) && selectedPost.content.length > 0 ? <PortableText value={selectedPost.content} components={portableTextComponents} /> : selectedPost.content ?
                 // fallback for non-array content
@@ -430,6 +441,10 @@ export default function Documentation() {
                       </span>
                     </p>
                   </div>
+                  
+                  {/* Horizontal separator between header and content */}
+                  <Separator className="my-6 border-[#1F1F1F]" />
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     <div>
                       <div className="flex items-center gap-3 mb-4">
