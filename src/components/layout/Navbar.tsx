@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ChevronDown, Globe, Bot, Wrench, BarChart, Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
@@ -8,19 +8,26 @@ import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showSolutions, setShowSolutions] = useState(false);
-  const [showProducts, setShowProducts] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
 
+  // Check if current path matches
+  const isActive = (path: string) => {
+    if (path === "/documentation" && location.pathname.startsWith("/documentation")) {
+      return true;
+    }
+    return location.pathname === path;
+  };
+
   return <>
-    {(showSolutions || showProducts || showCompany) && <div 
+    {(showSolutions || showCompany) && <div 
       className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" 
       onClick={() => {
         setShowSolutions(false);
-        setShowProducts(false);
         setShowCompany(false);
       }} 
     />}
@@ -40,7 +47,6 @@ export default function Navbar() {
                 <button 
                   onClick={() => {
                     setShowSolutions(!showSolutions);
-                    if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
                   className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
@@ -128,7 +134,6 @@ export default function Navbar() {
                   onClick={() => {
                     setShowCompany(!showCompany);
                     if (showSolutions) setShowSolutions(false);
-                    if (showProducts) setShowProducts(false);
                   }} 
                   className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'nav-menu-item-selected' : ''}`}
                   style={{ minWidth: showCompany ? null : 'max-content' }}
@@ -184,8 +189,12 @@ export default function Navbar() {
                 )}
               </div>
               
-              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
-                Docs
+              <Link 
+                to="/documentation" 
+                className={`text-sm font-medium text-white hover:text-gray-300 ${isActive("/documentation") ? 'nav-menu-item-selected' : ''}`}
+                style={{ minWidth: isActive("/documentation") ? null : 'max-content', display: 'inline-flex', padding: isActive("/documentation") ? '0.625rem' : '0' }}
+              >
+                <span className="flex items-center min-w-max">Docs</span>
               </Link>
             </div>
           </div>
@@ -251,7 +260,11 @@ export default function Navbar() {
               </div>
             </div>
             
-            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+            <Link 
+              to="/documentation" 
+              className={`block py-2 text-base font-medium text-foreground/80 hover:text-foreground ${isActive("/documentation") ? 'bg-zinc-800 rounded-lg px-2' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
                 <span>Docs</span>
