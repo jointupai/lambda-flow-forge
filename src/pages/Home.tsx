@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -36,7 +37,7 @@ export default function Home() {
       {/* Hero Section - Full width with contained content */}
       <section className="w-full py-0 pt-[50px] md:pt-[80px]">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-          <div className="border border-gray-800 rounded-none bg-black overflow-hidden">
+          <div className="border border-[#1F1F1F] rounded-none bg-black overflow-hidden">
             <div className="relative py-20 md:py-28 px-8">
               <div className="absolute inset-0 bg-grid"></div>
               <div className="absolute inset-0 glow-effect"></div>
@@ -53,7 +54,7 @@ export default function Home() {
                     <Button size="lg" onClick={() => setShowCalendly(true)} className="bg-white hover:bg-gray-100 text-black font-medium rounded-full text-base h-12 px-8">
                       Book a Free Discovery Call
                     </Button>
-                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-gray-700 text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="bg-transparent border border-[#1F1F1F] text-gray-200 hover:bg-gray-800 font-medium rounded-full text-base h-12 px-8">
                       Let's Partner Up
                     </Button>
                   </div>
@@ -76,7 +77,7 @@ export default function Home() {
       {/* Services Section */}
       <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
+          <div className="border border-[#1F1F1F] rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Our Services</h2>
               <p className="text-lg text-gray-400 max-w-3xl mx-auto">
@@ -86,7 +87,7 @@ export default function Home() {
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Service 1 */}
-              <div className="bg-black rounded-lg p-8 border border-white hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-[#1F1F1F] hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6">
                   <Code className="text-blue-400" size={24} />
                 </div>
@@ -103,7 +104,7 @@ export default function Home() {
               </div>
               
               {/* Service 2 */}
-              <div className="bg-black rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-[#1F1F1F] hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-6">
                   <Zap size={24} className="text-black" />
                 </div>
@@ -120,7 +121,7 @@ export default function Home() {
               </div>
               
               {/* Service 3 */}
-              <div className="bg-black rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-[#1F1F1F] hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-6">
                   <LinkIcon size={24} className="text-black" />
                 </div>
@@ -143,7 +144,7 @@ export default function Home() {
       {/* Deploy Anywhere Section */}
       <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
+          <div className="border-t-0 border-l border-r border-b border-[#1F1F1F] rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="text-center max-w-3xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
                 Deploy once, deliver everywhere.
@@ -152,7 +153,7 @@ export default function Home() {
                 When you push code to the cloud with JointUp, we make it instantly available across the planet.
               </p>
               <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <Button variant="outline" onClick={() => setShowCalendly(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-grey-900">Read Our Documentation</Button>
+                <Button variant="outline" onClick={() => setShowCalendly(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-[#1F1F1F]">Read Our Documentation</Button>
                 <Button variant="outline" onClick={() => setOpenContactDrawer(true)} className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                   Learn about Enterprise
                 </Button>
@@ -165,7 +166,7 @@ export default function Home() {
       {/* Framework Deployment Section */}
       <section className="w-full py-0">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden p-8 md:p-12">
+          <div className="border-t-0 border-l border-r border-b border-[#1F1F1F] rounded-none bg-black overflow-hidden p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
@@ -211,7 +212,7 @@ export default function Home() {
               </div>
               
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
+                <div className="bg-zinc-900 rounded-lg border border-[#1F1F1F] p-6 flex flex-col items-center justify-center aspect-square">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="#FF4785" d="M5 3l14 9-14 9z" fill="none" />
@@ -220,7 +221,7 @@ export default function Home() {
                   <p className="text-gray-300">AWS Lambda</p>
                 </div>
                 
-                <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
+                <div className="bg-zinc-900 rounded-lg border border-[#1F1F1F] p-6 flex flex-col items-center justify-center aspect-square">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center">
                     <svg viewBox="0 0 256 256" className="w-10 h-10" fill="none">
                       <path fill="#00D8FF" d="M128 110.7c9.6 0 17.3 7.7 17.3 17.3s-7.7 17.3-17.3 17.3-17.3-7.7-17.3-17.3 7.7-17.3 17.3-17.3z"></path>
@@ -232,7 +233,7 @@ export default function Home() {
                   <p className="text-gray-300">React Apps</p>
                 </div>
                 
-                <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
+                <div className="bg-zinc-900 rounded-lg border border-[#1F1F1F] p-6 flex flex-col items-center justify-center aspect-square">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center">
                     <svg viewBox="0 0 24 24" className="w-10 h-10" fill="none">
                       <path d="M12 0L1.608 6v12l2.182 1.26V7.26L12 2.52l8.21 4.74v8.48l-8.21 4.74-8.21-4.74V12.6L1.608 11.4v1.68l10.392 6 10.392-6V6L12 0z" fill="#64ffda" />
@@ -241,7 +242,7 @@ export default function Home() {
                   <p className="text-gray-300">Next.js Apps</p>
                 </div>
                 
-                <div className="bg-zinc-900 rounded-lg border border-gray-800 p-6 flex flex-col items-center justify-center aspect-square">
+                <div className="bg-zinc-900 rounded-lg border border-[#1F1F1F] p-6 flex flex-col items-center justify-center aspect-square">
                   <div className="w-12 h-12 mb-4 flex items-center justify-center">
                     <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none">
                       <path d="M6 3h12l4 6-10 12L2 9l4-6z" fill="#3178C6" />
@@ -259,7 +260,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="w-full py-0 pb-16">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-          <div className="border-t-0 border-l border-r border-b border-gray-800 rounded-none bg-black overflow-hidden">
+          <div className="border-t-0 border-l border-r border-b border-[#1F1F1F] rounded-none bg-black overflow-hidden">
             <div className="relative py-16 md:py-24 px-8">
               <div className="absolute inset-0 bg-grid"></div>
               <div className="absolute inset-0 glow-effect"></div>
@@ -275,7 +276,7 @@ export default function Home() {
                     <Button size="lg" onClick={() => setShowCalendly(true)} className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                       Book a Free Discovery Call
                     </Button>
-                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-grey-900">
+                    <Button variant="outline" size="lg" onClick={() => setOpenContactDrawer(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-[#1F1F1F]">
                       Let's Partner Up
                     </Button>
                   </div>

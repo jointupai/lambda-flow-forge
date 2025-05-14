@@ -23,7 +23,7 @@ export default {
     },
     extend: {
       colors: {
-        border: "#27272a", 
+        border: "#1F1F1F", 
         'brand-primary': {
           50: '#f9fafb',
           100: '#f3f4f6',

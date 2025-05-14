@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link } from 'react-router-dom';
@@ -77,7 +78,7 @@ const MetricsSection = () => {
 
   return <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
-        <div className="border border-gray-800 rounded-none bg-black">
+        <div className="border border-[#1F1F1F] rounded-none bg-black">
           <div className="px-4 py-8 md:px-8 md:py-12 flex flex-col md:flex-row md:justify-between md:items-start gap-8 md:gap-16">
             {/* Left side with metrics */}
             <div className="w-full md:w-1/2 lg:w-5/12">
@@ -91,7 +92,7 @@ const MetricsSection = () => {
               </div>
               
               <div className="flex justify-left mb-6 md:mb-8">
-                <div className="inline-flex items-center p-1 bg-black border border-gray-800 rounded-full">
+                <div className="inline-flex items-center p-1 bg-black border border-[#1F1F1F] rounded-full">
                   {buttonOptions.map(option => <button key={option.value} onClick={() => setSelectedOption(option.value)} className={`px-4 py-2 text-sm rounded-full transition-colors ${selectedOption === option.value ? 'bg-zinc-800 text-white' : 'text-gray-400 hover:text-gray-300'}`}>
                       {option.label}
                     </button>)}
