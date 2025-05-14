@@ -269,7 +269,7 @@ export default function Documentation() {
               {/* Hide search and categories on mobile, show only on md+ */}
               <div className="relative mb-4 hidden md:block">
                 <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-400" />
-                <Input placeholder="Search documentation..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-8 bg-zinc-900 border-zinc-700 w-[100%]" />
+                <Input placeholder="Search documentation..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-8 bg-[#1A1A1A] border-[#1A1A1A] w-[100%]" />
               </div>
               
               {/* Separator between search and categories */}
