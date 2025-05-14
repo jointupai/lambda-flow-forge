@@ -123,12 +123,6 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Removed Micro Products from desktop nav */}
-
-              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
-                Docs
-              </Link>
-
               <div className="relative group">
                 <button 
                   onClick={() => {
@@ -190,8 +184,8 @@ export default function Navbar() {
                 )}
               </div>
               
-              <Link to="/contact" className="text-sm font-medium text-white hover:text-gray-300">
-                Contact Us
+              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
+                Docs
               </Link>
             </div>
           </div>
@@ -242,15 +236,6 @@ export default function Navbar() {
               </div>
             </div>
             
-            {/* Removed Micro Products from mobile nav */}
-            
-            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                <span>Docs</span>
-              </div>
-            </Link>
-            
             <div className="block py-2 text-base font-medium text-foreground/80">
               Company
               <div className="pl-4 space-y-2 mt-2">
@@ -266,8 +251,11 @@ export default function Navbar() {
               </div>
             </div>
             
-            <Link to="/contact" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-              Contact Us
+            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                <span>Docs</span>
+              </div>
             </Link>
 
             <div className="pt-2">
@@ -285,4 +273,3 @@ export default function Navbar() {
     <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
   </>;
 }
-
