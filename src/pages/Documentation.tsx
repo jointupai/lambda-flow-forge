@@ -277,7 +277,7 @@ export default function Documentation() {
               
               <nav className="pb-16 hidden md:block">
                 <div className="space-y-8">
-                  <div className="pr-3">
+                  <div className="pr-3 pl-3">
                     
                     {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
