@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const MetricsSection = () => {
   const [selectedOption, setSelectedOption] = useState('ai');
@@ -53,19 +53,19 @@ const MetricsSection = () => {
 
   const buttonOptions = [{
     value: 'ai',
-    label: 'AI'
+    label: 'AI Apps'
   }, {
     value: 'apps',
-    label: 'Apps'
+    label: 'Web Apps'
   }, {
     value: 'ops',
-    label: 'Ops'
+    label: 'Ecommerce'
   }, {
     value: 'crm',
-    label: 'CRM'
+    label: 'Marketing'
   }, {
     value: 'data',
-    label: 'Data'
+    label: 'Platforms'
   }];
 
   return (
@@ -84,20 +84,22 @@ const MetricsSection = () => {
                 <p className="text-gray-400 mt-2">{metrics[selectedOption as keyof typeof metrics].description}</p>
               </div>
               
-              <div className="flex flex-wrap justify-start gap-1 mb-4 md:mb-0">
-                {buttonOptions.map(option => (
-                  <button 
-                    key={option.value} 
-                    onClick={() => setSelectedOption(option.value)} 
-                    className={`px-3 py-2 md:px-4 md:py-2 rounded-full text-sm transition-colors ${
-                      selectedOption === option.value 
-                        ? 'bg-zinc-800 text-white' 
-                        : 'text-gray-400 hover:text-gray-300'
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                ))}
+              <div className="flex justify-center mb-6 md:mb-8">
+                <div className="inline-flex items-center p-1 bg-black border border-gray-800 rounded-full">
+                  {buttonOptions.map(option => (
+                    <button 
+                      key={option.value} 
+                      onClick={() => setSelectedOption(option.value)} 
+                      className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                        selectedOption === option.value 
+                          ? 'bg-zinc-800 text-white' 
+                          : 'text-gray-400 hover:text-gray-300'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
             
