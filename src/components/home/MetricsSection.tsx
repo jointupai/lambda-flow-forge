@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Link } from 'react-router-dom';
@@ -57,22 +56,24 @@ const MetricsSection = () => {
     }
   };
 
-  const buttonOptions = [{
-    value: 'ai',
-    label: 'AI'
-  }, {
-    value: 'apps',
-    label: 'Web'
-  }, {
-    value: 'ops',
-    label: 'Ops'
-  }, {
-    value: 'crm',
-    label: 'CRM'
-  }, {
-    value: 'data',
-    label: 'API'
-  }];
+  const buttonOptions = [
+    {
+      value: 'ai',
+      label: 'AI'
+    }, {
+      value: 'apps',
+      label: 'Web'
+    }, {
+      value: 'ops',
+      label: 'Ops'
+    }, {
+      value: 'crm',
+      label: 'CRM'
+    }, {
+      value: 'data',
+      label: 'API'
+    }
+  ];
 
   return <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
@@ -107,7 +108,7 @@ const MetricsSection = () => {
                 
                 <Link 
                   to={metrics[selectedOption as keyof typeof metrics].route} 
-                  className="mt-2 md:mt-6 bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full flex items-center text-sm"
+                  className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm"
                 >
                   {metrics[selectedOption as keyof typeof metrics].buttonText}
                   <span className="ml-2 inline-flex items-center justify-center w-5 h-5 bg-black text-white rounded-full">→</span>
