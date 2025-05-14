@@ -19,8 +19,8 @@ const MetricsSection = () => {
       description: 'Faster build speed',
       content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.'
     },
-    ops: {
-      company: 'OpsTech',
+    API: {
+      company: 'API Connections',
       metric: '85%',
       description: 'Increase in automation efficiency',
       content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.'
@@ -46,8 +46,8 @@ const MetricsSection = () => {
     value: 'apps',
     label: 'Apps'
   }, {
-    value: 'ops',
-    label: 'Ops'
+    value: 'API',
+    label: 'API'
   }, {
     value: 'crm',
     label: 'CRM'
