@@ -6,20 +6,6 @@ import { Button } from "@/components/ui/button";
 import ContactDrawer from "@/components/shared/ContactDrawer";
 import CalendlyDialog from "@/components/shared/CalendlyDialog";
 
-// Enhanced bubble background component with consistent padding and improved animation
-const BubbleBg: React.FC<{ active: boolean }> = ({ active }) => (
-  <span
-    aria-hidden
-    className={`absolute left-0 top-0 h-full w-full rounded-md bg-gradient-to-r from-brand-primary-400/30 to-brand-secondary-400/30 z-[-1] 
-      transition-all duration-300 ease-in-out
-      ${active
-        ? "opacity-100 animate-menu-slide-in"
-        : "opacity-0 group-hover:opacity-100 group-hover:animate-menu-slide-in group-focus:opacity-100 group-focus:animate-menu-slide-in"}`
-    }
-    style={{ pointerEvents: "none" }}
-  />
-);
-
 export default function Navbar() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,17 +15,14 @@ export default function Navbar() {
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
 
-  // Helper to handle only one dropdown open at a time
-  const closeAllDropdowns = () => {
-    setShowSolutions(false);
-    setShowProducts(false);
-    setShowCompany(false);
-  };
-
   return <>
     {(showSolutions || showProducts || showCompany) && <div 
-      className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
-      onClick={closeAllDropdowns}
+      className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" 
+      onClick={() => {
+        setShowSolutions(false);
+        setShowProducts(false);
+        setShowCompany(false);
+      }} 
     />}
     
     <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -51,20 +34,20 @@ export default function Navbar() {
             <Link to="/" className="flex items-center space-x-2">
               <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//jointup%20(2).png" alt="JointUp.ai Logo" className="h-8 w-auto" />
             </Link>
-            {/* DESKTOP NAV */}
+
             <div className="hidden lg:flex items-center space-x-8">
-              {/* Solutions first */}
               <div className="relative group">
                 <button 
                   onClick={() => {
                     setShowSolutions(!showSolutions);
+                    if (showProducts) setShowProducts(false);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative p-2 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: showSolutions ? null : 'max-content' }}
                   data-state={showSolutions ? "open" : "closed"}
                 >
-                  <span className="flex items-center min-w-max relative">
-                    <BubbleBg active={showSolutions}/>
+                  <span className="flex items-center min-w-max">
                     Solutions
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showSolutions ? 'rotate-180' : ''}`} />
                   </span>
@@ -73,12 +56,11 @@ export default function Navbar() {
                 {showSolutions && (
                   <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '780px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div className="vercel-grid-section">
-                      <Link to="/solutions/custom-web-development" className="vercel-menu-item group">
+                      <Link to="/solutions/custom-web-development" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <Globe className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
                             Custom Web Application Development
                           </h3>
@@ -87,12 +69,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/ai-automation" className="vercel-menu-item group">
+
+                      <Link to="/solutions/ai-automation" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <Bot className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
                             AI-Powered Automation
                           </h3>
@@ -101,12 +83,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/crm-api-integrations" className="vercel-menu-item group">
+
+                      <Link to="/solutions/crm-api-integrations" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <Wrench className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
                             CRM & API Integrations
                           </h3>
@@ -115,12 +97,12 @@ export default function Navbar() {
                           </p>
                         </div>
                       </Link>
-                      <Link to="/solutions/optimization-support" className="vercel-menu-item group">
+
+                      <Link to="/solutions/optimization-support" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
                           <BarChart className="h-4 w-4 text-white" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">
                             Ongoing Optimization & Support
                           </h3>
@@ -130,6 +112,7 @@ export default function Navbar() {
                         </div>
                       </Link>
                     </div>
+
                     <div className="dropdown-footer">
                       <Link to="/solutions" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         View All Solutions
@@ -140,56 +123,63 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Company second */}
+              {/* Removed Micro Products from desktop nav */}
+
+              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
+                Docs
+              </Link>
+
               <div className="relative group">
                 <button 
                   onClick={() => {
                     setShowCompany(!showCompany);
                     if (showSolutions) setShowSolutions(false);
+                    if (showProducts) setShowProducts(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 relative p-2 ${showCompany ? 'nav-menu-item-selected' : ''}`}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: showCompany ? null : 'max-content' }}
                   data-state={showCompany ? "open" : "closed"}
                 >
-                  <span className="flex items-center min-w-max relative">
-                    <BubbleBg active={showCompany}/>
+                  <span className="flex items-center min-w-max">
                     Company
                     <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showCompany ? 'rotate-180' : ''}`} />
                   </span>
                 </button>
+
                 {showCompany && (
                   <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
                     <div>
-                      <Link to="/how-it-works" className="vercel-menu-item group">
+                      <Link to="/how-it-works" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <BarChart className="h-4 w-4 text-white" />
+                          <BarChart className="h-4 w-4 text-gray-300" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">How it Works</h3>
                           <p className="vercel-menu-item-description">Our process and methodology</p>
                         </div>
                       </Link>
-                      <Link to="/about" className="vercel-menu-item group">
+
+                      <Link to="/about" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Bot className="h-4 w-4 text-white" />
+                          <Bot className="h-4 w-4 text-gray-300" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">About</h3>
                           <p className="vercel-menu-item-description">Our team and mission</p>
                         </div>
                       </Link>
-                      <Link to="/portfolio" className="vercel-menu-item group">
+
+                      <Link to="/portfolio" className="vercel-menu-item">
                         <div className="vercel-menu-item-icon">
-                          <Wrench className="h-4 w-4 text-white" />
+                          <Wrench className="h-4 w-4 text-gray-300" />
                         </div>
-                        <div className="vercel-menu-item-content relative">
-                          <BubbleBg active={false} />
+                        <div className="vercel-menu-item-content">
                           <h3 className="vercel-menu-item-title">Portfolio</h3>
                           <p className="vercel-menu-item-description">Past work and case studies</p>
                         </div>
                       </Link>
                     </div>
+
                     <div className="dropdown-footer">
                       <Link to="/company" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
                         Learn More About Us
@@ -199,13 +189,9 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
-              {/* Docs third */}
-              <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300 relative p-2 group">
-                <span className="relative flex items-center min-w-max">
-                  <BubbleBg active={false}/>
-                  Docs
-                </span>
+              
+              <Link to="/contact" className="text-sm font-medium text-white hover:text-gray-300">
+                Contact Us
               </Link>
             </div>
           </div>
@@ -219,6 +205,7 @@ export default function Navbar() {
                 Let's Partner Up
               </Button>
             </div>
+            
             <button className="lg:hidden rounded-md p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -226,14 +213,13 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      {isMenuOpen && (
-        <div className="md:hidden">
+      {/* Mobile menu */}
+      {isMenuOpen && <div className="md:hidden">
           <div className="container px-4 sm:px-8 py-4 space-y-3 border-t">
             <Link to="/" className="block py-2 text-base text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
               Home
             </Link>
-            {/* Mobile Solutions first */}
+            
             <div className="block py-2 text-base font-medium text-foreground/80">
               Solutions
               <div className="pl-4 space-y-2 mt-2">
@@ -255,7 +241,16 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-            {/* Mobile Company second */}
+            
+            {/* Removed Micro Products from mobile nav */}
+            
+            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+              <div className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                <span>Docs</span>
+              </div>
+            </Link>
+            
             <div className="block py-2 text-base font-medium text-foreground/80">
               Company
               <div className="pl-4 space-y-2 mt-2">
@@ -270,14 +265,11 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-            {/* Mobile Docs third */}
-            <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-              <div className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                <span>Docs</span>
-              </div>
+            
+            <Link to="/contact" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+              Contact Us
             </Link>
-            {/* Removed Contact Us from mobile */}
+
             <div className="pt-2">
               <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
                 setIsMenuOpen(false);
@@ -287,9 +279,10 @@ export default function Navbar() {
               </Button>
             </div>
           </div>
-        </div>
-      )}
+        </div>}
     </header>
+    
     <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
   </>;
 }
+
