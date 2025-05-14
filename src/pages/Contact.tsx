@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Check, Phone } from "lucide-react";
-
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters"
@@ -104,7 +103,7 @@ export default function Contact() {
     }
     setIsSubmitting(false);
   };
-  return <div className="w-full py-0 pt-[80px]">
+  return <div className="w-full py-0 pt-[20px] md:pt-[80px]\n">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
         <div className="border border-gray-800 rounded-none overflow-hidden">
           <div className="relative py-8 md:py-16 px-4 md:px-8">
@@ -168,8 +167,7 @@ export default function Contact() {
                   </div>
                   
                   <div className="bg-black border border-zinc-800 rounded-none p-4 md:p-8">
-                    {isSuccess ? (
-                      <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                    {isSuccess ? <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                         <div className="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center">
                           <Check className="w-6 h-6 md:w-8 md:h-8 text-green-600" />
                         </div>
@@ -180,65 +178,64 @@ export default function Contact() {
                         <Button onClick={() => setIsSuccess(false)} className="mt-4 md:mt-6">
                           Submit Another Request
                         </Button>
-                      </div>
-                    ) : (
-                      <div>
+                      </div> : <div>
                         <Form {...form}>
                           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                              <FormField control={form.control} name="name" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="name" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Name *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Your name" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="email" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="email" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Email *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="you@company.com" type="email" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                              <FormField control={form.control} name="companyRole" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="companyRole" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Your Role *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Your role" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="companyName" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="companyName" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Company Name *</FormLabel>
                                   <FormControl>
                                     <Input placeholder="Company name" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                              <FormField control={form.control} name="website" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="website" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Website</FormLabel>
                                   <FormControl>
                                     <Input placeholder="https://yourcompany.com" {...field} className="h-10 md:h-12 text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors" />
                                   </FormControl>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="companySize" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="companySize" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Company Size *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -255,13 +252,13 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                              <FormField control={form.control} name="companyRevenue" render={({field}) => (
-                                <FormItem>
+                              <FormField control={form.control} name="companyRevenue" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Annual Revenue *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -278,10 +275,10 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
-                              <FormField control={form.control} name="budget" render={({field}) => (
-                                <FormItem>
+                                </FormItem>} />
+                              <FormField control={form.control} name="budget" render={({
+                            field
+                          }) => <FormItem>
                                   <FormLabel className="text-sm md:text-base font-medium text-gray-200">Project Budget *</FormLabel>
                                   <Select value={field.value} onValueChange={field.onChange}>
                                     <FormControl>
@@ -297,12 +294,12 @@ export default function Contact() {
                                     </SelectContent>
                                   </Select>
                                   <FormMessage />
-                                </FormItem>
-                              )} />
+                                </FormItem>} />
                             </div>
 
-                            <FormField control={form.control} name="intrestedin" render={({field}) => (
-                              <FormItem>
+                            <FormField control={form.control} name="intrestedin" render={({
+                          field
+                        }) => <FormItem>
                                 <FormLabel className="text-sm md:text-base font-medium text-gray-200">What services are you interested in? *</FormLabel>
                                 <Select value={field.value} onValueChange={field.onChange}>
                                   <FormControl>
@@ -320,18 +317,17 @@ export default function Contact() {
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
-                              </FormItem>
-                            )} />
+                              </FormItem>} />
 
-                            <FormField control={form.control} name="message" render={({field}) => (
-                              <FormItem>
+                            <FormField control={form.control} name="message" render={({
+                          field
+                        }) => <FormItem>
                                 <FormLabel className="text-sm md:text-base font-medium text-gray-200">Message (optional)</FormLabel>
                                 <FormControl>
                                   <Textarea placeholder="Tell us more about your project" className="min-h-[100px] md:min-h-[120px] text-sm md:text-base bg-zinc-900 border-gray-800 hover:border-gray-700 focus:border-white transition-colors resize-none" {...field} />
                                 </FormControl>
                                 <FormMessage />
-                              </FormItem>
-                            )} />
+                              </FormItem>} />
                             
                             <div>
                               <p className="text-xs text-gray-500 mb-4">
@@ -344,8 +340,7 @@ export default function Contact() {
                             </div>
                           </form>
                         </Form>
-                      </div>
-                    )}
+                      </div>}
                   </div>
                 </div>
               </div>
