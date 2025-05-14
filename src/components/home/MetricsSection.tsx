@@ -64,7 +64,7 @@ const MetricsSection = () => {
             {/* Left side with metrics */}
             <div className="md:w-1/2 lg:w-5/12">
               <p className="text-3xl md:text-4xl font-bold text-white leading-tight mb-8">
-                <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> builds times went from days to hours.
+                <span className="text-gradient">{metrics[selectedOption as keyof typeof metrics].company}</span> launched in days, not months.
               </p>
               
               <div className="mb-8">
