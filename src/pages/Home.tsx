@@ -86,7 +86,7 @@ export default function Home() {
             
             <div className="grid md:grid-cols-3 gap-8">
               {/* Service 1 */}
-              <div className="bg-zinc-900 rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-white hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6">
                   <Code className="text-blue-400" size={24} />
                 </div>
@@ -95,7 +95,7 @@ export default function Home() {
                   From MVPs to enterprise dashboards, we build full-stack apps that run fast, look clean, and scale with your growth. Built with modern tech like React, Node.js, and cloud-native architecture.
                 </p>
                 <Button asChild variant="ghost" className="p-0 hover:bg-transparent group">
-                  <Link to="/solutions/custom-cloud-solutions" className="flex items-center text-blue-400 font-medium">
+                  <Link to="/solutions/custom-cloud-solutions" className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                     Learn more
                     <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -103,7 +103,7 @@ export default function Home() {
               </div>
               
               {/* Service 2 */}
-              <div className="bg-zinc-900 rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center mb-6">
                   <Zap size={24} className="text-black" />
                 </div>
@@ -112,7 +112,7 @@ export default function Home() {
                   We automate workflows using AWS Lambda, Google Cloud Functions, and AI APIs to eliminate manual work. From CRMs to internal tools, we turn hours of repetitive tasks into automated flows.
                 </p>
                 <Button asChild variant="ghost" className="p-0 hover:bg-transparent group">
-                  <Link to="/solutions/automation-infrastructure" className="flex items-center text-purple-400 font-medium">
+                  <Link to="/solutions/automation-infrastructure" className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                     Learn more
                     <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
                   </Link>
@@ -129,7 +129,7 @@ export default function Home() {
                   We connect your tools—HubSpot, Airtable, Slack, Stripe, Notion—so your team has one smooth workflow, not ten broken ones. Real-time, scalable, and built to last.
                 </p>
                 <Button asChild variant="ghost" className="p-0 hover:bg-transparent group">
-                  <Link to="/solutions/webhook-orchestration" className="flex items-center text-green-400 font-medium">
+                  <Link to="/solutions/webhook-orchestration" className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                     Learn more
                     <ArrowRight size={16} className="ml-1 transition-transform group-hover:translate-x-1" />
                   </Link>
