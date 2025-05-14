@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -190,6 +189,18 @@
     to {
       opacity: 0;
       transform: translateY(4px);
+    }
+  }
+  
+  /* Added animation for menu slide in effect */
+  @keyframes menu-slide-in {
+    0% { 
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% { 
+      transform: translateX(0);
+      opacity: 1;
     }
   }
   
