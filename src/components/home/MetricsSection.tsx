@@ -40,10 +40,10 @@ const MetricsSection = () => {
       buttonText: 'Integrate CRM tools today'
     },
     data: {
-      company: 'DataMetrics',
+      company: 'Connect, transform, and act on your business data',
       metric: '40s',
       description: 'Average data processing time',
-      content: 'Process and analyze your data in seconds. Built on open source technology, our data tools give you the insights you need to make informed decisions quickly.',
+      content: 'Real-time pipelines, live dashboards, and back-end automations to keep your systems in sync.',
       heading: 'analyzed in seconds, not hours.',
       buttonText: 'Process Data instantly'
     }
