@@ -14,6 +14,10 @@ export default function Navbar() {
   const [showCompany, setShowCompany] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
   const [openContactDrawer, setOpenContactDrawer] = useState(false);
+  const [mobileDropdowns, setMobileDropdowns] = useState({
+    solutions: false,
+    company: false
+  });
 
   // Check if current path matches
   const isActive = (path: string) => {
@@ -55,6 +59,14 @@ export default function Navbar() {
     }
     
     return false;
+  };
+
+  // Toggle mobile dropdown sections
+  const toggleMobileDropdown = (section: 'solutions' | 'company') => {
+    setMobileDropdowns(prev => ({
+      ...prev,
+      [section]: !prev[section]
+    }));
   };
 
   return <>
@@ -243,8 +255,20 @@ export default function Navbar() {
               </Button>
             </div>
             
-            <button className="lg:hidden rounded-md p-2 text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            <button 
+              className="lg:hidden rounded-md p-2 text-white overflow-hidden"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <div className="relative w-6 h-6">
+                <Menu 
+                  size={24} 
+                  className={`absolute transition-all duration-300 ${isMenuOpen ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}`} 
+                />
+                <X 
+                  size={24} 
+                  className={`absolute transition-all duration-300 ${isMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-90 scale-0'}`} 
+                />
+              </div>
             </button>
           </div>
         </div>
@@ -258,40 +282,65 @@ export default function Navbar() {
             </Link>
             
             <div className={`block py-2 text-base font-medium ${isInSection("solutions") ? 'bg-zinc-800 rounded-lg px-2' : 'text-foreground/80'}`}>
-              Solutions
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/solutions/custom-web-development" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Globe className="h-4 w-4 text-white" />
-                  <span>Custom Web Application Development</span>
-                </Link>
-                <Link to="/solutions/ai-automation" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Bot className="h-4 w-4 text-white" />
-                  <span>AI-Powered Automation</span>
-                </Link>
-                <Link to="/solutions/crm-api-integrations" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <Wrench className="h-4 w-4 text-white" />
-                  <span>CRM & API Integrations</span>
-                </Link>
-                <Link to="/solutions/optimization-support" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <BarChart className="h-4 w-4 text-white" />
-                  <span>Ongoing Optimization & Support</span>
-                </Link>
+              <div 
+                className="flex items-center justify-between cursor-pointer"
+                onClick={() => toggleMobileDropdown('solutions')}
+              >
+                <span>Solutions</span>
+                <ChevronDown 
+                  className={`h-5 w-5 transition-transform duration-300 ${mobileDropdowns.solutions ? 'rotate-180' : ''}`} 
+                />
               </div>
+              
+              {mobileDropdowns.solutions && (
+                <div className="pl-2 space-y-2 mt-2 text-left">
+                  <Link to="/solutions/custom-web-development" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                    <Globe className="h-4 w-4 text-white" />
+                    <span>Custom Web Application Development</span>
+                  </Link>
+                  <Link to="/solutions/ai-automation" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                    <Bot className="h-4 w-4 text-white" />
+                    <span>AI-Powered Automation</span>
+                  </Link>
+                  <Link to="/solutions/crm-api-integrations" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                    <Wrench className="h-4 w-4 text-white" />
+                    <span>CRM & API Integrations</span>
+                  </Link>
+                  <Link to="/solutions/optimization-support" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
+                    <BarChart className="h-4 w-4 text-white" />
+                    <span>Ongoing Optimization & Support</span>
+                  </Link>
+                </div>
+              )}
             </div>
             
             <div className={`block py-2 text-base font-medium ${isInSection("company") ? 'bg-zinc-800 rounded-lg px-2' : 'text-foreground/80'}`}>
-              Company
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/how-it-works" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  How it Works
-                </Link>
-                <Link to="/about" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  About
-                </Link>
-                <Link to="/portfolio" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
-                  Portfolio
-                </Link>
+              <div 
+                className="flex items-center justify-between cursor-pointer"
+                onClick={() => toggleMobileDropdown('company')}
+              >
+                <span>Company</span>
+                <ChevronDown 
+                  className={`h-5 w-5 transition-transform duration-300 ${mobileDropdowns.company ? 'rotate-180' : ''}`} 
+                />
               </div>
+              
+              {mobileDropdowns.company && (
+                <div className="pl-2 space-y-2 mt-2 text-left">
+                  <Link to="/how-it-works" className="flex items-center gap-2 py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+                    <BarChart className="h-4 w-4 text-white" />
+                    <span>How it Works</span>
+                  </Link>
+                  <Link to="/about" className="flex items-center gap-2 py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+                    <Bot className="h-4 w-4 text-white" />
+                    <span>About</span>
+                  </Link>
+                  <Link to="/portfolio" className="flex items-center gap-2 py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
+                    <Wrench className="h-4 w-4 text-white" />
+                    <span>Portfolio</span>
+                  </Link>
+                </div>
+              )}
             </div>
             
             <Link 
@@ -306,11 +355,11 @@ export default function Navbar() {
             </Link>
 
             <div className="pt-2">
-              <Button className="w-full bg-brand-primary-400 text-black hover:bg-brand-primary-500" onClick={() => {
+              <Button className="w-full bg-transparent border border-zinc-700 text-white hover:bg-zinc-800 rounded-full transition-all duration-300" onClick={() => {
                 setIsMenuOpen(false);
                 navigate('/contact');
               }}>
-                Get a Free Audit
+                Let's Partner Up
               </Button>
             </div>
           </div>
