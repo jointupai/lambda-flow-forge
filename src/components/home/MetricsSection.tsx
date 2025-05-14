@@ -13,7 +13,7 @@ const MetricsSection = () => {
       description: 'Reduction in manual work',
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing',
       heading: 'launched in days, not months.',
-      buttonText: 'Deploy AI Apps in seconds'
+      buttonText: 'Automate with AI'
     },
     apps: {
       company: 'Full Stack Web Apps',
@@ -21,7 +21,7 @@ const MetricsSection = () => {
       description: 'Faster build speed',
       content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.',
       heading: 'deployed in weeks, not quarters.',
-      buttonText: 'Build Web Apps in days'
+      buttonText: 'Launch Your App'
     },
     ops: {
       company: 'Operations Solutions',
@@ -29,7 +29,7 @@ const MetricsSection = () => {
       description: 'Increase in operational efficiency',
       content: 'Streamline your operations with our secure and reliable infrastructure. Improve workflow efficiency and reduce manual tasks with our automation tools.',
       heading: 'optimized in hours, not days.',
-      buttonText: 'Optimize Operations now'
+      buttonText: 'Fix My Workflow'
     },
     crm: {
       company: 'CRM Solutions',
@@ -37,7 +37,7 @@ const MetricsSection = () => {
       description: 'Increase in customer retention',
       content: 'Manage your customer relationships with our comprehensive CRM tools. Track interactions, manage leads, and increase conversions with our intuitive platform.',
       heading: 'integrated in days, not weeks.',
-      buttonText: 'Integrate CRM tools today'
+      buttonText: 'Fix CRM Sync'
     },
     data: {
       company: 'Connect, transform, and act on your business data',
@@ -45,7 +45,7 @@ const MetricsSection = () => {
       description: 'Average data processing time',
       content: 'Real-time pipelines, live dashboards, and back-end automations to keep your systems in sync.',
       heading: 'analyzed in seconds, not hours.',
-      buttonText: 'Process Data instantly'
+      buttonText: 'Sync My Stack'
     }
   };
   const buttonOptions = [{
