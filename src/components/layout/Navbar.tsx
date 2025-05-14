@@ -123,49 +123,10 @@ export default function Navbar() {
                 )}
               </div>
 
-              <div className="relative group">
-                <button 
-                  onClick={() => {
-                    setShowProducts(!showProducts);
-                    if (showSolutions) setShowSolutions(false);
-                    if (showCompany) setShowCompany(false);
-                  }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showProducts ? 'nav-menu-item-selected' : ''}`}
-                  style={{ minWidth: showProducts ? null : 'max-content' }}
-                  data-state={showProducts ? "open" : "closed"}
-                >
-                  <span className="flex items-center min-w-max">
-                    Micro Products
-                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${showProducts ? 'rotate-180' : ''}`} />
-                  </span>
-                </button>
-
-                {showProducts && (
-                  <div className="absolute left-0 top-full mt-2 rounded-xl dropdown-container" style={{ width: '380px', maxWidth: 'calc(100vw - 2rem)' }}>
-                    <div>
-                      <Link to="/stripe-webflow-kit" className="vercel-menu-item">
-                        <div className="vercel-menu-item-icon">
-                          <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
-                        </div>
-                        <div className="vercel-menu-item-content">
-                          <h3 className="vercel-menu-item-title">Stripe Embed Kit</h3>
-                          <p className="vercel-menu-item-description">Integrate Stripe into Webflow</p>
-                        </div>
-                      </Link>
-                    </div>
-
-                    <div className="dropdown-footer">
-                      <Link to="/micro-products" className="flex items-center justify-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
-                        View All Products
-                        <ChevronDown className="h-3 w-3" />
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
+              {/* Removed Micro Products from desktop nav */}
 
               <Link to="/documentation" className="text-sm font-medium text-white hover:text-gray-300">
-                Documentation
+                Docs
               </Link>
 
               <div className="relative group">
@@ -281,20 +242,12 @@ export default function Navbar() {
               </div>
             </div>
             
-            <div className="block py-2 text-base font-medium text-foreground/80">
-              Micro Products
-              <div className="pl-4 space-y-2 mt-2">
-                <Link to="/stripe-webflow-kit" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
-                  <img src="https://kzljjbwouqfrokyokgjy.supabase.co/storage/v1/object/public/Public//stripe-s-svgrepo-com.svg" alt="Stripe Embed Kit" className="h-4 w-4" />
-                  <span>Stripe + Webflow Lambda Kit</span>
-                </Link>
-              </div>
-            </div>
+            {/* Removed Micro Products from mobile nav */}
             
             <Link to="/documentation" className="block py-2 text-base font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
               <div className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
-                <span>Documentation</span>
+                <span>Docs</span>
               </div>
             </Link>
             
@@ -332,3 +285,4 @@ export default function Navbar() {
     <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
   </>;
 }
+
