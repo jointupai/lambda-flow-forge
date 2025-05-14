@@ -8,8 +8,8 @@ const MetricsSection = () => {
   // Updated metrics data with the five options
   const metrics = {
     ai: {
-      company: 'USACarTags',
-      metric: '10x',
+      company: 'AI Automations',
+      metric: '268%',
       description: 'Reduction in manual work',
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing'
     },
