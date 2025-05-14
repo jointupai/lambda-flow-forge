@@ -270,7 +270,7 @@ export default function Navbar() {
                 <ChevronDown className={`h-5 w-5 transition-transform duration-300 ${mobileDropdowns.company ? 'rotate-180' : ''}`} />
               </div>
               
-              {mobileDropdowns.company && <div className="pl-2 space-y-2 mt-2 text-left">
+              {mobileDropdowns.company && <div className="pl-0 space-y-2 mt-2 text-left">
                   <Link to="/how-it-works" className="flex items-center gap-2 py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
                     <BarChart className="h-4 w-4 text-white" />
                     <span>How it Works</span>
