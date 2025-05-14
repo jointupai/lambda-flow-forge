@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               
               {/* Service 3 */}
-              <div className="bg-zinc-900 rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
+              <div className="bg-black rounded-lg p-8 border border-gray-800 hover:border-gray-700 transition-all duration-300">
                 <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-6">
                   <LinkIcon className="text-green-400" size={24} />
                 </div>
