@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-
 const MetricsSection = () => {
   const [selectedOption, setSelectedOption] = useState('ai');
   const isMobile = useIsMobile();
@@ -50,7 +48,6 @@ const MetricsSection = () => {
       buttonText: 'Process Data instantly'
     }
   };
-
   const buttonOptions = [{
     value: 'ai',
     label: 'AI'
@@ -67,9 +64,7 @@ const MetricsSection = () => {
     value: 'data',
     label: 'API'
   }];
-
-  return (
-    <section className="w-full py-0">
+  return <section className="w-full py-0">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8">
         <div className="border border-gray-800 rounded-none bg-black">
           <div className="px-4 py-8 md:px-8 md:py-12 flex flex-col md:flex-row md:justify-between md:items-start gap-8 md:gap-16">
@@ -84,21 +79,11 @@ const MetricsSection = () => {
                 <p className="text-gray-400 mt-2">{metrics[selectedOption as keyof typeof metrics].description}</p>
               </div>
               
-              <div className="flex justify-center mb-6 md:mb-8">
+              <div className="flex justify-left mb-6 md:mb-8">
                 <div className="inline-flex items-center p-1 bg-black border border-gray-800 rounded-full">
-                  {buttonOptions.map(option => (
-                    <button 
-                      key={option.value} 
-                      onClick={() => setSelectedOption(option.value)} 
-                      className={`px-4 py-2 text-sm rounded-full transition-colors ${
-                        selectedOption === option.value 
-                          ? 'bg-zinc-800 text-white' 
-                          : 'text-gray-400 hover:text-gray-300'
-                      }`}
-                    >
+                  {buttonOptions.map(option => <button key={option.value} onClick={() => setSelectedOption(option.value)} className={`px-4 py-2 text-sm rounded-full transition-colors ${selectedOption === option.value ? 'bg-zinc-800 text-white' : 'text-gray-400 hover:text-gray-300'}`}>
                       {option.label}
-                    </button>
-                  ))}
+                    </button>)}
                 </div>
               </div>
             </div>
@@ -119,8 +104,6 @@ const MetricsSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default MetricsSection;
