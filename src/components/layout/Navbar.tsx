@@ -23,6 +23,40 @@ export default function Navbar() {
     return location.pathname === path;
   };
 
+  // Check if the current path is within a specific section
+  const isInSection = (section: string) => {
+    const solutionsPaths = [
+      "/solutions",
+      "/solutions/custom-web-development",
+      "/solutions/ai-automation",
+      "/solutions/crm-api-integrations",
+      "/solutions/optimization-support",
+      "/solutions/automation-infrastructure",
+      "/solutions/zapier-replacement",
+      "/solutions/stripe-payment-workflows",
+      "/solutions/crm-lead-flow",
+      "/solutions/webhook-orchestration",
+      "/solutions/custom-cloud-solutions"
+    ];
+    
+    const companyPaths = [
+      "/how-it-works",
+      "/about",
+      "/portfolio",
+      "/company"
+    ];
+    
+    if (section === "solutions") {
+      return solutionsPaths.some(path => location.pathname === path);
+    }
+    
+    if (section === "company") {
+      return companyPaths.some(path => location.pathname === path);
+    }
+    
+    return false;
+  };
+
   return <>
     {(showSolutions || showCompany) && <div 
       className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" 
@@ -49,8 +83,8 @@ export default function Navbar() {
                     setShowSolutions(!showSolutions);
                     if (showCompany) setShowCompany(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions ? 'nav-menu-item-selected' : ''}`}
-                  style={{ minWidth: showSolutions ? null : 'max-content' }}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showSolutions || isInSection("solutions") ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: (showSolutions || isInSection("solutions")) ? null : 'max-content' }}
                   data-state={showSolutions ? "open" : "closed"}
                 >
                   <span className="flex items-center min-w-max">
@@ -135,8 +169,8 @@ export default function Navbar() {
                     setShowCompany(!showCompany);
                     if (showSolutions) setShowSolutions(false);
                   }} 
-                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany ? 'nav-menu-item-selected' : ''}`}
-                  style={{ minWidth: showCompany ? null : 'max-content' }}
+                  className={`flex items-center gap-2 text-sm font-medium text-white hover:text-gray-300 ${showCompany || isInSection("company") ? 'nav-menu-item-selected' : ''}`}
+                  style={{ minWidth: (showCompany || isInSection("company")) ? null : 'max-content' }}
                   data-state={showCompany ? "open" : "closed"}
                 >
                   <span className="flex items-center min-w-max">
@@ -223,7 +257,7 @@ export default function Navbar() {
               Home
             </Link>
             
-            <div className="block py-2 text-base font-medium text-foreground/80">
+            <div className={`block py-2 text-base font-medium ${isInSection("solutions") ? 'bg-zinc-800 rounded-lg px-2' : 'text-foreground/80'}`}>
               Solutions
               <div className="pl-4 space-y-2 mt-2">
                 <Link to="/solutions/custom-web-development" className="flex items-center gap-2 py-1 text-sm" onClick={() => setIsMenuOpen(false)}>
@@ -245,7 +279,7 @@ export default function Navbar() {
               </div>
             </div>
             
-            <div className="block py-2 text-base font-medium text-foreground/80">
+            <div className={`block py-2 text-base font-medium ${isInSection("company") ? 'bg-zinc-800 rounded-lg px-2' : 'text-foreground/80'}`}>
               Company
               <div className="pl-4 space-y-2 mt-2">
                 <Link to="/how-it-works" className="block py-1 text-sm text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
