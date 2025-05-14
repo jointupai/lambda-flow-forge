@@ -34,7 +34,7 @@ export default function Home() {
       <ContactDrawer open={openContactDrawer} onOpenChange={setOpenContactDrawer} />
       
       {/* Hero Section - Full width with contained content */}
-      <section className="w-full py-0 pt-[80px]">
+      <section className="w-full py-0 pt-[20px] md:pt-[80px]\n">
         <div className="max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 relative z-10">
           <div className="border border-gray-800 rounded-none bg-black overflow-hidden">
             <div className="relative py-20 md:py-28 px-8">
