@@ -152,10 +152,8 @@ export default function Home() {
                 When you push code to the cloud with JointUp, we make it instantly available across the planet.
               </p>
               <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setShowCalendly(true)}>
-                  Book a Discovery Call
-                </Button>
-                <Button variant="outline" className="bg-zinc-900 border border-gray-800 text-white hover:bg-zinc-800" onClick={() => setOpenContactDrawer(true)}>
+                <Button variant="outline" onClick={() => setShowCalendly(true)} className="mt-2 md:mt-6 inline-flex bg-[#0A0A0A] hover:bg-[#0A0A0A]  text-white px-4 py-2 rounded-full items-center text-sm border border-grey-900">Read Our Documentation</Button>
+                <Button variant="outline" onClick={() => setOpenContactDrawer(true)} className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">
                   Learn about Enterprise
                 </Button>
               </div>
