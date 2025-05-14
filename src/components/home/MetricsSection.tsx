@@ -53,19 +53,19 @@ const MetricsSection = () => {
 
   const buttonOptions = [{
     value: 'ai',
-    label: 'AI Apps'
+    label: 'AI'
   }, {
     value: 'apps',
-    label: 'Web Apps'
+    label: 'Web'
   }, {
     value: 'ops',
-    label: 'Ecommerce'
+    label: 'Ops'
   }, {
     value: 'crm',
-    label: 'Marketing'
+    label: 'CRM'
   }, {
     value: 'data',
-    label: 'Platforms'
+    label: 'API'
   }];
 
   return (
