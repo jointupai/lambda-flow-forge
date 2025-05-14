@@ -278,9 +278,7 @@ export default function Documentation() {
               <nav className="pb-16 hidden md:block">
                 <div className="space-y-8">
                   <div className="pr-3">
-                    <span className="text-sm font-bold text-gray-200 mb-3 block">
-                      Categories
-                    </span>
+                    
                     {isLoading ? Array(5).fill(0).map((_, index) => <div key={index} className="space-y-2">
                             <Skeleton className="h-6 w-32 bg-zinc-800" />
                           </div>) : filteredCategories.length > 0 ? filteredCategories.map(cat => <div key={cat} className="mb-2">
