@@ -89,10 +89,10 @@ const MetricsSection = () => {
                   <button 
                     key={option.value} 
                     onClick={() => setSelectedOption(option.value)} 
-                    className={`px-3 py-2 md:px-4 md:py-2 rounded-full text-sm transition-colors border ${
+                    className={`px-3 py-2 md:px-4 md:py-2 rounded-full text-sm transition-colors ${
                       selectedOption === option.value 
-                        ? 'bg-zinc-800 text-white border-gray-600' 
-                        : 'text-gray-400 hover:text-gray-300 border-gray-700 hover:border-gray-600'
+                        ? 'bg-zinc-800 text-white' 
+                        : 'text-gray-400 hover:text-gray-300'
                     }`}
                   >
                     {option.label}
