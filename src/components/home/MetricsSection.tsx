@@ -10,14 +10,14 @@ const MetricsSection = () => {
     ai: {
       company: 'USACarTags',
       metric: '10x',
-      description: 'Reduction in operational costs',
+      description: 'Reduction in manual work',
       content: 'AI-first workflows, built for real operations. We integrate OpenAI, OCR, and AI APIs into your backend to automate decision-making, data entry, and task routing'
     },
     apps: {
-      company: 'WebApps Inc',
+      company: 'Ops Launch',
       metric: '24x',
-      description: 'Faster development cycles',
-      content: 'Build your web applications with our no-code interface. Connect your favorite apps and services with our extensive library of integrations.'
+      description: 'Faster build speed',
+      content: 'Custom web apps that run lean and scale hard. MVPs, dashboards, portals—built fast, clean, and integrated with your stack.'
     },
     ops: {
       company: 'OpsTech',
