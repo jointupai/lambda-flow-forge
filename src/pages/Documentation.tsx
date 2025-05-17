@@ -261,10 +261,10 @@ export default function Documentation() {
   return <div className="min-h-screen bg-black text-white w-full">
       {/* --- SEO tags (for documentation post view) --- */}
       {selectedPost && <SEO title={selectedPost.seo?.metaTitle || selectedPost.title || "JointUp Documentation"} description={selectedPost.seo?.metaDescription || (typeof selectedPost.content === "string" ? selectedPost.content : "")} keywords={selectedPost.seo?.keywords} ogImage={selectedPost.seo?.ogImage} slug={selectedPost.slug?.current} />}
-      <div className="max-w-[1250px] mx-auto px-0 md:px-0 lg:px-0 pt-0 pb-12 md:py-0">
+      <div className="max-w-[1210px] mx-auto px-0 md:px-0 lg:px-0 pt-0 pb-12 md:py-0">
         <div className="flex flex-col md:flex-row">
           {/* Sidebar */}
-          <aside className="w-full md:w-64 md:flex-shrink-0 md:h-screen sticky top-0 border-r border-[#1F1F1F] border-l border-[#1F1F1F] pl-3 pr-3">
+          <aside className="w-full md:w-70 md:flex-shrink-0 md:h-screen sticky top-0 border-r border-[#1F1F1F] border-l border-[#1F1F1F] pl-3 pr-3">
             <div className="p-0 md:py-4">
               {/* Hide search and categories on mobile, show only on md+ */}
               <div className="relative mb-4 hidden md:block">
