@@ -216,9 +216,7 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-4">
-              <Button onClick={() => navigate('/contact')} className="bg-transparent border border-zinc-700 text-white hover:bg-zinc-800 rounded-full transition-all duration-300">
-                Let's Partner Up
-              </Button>
+              <Button onClick={() => navigate('/contact')} className="mt-2 md:mt-6 inline-flex bg-white hover:bg-gray-100 text-black px-4 py-2 rounded-full items-center text-sm">Contact</Button>
             </div>
             
             <button className="lg:hidden rounded-md p-2 text-white overflow-hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
